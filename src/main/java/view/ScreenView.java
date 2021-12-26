@@ -73,6 +73,9 @@ public class ScreenView extends View{
         return view.getFont();
     }
 
+    public Screen getScreen() {
+        return screen;
+    }
 
     public TerminalSize getSize(){
         return new TerminalSize(WIDTH, HEIGHT);

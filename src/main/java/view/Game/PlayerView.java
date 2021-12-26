@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class PlayerView extends View {
 
-    Player player;
+    private final Player player;
 
     public PlayerView(Player player){
         super();

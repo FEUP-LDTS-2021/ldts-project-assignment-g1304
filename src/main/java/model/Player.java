@@ -1,6 +1,9 @@
 package model;
 
-public class Player {
+import com.googlecode.lanterna.input.KeyStroke;
+import model.input.InputObserver;
+
+public class Player implements InputObserver {
     private Position position;
     private double angle;
     private final double raio;
@@ -29,5 +32,11 @@ public class Player {
 
     public double getRaio() {
         return raio;
+    }
+
+    @Override
+    public void processKey(KeyStroke key) {
+
+        System.out.println(key);
     }
 }

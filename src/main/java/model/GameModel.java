@@ -13,4 +13,8 @@ public class GameModel {
         return player;
     }
 
+    public void update(){
+
+    }
+
 }
