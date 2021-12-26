@@ -1,16 +1,18 @@
 package control;
 
+import model.GameModel;
 import view.Game.GameView;
 import view.ScreenView;
-
 import java.io.IOException;
 
 public class Controller {
 
     ScreenView screenView;
+    GameModel gameModel;
 
     public Controller(){
-        screenView = new ScreenView(new GameView());
+        gameModel = new GameModel();
+        screenView = new ScreenView(new GameView(gameModel));
     }
 
     public void run() throws IOException {
@@ -18,7 +20,6 @@ public class Controller {
         screenView.initScreen();
 
         while (true){
-
             screenView.draw();
 
         }

@@ -16,14 +16,9 @@ import java.io.IOException;
 
 public abstract class View {
 
-    public static final int WIDTH = 100;
-    public static final int HEIGHT = 100;
     protected TextGraphics graphics;
     protected Font font = null;
 
-    public TerminalSize getSize(){
-        return new TerminalSize(WIDTH, HEIGHT);
-    }
 
     public TextGraphics getGraphics() {
         return graphics;
@@ -34,21 +29,12 @@ public abstract class View {
     }
 
     public abstract void draw() throws IOException;
-
     public Font getFont(){
         return font;
     }
 
     public void setFont(Font font) {
         this.font = font;
-    }
-
-    public int getWidth(){
-        return WIDTH;
-    }
-
-    public int getHeight(){
-        return HEIGHT;
     }
 
 }
