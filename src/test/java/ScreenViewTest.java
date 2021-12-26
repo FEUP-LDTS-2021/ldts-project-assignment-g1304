@@ -55,7 +55,7 @@ public class ScreenViewTest extends Assertions{
     void testSetView(){
 
         // given
-        View view =gameViewMock = Mockito.mock(GameView.class);
+        View view = gameViewMock = Mockito.mock(GameView.class);
 
         // when
         screenView.setView(view);
