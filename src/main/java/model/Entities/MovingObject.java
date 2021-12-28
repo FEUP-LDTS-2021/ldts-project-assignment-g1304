@@ -3,17 +3,38 @@ package model.Entities;
 import model.Position;
 import model.physics.Vector2d;
 
-public interface MovingObject {
+public abstract class MovingObject {
 
-    void goFoward(long dt);
+    private Vector2d velocity;
+    private Position position;
 
-    void update(long dt);
+    public MovingObject(Position position, Vector2d velocity){
+        this.velocity = velocity;
+        this.position = position;
+    }
 
-    void setVelocity(Vector2d velocity);
+    public void goFoward(long dt){
+        position.setX(position.getX() + velocity.getX()*dt/1000);
+        position.setY(position.getY() + velocity.getY()*dt/1000);
+    }
 
-    Vector2d getVelocity();
+    public void update(long dt){
+        goFoward(dt);
+    }
 
-    Position getPosition();
+    public void setVelocity(Vector2d velocity) {
+        this.velocity = velocity;
+    }
 
-    void setPosition(Position position);
+    public Vector2d getVelocity() {
+        return velocity;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 }
