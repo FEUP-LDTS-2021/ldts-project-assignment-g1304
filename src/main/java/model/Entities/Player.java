@@ -2,8 +2,10 @@ package model;
 
 import model.physics.Vector2d;
 
+import java.util.Random;
 
-public class Player {
+
+public class Player extends MovingObject{
     private enum Rotation{
         Left(-1),
         Right(1),
@@ -20,30 +22,19 @@ public class Player {
         }
     }
 
-    private Position position;
     private double angle;
     public static final double raio = 10;
     public static final double acelaration = 200.0;
     public static final double MAX_VELOCITY = 80.0;
     public static final double angularVelocity = Math.PI*1.5;
-    private Vector2d velocity;
     private Rotation rotation;
     private boolean acelerate;
 
     public Player(Position position){
-        this.position = position;
+        super(position, new Vector2d(0,0));
         this.angle = 0;
-        this.velocity=new Vector2d(0,0);
         this.acelerate = false;
         this.rotation = Rotation.None;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
     }
 
     public void setAngle(double angle) {
@@ -58,26 +49,21 @@ public class Player {
         return raio;
     }
 
-    private void goFoward(long dt){
-        position.setX(position.getX() + velocity.getX()*dt/1000);
-        position.setY(position.getY() + velocity.getY()*dt/1000);
-    }
-
     public void update(long dt){
         angle += rotation.getValue()*angularVelocity*dt/1000;
         rotation = Rotation.None;
 
         if(acelerate) {
-            velocity.addX(acelaration * dt / 1000 * Math.cos(angle));
-            velocity.addY(acelaration * dt / 1000 * Math.sin(angle));
-            if(velocity.module() > MAX_VELOCITY)
-                velocity.resize(MAX_VELOCITY);
+            getVelocity().addX(acelaration * dt / 1000 * Math.cos(angle));
+            getVelocity().addY(acelaration * dt / 1000 * Math.sin(angle));
+            if(getVelocity().module() > MAX_VELOCITY)
+                getVelocity().resize(MAX_VELOCITY);
         }else {
-            velocity.resize(velocity.module()*0.90);
+            getVelocity().resize(getVelocity().module()*0.90);
         }
 
-        goFoward(dt);
         acelerate=false;
+        super.update(dt);       // andar para a frente
     }
 
     public void rotateLeft(){
@@ -94,10 +80,6 @@ public class Player {
 
     public void acelerate() {
         this.acelerate=true;
-    }
-
-    public void setVelocity(Vector2d velocity) {
-        this.velocity = velocity;
     }
 
 }
