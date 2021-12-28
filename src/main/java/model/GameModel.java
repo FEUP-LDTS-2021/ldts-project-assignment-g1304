@@ -13,8 +13,8 @@ public class GameModel {
         return player;
     }
 
-    public void update(){
-
+    public void update(long ms){
+        player.update(ms);
     }
 
 }

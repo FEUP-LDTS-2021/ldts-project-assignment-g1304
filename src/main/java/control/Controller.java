@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class Controller {
 
-    private ScreenView screenView;
-    private GameModel gameModel;
+    private final ScreenView screenView;
+    private final GameModel gameModel;
     private InputListenner inputListenner;
     private Thread inputThread;
 
@@ -28,9 +28,13 @@ public class Controller {
         inputListenner.addInputObserver(gameModel.getPlayer());
 
         inputThread.start();
-
+        long pastTime =  System.currentTimeMillis();
         while (true){
+            long now = System.currentTimeMillis();
+            gameModel.update(now-pastTime);
             screenView.draw();
+
+            pastTime=now;
 
         }
 
