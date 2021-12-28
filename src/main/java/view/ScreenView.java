@@ -18,8 +18,8 @@ import java.io.IOException;
 
 public class ScreenView extends View{
 
-    public static final int WIDTH = 200;
-    public static final int HEIGHT = 200;
+    public static final int WIDTH = 500;
+    public static final int HEIGHT = 500;
     private View view;
     private Screen screen;
 
@@ -59,7 +59,6 @@ public class ScreenView extends View{
 
 
     }
-
     public void setView(View view) {
         this.view = view;
     }

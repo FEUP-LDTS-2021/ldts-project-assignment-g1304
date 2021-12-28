@@ -30,7 +30,7 @@ public class PlayerView extends View {
 
         double anglePontaNave = player.getAngle();
         double anglePontaEsq = anglePontaNave + Math.PI*0.8333;   // 5/6
-        double anglePontaDir = anglePontaNave + Math.PI*1.6666;   // 5/6
+        double anglePontaDir = anglePontaNave + Math.PI*1.16666;   // 7/6
 
         getGraphics().drawTriangle(toTerminalPosition(position, anglePontaNave, player.getRaio()),
                                     toTerminalPosition(position, anglePontaEsq, player.getRaio()),
