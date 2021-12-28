@@ -2,7 +2,7 @@ package view.Game;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
-import model.Player;
+import model.Entities.Player;
 import model.Position;
 import view.View;
 

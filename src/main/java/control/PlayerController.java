@@ -2,7 +2,7 @@ package control;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import control.input.InputObserver;
-import model.Player;
+import model.Entities.Player;
 
 public class PlayerController implements InputObserver {
 

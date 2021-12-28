@@ -1,11 +1,10 @@
-package model;
+package model.Entities;
 
+import model.Position;
 import model.physics.Vector2d;
 
-import java.util.Random;
 
-
-public class Player extends MovingObject{
+public class Player extends MovingObject {
     private enum Rotation{
         Left(-1),
         Right(1),
