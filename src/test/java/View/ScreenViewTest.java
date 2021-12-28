@@ -1,3 +1,5 @@
+package View;
+
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 import view.Game.GameView;

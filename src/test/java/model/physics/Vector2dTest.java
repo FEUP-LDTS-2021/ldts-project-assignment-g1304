@@ -1,4 +1,4 @@
-package physics;
+package model.physics;
 
 import model.physics.Vector2d;
 import org.junit.jupiter.api.Assertions;

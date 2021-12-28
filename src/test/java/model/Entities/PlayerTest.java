@@ -1,6 +1,5 @@
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import model.Player;
+package model.Entities;
+
 import model.Position;
 import model.physics.Vector2d;
 import org.junit.jupiter.api.Assertions;
@@ -28,22 +27,6 @@ public class PlayerTest extends Assertions {
         assertEquals(position.getX(), positionMock.getX());
         assertEquals(position.getY(), positionMock.getY());
         assertEquals(p.getRaio(), Player.raio);
-    }
-
-    @Test
-    void setPosition(){
-        Position positionMock1 = Mockito.mock(Position.class);
-
-        Position positionMock2 = Mockito.mock(Position.class);
-
-        Player p = new Player(positionMock1);
-
-        // when
-        p.setPosition(positionMock2);
-
-        // then
-        assertEquals(p.getPosition(), positionMock2);
-
     }
 
     @Test

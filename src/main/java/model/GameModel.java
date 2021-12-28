@@ -1,5 +1,7 @@
 package model;
 
+import model.Entities.Player;
+
 public class GameModel {
 
     private final Player player;
