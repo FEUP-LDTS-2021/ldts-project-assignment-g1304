@@ -10,22 +10,22 @@ public class Controller {
 
     private final ScreenView screenView;
     private final GameModel gameModel;
-    private InputListenner inputListenner;
-    private Thread inputThread;
+    private final PlayerController playerController;
 
     public Controller(){
         gameModel = new GameModel();
         screenView = new ScreenView(new GameView(gameModel));
+        playerController = new PlayerController(gameModel.getPlayer());
     }
 
     public void run() throws IOException {
 
         screenView.initScreen();
 
-        inputListenner = new InputListenner(screenView.getScreen());
-        inputThread = new Thread(inputListenner);
+        InputListenner inputListenner = new InputListenner(screenView.getScreen());
+        Thread inputThread = new Thread(inputListenner);
 
-        inputListenner.addInputObserver(gameModel.getPlayer());
+        inputListenner.addInputObserver(playerController);
 
         inputThread.start();
         long pastTime =  System.currentTimeMillis();

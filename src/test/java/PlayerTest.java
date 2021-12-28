@@ -27,6 +27,7 @@ public class PlayerTest extends Assertions {
         // then
         assertEquals(position.getX(), positionMock.getX());
         assertEquals(position.getY(), positionMock.getY());
+        assertEquals(p.getRaio(), Player.raio);
     }
 
     @Test
@@ -55,45 +56,23 @@ public class PlayerTest extends Assertions {
         assertEquals(10, player.getAngle());
     }
 
-    @Test
-    void changeDirectionInput(){
-        Player player = new Player(new Position(10, 10));
-        player.processKey(new KeyStroke(KeyType.ArrowRight));
-        player.update(1000);
-        assertTrue( DoubleComparables.equalDouble(Player.angularVelocity, player.getAngle()));
-
-        player.processKey(new KeyStroke(KeyType.ArrowLeft));
-        player.update(1000);
-        assertTrue( DoubleComparables.equalDouble(0.0, player.getAngle()));
-
-        player.processKey(new KeyStroke(KeyType.ArrowLeft));
-        player.update(1000);
-        assertTrue( DoubleComparables.equalDouble(-Player.angularVelocity, player.getAngle()));
-    }
 
     @Test
     void changeDirectionWithTime(){
         Player player = new Player(new Position(10, 10));
-        player.processKey(new KeyStroke(KeyType.ArrowRight));
+        player.rotateRight();
         player.update(500);
         assertTrue( DoubleComparables.equalDouble(Player.angularVelocity/2, player.getAngle()));
 
-        player.processKey(new KeyStroke(KeyType.ArrowLeft));
+        player.rotateLeft();
         player.update(500);
         assertTrue( DoubleComparables.equalDouble(0.0, player.getAngle()));
 
-        player.processKey(new KeyStroke(KeyType.ArrowLeft));
+        player.rotateLeft();
         player.update(500);
         assertTrue( DoubleComparables.equalDouble(-Player.angularVelocity/2, player.getAngle()));
     }
 
-
-    @Test
-    void acelerationInput(){
-        Player player = new Player(new Position(10, 10));
-        player.processKey(new KeyStroke(KeyType.ArrowUp));
-        assertTrue(player.isAcelerate());
-    }
 
     @Test
     void updateWithoutAceleration(){
@@ -104,7 +83,6 @@ public class PlayerTest extends Assertions {
         player.setVelocity(velocity);
 
         //when
-        //player.setAcelerate(false);
         player.update(1000);
 
         //then
@@ -113,6 +91,40 @@ public class PlayerTest extends Assertions {
         Mockito.verify(velocity, Mockito.never()).addY(Mockito.anyDouble());
 
         assertFalse(player.isAcelerate());
+    }
+
+    @Test
+    void updateWithMaxVelocity(){
+        //given
+        Player player = new Player(new Position(10, 10));
+        Vector2d velocity = Mockito.mock(Vector2d.class);
+        player.setVelocity(velocity);
+
+
+        //when
+        Mockito.when(velocity.module()).thenReturn(Player.MAX_VELOCITY);
+        player.acelerate();
+        player.update(1000);
+
+        //then
+        Mockito.verify(velocity, Mockito.times(0)).resize(Mockito.anyDouble());
+    }
+
+    @Test
+    void updateaGreaterThanMaxVelocity(){
+        //given
+        Player player = new Player(new Position(10, 10));
+        Vector2d velocity = Mockito.mock(Vector2d.class);
+        player.setVelocity(velocity);
+
+
+        //when
+        Mockito.when(velocity.module()).thenReturn(Player.MAX_VELOCITY+1);
+        player.acelerate();
+        player.update(1000);
+
+        //then
+        Mockito.verify(velocity, Mockito.times(1)).resize(Player.MAX_VELOCITY);
     }
 
     @Test
@@ -137,7 +149,7 @@ public class PlayerTest extends Assertions {
 
 
         //when
-        player.setAcelerate(true);
+        player.acelerate();
         player.update(1000);
 
         //then
@@ -173,7 +185,7 @@ public class PlayerTest extends Assertions {
 
 
         //when
-        player.setAcelerate(true);
+        player.acelerate();
         player.update(1000);
 
         //then

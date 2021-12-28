@@ -1,4 +1,4 @@
-package model.input;
+package control.input;
 
 import com.googlecode.lanterna.input.KeyStroke;
 
