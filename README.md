@@ -4,7 +4,7 @@ Control the spaceship to destroy asteroids and flying saucers in this classic ar
 This project was developed by Afonso Baldo, João Teixeira and José Gaspar for LDTS 21⁄22.
 
 ## FEATURES
- - [ ] Movement - The spaceship is able to move in all directions when the arrow keys are pressed.
+ - [x] Movement - The spaceship is able to move in all directions when the arrow keys are pressed.
  - [ ] Shooting - The spaceship can shoot laser beams. 
  - [ ] Asteroids - The asteroids appear randomly throughout the map and move in a single random direction. 
  - [ ] Enemy Ships - The enemy flying saucers appear randomly on the map and try to shoot at your spaceship.
@@ -92,7 +92,3 @@ A way to improve the code would be to move the `isPlatformSegmentSolid()` method
 - Jane Doe: 60%
 ## Images
 ![Original vector-based Asteroids game (Atari 1979), showing ship in... |  Download Scientific Diagram](https://www.researchgate.net/profile/Kc-Collins/publication/262309733/figure/fig2/AS:694796872081408@1542663891658/Original-vector-based-Asteroids-game-Atari-1979-showing-ship-in-centre-and-floating.ppm)
-## Features
-
- - [ ] Instructions - A page that shows the basic controls for the game.
- - [ ] Leaderboard - When the user loses, his score is saved 
