@@ -1,3 +1,5 @@
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import model.Player;
 import model.Position;
 import org.junit.jupiter.api.Assertions;
@@ -34,4 +36,19 @@ public class PlayerTest extends Assertions {
         assertEquals(10, player.getAngle());
     }
 
+    @Test
+    void changeDirectionInput(){
+        Player player = new Player(new Position(10, 10));
+        player.processKey(new KeyStroke(KeyType.ArrowLeft));
+        player.update(1000);
+        assertEquals(Player.angularVelocity, player.getAngle());
+
+        player.processKey(new KeyStroke(KeyType.ArrowRight));
+        player.update(1000);
+        assertEquals(0.0f, player.getAngle());
+
+        player.processKey(new KeyStroke(KeyType.ArrowRight));
+        player.update(1000);
+        assertEquals(-Player.angularVelocity, player.getAngle());
+    }
 }
