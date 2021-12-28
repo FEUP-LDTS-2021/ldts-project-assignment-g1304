@@ -25,7 +25,6 @@ public class PositionTest extends Assertions {
 
         assertEquals(20, position.getX());
         assertEquals(40, position.getY());
-
     }
 
 }

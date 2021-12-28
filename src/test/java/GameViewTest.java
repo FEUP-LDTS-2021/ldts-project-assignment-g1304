@@ -8,8 +8,6 @@ import view.View;
 import java.awt.*;
 import java.io.IOException;
 
-import static org.mockito.Mockito.times;
-
 public class GameViewTest extends Assertions {
 
     @Test
