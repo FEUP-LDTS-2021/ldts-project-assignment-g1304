@@ -6,7 +6,7 @@ This project was developed by Afonso Baldo, João Teixeira and José Gaspar for 
 ## FEATURES
  - [x] Movement - The spaceship is able to move in all directions when the arrow keys are pressed.
  - [x] Shooting - The spaceship can shoot laser beams. 
- - [ ] Asteroids - The asteroids appear randomly throughout the map and move in a single random direction. 
+ - [x] Asteroids - The asteroids appear randomly throughout the map and move in a single random direction. 
  - [ ] Enemy Ships - The enemy flying saucers appear randomly on the map and try to shoot at your spaceship.
  - [ ] Player Collisions - If the player collides with an asteroid, enemy ship or with a laser beam, it dies.
  - [ ] Asteroids Collisions - If the asteroid collides with a ship, kills it.
