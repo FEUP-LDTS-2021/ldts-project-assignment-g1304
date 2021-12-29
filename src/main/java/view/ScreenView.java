@@ -12,14 +12,13 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
+import model.Constraints;
 
 import java.awt.*;
 import java.io.IOException;
 
 public class ScreenView extends View{
 
-    public static final int WIDTH = 500;
-    public static final int HEIGHT = 500;
     private View view;
     private Screen screen;
 
@@ -32,7 +31,7 @@ public class ScreenView extends View{
         AWTTerminalFontConfiguration cfg = new SwingTerminalFontConfiguration(true,
                 AWTTerminalFontConfiguration.BoldMode.NOTHING, getFont());
         Terminal terminal = new DefaultTerminalFactory()
-                .setInitialTerminalSize(new TerminalSize(WIDTH, HEIGHT))
+                .setInitialTerminalSize(new TerminalSize(Constraints.WIDTH, Constraints.HEIGHT))
                 .setTerminalEmulatorFontConfiguration(cfg)
                 .createTerminal();
 
@@ -77,7 +76,7 @@ public class ScreenView extends View{
     }
 
     public TerminalSize getSize(){
-        return new TerminalSize(WIDTH, HEIGHT);
+        return new TerminalSize(Constraints.WIDTH, Constraints.HEIGHT);
     }
 
     protected void refresh() throws IOException {
