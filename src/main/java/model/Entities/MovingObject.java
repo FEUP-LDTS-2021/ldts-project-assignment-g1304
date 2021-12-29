@@ -62,5 +62,16 @@ public abstract class MovingObject {
         this.height = height;
     }
 
-    public abstract void fixPassScreenBorder();
+
+    public final void fixPassScreenBorder(){
+        if(position.getX() > WIDTH)
+            position.setX(-getWidth());
+        else if(position.getX() < -getWidth())
+            position.setX(WIDTH);
+
+        if(position.getY() > HEIGHT)
+            position.setY(-getHeight());
+        else if(position.getY() < -getHeight())
+            position.setY(HEIGHT);
+    }
 }
