@@ -14,7 +14,7 @@ public class LaserBeamTest extends Assertions {
         Mockito.when(positionMock.getX()).thenReturn(10.0);
         Mockito.when(positionMock.getY()).thenReturn(20.0);
 
-        LaserBeam l = new LaserBeam(positionMock, 30.0);
+        LaserBeam l = new LaserBeam(positionMock, 30.0, 3, 3);
 
         //when
         Position position = l.getPosition();
@@ -27,8 +27,12 @@ public class LaserBeamTest extends Assertions {
 
     @Test
     void update() {
-        LaserBeam l1 = new LaserBeam(new Position(10.0, 10.0), 40.0);
-        LaserBeam l2 = new LaserBeam(new Position(10.0 + LaserBeam.VELOCITY*Math.cos(40.0)*10/1000, 10.0 + LaserBeam.VELOCITY*Math.sin(40.0)*10/1000), 40.0);
+        LaserBeam l1 = new LaserBeam(new Position(10.0, 10.0), 40.0, 3, 3);
+        LaserBeam l2 = new LaserBeam(
+                            new Position(
+                                     10.0 + LaserBeam.VELOCITY*Math.cos(40.0)*10/1000,
+                                     10.0 + LaserBeam.VELOCITY*Math.sin(40.0)*10/1000),
+                         40.0 , 3, 3);
         l1.update(10);
         l1.update(10);
         assertEquals(l1.getPosition().getX(), l2.getPosition().getX());

@@ -6,7 +6,7 @@ public class LaserBeamCreator {
 
     private final Player player;
 
-    public LaserBeamCreator (Player player) {
+    public LaserBeamCreator(Player player) {
 
         this.player = player;
     }
@@ -18,8 +18,13 @@ public class LaserBeamCreator {
     public LaserBeam createLaserBeam() {
         double x = player.getPosition().getX();
         double y = player.getPosition().getY();
-        Position laserPos = new Position((int) (Math.cos(player.getAngle())* (player.getRaio()) + x),
-                (int) (Math.sin(player.getAngle())* (player.getRaio()) + y));
-        return new LaserBeam(laserPos, player.getAngle());
+        double laserWidth = 3;
+        double laserHeight = 3;
+
+        Position laserPos = new Position((int) (
+                Math.cos(player.getAngle()) * (player.getRaio()) + x - laserWidth / 2),
+                (int) (Math.sin(player.getAngle()) * (player.getRaio()) + y - laserHeight / 2));
+
+        return new LaserBeam(laserPos, player.getAngle(), laserWidth, laserHeight);
     }
 }

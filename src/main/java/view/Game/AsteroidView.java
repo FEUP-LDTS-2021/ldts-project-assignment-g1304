@@ -17,10 +17,10 @@ public class AsteroidView extends View {
         this.asteroid = asteroid;
     }
     @Override
-    public void draw() throws IOException {
+    public void draw(){
         getGraphics().setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         getGraphics().drawRectangle(new TerminalPosition((int)asteroid.getPosition().getX(),
                         (int)asteroid.getPosition().getY()),
-                new TerminalSize(asteroid.getSize(),asteroid.getSize()),' ');
+                new TerminalSize((int)asteroid.getWidth(), (int)asteroid.getHeight()),' ');
     }
 }

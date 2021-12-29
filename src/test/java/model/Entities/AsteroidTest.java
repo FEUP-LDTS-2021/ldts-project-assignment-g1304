@@ -33,7 +33,8 @@ public class AsteroidTest extends Assertions {
         assertEquals(velocity.getX(),velocityMock.getX());   //checks if velocity is okay
         assertEquals(velocity.getY(),velocityMock.getY());
 
-        assertEquals(15,a.getSize());                //checks if size is okay
+        assertEquals(15,a.getWidth());                //checks if size is okay
+        assertEquals(15,a.getHeight());                //checks if size is okay
     }
 
     @Test

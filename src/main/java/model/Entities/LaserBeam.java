@@ -8,8 +8,8 @@ public class LaserBeam extends MovingObject {
     public final static double VELOCITY = 200.0;
     private boolean control = false;
 
-    public LaserBeam(Position position, double angle) {
-        super(position, new Vector2d(VELOCITY*Math.cos(angle), VELOCITY*Math.sin(angle)));
+    public LaserBeam(Position position, double angle, double width, double height) {
+        super(position, new Vector2d(VELOCITY*Math.cos(angle), VELOCITY*Math.sin(angle)), width, height);
         this.angle = angle;
     }
 

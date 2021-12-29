@@ -29,15 +29,15 @@ public class LaserBeamCreatorTest extends Assertions {
         Mockito.when(playerMock.getRaio()).thenReturn(5.0);
         LaserBeamCreator laserBeamCreator = new LaserBeamCreator(playerMock);
 
-        int x = (int) (Math.cos(playerMock.getAngle())* playerMock.getRaio() + playerMock.getPosition().getX());
-        int y = (int) (Math.sin(playerMock.getAngle())* playerMock.getRaio() + playerMock.getPosition().getY());
+        double x = Math.cos(playerMock.getAngle())* playerMock.getRaio() + playerMock.getPosition().getX();
+        double y = Math.sin(playerMock.getAngle())* playerMock.getRaio() + playerMock.getPosition().getY();
 
         //when
         LaserBeam laserBeam = laserBeamCreator.createLaserBeam();
 
         //then
-        assertEquals(x, laserBeam.getPosition().getX());
-        assertEquals(y, laserBeam.getPosition().getY());
+        assertEquals((int)(x-laserBeam.getWidth()/2), laserBeam.getPosition().getX());
+        assertEquals((int)(y-laserBeam.getHeight()/2), laserBeam.getPosition().getY());
 
     }
 }
