@@ -28,6 +28,7 @@ public class Controller {
         inputListenner.addInputObserver(playerController);
 
         inputThread.start();
+
         long pastTime =  System.currentTimeMillis();
         while (true){
             long now = System.currentTimeMillis();

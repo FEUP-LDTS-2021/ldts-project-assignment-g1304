@@ -3,6 +3,9 @@ package model.Entities;
 import model.Position;
 import model.physics.Vector2d;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Player extends MovingObject {
     private enum Rotation{
@@ -28,12 +31,22 @@ public class Player extends MovingObject {
     public static final double angularVelocity = Math.PI*1.5;
     private Rotation rotation;
     private boolean acelerate;
+    private List<LaserBeam> laserBeams;
+    private final LaserBeamCreator laserCreator;
+    private boolean shoot;
+
+    public List<LaserBeam> getLaserBeams() {
+        return laserBeams;
+    }
 
     public Player(Position position){
         super(position, new Vector2d(0,0));
         this.angle = 0;
         this.acelerate = false;
         this.rotation = Rotation.None;
+        this.laserBeams = new ArrayList<>();
+        this.laserCreator = new LaserBeamCreator(this);
+        this.shoot = false;
     }
 
     public void setAngle(double angle) {
@@ -63,6 +76,10 @@ public class Player extends MovingObject {
 
         acelerate=false;
         super.update(dt);       // andar para a frente
+        if (shoot) {
+            laserBeams.add(laserCreator.createLaserBeam());
+        }
+        shoot = false;
     }
 
     public void rotateLeft(){
@@ -79,6 +96,10 @@ public class Player extends MovingObject {
 
     public void acelerate() {
         this.acelerate=true;
+    }
+
+    public void addLaserBeams() {
+        shoot = true;
     }
 
 }
