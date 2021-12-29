@@ -40,7 +40,7 @@ public class Player extends MovingObject {
     }
 
     public Player(Position position){
-        super(position, new Vector2d(0,0));
+        super(position, new Vector2d(0,0), raio, raio);
         this.angle = 0;
         this.acelerate = false;
         this.rotation = Rotation.None;
