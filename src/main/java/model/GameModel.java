@@ -8,13 +8,13 @@ public class GameModel {
         player = new Player(new Position(100, 100));
     }
 
-
     public Player getPlayer() {
         return player;
     }
 
-    public void update(){
-
+    public void update(long dt){
+        for (LaserBeam laserBeam : player.getLaserBeams()) {
+            laserBeam.update(dt);
+        }
     }
-
 }

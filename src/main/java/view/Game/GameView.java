@@ -2,6 +2,7 @@ package view.Game;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import model.GameModel;
+import model.LaserBeam;
 import view.View;
 
 import java.awt.*;
@@ -22,6 +23,11 @@ public class GameView extends View {
     @Override
     public void draw() throws IOException {
         playerView.draw();
+        for (LaserBeam laserBeam : model.getPlayer().getLaserBeams()) {
+            LaserView laserView = new LaserView(laserBeam);
+            laserView.setGraphics(graphics);
+            laserView.draw();
+        }
     }
 
 

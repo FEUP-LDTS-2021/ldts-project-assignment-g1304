@@ -29,8 +29,13 @@ public class Controller {
 
         inputThread.start();
 
+        long pastTime =  System.currentTimeMillis();
         while (true){
+            long now = System.currentTimeMillis();
+            gameModel.update(now-pastTime);
             screenView.draw();
+
+            pastTime=now;
 
         }
 

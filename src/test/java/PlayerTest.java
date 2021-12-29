@@ -11,8 +11,8 @@ public class PlayerTest extends Assertions {
     void createPlayer(){
         // given
         Position positionMock = Mockito.mock(Position.class);
-        Mockito.when(positionMock.getX()).thenReturn(10);
-        Mockito.when(positionMock.getY()).thenReturn(20);
+        Mockito.when(positionMock.getX()).thenReturn(10.0);
+        Mockito.when(positionMock.getY()).thenReturn(20.0);
 
         Player p = new Player(positionMock);
 

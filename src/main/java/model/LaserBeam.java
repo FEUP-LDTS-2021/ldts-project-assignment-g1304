@@ -1,14 +1,28 @@
 package model;
 
-public interface LaserBeam {
+public class LaserBeam {
+    private Position position;
+    private double angle;
 
-    Position getPosition();
+    public LaserBeam(Position position, double angle) {
+        this.position = position;
+        this.angle = angle;
+    }
 
-    double getAngle();
+    public Position getPosition() {
+        return position;
+    }
 
-    void setPosition(Position position);
+    public double getAngle() {return angle;}
 
-    void setAngle(double angle);
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 
-    void update(long dt);
+    public void setAngle(double angle) {this.angle = angle;}
+
+    public void update(long dt) {
+        position.setX(position.getX() + 100*Math.cos(angle)*dt/1000);
+        position.setY(position.getY() + 100*Math.sin(angle)*dt/1000);
+    }
 }
