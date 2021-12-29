@@ -1,12 +1,11 @@
 package model.Entities;
 
+import model.Constraints;
 import model.Position;
 import model.physics.Vector2d;
 
 public abstract class MovingObject {
 
-    public static final int WIDTH = 500;
-    public static final int HEIGHT = 500;
     private Vector2d velocity;
     private Position position;
     private double width;
@@ -64,14 +63,14 @@ public abstract class MovingObject {
 
 
     public final void fixPassScreenBorder(){
-        if(position.getX() > WIDTH)
+        if(position.getX() > Constraints.WIDTH)
             position.setX(-getWidth());
         else if(position.getX() < -getWidth())
-            position.setX(WIDTH);
+            position.setX(Constraints.WIDTH);
 
-        if(position.getY() > HEIGHT)
+        if(position.getY() > Constraints.HEIGHT)
             position.setY(-getHeight());
         else if(position.getY() < -getHeight())
-            position.setY(HEIGHT);
+            position.setY(Constraints.HEIGHT);
     }
 }

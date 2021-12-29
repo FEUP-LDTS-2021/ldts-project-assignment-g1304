@@ -1,5 +1,6 @@
 package model.Entities;
 
+import model.Constraints;
 import model.Position;
 import model.physics.Vector2d;
 import org.junit.jupiter.api.Assertions;
@@ -14,8 +15,6 @@ public class MovingObjectsTest extends Assertions {
     MovingObject object;
     Position position;
     Vector2d velocity;
-    int screenWidth = 500;
-    int screenHeight = 500;
 
     @BeforeEach
     void create(){
@@ -70,19 +69,19 @@ public class MovingObjectsTest extends Assertions {
 
     @Test
     void NotPassBorderRight(){
-        Position pos = new Position(screenWidth, 0);
+        Position pos = new Position(Constraints.WIDTH, 0);
         object.setPosition(pos);
 
         object.fixPassScreenBorder();
 
-        assertEquals(object.getPosition().getX(), screenWidth);
+        assertEquals(object.getPosition().getX(), Constraints.WIDTH);
         assertEquals(object.getPosition().getY(), 0);
 
     }
 
     @Test
     void PassBorderRight(){
-        Position pos = new Position(screenWidth+1, 0);
+        Position pos = new Position(Constraints.WIDTH+1, 0);
 
         object.setPosition(pos);
         object.fixPassScreenBorder();
@@ -110,7 +109,7 @@ public class MovingObjectsTest extends Assertions {
         object.setPosition(pos);
         object.fixPassScreenBorder();
 
-        assertEquals(object.getPosition().getX(), screenWidth);
+        assertEquals(object.getPosition().getX(), Constraints.WIDTH);
         assertEquals(object.getPosition().getY(), 0);
     }
 
@@ -134,23 +133,23 @@ public class MovingObjectsTest extends Assertions {
         object.fixPassScreenBorder();
 
         assertEquals(object.getPosition().getX(), 0);
-        assertEquals(object.getPosition().getY(), screenHeight);
+        assertEquals(object.getPosition().getY(), Constraints.HEIGHT);
     }
 
     @Test
     void NotPassBorderDown(){
-        Position down = new Position(0, screenHeight);
+        Position down = new Position(0, Constraints.HEIGHT);
 
         object.setPosition(down);
         object.fixPassScreenBorder();
 
         assertEquals(object.getPosition().getX(), 0);
-        assertEquals(object.getPosition().getY(), screenHeight);
+        assertEquals(object.getPosition().getY(), Constraints.HEIGHT);
     }
 
     @Test
     void PassBorderDown(){
-        Position down = new Position(0, screenHeight+1);
+        Position down = new Position(0, Constraints.HEIGHT+1);
 
         object.setPosition(down);
         object.fixPassScreenBorder();
@@ -179,70 +178,70 @@ public class MovingObjectsTest extends Assertions {
         object.setPosition(pos);
         object.fixPassScreenBorder();
 
-        assertEquals(object.getPosition().getX(), screenWidth);
-        assertEquals(object.getPosition().getY(), screenHeight);
+        assertEquals(object.getPosition().getX(), Constraints.WIDTH);
+        assertEquals(object.getPosition().getY(), Constraints.HEIGHT);
 
     }
 
     @Test
     void NotPassCornerUpRigth(){
-        Position pos = new Position(screenWidth, -object.getHeight());
+        Position pos = new Position(Constraints.WIDTH, -object.getHeight());
 
         object.setPosition(pos);
         object.fixPassScreenBorder();
 
-        assertEquals(object.getPosition().getX(), screenWidth);
+        assertEquals(object.getPosition().getX(), Constraints.WIDTH);
         assertEquals(object.getPosition().getY(), -object.getHeight());
     }
 
     @Test
     void PassCornerUpRigth(){
-        Position pos = new Position(screenWidth+1, -object.getHeight()-1);
+        Position pos = new Position(Constraints.WIDTH+1, -object.getHeight()-1);
 
         object.setPosition(pos);
         object.fixPassScreenBorder();
 
         assertEquals(object.getPosition().getX(), -object.getWidth());
-        assertEquals(object.getPosition().getY(), screenHeight);
+        assertEquals(object.getPosition().getY(), Constraints.HEIGHT);
 
     }
 
     @Test
     void NotPassCornerDownLeft(){
-        Position pos = new Position(-object.getWidth(), screenHeight);
+        Position pos = new Position(-object.getWidth(), Constraints.HEIGHT);
 
         object.setPosition(pos);
         object.fixPassScreenBorder();
 
         assertEquals(object.getPosition().getX(), -object.getWidth());
-        assertEquals(object.getPosition().getY(), screenHeight);
+        assertEquals(object.getPosition().getY(), Constraints.HEIGHT);
     }
 
     @Test
     void PassCornerDownLeft(){
-        Position pos = new Position(-object.getWidth()-1, screenHeight+1);
+        Position pos = new Position(-object.getWidth()-1, Constraints.HEIGHT+1);
 
         object.setPosition(pos);
         object.fixPassScreenBorder();
 
-        assertEquals(object.getPosition().getX(), screenWidth);
+        assertEquals(object.getPosition().getX(), Constraints.WIDTH);
         assertEquals(object.getPosition().getY(), -object.getHeight());
     }
 
     @Test
     void NotPassCornerDownRigth(){
-        Position pos = new Position(screenWidth, screenHeight);
+        Position pos = new Position(Constraints.WIDTH, Constraints.HEIGHT);
 
         object.setPosition(pos);
         object.fixPassScreenBorder();
 
-        assertEquals(object.getPosition().getX(), screenWidth);
-        assertEquals(object.getPosition().getY(), screenHeight);
+        assertEquals(object.getPosition().getX(), Constraints.WIDTH);
+        assertEquals(object.getPosition().getY(), Constraints.HEIGHT);
     }
 
     @Test
     void PassCornerDownRigth(){
-        Position pos = new Position(screenWidth+1, screenHeight+1);
+        Position pos = new Position(Constraints.WIDTH+1, Constraints.HEIGHT+1);
 
         object.setPosition(pos);
         object.fixPassScreenBorder();
