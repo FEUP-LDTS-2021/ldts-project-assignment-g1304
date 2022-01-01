@@ -12,6 +12,8 @@ public class GameModel {
     private final Player player;
     private final List<MovingObject> asteroids;
     private final AsteroidCreator asteroidCreator;
+    private final EnemyShipSpawner enemyShipSpawner;
+
     private final List<MovingObject> entities;
     private final LaserBeamCreator laserCreator;
 
@@ -22,11 +24,13 @@ public class GameModel {
         player = new Player(new Position(100, 100));
         this.laserCreator = new LaserBeamCreator(player);
         player.setLaserBeamCreator(laserCreator);
+        this.enemyShipSpawner = new EnemyShipSpawner(player);
     }
 
     public LaserBeamCreator getLaserCreator() {
         return laserCreator;
     }
+
 
     public List<MovingObject> initAsteroids(Integer numberAsteroids){
         List<MovingObject> asteroidsConstructor = new ArrayList<>();
@@ -42,14 +46,21 @@ public class GameModel {
 
     public List<MovingObject> getAsteroids() {return asteroids;}
 
+    public EnemyShipSpawner getEnemyShipSpawner() {
+        return enemyShipSpawner;
+    }
+
     public Player getPlayer() {
         return player;
     }
 
     public void update(long dt){
+
         getPlayer().update(dt);
         for (LaserBeam laserBeam : getLaserCreator().getLaserBeamList())
             laserBeam.update(dt);
+
+        enemyShipSpawner.update(dt);
 
         for(MovingObject asteroid : getAsteroids())
             asteroid.update(dt);
@@ -82,10 +93,12 @@ public class GameModel {
         }
     }
 
+
     public void updateEntities() {
         getEntities().clear();
         getEntities().add(getPlayer());
         getEntities().addAll(getAsteroids());
         getEntities().addAll(getLaserCreator().getLaserBeamList());
+
     }
 }

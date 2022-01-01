@@ -30,8 +30,8 @@ public class GameModelTest extends Assertions {
         LaserBeam c3 = Mockito.mock(LaserBeam.class);
 
         List<MovingObject> movingObjects = new ArrayList<>();
-        movingObjects.add((MovingObject) c1);
-        movingObjects.add((MovingObject) c2);
+        movingObjects.add(c1);
+        movingObjects.add(c2);
         movingObjects.add(c3);
 
         Mockito.when(gameModelMock.getEntities()).thenReturn(movingObjects);

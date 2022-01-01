@@ -5,7 +5,9 @@ import model.Position;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LaserBeamCreator {
+
+public class LaserBeamCreator extends Creator {
+
 
     private final Player player;
     private final List<LaserBeam> laserBeamList;
@@ -24,7 +26,8 @@ public class LaserBeamCreator {
         return laserBeamList;
     }
 
-    public LaserBeam createLaserBeam() {
+    public LaserBeam create() {
+
         double x = player.getPosition().getX();
         double y = player.getPosition().getY();
         double laserWidth = 3;

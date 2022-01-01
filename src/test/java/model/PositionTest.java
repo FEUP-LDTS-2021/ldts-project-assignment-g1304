@@ -29,4 +29,19 @@ public class PositionTest extends Assertions {
         assertEquals(40, position.getY());
     }
 
+    @Test
+    void cloneTest(){
+        //given
+        Position pos = new Position(20.0,23.1);
+
+        //when
+        Position cloned = pos.clone();
+
+        //then
+        assertEquals(pos.getX(),cloned.getX());
+        assertEquals(pos.getY(),cloned.getY());
+    }
+
+
+
 }

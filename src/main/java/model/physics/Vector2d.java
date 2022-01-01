@@ -30,4 +30,7 @@ public class Vector2d extends Position {
         setY(getY()*m);
     }
 
+    public double dotProduct(Vector2d vec){
+        return vec.getX()*getX() + vec.getY()*getY();
+    }
 }

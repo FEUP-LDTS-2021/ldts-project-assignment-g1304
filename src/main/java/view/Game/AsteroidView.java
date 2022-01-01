@@ -8,6 +8,9 @@ import model.Entities.Asteroid;
 import view.View;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class AsteroidView extends View {
     private final Asteroid asteroid;
@@ -16,6 +19,8 @@ public class AsteroidView extends View {
         super();
         this.asteroid = asteroid;
     }
+
+
     @Override
     public void draw(){
         getGraphics().setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));

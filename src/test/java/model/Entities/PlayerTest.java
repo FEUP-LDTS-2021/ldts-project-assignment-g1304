@@ -191,6 +191,6 @@ public class PlayerTest extends Assertions {
 
         //then
         Mockito.verify(laserBeamCreatorMock, Mockito.times(1)).addLaserBeam(Mockito.any());
-        Mockito.verify(laserBeamCreatorMock, Mockito.times(1)).createLaserBeam();
+        Mockito.verify(laserBeamCreatorMock, Mockito.times(1)).create();
     }
 }

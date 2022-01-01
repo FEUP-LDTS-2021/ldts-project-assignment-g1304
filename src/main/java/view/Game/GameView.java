@@ -2,6 +2,7 @@ package view.Game;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import model.Entities.Asteroid;
+import model.Entities.EnemyShip;
 import model.Entities.MovingObject;
 import model.GameModel;
 import model.Entities.LaserBeam;
@@ -32,11 +33,25 @@ public class GameView extends View {
             laserView.setGraphics(graphics);
             laserView.draw();
         }
+
         for(MovingObject asteroid : model.getAsteroids()) {
             AsteroidView asteroidView = new AsteroidView((Asteroid) asteroid);
             asteroidView.setGraphics(graphics);
             asteroidView.draw();
         }
+
+        for(EnemyShip enemyShip : model.getEnemyShipSpawner().getEnemyShips()) {
+            EnemyShipView enemyShipView = new EnemyShipView(enemyShip);
+            enemyShipView.setGraphics(graphics);
+            enemyShipView.draw();
+            for(LaserBeam laserBeam : enemyShip.getLaserBeams()){
+                LaserView laserView = new LaserView(laserBeam);
+                laserView.setGraphics(graphics);
+                laserView.draw();
+            }
+        }
+
+
     }
 
 
