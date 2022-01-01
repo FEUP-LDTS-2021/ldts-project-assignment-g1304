@@ -1,16 +1,18 @@
 package model.Entities;
 
+import model.Collider.CollidableObject;
 import model.Constraints;
 import model.Position;
 import model.physics.Vector2d;
 
-public abstract class MovingObject {
+import java.awt.geom.Rectangle2D;
+
+public abstract class MovingObject implements CollidableObject {
 
     private Vector2d velocity;
     private Position position;
     private double width;
     private double height;
-
 
     public MovingObject(Position position, Vector2d velocity, double width, double height){
         this.velocity = velocity;
@@ -20,8 +22,8 @@ public abstract class MovingObject {
     }
 
     public void goFoward(long dt){
-        position.setX(position.getX() + velocity.getX()*dt/1000);
-        position.setY(position.getY() + velocity.getY()*dt/1000);
+        getPosition().setX(getPosition().getX() + velocity.getX()*dt/1000);
+        getPosition().setY(getPosition().getY() + velocity.getY()*dt/1000);
     }
 
     public void update(long dt){
@@ -61,16 +63,17 @@ public abstract class MovingObject {
         this.height = height;
     }
 
-
     public final void fixPassScreenBorder(){
-        if(position.getX() > Constraints.WIDTH)
-            position.setX(-getWidth());
-        else if(position.getX() < -getWidth())
-            position.setX(Constraints.WIDTH);
+        if(getPosition().getX() > Constraints.WIDTH)
+            getPosition().setX(-getWidth());
+        else if(getPosition().getX() < -getWidth())
+            getPosition().setX(Constraints.WIDTH);
 
-        if(position.getY() > Constraints.HEIGHT)
-            position.setY(-getHeight());
-        else if(position.getY() < -getHeight())
-            position.setY(Constraints.HEIGHT);
+        if(getPosition().getY() > Constraints.HEIGHT)
+            getPosition().setY(-getHeight());
+        else if(getPosition().getY() < -getHeight())
+            getPosition().setY(Constraints.HEIGHT);
     }
+
+    public Rectangle2D.Double getCollider();
 }

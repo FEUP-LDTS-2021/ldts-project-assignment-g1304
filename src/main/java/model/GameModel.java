@@ -1,9 +1,6 @@
 package model;
 
-import model.Entities.AsteroidCreator;
-import model.Entities.LaserBeam;
-import model.Entities.MovingObject;
-import model.Entities.Player;
+import model.Entities.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +12,20 @@ public class GameModel {
     private final Player player;
     private final List<MovingObject> asteroids;
     private final AsteroidCreator asteroidCreator;
+    private final List<MovingObject> entities;
+    private final LaserBeamCreator laserCreator;
+
     public GameModel(){
-        player = new Player(new Position(100, 100));
         this.asteroidCreator = new AsteroidCreator(new Random());
         asteroids = initAsteroids(4);
+        entities = new ArrayList<>();
+        player = new Player(new Position(100, 100));
+        this.laserCreator = new LaserBeamCreator(player);
+        player.setLaserBeamCreator(laserCreator);
+    }
 
+    public LaserBeamCreator getLaserCreator() {
+        return laserCreator;
     }
 
     public List<MovingObject> initAsteroids(Integer numberAsteroids){
@@ -30,6 +36,10 @@ public class GameModel {
         return asteroidsConstructor;
     }
 
+    public List<MovingObject> getEntities() {
+        return entities;
+    }
+
     public List<MovingObject> getAsteroids() {return asteroids;}
 
     public Player getPlayer() {
@@ -37,12 +47,17 @@ public class GameModel {
     }
 
     public void update(long dt){
-            player.update(dt);
-        for (LaserBeam laserBeam : player.getLaserBeams())
+        getPlayer().update(dt);
+        for (LaserBeam laserBeam : getLaserCreator().getLaserBeamList())
             laserBeam.update(dt);
 
-        for(MovingObject asteroid : asteroids)
+        for(MovingObject asteroid : getAsteroids())
             asteroid.update(dt);
-
+        updateEntities();
+        checkCollisions();
     }
+
+    public void checkCollisions();
+
+    public void updateEntities();
 }
