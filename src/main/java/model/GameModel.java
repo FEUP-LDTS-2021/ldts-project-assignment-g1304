@@ -1,9 +1,6 @@
 package model;
 
-import model.Entities.AsteroidCreator;
-import model.Entities.LaserBeam;
-import model.Entities.MovingObject;
-import model.Entities.Player;
+import model.Entities.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +12,13 @@ public class GameModel {
     private final Player player;
     private final List<MovingObject> asteroids;
     private final AsteroidCreator asteroidCreator;
-    public GameModel(){
-        player = new Player(new Position(100, 100));
-        this.asteroidCreator = new AsteroidCreator(new Random());
-        asteroids = initAsteroids(4);
+    private final EnemyShipSpawner enemyShipSpawner;
 
+    public GameModel(){
+        this.player = new Player(new Position(100, 100));
+        this.asteroidCreator = new AsteroidCreator(new Random());
+        this.asteroids = initAsteroids(4);
+        this.enemyShipSpawner = new EnemyShipSpawner(player);
     }
 
     public List<MovingObject> initAsteroids(Integer numberAsteroids){
@@ -32,17 +31,22 @@ public class GameModel {
 
     public List<MovingObject> getAsteroids() {return asteroids;}
 
+    public EnemyShipSpawner getEnemyShipSpawner() {
+        return enemyShipSpawner;
+    }
+
     public Player getPlayer() {
         return player;
     }
 
     public void update(long dt){
-            player.update(dt);
+        player.update(dt);
         for (LaserBeam laserBeam : player.getLaserBeams())
             laserBeam.update(dt);
 
         for(MovingObject asteroid : asteroids)
             asteroid.update(dt);
 
+        enemyShipSpawner.update(dt);
     }
 }

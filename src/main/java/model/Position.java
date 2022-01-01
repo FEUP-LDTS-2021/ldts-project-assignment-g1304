@@ -9,7 +9,9 @@ public class Position {
         this.x = x;
         this.y = y;
     }
-
+    public Position clone(){
+        return new Position(x,y);
+    }
     public double getY() {
         return y;
     }

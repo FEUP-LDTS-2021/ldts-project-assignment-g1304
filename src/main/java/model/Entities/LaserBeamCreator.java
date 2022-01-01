@@ -2,7 +2,7 @@ package model.Entities;
 
 import model.Position;
 
-public class LaserBeamCreator {
+public class LaserBeamCreator extends Creator {
 
     private final Player player;
 
@@ -15,7 +15,7 @@ public class LaserBeamCreator {
         return player;
     }
 
-    public LaserBeam createLaserBeam() {
+    public LaserBeam create() {
         double x = player.getPosition().getX();
         double y = player.getPosition().getY();
         double laserWidth = 3;

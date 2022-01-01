@@ -77,7 +77,7 @@ public class Player extends MovingObject {
         acelerate=false;
         super.update(dt);       // andar para a frente
         if (shoot) {
-            laserBeams.add(laserCreator.createLaserBeam());
+            laserBeams.add(laserCreator.create());
         }
         shoot = false;
     }
