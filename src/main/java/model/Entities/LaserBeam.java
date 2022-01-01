@@ -5,7 +5,7 @@ import model.physics.Vector2d;
 
 public class LaserBeam extends MovingObject {
     private double angle;
-    public final static double VELOCITY = 200.0;
+    public final static double VELOCITY = 250.0;
     private boolean control = false;
 
     public LaserBeam(Position position, double angle, double width, double height) {

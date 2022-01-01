@@ -28,28 +28,6 @@ public class GameView extends View {
     @Override
     public void draw() throws IOException {
         playerView.draw();
-        for (LaserBeam laserBeam : model.getLaserCreator().getLaserBeamList()) {
-            LaserView laserView = new LaserView(laserBeam);
-            laserView.setGraphics(graphics);
-            laserView.draw();
-        }
-
-        for(MovingObject asteroid : model.getAsteroids()) {
-            AsteroidView asteroidView = new AsteroidView((Asteroid) asteroid);
-            asteroidView.setGraphics(graphics);
-            asteroidView.draw();
-        }
-
-        for(EnemyShip enemyShip : model.getEnemyShipSpawner().getEnemyShips()) {
-            EnemyShipView enemyShipView = new EnemyShipView(enemyShip);
-            enemyShipView.setGraphics(graphics);
-            enemyShipView.draw();
-            for(LaserBeam laserBeam : enemyShip.getLaserBeams()){
-                LaserView laserView = new LaserView(laserBeam);
-                laserView.setGraphics(graphics);
-                laserView.draw();
-            }
-        }
 
 
     }

@@ -1,46 +1,59 @@
 package control;
 
 import control.input.InputListenner;
-import model.GameModel;
-import view.Game.GameView;
-import view.ScreenView;
+import control.states.ApplicationState;
+import control.states.GameController;
+import control.states.MenuController;
+import control.states.StateController;
+
 import java.io.IOException;
 
 public class Controller {
 
-    private final ScreenView screenView;
-    private final GameModel gameModel;
-    private final PlayerController playerController;
+    private StateController stateControler;
+    private ApplicationState applicationState;
+    private final Thread inputThread;
+    private final InputListenner inputListenner;
 
     public Controller(){
-        gameModel = new GameModel();
-        screenView = new ScreenView(new GameView(gameModel));
-        playerController = new PlayerController(gameModel.getPlayer());
+        inputListenner = new InputListenner();
+        inputThread = new Thread(inputListenner);
+        changeState(ApplicationState.Menu);
     }
 
     public void run() throws IOException {
+        getInputThread().start();
 
-        screenView.initScreen();
+        while (getStateControler() != null)
+            getStateControler().run();
 
-        InputListenner inputListenner = new InputListenner(screenView.getScreen());
-        Thread inputThread = new Thread(inputListenner);
-
-        inputListenner.addInputObserver(playerController);
-
-        inputThread.start();
-
-        long pastTime =  System.currentTimeMillis();
-        while (true){
-            long now = System.currentTimeMillis();
-            gameModel.update(now-pastTime);
-            screenView.draw();
-
-            pastTime=now;
-
-        }
-
-        //inputThread.stop();
-        //screenView.close();
+        getInputListenner().stop();
+        getInputThread().interrupt();
     }
 
+
+    public ApplicationState getApplicationState() {
+        return applicationState;
+    }
+
+    public void changeState(ApplicationState state){
+        applicationState = state;
+        switch (state){
+            case Game -> stateControler=new GameController(this);
+            case Menu -> stateControler = new MenuController(this);
+            case Exit, LeaderBoard -> stateControler=null;
+        }
+    }
+
+    public InputListenner getInputListenner() {
+        return inputListenner;
+    }
+
+    public Thread getInputThread() {
+        return inputThread;
+    }
+
+    public StateController getStateControler() {
+        return stateControler;
+    }
 }

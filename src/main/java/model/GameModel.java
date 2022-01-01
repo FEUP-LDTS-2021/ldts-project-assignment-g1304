@@ -64,6 +64,7 @@ public class GameModel {
 
         for(MovingObject asteroid : getAsteroids())
             asteroid.update(dt);
+
         updateEntities();
         checkCollisions();
     }
@@ -99,6 +100,5 @@ public class GameModel {
         getEntities().add(getPlayer());
         getEntities().addAll(getAsteroids());
         getEntities().addAll(getLaserCreator().getLaserBeamList());
-
     }
 }

@@ -10,30 +10,51 @@ import java.util.List;
 
 public class InputListenner implements Runnable{
 
-    private Screen screen;
-    private List<InputObserver> observers;
+    volatile private Screen screen;
+    volatile private boolean running;
+    private final List<InputObserver> observers;
 
-    public InputListenner(Screen screen){
-        this.screen = screen;
+    public InputListenner(){
+        this.running = false;
+        this.screen = null;
         observers = new ArrayList<>();
     }
 
 
     @Override
     public void run() {
+        this.running = true;
         try{
-            KeyStroke keyStroke = screen.readInput();
 
-            while (keyStroke.getKeyType() != KeyType.EOF){
-                for (InputObserver observer : observers)
-                    observer.processKey(keyStroke);
-                keyStroke = screen.readInput();
+            while (isRunning()) {
+                if (getScreen() == null) {
+                    Thread.sleep(100);
+                    continue;
+                }
+
+                KeyStroke keyStroke = getScreen().readInput();
+
+                synchronized (observers) {
+                    for (InputObserver observer : observers)
+                        observer.processKey(keyStroke);
+                }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | InterruptedException e) {
+            //e.printStackTrace();
         }
 
+    }
 
+    public Screen getScreen() {
+        return screen;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public void setScreen(Screen screen) {
+        this.screen = screen;
     }
 
     public void addInputObserver(InputObserver observer){
@@ -41,6 +62,11 @@ public class InputListenner implements Runnable{
     }
 
     public void removeInputObserver(InputObserver observer){
-        observers.remove(observer);
+        synchronized (observers) {
+            observers.remove(observer);
+        }
+    }
+    public void stop(){
+        running = false;
     }
 }

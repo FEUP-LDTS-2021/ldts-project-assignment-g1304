@@ -26,9 +26,9 @@ public class Player extends MovingObject {
 
     private double angle;
     public static final double raio = 10;
-    public static final double acelaration = 200.0;
-    public static final double MAX_VELOCITY = 80.0;
-    public static final double angularVelocity = Math.PI*1.5;
+    public static final double acelaration = 1000.0;
+    public static final double MAX_VELOCITY = 200.0;
+    public static final double angularVelocity = Math.PI*3;
     private Rotation rotation;
     private boolean acelerate;
     private boolean shoot;
@@ -69,7 +69,7 @@ public class Player extends MovingObject {
             if(getVelocity().module() > MAX_VELOCITY)
                 getVelocity().resize(MAX_VELOCITY);
         }else {
-            getVelocity().resize(getVelocity().module()*0.90);
+            getVelocity().resize(getVelocity().module()*0.98);
         }
 
         acelerate=false;
