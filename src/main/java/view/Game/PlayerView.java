@@ -37,5 +37,7 @@ public class PlayerView extends View {
                                     toTerminalPosition(position, anglePontaDir, player.getRaio()), ' ');
     }
 
-
+    public Player getPlayer() {
+        return player;
+    }
 }

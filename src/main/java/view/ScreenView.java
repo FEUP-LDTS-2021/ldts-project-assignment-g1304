@@ -26,9 +26,9 @@ public abstract class ScreenView extends View{
                 .createTerminal();
 
         screen = new TerminalScreen(terminal);
-        screen.setCursorPosition(null);
-        screen.startScreen();
-        screen.doResizeIfNecessary();
+        getScreen().setCursorPosition(null);
+        getScreen().startScreen();
+        getScreen().doResizeIfNecessary();
 
         setGraphics(screen.newTextGraphics());
     }
@@ -39,16 +39,18 @@ public abstract class ScreenView extends View{
 
     public abstract TerminalSize getSize();
 
-    protected void refresh() throws IOException {
-        screen.refresh(Screen.RefreshType.AUTOMATIC);
+    public void refresh() throws IOException {
+        getScreen().refresh(Screen.RefreshType.AUTOMATIC);
     }
 
     public void close() throws IOException {
-        screen.close();
+        getScreen().close();
     }
 
-    protected void clear() {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
-        graphics.fillRectangle(new TerminalPosition(0, 0), getSize(), ' ');
+    public void clear() {
+        getScreen().clear();
+        /*
+        getGraphics().setBackgroundColor(TextColor.Factory.fromString("#000000"));
+        getGraphics().fillRectangle(new TerminalPosition(0, 0), getSize(), ' ');*/
     }
 }

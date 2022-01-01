@@ -17,13 +17,13 @@ import java.util.List;
 import java.awt.*;
 import java.io.IOException;
 
-public class GameView extends ScreenView {
+public class GameScreen extends ScreenView {
 
     private final PlayerView playerView;
     private final List<AsteroidView> asteroidsView;
     private final GameModel model;
 
-    public GameView(GameModel model) {
+    public GameScreen(GameModel model) {
         this.model = model;
         setFont(new Font(Font.MONOSPACED,Font.PLAIN, 1));
 
@@ -37,34 +37,43 @@ public class GameView extends ScreenView {
 
     @Override
     public void draw() throws IOException {
+        clear();
 
-        try {
-            clear();
+        getPlayerView().draw();
+        for (LaserView laserView : getLaserViews())
+           laserView.draw();
 
-            playerView.draw();
-            for (LaserBeam laserBeam : model.getPlayer().getLaserBeams()) {
-                LaserView laserView = new LaserView(laserBeam);
-                laserView.setGraphics(graphics);
-                laserView.draw();
-            }
-            for(AsteroidView SingleAsteroid : asteroidsView)
-                SingleAsteroid.draw();
+        for(AsteroidView SingleAsteroid : getAsteroidsView())
+            SingleAsteroid.draw();
 
-            Thread.sleep(100);
-            refresh();
-
-        }catch (InterruptedException ex){
-            ex.printStackTrace();
-        }
+        refresh();
     }
 
+
+    public GameModel getModel() {
+        return model;
+    }
+
+    public List<AsteroidView> getAsteroidsView() {
+        return asteroidsView;
+    }
+
+    public List<LaserView> getLaserViews() {
+        List<LaserView> laserBeams = new ArrayList<>();
+        for (LaserBeam laserBeam : getModel().getPlayer().getLaserBeams()) {
+            LaserView laserView = new LaserView(laserBeam);
+            laserView.setGraphics(getGraphics());
+            laserBeams.add(laserView);
+        }
+        return laserBeams;
+    }
 
     @Override
     public void setGraphics(TextGraphics graphics) {
         super.setGraphics(graphics);
-        playerView.setGraphics(graphics);
-        for(AsteroidView SingleAsteroid : asteroidsView)
-            SingleAsteroid.setGraphics(graphics);
+        getPlayerView().setGraphics(graphics);
+        for(AsteroidView asteroidView : getAsteroidsView())
+            asteroidView.setGraphics(graphics);
     }
 
     public PlayerView getPlayerView() {

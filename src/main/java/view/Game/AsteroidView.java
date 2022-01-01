@@ -7,8 +7,6 @@ import model.Entities.Asteroid;
 
 import view.View;
 
-import java.io.IOException;
-
 public class AsteroidView extends View {
     private final Asteroid asteroid;
 
@@ -23,4 +21,9 @@ public class AsteroidView extends View {
                         (int)asteroid.getPosition().getY()),
                 new TerminalSize((int)asteroid.getWidth(), (int)asteroid.getHeight()),' ');
     }
+
+    public Asteroid getAsteroid() {
+        return asteroid;
+    }
 }
+

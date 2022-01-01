@@ -6,8 +6,6 @@ import com.googlecode.lanterna.TextColor;
 import model.Entities.LaserBeam;
 import view.View;
 
-import java.io.IOException;
-
 public class LaserView extends View {
 
     private final LaserBeam laserBeam;
@@ -24,5 +22,9 @@ public class LaserView extends View {
                 laserBeam.getPosition().getX()), (int)(laserBeam.getPosition().getY()));
                 TerminalSize size = new TerminalSize((int)laserBeam.getWidth(), (int)laserBeam.getHeight());
                 getGraphics().fillRectangle(terminalPosition, size, ' ');
+    }
+
+    public LaserBeam getLaserBeam() {
+        return laserBeam;
     }
 }
