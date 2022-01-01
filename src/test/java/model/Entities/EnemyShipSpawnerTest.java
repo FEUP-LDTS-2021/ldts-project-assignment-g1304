@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EnemyShipSpawnerTest extends Assertions {
 
     @Test
@@ -41,11 +44,13 @@ public class EnemyShipSpawnerTest extends Assertions {
     void update(){
         //given
         Player playerMock = Mockito.mock(Player.class);
-
-
         Mockito.when(playerMock.getPosition()).thenReturn(new Position(12.2,12.2));
-        EnemyShipSpawner realEnemyShipSpawner = new EnemyShipSpawner(playerMock);
-        EnemyShipSpawner spawner = Mockito.spy(realEnemyShipSpawner);
+        EnemyShipSpawner realEnemyShipSpawner = Mockito.spy(new EnemyShipSpawner(playerMock));
+        EnemyShip enemyShip = Mockito.mock(EnemyShip.class);
+        List<EnemyShip> lst = List.of(enemyShip);
+
+        Mockito.when(realEnemyShipSpawner.getEnemyShips()).thenReturn(lst);
+        Mockito.when(realEnemyShipSpawner.isSpawnTime(Mockito.anyLong())).thenReturn(false);
         //when
 
         realEnemyShipSpawner.update(6000);
@@ -53,8 +58,7 @@ public class EnemyShipSpawnerTest extends Assertions {
 
         //then
         assertEquals(1,realEnemyShipSpawner.getEnemyShips().size());
-        Mockito.verify(spawner,Mockito.times(1)).getEnemyShips().get(0).update(6000);
-    }
+        Mockito.verify(enemyShip, Mockito.times(1)).update(6000);
 
-    //TODO update not working!!
+    }
 }
