@@ -178,5 +178,19 @@ public class PlayerTest extends Assertions {
 
         assertFalse(player.isAcelerate());
     }
+    @Test
+    void updateShot() {
+        //given
+        Player player = new Player(new Position(10, 10));
+        LaserBeamCreator laserBeamCreatorMock = Mockito.mock(LaserBeamCreator.class);
+        player.setLaserBeamCreator(laserBeamCreatorMock);
 
+        //when
+        player.addLaserBeams();
+        player.update(10);
+
+        //then
+        Mockito.verify(laserBeamCreatorMock, Mockito.times(1)).addLaserBeam(Mockito.any());
+        Mockito.verify(laserBeamCreatorMock, Mockito.times(1)).createLaserBeam();
+    }
 }
