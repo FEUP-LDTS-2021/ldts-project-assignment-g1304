@@ -26,7 +26,6 @@ public class InputListenner implements Runnable{
         this.running = true;
         try{
 
-            KeyStroke eof = new KeyStroke(KeyType.EOF);
             while (isRunning()) {
                 if (getScreen() == null) {
                     Thread.sleep(100);
@@ -35,9 +34,10 @@ public class InputListenner implements Runnable{
 
                 KeyStroke keyStroke = getScreen().readInput();
 
-                if (!eof.equals(keyStroke))
+                synchronized (observers) {
                     for (InputObserver observer : observers)
                         observer.processKey(keyStroke);
+                }
             }
         } catch (IOException | InterruptedException e) {
             //e.printStackTrace();
@@ -62,7 +62,9 @@ public class InputListenner implements Runnable{
     }
 
     public void removeInputObserver(InputObserver observer){
-        observers.remove(observer);
+        synchronized (observers) {
+            observers.remove(observer);
+        }
     }
     public void stop(){
         running = false;

@@ -1,52 +1,59 @@
 package control;
 
 import control.input.InputListenner;
-import model.GameModel;
-import view.screens.GameView;
+import control.states.ApplicationState;
+import control.states.GameController;
+import control.states.MenuController;
+import control.states.StateController;
 
 import java.io.IOException;
 
 public class Controller {
 
+    private StateController stateControler;
+    private ApplicationState applicationState;
     private final Thread inputThread;
     private final InputListenner inputListenner;
-    private GameView gameView;
-    private GameModel gameModel;
-    private PlayerController controller;
 
     public Controller(){
         inputListenner = new InputListenner();
         inputThread = new Thread(inputListenner);
-        gameModel = new GameModel();
-        controller = new PlayerController(gameModel.getPlayer());
-        gameView = new GameView(gameModel);
+        changeState(ApplicationState.Menu);
     }
 
     public void run() throws IOException {
-        gameView.initScreen();
+        getInputThread().start();
 
+        while (getStateControler() != null)
+            getStateControler().run();
 
-        InputListenner inputListenner = new InputListenner();
-        Thread inputThread = new Thread(inputListenner);
-
-        inputListenner.setScreen(gameView.getScreen());
-
-        inputListenner.addInputObserver(controller);
-
-        inputThread.start();
-
-        long pastTime =  System.currentTimeMillis();
-        while (true){
-            long now = System.currentTimeMillis();
-            gameModel.update(now-pastTime);
-            gameView.draw();
-
-            pastTime=now;
-
-        }
-
-
+        getInputListenner().stop();
+        getInputThread().interrupt();
     }
 
 
+    public ApplicationState getApplicationState() {
+        return applicationState;
+    }
+
+    public void changeState(ApplicationState state){
+        applicationState = state;
+        switch (state){
+            case Game -> stateControler=new GameController(this);
+            case Menu -> stateControler = new MenuController(this);
+            case Exit, LeaderBoard -> stateControler=null;
+        }
+    }
+
+    public InputListenner getInputListenner() {
+        return inputListenner;
+    }
+
+    public Thread getInputThread() {
+        return inputThread;
+    }
+
+    public StateController getStateControler() {
+        return stateControler;
+    }
 }
