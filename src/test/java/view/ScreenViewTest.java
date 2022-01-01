@@ -1,6 +1,9 @@
 package view;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -66,19 +69,20 @@ public class ScreenViewTest extends Assertions {
     }
 
     @Test
-    void clear(){
+    void clear() {
 
         //given
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
         Screen screen = Mockito.mock(Screen.class);
         Mockito.when(screenView.getScreen()).thenReturn(screen);
+        Mockito.when(screenView.getGraphics()).thenReturn(graphics);
 
         // when
         screenView.clear();
 
         //then
-        //Mockito.verify(graphics, times(1)).setBackgroundColor(TextColor.Factory.fromString("#000000"));
-        //Mockito.verify(graphics, times(1)).fillRectangle(Mockito.any(), Mockito.any(), Mockito.any());
-        Mockito.verify(screen, times(1)).clear();
+        Mockito.verify(graphics, times(1)).setBackgroundColor(TextColor.Factory.fromString("#000000"));
+        Mockito.verify(graphics, times(1)).fillRectangle(new TerminalPosition(0, 0),
+                                                                new TerminalSize(50,50),' ');
     }
-
 }

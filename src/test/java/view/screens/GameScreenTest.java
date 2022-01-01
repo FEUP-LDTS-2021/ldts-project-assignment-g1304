@@ -30,10 +30,13 @@ public class GameScreenTest extends Assertions {
     Player player;
 
     @BeforeEach
-    void init(){
+    void init() throws IOException {
         model = Mockito.mock(GameModel.class);
         player = Mockito.mock(Player.class);
         screen = Mockito.spy(new GameScreen(model));
+
+        Mockito.doNothing().when(screen).clear();
+        Mockito.doNothing().when(screen).refresh();
 
         Mockito.doReturn(Mockito.mock(Screen.class)).when(screen).getScreen();
         Mockito.when(model.getPlayer()).thenReturn(player);

@@ -48,9 +48,7 @@ public abstract class ScreenView extends View{
     }
 
     public void clear() {
-        getScreen().clear();
-        /*
         getGraphics().setBackgroundColor(TextColor.Factory.fromString("#000000"));
-        getGraphics().fillRectangle(new TerminalPosition(0, 0), getSize(), ' ');*/
+        getGraphics().fillRectangle(new TerminalPosition(0, 0), getSize(), ' ');
     }
 }
