@@ -9,7 +9,7 @@ This project was developed by Afonso Baldo, João Teixeira and José Gaspar for 
  - [x] Asteroids - The asteroids appear randomly throughout the map and move in a single random direction. 
  - [ ] Enemy Ships - The enemy flying saucers appear randomly on the map and try to shoot at your spaceship.
  - [ ] Player Collisions - If the player collides with an asteroid, enemy ship or with a laser beam, it dies.
- - [ ] Asteroids Collisions - If the asteroid collides with a ship, kills it.
+ - [x] Asteroids Collisions - If the asteroid collides with a ship, kills it.
  - [ ] Asteroid Splitting - The asteroids get split in half when shot by the laser beams. The smaller ones get instantly destroyed.
  - [x] Borders of the Map - When an object crosses the borders of the map, it appears on the opposite side.
  - [ ] Score - When the player destroys asteroids and enemy ships, he gains points.
