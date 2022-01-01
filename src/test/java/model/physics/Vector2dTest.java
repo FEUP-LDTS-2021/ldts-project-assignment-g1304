@@ -1,6 +1,5 @@
 package model.physics;
 
-import model.physics.Vector2d;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -222,6 +221,20 @@ public class Vector2dTest extends Assertions {
         Mockito.verify(vec1, Mockito.never()).scale(Mockito.anyDouble());
     }
 
+    @Test
+    void dotProduct(){
+        //given
+        Vector2d v1 = new Vector2d(12.0,23.0);
+        Vector2d v2 = new Vector2d(2.0,3.0);
+        Vector2d v3 = new Vector2d(1.2,4.56);
 
+        //when
+        Double result1 = v1.dotProduct(v2);
+        Double result2 = v2.dotProduct(v3);
+
+        //then
+        assertEquals(24.0 + 69.0, result1);
+        assertEquals(2.4 + 13.68, result2);
+    }
 
 }

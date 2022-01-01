@@ -33,7 +33,7 @@ public class LaserBeamCreatorTest extends Assertions {
         double y = Math.sin(playerMock.getAngle())* playerMock.getRaio() + playerMock.getPosition().getY();
 
         //when
-        LaserBeam laserBeam = laserBeamCreator.createLaserBeam();
+        LaserBeam laserBeam = laserBeamCreator.create();
 
         //then
         assertEquals((int)(x-laserBeam.getWidth()/2), laserBeam.getPosition().getX());
