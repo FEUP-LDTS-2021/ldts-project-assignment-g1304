@@ -1,9 +1,6 @@
 package model;
 
-import model.Entities.AsteroidCreator;
-import model.Entities.LaserBeam;
-import model.Entities.MovingObject;
-import model.Entities.Player;
+import model.Entities.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +40,5 @@ public class GameModel {
 
         for(MovingObject asteroid : asteroids)
             asteroid.update(dt);
-
     }
 }

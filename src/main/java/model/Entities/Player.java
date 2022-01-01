@@ -71,7 +71,7 @@ public class Player extends MovingObject {
             if(getVelocity().module() > MAX_VELOCITY)
                 getVelocity().resize(MAX_VELOCITY);
         }else {
-            getVelocity().resize(getVelocity().module()*0.90);
+            getVelocity().resize(getVelocity().module()*0.98);
         }
 
         acelerate=false;

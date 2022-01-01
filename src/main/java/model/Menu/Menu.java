@@ -1,15 +1,43 @@
 package model.Menu;
 
-public interface Menu {
+public class Menu {
+
+    private MenuItem selected;
+    private boolean choosed;
 
 
-    void selectNext();
+    public Menu(){
+        selected = MenuItem.Play;
+        choosed = false;
+    }
 
-    void selectprevious();
+    public void selectNext(){
+        if(!choosed) {
+            switch (selected) {
+                case Play -> selected = MenuItem.LeaderBoard;
+                case LeaderBoard, Exit -> selected = MenuItem.Exit;
+            };
+        }
+    }
 
-    MenuItem getSelected() ;
+    public void selectprevious(){
+        if(!choosed) {
+            switch (selected) {
+                case Play, LeaderBoard -> selected = MenuItem.Play;
+                case Exit -> selected = MenuItem.LeaderBoard;
+            };
+        }
+    }
 
-    void choose() ;
+    public MenuItem getSelected() {
+        return selected;
+    }
 
-    boolean isChoosed();
+    public void choose() {
+        this.choosed = true;
+    }
+
+    public boolean isChoosed() {
+        return choosed;
+    }
 }
