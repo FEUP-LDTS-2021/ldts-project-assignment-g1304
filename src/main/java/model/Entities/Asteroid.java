@@ -8,5 +8,4 @@ public class Asteroid extends MovingObject{
     public Asteroid(Position position, Vector2d velocity,Integer size){
         super(position,velocity, size, size);
     }
-
 }

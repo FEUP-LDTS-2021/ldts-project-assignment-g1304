@@ -57,7 +57,35 @@ public class GameModel {
         checkCollisions();
     }
 
-    public void checkCollisions();
+    public void checkCollisions() {
+        List<MovingObject> toRemove = new ArrayList<>();
+        for (int i = 0; i < getEntities().size() - 1; i++) {
+            for (int j = i+1; j < getEntities().size(); j++) {
+                MovingObject c1 = getEntities().get(i);
+                MovingObject c2 = getEntities().get(j);
+                if (c1 instanceof Asteroid && c2 instanceof Asteroid) {
+                    continue;
+                }
+                if (c1.getCollider().intersects(c2.getCollider())) {
+                    toRemove.add(c1);
+                    toRemove.add(c2);
+                }
+            }
+        }
+        for (MovingObject c : toRemove) {
+            if (c instanceof Asteroid) {
+                getAsteroids().remove(c);
+            }
+            else if (c instanceof LaserBeam) {
+                getLaserCreator().getLaserBeamList().remove(c);
+            }
+        }
+    }
 
-    public void updateEntities();
+    public void updateEntities() {
+        getEntities().clear();
+        getEntities().add(getPlayer());
+        getEntities().addAll(getAsteroids());
+        getEntities().addAll(getLaserCreator().getLaserBeamList());
+    }
 }

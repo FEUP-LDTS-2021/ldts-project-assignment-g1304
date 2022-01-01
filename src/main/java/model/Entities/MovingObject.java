@@ -75,5 +75,7 @@ public abstract class MovingObject implements CollidableObject {
             getPosition().setY(Constraints.HEIGHT);
     }
 
-    public Rectangle2D.Double getCollider();
+    public Rectangle2D.Double getCollider() {
+        return new Rectangle2D.Double(getPosition().getX(), getPosition().getY(), getWidth(), getHeight());
+    }
 }
