@@ -15,8 +15,6 @@ public class LaserBeam extends MovingObject {
 
     public double getAngle() {return angle;}
 
-    public void setAngle(double angle) {this.angle = angle;}
-
     @Override
     public void update(long dt) {
         if (control) {

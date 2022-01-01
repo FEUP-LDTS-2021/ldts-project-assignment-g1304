@@ -31,22 +31,20 @@ public class Player extends MovingObject {
     public static final double angularVelocity = Math.PI*1.5;
     private Rotation rotation;
     private boolean acelerate;
-    private List<LaserBeam> laserBeams;
-    private final LaserBeamCreator laserCreator;
     private boolean shoot;
-
-    public List<LaserBeam> getLaserBeams() {
-        return laserBeams;
-    }
+    private LaserBeamCreator laserBeamCreator;
 
     public Player(Position position){
         super(position, new Vector2d(0,0), raio, raio);
         this.angle = 0;
         this.acelerate = false;
         this.rotation = Rotation.None;
-        this.laserBeams = new ArrayList<>();
-        this.laserCreator = new LaserBeamCreator(this);
         this.shoot = false;
+        this.laserBeamCreator = null;
+    }
+
+    public LaserBeamCreator getLaserBeamCreator() {
+        return laserBeamCreator;
     }
 
     public void setAngle(double angle) {
@@ -77,9 +75,13 @@ public class Player extends MovingObject {
         acelerate=false;
         super.update(dt);       // andar para a frente
         if (shoot) {
-            laserBeams.add(laserCreator.createLaserBeam());
+            getLaserBeamCreator().addLaserBeam(getLaserBeamCreator().createLaserBeam());
         }
         shoot = false;
+    }
+
+    public void setLaserBeamCreator(LaserBeamCreator laserBeamCreator) {
+        this.laserBeamCreator = laserBeamCreator;
     }
 
     public void rotateLeft(){
