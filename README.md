@@ -38,7 +38,7 @@ We have applied the **MVC** pattern. This pattern separates the game logic from 
 
 The following image shows how we implemented the pattern.
 
-![](https://web.fe.up.pt/~arestivo/presentation/assets/gamepatterns/mvc.svg)
+![](docs/image/mvc.svg)
 
 These packages can be found in:
 
