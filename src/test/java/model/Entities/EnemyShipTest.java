@@ -46,8 +46,8 @@ public class EnemyShipTest extends Assertions {
         assertEquals(50.0,laserBeam.getPosition().getX());
         assertEquals(0.0,laserBeam.getPosition().getY());
 
-        assertEquals(89.4427190999916,laserBeam.getVelocity().getX());
-        assertEquals(178.88543819998318,laserBeam.getVelocity().getY());
+        assertEquals(250*Math.cos(1.1071487177940904),laserBeam.getVelocity().getX());
+        assertEquals(250*Math.sin(1.1071487177940904),laserBeam.getVelocity().getY());
 
     }
     @Test
