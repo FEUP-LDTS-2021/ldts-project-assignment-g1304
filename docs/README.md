@@ -1,5 +1,8 @@
 
 # LDTS_1304 - Asteroids
+
+## Game Description
+
 Control the spaceship to destroy asteroids and flying saucers in this classic arcade multidirectional shooter video game. Be careful not to collide with the asteroids that are all around you, and avoid counter-fire from the saucers.
 
 This project was developed by Afonso Baldo, João Teixeira and José Gaspar for LDTS 21⁄22.
