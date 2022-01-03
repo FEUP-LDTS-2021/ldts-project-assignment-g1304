@@ -13,21 +13,21 @@ The following screenshots ilustrate the general look of our game, as well as the
 
 ### Game Preview
 
-![](image/game.png)
+![](docs/image/game.png)
 
 ### Menus
 **Initial Menu**
 
-![](image/menu.png)
+![](docs/image/menu.png)
 
 **Leaderboard**
 
-![](image/leaderboard.png)
+![](docs/image/leaderboard.png)
 
 **Instructions**
 
-![](image/instructions.png)
+![](docs/image/instructions.png)
 
 
 ### End Game
-![](image/gameover.png)
+![](docs/image/gameover.png)
