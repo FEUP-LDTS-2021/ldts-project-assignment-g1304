@@ -97,7 +97,7 @@ We decided to implement the **Factory** pattern. This design pattern defines an 
 
 **Implementation**
 
-![](FactoryUml.png)
+![](image/FactoryUml.png)
 
 **Consequences**
 
@@ -119,9 +119,9 @@ The most obvious solution to our problem is implementing the **State** pattern. 
 
 **Implementation**
 
-![](StatesFA.png)
+![](image/StatesFA.png)
 
-![](StatesUML.png)
+![](image/StatesUML.png)
 
 **Consequences**
 
