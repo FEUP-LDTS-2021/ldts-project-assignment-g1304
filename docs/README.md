@@ -1,4 +1,5 @@
 
+
 # LDTS_1304 - Asteroids
 
 ## GAME DESCRIPTION
@@ -81,41 +82,50 @@ We implemented a class, InputListener, that works as the publisher, reading the 
 **Consequences**
 
 Using the **Observer** Pattern allows to:
--   You can introduce new subscriber classes without having to change the publisher’s code (and vice versa if there’s a publisher interface).
+-   Introduce new subscriber classes without having to change the publisher’s code (and vice versa if there’s a publisher interface).
 -   Establish relations between objects at runtime.
 
 ### CREATING OBJECTS
 
 **Problem in Context**
 
+The entitities of our game have significant similarities, but demonstrate no reuse of common interface or implementation. Considering this, if they were separate classes, when we wanted to make a change common to all the components, more effort would be expendend, because we would have to change all of the component's classes. This way, we came to the conclusion that we had to standardize an architectural model for our entities, but allow for individual applications to define their own domain objects and provide for their creation.
 
+**The Pattern**
 
-#### KNOWN CODE SMELLS AND REFACTORING SUGGESTIONS
+We decided to implement the **Factory** pattern. This design pattern defines an interface for creating objects, but lets subclasses decide which classes to instantiate.
 
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation, and suggest ways in which the code could be refactored to eliminate them. Each smell and refactoring suggestions should be described in its own subsection.
+**Implementation**
 
-**Example of such a subsection**:
+![](FactoryUml.png)
 
-------
+**Consequences**
 
-#### DATA CLASS
+Using the **Factory** pattern has the following benefits:
 
-The `PlatformSegment` class is a **Data Class**, as it contains only fields, and no behavior. This is problematic because […].
+- We managed to move the entities creation code into one place in the program, making the code easier to update.
+- We can introduce new entities into the application without changing existing code.
+- There is a separation between creation and the entities themselves.
 
-A way to improve the code would be to move the `isPlatformSegmentSolid()` method to the `PlatformSegment` class, as this logic is purely concerned with the `PlatformSegment` class.
+### CHANGING PROGRAM STATES
 
-### TESTING
+**Problem in Context**
 
-- Screenshot of coverage report.
-- Link to mutation testing report.
+Developing the menu, we came to the conclusion that there was a finite number of states which our application could be in, at any given moment. The program needed to be able to switch from one state to another instantaneously. However, depending on a current state, the program may or may not switch to certain other states.
 
-### SELF-EVALUATION
+**The Pattern**
 
-> In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
+The most obvious solution to our problem is implementing the **State** pattern. With this pattern, we can separate all the states in individual classes and implement their specific methods in these classes.
 
-**Example**:
+**Implementation**
 
-- John Doe: 40%
-- Jane Doe: 60%
-## Images
-![Original vector-based Asteroids game (Atari 1979), showing ship in... |  Download Scientific Diagram](https://www.researchgate.net/profile/Kc-Collins/publication/262309733/figure/fig2/AS:694796872081408@1542663891658/Original-vector-based-Asteroids-game-Atari-1979-showing-ship-in-centre-and-floating.ppm)
+![](StatesFA.png)
+
+![](StatesUML.png)
+
+**Consequences**
+
+Applying the **State** pattern allows to:
+
+- Organize the code of the various states into individual classes
+- Introduce new states in a much easier way, without having to change existing state classes or the context.
