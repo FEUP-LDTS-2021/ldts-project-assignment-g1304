@@ -3,7 +3,7 @@
 
 ## GAME DESCRIPTION
 
-Control the spaceship to destroy asteroids and flying saucers in this classic arcade multidirectional shooter video game. Be careful not to collide with the asteroids that are all around you, and avoid counter-fire from the saucers.
+**Asteroids** is a space-themed multidirectional shooter arcade game where you control a spaceship to destroy asteroids and flying saucers. Be careful not to collide with the asteroids that are all around you, and avoid counter-fire from the saucers. The game becomes harder as the number of asteroids increases each time the player destroys them all. When you achieve 10000 points, you earn an extra life. The machine "turns over" at 99,990 points, which is the maximum high score that can be achieved.
 
 This project was developed by Afonso Baldo, João Teixeira and José Gaspar for LDTS 21⁄22.
 
