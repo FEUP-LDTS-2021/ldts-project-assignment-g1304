@@ -131,7 +131,7 @@ The most obvious solution to our problem is implementing the **State** pattern. 
 
 ![](image/StatesFA.png)
 
-![](image/StatesUML.png)
+![](image/StatesUml.png)
 
 **Consequences**
 
