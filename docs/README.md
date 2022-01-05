@@ -97,7 +97,7 @@ We decided to implement the **Factory** pattern. This design pattern defines an 
 
 **Implementation**
 
-![](FactoryUml.png)
+![](image/FactoryUml.png)
 
 - [MovingObject](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/MovingObject.java)
 - [LaserBeam](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/LaserBeam.java)
@@ -129,9 +129,9 @@ The most obvious solution to our problem is implementing the **State** pattern. 
 
 **Implementation**
 
-![](StatesFA.png)
+![](image/StatesFA.png)
 
-![](StatesUML.png)
+![](image/StatesUML.png)
 
 **Consequences**
 
