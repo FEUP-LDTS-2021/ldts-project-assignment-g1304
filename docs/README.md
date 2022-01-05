@@ -97,7 +97,17 @@ We decided to implement the **Factory** pattern. This design pattern defines an 
 
 **Implementation**
 
-![](image/FactoryUml.png)
+![](FactoryUml.png)
+
+- [MovingObject](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/MovingObject.java)
+- [LaserBeam](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/LaserBeam.java)
+- [Asteroid](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/Asteroid.java)
+- [EnemyShip](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/EnemyShip.java)
+- [Creator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/Creator.java)
+- [LaserBeamCreator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/LaserBeamCreator.java)
+- [EnemyLaserBeamCreator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/EnemyLaserBeamCreator.java)
+- [AsteroidCreator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/AsteroidCreator.java)
+- [EnemyShipCreator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/EnemyShipCreator.java)
 
 **Consequences**
 
@@ -119,9 +129,9 @@ The most obvious solution to our problem is implementing the **State** pattern. 
 
 **Implementation**
 
-![](image/StatesFA.png)
+![](StatesFA.png)
 
-![](image/StatesUML.png)
+![](StatesUML.png)
 
 **Consequences**
 
