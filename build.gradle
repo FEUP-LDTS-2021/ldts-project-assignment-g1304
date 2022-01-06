@@ -1,8 +1,9 @@
 plugins {
     id 'java'
+    id 'info.solidsoft.pitest' version '1.6.0'
 }
 
-group 'org.example'
+group 'asteroids'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -18,4 +19,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+pitest {
+    junit5PluginVersion = '0.12'
+    pitestVersion = '1.6.7'
 }
