@@ -8,7 +8,7 @@ import asteroids.control.PlayerController;
 import asteroids.input.InputObserver;
 import asteroids.model.GameModel;
 import asteroids.view.screens.GameScreen;
-import asteroids.view.ScreenView;
+import asteroids.view.screens.ScreenView;
 
 import java.io.IOException;
 

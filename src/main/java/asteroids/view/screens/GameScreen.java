@@ -4,7 +4,6 @@ import asteroids.view.Game.AsteroidView;
 import asteroids.view.Game.EnemyShipView;
 import asteroids.view.Game.LaserView;
 import asteroids.view.Game.PlayerView;
-import asteroids.view.ScreenView;
 import asteroids.model.Constraints;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;

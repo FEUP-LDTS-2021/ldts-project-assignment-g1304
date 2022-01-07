@@ -1,5 +1,6 @@
-package asteroids.view;
+package asteroids.view.screens;
 
+import asteroids.view.screens.ScreenView;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -24,7 +25,7 @@ public class ScreenViewTest extends Assertions {
     void prepareScreen(){
         screenView = Mockito.mock(ScreenView.class, Mockito.CALLS_REAL_METHODS);
         font = new Font(Font.MONOSPACED,Font.PLAIN, 4);
-        Mockito.when(screenView.getFont()).thenReturn(font);
+        screenView.setFont(font);
         Mockito.when(screenView.getSize()).thenReturn(new TerminalSize(50,50));
     }
 

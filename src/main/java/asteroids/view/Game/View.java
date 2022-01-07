@@ -1,14 +1,12 @@
-package asteroids.view;
+package asteroids.view.Game;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-import java.awt.*;
 import java.io.IOException;
 
 public abstract class View {
 
     protected TextGraphics graphics;
-    protected Font font = null;
 
 
     public TextGraphics getGraphics() {
@@ -20,12 +18,5 @@ public abstract class View {
     }
 
     public abstract void draw() throws IOException;
-    public Font getFont(){
-        return font;
-    }
-
-    public void setFont(Font font) {
-        this.font = font;
-    }
 
 }

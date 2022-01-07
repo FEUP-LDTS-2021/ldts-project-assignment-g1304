@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import asteroids.view.ScreenView;
+import asteroids.view.screens.ScreenView;
 
 import java.io.IOException;
 

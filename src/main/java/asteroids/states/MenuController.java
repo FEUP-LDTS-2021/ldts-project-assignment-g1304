@@ -4,7 +4,7 @@ import com.googlecode.lanterna.input.KeyStroke;
 import asteroids.control.Controller;
 import asteroids.input.InputObserver;
 import asteroids.model.Menu.Menu;
-import asteroids.view.ScreenView;
+import asteroids.view.screens.ScreenView;
 import asteroids.view.screens.MenuScreen;
 
 import java.io.IOException;

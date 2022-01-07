@@ -1,6 +1,6 @@
 package asteroids.view.screens;
 
-import asteroids.view.View;
+import asteroids.view.Game.View;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import asteroids.model.Menu.MenuItem;
