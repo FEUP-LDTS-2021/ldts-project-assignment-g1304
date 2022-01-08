@@ -1,5 +1,6 @@
 package asteroids.model.Entities;
 
+import asteroids.model.Creator.LaserBeamCreator;
 import asteroids.model.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

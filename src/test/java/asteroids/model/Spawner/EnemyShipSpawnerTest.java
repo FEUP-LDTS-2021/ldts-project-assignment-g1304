@@ -1,6 +1,7 @@
 package asteroids.model.Entities;
 
 import asteroids.model.Position;
+import asteroids.model.Spawner.EnemyShipSpawner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
