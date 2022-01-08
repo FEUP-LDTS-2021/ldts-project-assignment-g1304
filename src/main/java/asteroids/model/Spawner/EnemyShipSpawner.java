@@ -1,4 +1,8 @@
-package asteroids.model.Entities;
+package asteroids.model.Spawner;
+
+import asteroids.model.Creator.EnemyShipCreator;
+import asteroids.model.Entities.MovingObject;
+import asteroids.model.Entities.Player;
 
 import java.util.List;
 import java.util.Random;
@@ -14,6 +18,10 @@ public class EnemyShipSpawner {
         this.player = player;
         this.entities = entities;
         this.enemyShipCreator = new EnemyShipCreator(new Random(),player, entities);
+    }
+
+    public List<MovingObject> getEntities() {
+        return entities;
     }
 
     public boolean isSpawnTime(long dt){

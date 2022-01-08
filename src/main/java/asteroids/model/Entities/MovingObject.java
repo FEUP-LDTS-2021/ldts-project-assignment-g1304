@@ -13,6 +13,15 @@ public abstract class MovingObject implements CollidableObject {
     private Position position;
     private double width;
     private double height;
+    private boolean alive = true;
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void dies() {
+        this.alive = false;
+    }
 
     public MovingObject(Position position, Vector2d velocity, double width, double height){
         this.velocity = velocity;
