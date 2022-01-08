@@ -9,6 +9,7 @@ This project was developed by Afonso Baldo, João Teixeira and José Gaspar for 
 For a more detailed version of this description click [here](./docs/README.md).
 
 ## FEATURES
+ - [x] Menu - When the game is initialized a Menu is displayed (the player chooses between playing, seeing leaderbord or quit)
  - [x] Movement - The spaceship is able to move in all directions when the arrow keys are pressed.
  - [x] Shooting - The spaceship can shoot laser beams. 
  - [x] Asteroids - The asteroids appear randomly throughout the map and move in a single random direction. 
