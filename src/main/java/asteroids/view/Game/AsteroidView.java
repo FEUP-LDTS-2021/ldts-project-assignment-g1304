@@ -10,7 +10,6 @@ public class AsteroidView extends View {
     private final Asteroid asteroid;
 
     public AsteroidView(Asteroid asteroid){
-        super();
         this.asteroid = asteroid;
     }
 

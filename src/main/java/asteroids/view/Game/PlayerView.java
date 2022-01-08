@@ -14,7 +14,6 @@ public class PlayerView extends View {
     private final Player player;
 
     public PlayerView(Player player){
-        super();
         this.player = player;
     }
 
@@ -24,7 +23,7 @@ public class PlayerView extends View {
     }
 
     @Override
-    public void draw() throws IOException {
+    public void draw(){
         getGraphics().setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         Position position = new Position(player.getPosition().getX(), player.getPosition().getY());
 

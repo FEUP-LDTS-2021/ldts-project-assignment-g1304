@@ -11,7 +11,6 @@ public class LaserView extends View {
     private final LaserBeam laserBeam;
 
     public LaserView(LaserBeam laserBeam) {
-        super();
         this.laserBeam = laserBeam;
     }
 
