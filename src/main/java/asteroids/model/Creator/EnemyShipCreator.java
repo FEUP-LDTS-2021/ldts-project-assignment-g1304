@@ -17,10 +17,14 @@ public class EnemyShipCreator extends Creator {
     private final Player player;
     private final List<MovingObject> entities;
 
-    public EnemyShipCreator(Random rand,Player player, List<MovingObject> entities){
+    public EnemyShipCreator(Random rand, Player player, List<MovingObject> entities){
         this.rand = rand;
         this.player = player;
         this.entities = entities;
+    }
+
+    public List<MovingObject> getEntities() {
+        return entities;
     }
 
     public Player getPlayer() {
