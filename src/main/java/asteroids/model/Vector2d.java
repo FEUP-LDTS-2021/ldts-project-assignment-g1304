@@ -1,6 +1,4 @@
-package asteroids.model.physics;
-
-import asteroids.model.Position;
+package asteroids.model;
 
 public class Vector2d extends Position {
     public Vector2d(double x, double y) {

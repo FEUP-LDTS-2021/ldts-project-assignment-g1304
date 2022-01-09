@@ -8,7 +8,6 @@ public abstract class View {
 
     protected TextGraphics graphics;
 
-
     public TextGraphics getGraphics() {
         return graphics;
     }

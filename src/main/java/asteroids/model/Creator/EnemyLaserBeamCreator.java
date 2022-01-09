@@ -5,7 +5,7 @@ import asteroids.model.Entities.LaserBeam;
 import asteroids.model.Entities.MovingObject;
 import asteroids.model.Entities.Player;
 import asteroids.model.Position;
-import asteroids.model.physics.Vector2d;
+import asteroids.model.Vector2d;
 
 import java.util.List;
 

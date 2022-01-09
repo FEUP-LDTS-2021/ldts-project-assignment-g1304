@@ -2,7 +2,7 @@ package asteroids.model.Entities;
 
 import asteroids.model.Creator.EnemyLaserBeamCreator;
 import asteroids.model.Position;
-import asteroids.model.physics.Vector2d;
+import asteroids.model.Vector2d;
 
 public class EnemyShip extends MovingObject {
     private EnemyLaserBeamCreator laserBeamCreator;

@@ -2,7 +2,7 @@ package asteroids.model.Creator;
 
 import asteroids.model.Entities.Asteroid;
 import asteroids.model.Position;
-import asteroids.model.physics.Vector2d;
+import asteroids.model.Vector2d;
 
 import java.util.Random;
 

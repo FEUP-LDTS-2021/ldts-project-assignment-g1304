@@ -1,13 +1,11 @@
 package asteroids.model.Creator;
 
 import asteroids.model.Constraints;
-import asteroids.model.Creator.Creator;
-import asteroids.model.Creator.EnemyLaserBeamCreator;
 import asteroids.model.Entities.EnemyShip;
 import asteroids.model.Entities.MovingObject;
 import asteroids.model.Entities.Player;
 import asteroids.model.Position;
-import asteroids.model.physics.Vector2d;
+import asteroids.model.Vector2d;
 
 import java.util.List;
 import java.util.Random;
