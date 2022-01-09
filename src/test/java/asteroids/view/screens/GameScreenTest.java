@@ -1,9 +1,7 @@
 package asteroids.view.screens;
 
 import asteroids.model.Entities.*;
-import asteroids.view.Game.AsteroidView;
-import asteroids.view.Game.EnemyShipView;
-import asteroids.view.View;
+import asteroids.view.Game.*;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import asteroids.model.Constraints;
@@ -12,8 +10,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import asteroids.view.Game.LaserView;
-import asteroids.view.Game.PlayerView;
 
 import java.io.IOException;
 import java.util.ArrayList;

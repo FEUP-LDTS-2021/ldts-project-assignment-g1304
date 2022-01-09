@@ -1,18 +1,12 @@
 package asteroids.view.screens;
 
 import asteroids.model.Entities.*;
-import asteroids.view.Game.AsteroidView;
-import asteroids.view.Game.EnemyShipView;
-import asteroids.view.Game.LaserView;
-import asteroids.view.Game.PlayerView;
+import asteroids.view.Game.*;
 import asteroids.model.Constraints;
-import asteroids.view.View;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import asteroids.model.GameModel;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.*;
 import java.io.IOException;
 
