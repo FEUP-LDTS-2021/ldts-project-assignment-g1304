@@ -17,6 +17,14 @@ public class AsteroidSpawner {
         this.asteroidCreator = new AsteroidCreator(new Random());
     }
 
+    public AsteroidCreator getAsteroidCreator() {
+        return asteroidCreator;
+    }
+
+    public List<MovingObject> getEntities() {
+        return entities;
+    }
+
     public boolean spawnCheck() {
         boolean check = true;
         for (MovingObject movingObject : entities) {

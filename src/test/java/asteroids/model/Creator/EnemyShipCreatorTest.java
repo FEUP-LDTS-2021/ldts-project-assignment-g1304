@@ -1,11 +1,15 @@
-package asteroids.model.Entities;
+package asteroids.model.Creator;
 
-import asteroids.model.Creator.EnemyShipCreator;
+import asteroids.model.Entities.EnemyShip;
+import asteroids.model.Entities.MovingObject;
+import asteroids.model.Entities.Player;
 import asteroids.model.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class EnemyShipCreatorTest extends Assertions {
@@ -16,22 +20,26 @@ public class EnemyShipCreatorTest extends Assertions {
         Random randMock = Mockito.mock(Random.class);
         Mockito.when(randMock.nextInt(4)).thenReturn(1);
         Mockito.when(randMock.nextDouble()).thenReturn(0.1);
+
         Position positionMock = Mockito.mock(Position.class);
         Mockito.when(positionMock.getX()).thenReturn(100.0);
         Mockito.when(positionMock.getY()).thenReturn(100.0);
 
-        Player p = new Player(positionMock);
+        Player playerMock = Mockito.mock(Player.class);
+        Mockito.when(playerMock.getPosition()).thenReturn(positionMock);
+        List<MovingObject> entities = new ArrayList<>(List.of(playerMock));
+
         //when
-        EnemyShip enemyShip = (EnemyShip) new EnemyShipCreator(randMock,p).create();
+        EnemyShipCreator enemyShipCreator = new EnemyShipCreator(randMock, playerMock, entities);
+        EnemyShip enemyShip = (EnemyShip) enemyShipCreator.create();
+        entities.add(enemyShip);
 
         //then
-        assertEquals(p,enemyShip.getPlayer());
+        assertEquals(playerMock,enemyShipCreator.getPlayer());
         assertEquals(0.0 ,enemyShip.getPosition().getX());
         assertEquals(50.0,enemyShip.getPosition().getY());
         assertEquals(35.0,enemyShip.getVelocity().getX());
         assertEquals(0,enemyShip.getVelocity().getY());
-        assertEquals(0,enemyShip.getLaserBeams().size());
-
-
+        assertEquals(2,enemyShipCreator.getEntities().size());
     }
 }

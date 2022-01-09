@@ -1,6 +1,6 @@
-package asteroids.model.Entities;
+package asteroids.model.Creator;
 
-import asteroids.model.Creator.AsteroidCreator;
+import asteroids.model.Entities.Asteroid;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -14,7 +14,7 @@ public class AsteroidCreatorTest extends Assertions {
        Random randMock = Mockito.mock(Random.class);
        Mockito.when(randMock.nextDouble()).thenReturn(0.1);
 
-       Asteroid a =(Asteroid) new AsteroidCreator(randMock).create();
+       Asteroid a = new AsteroidCreator(randMock).create();
 
        assertEquals(50,a.getPosition().getX());
        assertEquals(50,a.getPosition().getY());

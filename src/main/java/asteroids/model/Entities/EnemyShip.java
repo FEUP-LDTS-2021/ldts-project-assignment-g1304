@@ -32,7 +32,6 @@ public class EnemyShip extends MovingObject {
         return false;
     }
 
-
     public long getLastTime() {
         return lastTime;
     }

@@ -18,7 +18,7 @@ import asteroids.view.ScreenView;
 import java.io.IOException;
 
 public class GameControllerTest extends Assertions {
-    GameController gameControllerSpy;
+    /*GameController gameControllerSpy;
     Controller context;
     ScreenView screenViewMock;
     Screen screenMock;
@@ -169,5 +169,5 @@ public class GameControllerTest extends Assertions {
         Mockito.verify(model, Mockito.times(0)).update(Mockito.anyLong());
         Mockito.verify(screenViewMock, Mockito.times(0)).draw();
 
-    }
+    }*/
 }

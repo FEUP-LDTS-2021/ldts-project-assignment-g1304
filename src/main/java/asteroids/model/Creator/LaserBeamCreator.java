@@ -1,6 +1,5 @@
 package asteroids.model.Creator;
 
-import asteroids.model.Creator.Creator;
 import asteroids.model.Entities.LaserBeam;
 import asteroids.model.Entities.MovingObject;
 import asteroids.model.Entities.Player;
@@ -17,6 +16,10 @@ public class LaserBeamCreator extends Creator {
     public LaserBeamCreator(Player player, List<MovingObject> entities) {
         this.player = player;
         this.entities = entities;
+    }
+
+    public List<MovingObject> getEntities() {
+        return entities;
     }
 
     public Player getPlayer() {

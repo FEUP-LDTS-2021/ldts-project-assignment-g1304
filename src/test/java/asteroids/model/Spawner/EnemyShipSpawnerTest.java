@@ -1,7 +1,9 @@
-package asteroids.model.Entities;
+package asteroids.model.Spawner;
 
+import asteroids.model.Entities.EnemyShip;
+import asteroids.model.Entities.MovingObject;
+import asteroids.model.Entities.Player;
 import asteroids.model.Position;
-import asteroids.model.Spawner.EnemyShipSpawner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -14,23 +16,24 @@ public class EnemyShipSpawnerTest extends Assertions {
     void createShipSpawner(){
         //given
         Player playerMock = Mockito.mock(Player.class);
+        List<MovingObject> entities = List.of(playerMock);
 
         //when
-        EnemyShipSpawner enemyShipSpawner = new EnemyShipSpawner(playerMock);
+        EnemyShipSpawner enemyShipSpawner = new EnemyShipSpawner(playerMock, entities);
 
         //then
-        assertEquals(0,enemyShipSpawner.getEnemyShips().size());
+        assertEquals(entities, enemyShipSpawner.getEntities());
         assertEquals(0,enemyShipSpawner.getTimePassed());
         assertEquals(playerMock,enemyShipSpawner.getPlayer());
-
     }
     @Test
     void isSpawnTime(){
         //given
         Player playerMock = Mockito.mock(Player.class);
-        EnemyShipSpawner enemyShipSpawner = new EnemyShipSpawner(playerMock);
+        List<MovingObject> entitiesMock = List.of(playerMock);
 
         //when
+        EnemyShipSpawner enemyShipSpawner = new EnemyShipSpawner(playerMock, entitiesMock);
         boolean firstTime = enemyShipSpawner.isSpawnTime(4999);
         boolean secondTime = enemyShipSpawner.isSpawnTime(1);
 
@@ -45,20 +48,20 @@ public class EnemyShipSpawnerTest extends Assertions {
         //given
         Player playerMock = Mockito.mock(Player.class);
         Mockito.when(playerMock.getPosition()).thenReturn(new Position(12.2,12.2));
-        EnemyShipSpawner realEnemyShipSpawner = Mockito.spy(new EnemyShipSpawner(playerMock));
-        EnemyShip enemyShip = Mockito.mock(EnemyShip.class);
-        List<EnemyShip> lst = List.of(enemyShip);
+        EnemyShip enemyShipMock = Mockito.mock(EnemyShip.class);
+        List<MovingObject> entities = List.of(playerMock, enemyShipMock);
+        EnemyShipSpawner enemyShipSpawner = Mockito.spy(new EnemyShipSpawner(playerMock, entities));
 
-        Mockito.when(realEnemyShipSpawner.getEnemyShips()).thenReturn(lst);
-        Mockito.when(realEnemyShipSpawner.isSpawnTime(Mockito.anyLong())).thenReturn(false);
+        Mockito.when(enemyShipSpawner.getEntities()).thenReturn(entities);
+        Mockito.when(enemyShipSpawner.isSpawnTime(Mockito.anyLong())).thenReturn(false);
+
         //when
-
-        realEnemyShipSpawner.update(6000);
+        enemyShipSpawner.update(6000);
 
 
         //then
-        assertEquals(1,realEnemyShipSpawner.getEnemyShips().size());
-        Mockito.verify(enemyShip, Mockito.times(1)).update(6000);
+        assertEquals(2,enemyShipSpawner.getEntities().size());
+        Mockito.verify(enemyShipSpawner, Mockito.times(1)).update(6000);
 
     }
 }
