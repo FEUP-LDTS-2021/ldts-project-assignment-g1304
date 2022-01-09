@@ -22,4 +22,8 @@ public class EnemyShipView extends View {
                         (int)enemyShip.getPosition().getY()),
                 new TerminalSize((int)enemyShip.getWidth(), (int)enemyShip.getHeight()),' ');
     }
+
+    public EnemyShip getEnemyShip() {
+        return enemyShip;
+    }
 }

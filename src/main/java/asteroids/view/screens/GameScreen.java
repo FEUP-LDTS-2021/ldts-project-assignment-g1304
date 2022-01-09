@@ -31,25 +31,19 @@ public class GameScreen extends ScreenView {
         clear();
 
         for(MovingObject movingObject : model.getEntities()){
-            if(movingObject instanceof Player){
-                PlayerView playerView = new PlayerView((Player) movingObject);
-                playerView.setGraphics(getGraphics());
-                playerView.draw();
-            }
-            else if(movingObject instanceof  Asteroid) {
-                AsteroidView asteroidView = new AsteroidView((Asteroid) movingObject);
-                asteroidView.setGraphics(getGraphics());
-                asteroidView.draw();
-            }
-            else if (movingObject instanceof LaserBeam) {
-                LaserView laserView = new LaserView((LaserBeam) movingObject);
-                laserView.setGraphics(getGraphics());
-                laserView.draw();
-            }
-            else if (movingObject instanceof EnemyShip) {
-                EnemyShipView enemyShipView = new EnemyShipView((EnemyShip) movingObject);
-                enemyShipView.setGraphics(getGraphics());
-                enemyShipView.draw();
+            View view = null;
+            if(movingObject instanceof Player)
+                view = getView((Player) movingObject);
+            else if(movingObject instanceof  Asteroid)
+                view = getView((Asteroid) movingObject);
+            else if (movingObject instanceof LaserBeam)
+                view = getView((LaserBeam) movingObject);
+            else if (movingObject instanceof EnemyShip)
+                view = getView((EnemyShip) movingObject);
+
+            if(view!=null){
+                view.setGraphics(getGraphics());
+                view.draw();
             }
         }
 
@@ -58,6 +52,22 @@ public class GameScreen extends ScreenView {
 
     public GameModel getModel() {
         return model;
+    }
+
+    public View getView(Player player){
+        return new PlayerView(player);
+    }
+
+    public View getView(Asteroid asteroid){
+        return new AsteroidView(asteroid);
+    }
+
+    public View getView(LaserBeam laserBeam){
+        return new LaserView(laserBeam);
+    }
+
+    public View getView(EnemyShip enemyShip){
+        return new EnemyShipView(enemyShip);
     }
 
     @Override
