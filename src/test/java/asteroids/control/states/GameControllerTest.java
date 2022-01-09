@@ -1,5 +1,6 @@
 package asteroids.control.states;
 
+import asteroids.model.Entities.Player;
 import asteroids.states.ApplicationState;
 import asteroids.states.GameController;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -18,12 +19,14 @@ import asteroids.view.ScreenView;
 import java.io.IOException;
 
 public class GameControllerTest extends Assertions {
-    /*GameController gameControllerSpy;
+    GameController gameControllerSpy;
     Controller context;
     ScreenView screenViewMock;
     Screen screenMock;
     InputListenner inputListenner;
     PlayerController playerController;
+    Player player;
+    GameModel model;
 
     @BeforeEach
     void initGameController(){
@@ -46,6 +49,28 @@ public class GameControllerTest extends Assertions {
         Mockito.when(screenViewMock.getScreen()).thenReturn(screenMock);
         Mockito.when(gameControllerSpy.getScreenView()).thenReturn(screenViewMock);
 
+        // create model Mocks
+        model = Mockito.mock(GameModel.class);
+        player = Mockito.mock(Player.class);
+        Mockito.when(gameControllerSpy.getGameModel()).thenReturn(model);
+        Mockito.when(model.getPlayer()).thenReturn(player);
+        Mockito.when(player.isAlive()).thenReturn(true);
+
+
+    }
+
+    @Test
+    void exitGameWhenPlayerDies() throws IOException {
+        // given
+        Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.Game, ApplicationState.Game,ApplicationState.Game, ApplicationState.Menu);
+        Mockito.when(player.isAlive()).thenReturn(true, true,false);
+        // when
+        gameControllerSpy.run();
+
+        // then
+        Mockito.verify(model, Mockito.times(2)).update(Mockito.anyLong());
+        Mockito.verify(screenViewMock, Mockito.times(2)).draw();
+        Mockito.verify(player, Mockito.times(3)).isAlive();
     }
 
     @Test
@@ -106,10 +131,7 @@ public class GameControllerTest extends Assertions {
     @Test
     void testRunWhileStopMenu() throws IOException {
         // given
-        GameModel model = Mockito.mock(GameModel.class);
-        Mockito.when(gameControllerSpy.getGameModel()).thenReturn(model);
         Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.Game, ApplicationState.Game, ApplicationState.Menu);
-
 
         // when
         gameControllerSpy.run();
@@ -123,8 +145,6 @@ public class GameControllerTest extends Assertions {
     @Test
     void testRunWhileStopExit() throws IOException {
         // given
-        GameModel model = Mockito.mock(GameModel.class);
-        Mockito.when(gameControllerSpy.getGameModel()).thenReturn(model);
         Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.Game, ApplicationState.Exit);
 
 
@@ -140,8 +160,6 @@ public class GameControllerTest extends Assertions {
     @Test
     void testRunWhileStopLeaderboard() throws IOException {
         // given
-        GameModel model = Mockito.mock(GameModel.class);
-        Mockito.when(gameControllerSpy.getGameModel()).thenReturn(model);
         Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.Game, ApplicationState.Game , ApplicationState.LeaderBoard);
 
 
@@ -157,8 +175,6 @@ public class GameControllerTest extends Assertions {
     @Test
     void testRunWhileStop() throws IOException {
         // given
-        GameModel model = Mockito.mock(GameModel.class);
-        Mockito.when(gameControllerSpy.getGameModel()).thenReturn(model);
         Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.Exit);
 
 
@@ -169,5 +185,5 @@ public class GameControllerTest extends Assertions {
         Mockito.verify(model, Mockito.times(0)).update(Mockito.anyLong());
         Mockito.verify(screenViewMock, Mockito.times(0)).draw();
 
-    }*/
+    }
 }

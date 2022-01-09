@@ -31,12 +31,21 @@ public class GameModel {
     }
 
     public void update(long dt){
-        enemyShipSpawner.update(dt);
-        asteroidSpawner.update();
-        for (int i = 0; i < entities.size(); i++) {
-            entities.get(i).update(dt);
-        }
+        getEnemyShipSpawner().update(dt);
+        getAsteroidSpawner().update();
+
+        for (int i = 0; i < getEntities().size(); i++)
+            getEntities().get(i).update(dt);
+
         checkCollisions();
+    }
+
+    public AsteroidSpawner getAsteroidSpawner() {
+        return asteroidSpawner;
+    }
+
+    public EnemyShipSpawner getEnemyShipSpawner() {
+        return enemyShipSpawner;
     }
 
     public void checkCollisions() {
@@ -44,12 +53,10 @@ public class GameModel {
             for (int j = i+1; j < getEntities().size(); j++) {
                 MovingObject c1 = getEntities().get(i);
                 MovingObject c2 = getEntities().get(j);
-                if (c1 instanceof Asteroid && c2 instanceof Asteroid) {
+                if (c1 instanceof Asteroid && c2 instanceof Asteroid)
                     continue;
-                }
-                if (c1 instanceof Player || c2 instanceof Player) {
-                    continue;
-                }
+
+
                 if (c1.getCollider().intersects(c2.getCollider())) {
                     c1.dies();
                     c2.dies();
@@ -62,4 +69,6 @@ public class GameModel {
     public Player getPlayer() {
         return player;
     }
+
+
 }
