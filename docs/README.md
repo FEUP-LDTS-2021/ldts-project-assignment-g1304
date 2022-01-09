@@ -17,7 +17,7 @@ This project was developed by Afonso Baldo, João Teixeira and José Gaspar for 
 * Asteroids Collisions - If the asteroid collides with a ship, kills it.
 * Borders of the Map - When an object crosses the borders of the map, it appears on the opposite side.
 
-### PLANED FEATURES
+### PLANNED FEATURES
 * Player Collisions - If the player collides with an asteroid, enemy ship or with a laser beam, it dies.
 * Asteroid Splitting - The asteroids get split in half when shot by the laser beams. The smaller ones get instantly destroyed.
 * Score - When the player destroys asteroids and enemy ships, he gains points.
@@ -25,6 +25,10 @@ This project was developed by Afonso Baldo, João Teixeira and José Gaspar for 
 * Game Over - When the player runs out of lives, the game ends.
 * Instructions - A page that shows the basic controls for the game.
 * Leaderboard - When the user loses, his score is saved to a file.
+
+## IMPLEMENTATION - UML
+
+![](image/uml.png)
 
 ## DESIGN PATTERNS
 
