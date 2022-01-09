@@ -24,4 +24,6 @@ public class PlayerController implements InputObserver {
             player.addLaserBeams();
         }
     }
+
+
 }

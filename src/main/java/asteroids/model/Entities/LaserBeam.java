@@ -17,9 +17,8 @@ public class LaserBeam extends MovingObject {
 
     @Override
     public void update(long dt) {
-        if (control) {
+        if (control)
             super.update(dt);
-        }
         control = true;
     }
 }

@@ -1,23 +1,27 @@
-package asteroids.model.Entities;
+package asteroids.model.Spawner;
 
-import java.util.ArrayList;
+import asteroids.model.Creator.EnemyShipCreator;
+import asteroids.model.Entities.MovingObject;
+import asteroids.model.Entities.Player;
+
 import java.util.List;
 import java.util.Random;
 
 public class EnemyShipSpawner {
     private long timePassed;
     private final Player player;
-    private final List<EnemyShip> enemyShips;
+    private final List<MovingObject> entities;
     private final EnemyShipCreator enemyShipCreator;
 
-    public EnemyShipSpawner(Player player){
+    public EnemyShipSpawner(Player player, List<MovingObject> entities){
         this.timePassed = 0;
         this.player = player;
-        this.enemyShips = new ArrayList<>();
-        this.enemyShipCreator = new EnemyShipCreator(new Random(),player);
+        this.entities = entities;
+        this.enemyShipCreator = new EnemyShipCreator(new Random(),player, entities);
     }
-    public List<EnemyShip> getEnemyShips() {
-        return enemyShips;
+
+    public List<MovingObject> getEntities() {
+        return entities;
     }
 
     public boolean isSpawnTime(long dt){
@@ -35,13 +39,7 @@ public class EnemyShipSpawner {
 
     public void update(long dt) {
         if(isSpawnTime(dt))
-           getEnemyShips().add((EnemyShip) enemyShipCreator.create());
-
-        for(EnemyShip enemyShip : getEnemyShips()) {
-            enemyShip.update(dt);
-            for (LaserBeam laserBeam : enemyShip.getLaserBeams())
-                laserBeam.update(dt);
-        }
+            entities.add(enemyShipCreator.create());
     }
 
     public Player getPlayer() {

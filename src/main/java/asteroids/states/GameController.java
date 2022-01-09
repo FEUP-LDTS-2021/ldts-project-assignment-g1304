@@ -33,7 +33,7 @@ public class GameController implements StateController, InputObserver {
         context.getInputListenner().addInputObserver(getPlayerController());
 
         long pastTime =  System.currentTimeMillis();
-        while (context.getApplicationState() == ApplicationState.Game){
+        while (context.getApplicationState() == ApplicationState.Game && playerAlive()){
             long now = System.currentTimeMillis();
             getGameModel().update(now-pastTime);
             getScreenView().draw();
@@ -47,6 +47,10 @@ public class GameController implements StateController, InputObserver {
         getScreenView().close();
         nextState();
 
+    }
+
+    private boolean playerAlive(){
+        return getGameModel().getPlayer().isAlive();
     }
 
     public GameModel getGameModel() {

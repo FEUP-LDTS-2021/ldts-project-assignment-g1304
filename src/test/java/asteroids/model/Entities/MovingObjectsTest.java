@@ -32,6 +32,12 @@ public class MovingObjectsTest extends Assertions {
     }
 
     @Test
+    void alive() {
+        object.dies();
+        assertFalse(object.isAlive());
+    }
+
+    @Test
     void goForward(){
 
         Mockito.when(velocity.getX()).thenReturn(-10.0);
@@ -55,10 +61,7 @@ public class MovingObjectsTest extends Assertions {
 
 
         object.goFoward(1000);
-
-
     }
-
 
     @Test
     void update(){

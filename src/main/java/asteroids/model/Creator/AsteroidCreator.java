@@ -1,11 +1,12 @@
-package asteroids.model.Entities;
+package asteroids.model.Creator;
 
+import asteroids.model.Entities.Asteroid;
 import asteroids.model.Position;
 import asteroids.model.physics.Vector2d;
 
 import java.util.Random;
 
-public class AsteroidCreator extends Creator{
+public class AsteroidCreator extends Creator {
     private final Random rand;
 
     public AsteroidCreator(Random rand){
@@ -13,7 +14,7 @@ public class AsteroidCreator extends Creator{
     }
 
     @Override
-    public MovingObject create() {
+    public Asteroid create() {
         int rangeMin = 0;
         int rangeMax = 500;
         Position randomPosition = new Position(rangeMin + (rangeMax - rangeMin) * rand.nextDouble(),

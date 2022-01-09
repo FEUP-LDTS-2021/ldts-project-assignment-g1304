@@ -1,29 +1,29 @@
-package asteroids.model.Entities;
+package asteroids.model.Creator;
 
+import asteroids.model.Entities.LaserBeam;
+import asteroids.model.Entities.MovingObject;
+import asteroids.model.Entities.Player;
 import asteroids.model.Position;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class LaserBeamCreator extends Creator {
 
-
     private final Player player;
-    private final List<LaserBeam> laserBeamList;
+    private final List <MovingObject> entities;
 
-    public LaserBeamCreator(Player player) {
-
+    public LaserBeamCreator(Player player, List<MovingObject> entities) {
         this.player = player;
-        laserBeamList = new ArrayList<>();
+        this.entities = entities;
+    }
+
+    public List<MovingObject> getEntities() {
+        return entities;
     }
 
     public Player getPlayer() {
         return player;
-    }
-
-    public List<LaserBeam> getLaserBeamList() {
-        return laserBeamList;
     }
 
     public LaserBeam create() {
@@ -42,6 +42,6 @@ public class LaserBeamCreator extends Creator {
     }
 
     public void addLaserBeam(LaserBeam laserBeam) {
-        laserBeamList.add(laserBeam);
+        entities.add(laserBeam);
     }
 }

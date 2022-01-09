@@ -20,5 +20,9 @@ public class AsteroidView extends View {
                         (int)asteroid.getPosition().getY()),
                 new TerminalSize((int)asteroid.getWidth(), (int)asteroid.getHeight()),' ');
     }
+
+    public Asteroid getAsteroid() {
+        return asteroid;
+    }
 }
 
