@@ -119,17 +119,9 @@ public class PlayerTest extends Assertions {
         Vector2d velocity = Mockito.mock(Vector2d.class);
         player.setVelocity(velocity);
 
-        Mockito.doAnswer((Answer<Void>) invocation -> {
-            Object[] arguments = invocation.getArguments();
-            assertTrue(DoubleComparables.equalDouble ((double)arguments[0], Player.acelaration));
-            return null;
-        }).when(velocity).addX(Mockito.anyDouble());
+        Mockito.doNothing().when(velocity).addX(Mockito.anyDouble());
 
-        Mockito.doAnswer((Answer<Void>) invocation -> {
-            Object[] arguments = invocation.getArguments();
-            assertTrue(DoubleComparables.equalDouble ((double)arguments[0], 0));
-            return null;
-        }).when(velocity).addY(Mockito.anyDouble());
+        Mockito.doNothing().when(velocity).addY(Mockito.anyDouble());
 
 
         //when
@@ -138,8 +130,8 @@ public class PlayerTest extends Assertions {
 
         //then
 
-        Mockito.verify(velocity, Mockito.times(1)).addX(Mockito.anyDouble());
-        Mockito.verify(velocity, Mockito.times(1)).addY(Mockito.anyDouble());
+        Mockito.verify(velocity, Mockito.times(1)).addX(Player.acelaration);
+        Mockito.verify(velocity, Mockito.times(1)).addY(0);
 
         assertFalse(player.isAcelerate());
     }
@@ -155,17 +147,9 @@ public class PlayerTest extends Assertions {
         Vector2d velocity = Mockito.mock(Vector2d.class);
         player.setVelocity(velocity);
 
-        Mockito.doAnswer((Answer<Void>) invocation -> {
-            Object[] arguments = invocation.getArguments();
-            assertTrue(DoubleComparables.equalDouble ((double)arguments[0], Player.acelaration*Math.cos(angle)));
-            return null;
-        }).when(velocity).addX(Mockito.anyDouble());
+        Mockito.doNothing().when(velocity).addX(Mockito.anyDouble());
 
-        Mockito.doAnswer((Answer<Void>) invocation -> {
-            Object[] arguments = invocation.getArguments();
-            assertTrue(DoubleComparables.equalDouble ((double)arguments[0], Player.acelaration*Math.sin(angle)));
-            return null;
-        }).when(velocity).addY(Mockito.anyDouble());
+        Mockito.doNothing().when(velocity).addY(Mockito.anyDouble());
 
 
         //when
@@ -174,8 +158,8 @@ public class PlayerTest extends Assertions {
 
         //then
 
-        Mockito.verify(velocity, Mockito.times(1)).addX(Mockito.anyDouble());
-        Mockito.verify(velocity, Mockito.times(1)).addY(Mockito.anyDouble());
+        Mockito.verify(velocity, Mockito.times(1)).addX(Player.acelaration*Math.cos(angle));
+        Mockito.verify(velocity, Mockito.times(1)).addY(Player.acelaration*Math.sin(angle));
 
         assertFalse(player.isAcelerate());
     }

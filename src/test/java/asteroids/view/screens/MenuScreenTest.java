@@ -50,6 +50,36 @@ public class MenuScreenTest extends Assertions {
     }
 
     @Test
+    void initScreen()  {
+        try{
+            //given
+            menuScreen.setGraphics(null);
+            Mockito.doCallRealMethod().when(menuScreen).getScreen();
+            TerminalPosition p1 = Mockito.mock(TerminalPosition.class);
+            TerminalPosition p2 = Mockito.mock(TerminalPosition.class);
+            TerminalPosition p3 = Mockito.mock(TerminalPosition.class);
+
+            Mockito.doReturn(p1).when(menuScreen).getTerminalPosition(0.5, MenuItem.Play.toString().length());
+            Mockito.doReturn(p2).when(menuScreen).getTerminalPosition(0.6, MenuItem.LeaderBoard.toString().length());
+            Mockito.doReturn(p3).when(menuScreen).getTerminalPosition(0.7, MenuItem.Exit.toString().length());
+
+            //when
+            menuScreen.initScreen();
+
+            //then
+            Mockito.verify(play).setGraphics(Mockito.notNull());
+            Mockito.verify(leaderboard).setGraphics(Mockito.notNull());
+            Mockito.verify(exit).setGraphics(Mockito.notNull());
+
+            Mockito.verify(play).setPosition(p1);
+            Mockito.verify(leaderboard).setPosition(p2);
+            Mockito.verify(exit).setPosition(p3);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void createPlay(){
         MenuScreen menuS = new MenuScreen(menu);
 

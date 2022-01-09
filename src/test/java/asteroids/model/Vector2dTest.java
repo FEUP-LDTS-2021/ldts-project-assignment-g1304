@@ -3,8 +3,6 @@ package asteroids.model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 import asteroids.utils.DoubleComparables;
 
 public class Vector2dTest extends Assertions {
@@ -170,17 +168,11 @@ public class Vector2dTest extends Assertions {
         Mockito.doCallRealMethod().when(vec1).resize(Mockito.anyDouble());
         Mockito.when(vec1.module()).thenReturn(10.0);
 
-        Mockito.doAnswer(new Answer<Void>() {
-            @Override
-            public Void answer(InvocationOnMock invocation){
-                Object[] arguments = invocation.getArguments();
-                assertTrue(DoubleComparables.equalDouble ((double)arguments[0], 2));
-                return null;
-            }
-        }).when(vec1).scale(Mockito.anyDouble());
+        Mockito.doNothing().when(vec1).scale(Mockito.anyDouble());
         vec1.resize(20);
 
         Mockito.verify(vec1, Mockito.atLeastOnce()).module();
+        Mockito.verify(vec1, Mockito.times(1)).scale(2);
 
     }
     @Test
@@ -189,17 +181,11 @@ public class Vector2dTest extends Assertions {
         Mockito.doCallRealMethod().when(vec1).resize(Mockito.anyDouble());
         Mockito.when(vec1.module()).thenReturn(10.0);
 
-        Mockito.doAnswer(new Answer<Void>() {
-            @Override
-            public Void answer(InvocationOnMock invocation){
-                Object[] arguments = invocation.getArguments();
-                assertTrue(DoubleComparables.equalDouble ((double)arguments[0], 0.5));
-                return null;
-            }
-        }).when(vec1).scale(Mockito.anyDouble());
+        Mockito.doNothing().when(vec1).scale(Mockito.anyDouble());
         vec1.resize(5);
 
         Mockito.verify(vec1, Mockito.atLeastOnce()).module();
+        Mockito.verify(vec1, Mockito.times(1)).scale(0.5);
 
     }
 
@@ -210,12 +196,7 @@ public class Vector2dTest extends Assertions {
         Mockito.doCallRealMethod().when(vec1).resize(Mockito.anyDouble());
         Mockito.when(vec1.module()).thenReturn(0.0);
 
-        Mockito.doAnswer(new Answer<Void>() {
-            @Override
-            public Void answer(InvocationOnMock invocation){
-                return null;
-            }
-        }).when(vec1).scale(Mockito.anyDouble());
+        Mockito.doNothing().when(vec1).scale(Mockito.anyDouble());
         vec1.resize(5);
 
         Mockito.verify(vec1, Mockito.never()).scale(Mockito.anyDouble());

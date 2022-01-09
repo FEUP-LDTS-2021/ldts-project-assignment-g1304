@@ -47,20 +47,14 @@ public class MovingObjectsTest extends Assertions {
         Mockito.when(position.getY()).thenReturn(20.0);
 
 
-        Mockito.doAnswer((Answer<Void>) invocation -> {
-            Object[] arguments = invocation.getArguments();
-            assertTrue(DoubleComparables.equalDouble ((double)arguments[0], position.getX() + velocity.getX() ));
-            return null;
-        }).when(position).setX(Mockito.anyDouble());
+        Mockito.doNothing().when(position).setX(Mockito.anyDouble());
 
-        Mockito.doAnswer((Answer<Void>) invocation -> {
-            Object[] arguments = invocation.getArguments();
-            assertTrue(DoubleComparables.equalDouble ((double)arguments[0], position.getY() + velocity.getY() ));
-            return null;
-        }).when(position).setY(Mockito.anyDouble());
+        Mockito.doNothing().when(position).setY(Mockito.anyDouble());
 
 
         object.goFoward(1000);
+        Mockito.verify(position, Mockito.times(1)).setX(position.getX() + velocity.getX());
+        Mockito.verify(position, Mockito.times(1)).setY(position.getY() + velocity.getY());
     }
 
     @Test

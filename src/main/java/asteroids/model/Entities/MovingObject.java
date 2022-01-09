@@ -30,7 +30,7 @@ public abstract class MovingObject implements CollidableObject {
         this.height = height;
     }
 
-    public void goFoward(long dt){
+    void goFoward(long dt){
         getPosition().setX(getPosition().getX() + velocity.getX()*dt/1000);
         getPosition().setY(getPosition().getY() + velocity.getY()*dt/1000);
     }

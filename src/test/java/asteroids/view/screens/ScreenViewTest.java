@@ -29,6 +29,23 @@ public class ScreenViewTest extends Assertions {
         Mockito.when(screenView.getSize()).thenReturn(new TerminalSize(50,50));
     }
 
+    @Test
+    void TestInitScreen() {
+        try{
+            //when
+            screenView.initScreen();
+
+            // then
+            assertEquals(screenView.getFont(), font);
+            assertNotNull(screenView.getGraphics());
+            //assertTrue(true);
+            // final
+            screenView.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @Test
     void refresh() throws IOException {
