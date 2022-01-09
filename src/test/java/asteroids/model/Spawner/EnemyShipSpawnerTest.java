@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EnemyShipSpawnerTest extends Assertions {
@@ -44,7 +45,7 @@ public class EnemyShipSpawnerTest extends Assertions {
     }
 
     @Test
-    void update(){
+    void updateFalse(){
         //given
         Player playerMock = Mockito.mock(Player.class);
         Mockito.when(playerMock.getPosition()).thenReturn(new Position(12.2,12.2));
@@ -61,6 +62,28 @@ public class EnemyShipSpawnerTest extends Assertions {
 
         //then
         assertEquals(2,enemyShipSpawner.getEntities().size());
+        Mockito.verify(enemyShipSpawner, Mockito.times(1)).update(6000);
+
+    }
+
+    @Test
+    void updateTrue(){
+        //given
+        Player playerMock = Mockito.mock(Player.class);
+        Mockito.when(playerMock.getPosition()).thenReturn(new Position(12.2,12.2));
+        EnemyShip enemyShipMock = Mockito.mock(EnemyShip.class);
+        List<MovingObject> entities = new ArrayList<>(List.of(playerMock, enemyShipMock));
+        EnemyShipSpawner enemyShipSpawner = Mockito.spy(new EnemyShipSpawner(playerMock, entities));
+
+        Mockito.when(enemyShipSpawner.getEntities()).thenReturn(entities);
+        Mockito.when(enemyShipSpawner.isSpawnTime(Mockito.anyLong())).thenReturn(true);
+
+        //when
+        enemyShipSpawner.update(6000);
+
+
+        //then
+        assertEquals(3,enemyShipSpawner.getEntities().size());
         Mockito.verify(enemyShipSpawner, Mockito.times(1)).update(6000);
 
     }
