@@ -142,3 +142,11 @@ Applying the **State** pattern allows to:
 
 - Organize the code of the various states into individual classes
 - Introduce new states in a much easier way, without having to change existing state classes or the context.
+
+## TEST COVERAGE
+
+![](image/coverage.png)
+
+## MUTATION TESTING
+
+![](image/pitest.png)
