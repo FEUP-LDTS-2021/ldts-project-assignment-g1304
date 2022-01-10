@@ -23,6 +23,8 @@ For a more detailed version of this description click [here](./docs/README.md).
  - [ ] Game Over - When the player runs out of lives, the game ends.
  - [ ] Instructions - A page that shows the basic controls for the game.
  - [ ] Leaderboard - When the user loses, his score is saved to a file.
+ - [ ] SoundTrack - Play background music when user is playing
+ - [ ] Sounds - Play sounds when the player or enemy fires a laser beam, or when there is a collision.
 
 ## Screenshots 
 The following screenshots ilustrate the general look of our game, as well as the functionalities: 
