@@ -11,6 +11,7 @@ This project was developed by Afonso Baldo, João Teixeira and José Gaspar for 
 ### IMPLEMENTED FEATURES
 * Menu - When the game is initialized a Menu is displayed (the player chooses between playing, seeing leaderbord or quit)
 * Movement - The spaceship is able to move in all directions when the arrow keys are pressed.
+* Player Collisions - If the player collides with an asteroid, enemy ship or with a laser beam, it dies.
 * Shooting - The spaceship can shoot laser beams. 
 * Asteroids - The asteroids appear randomly throughout the map and move in a single random direction. 
 * Enemy Ships - The enemy flying saucers appear randomly on the map and try to shoot at your spaceship.
@@ -18,7 +19,6 @@ This project was developed by Afonso Baldo, João Teixeira and José Gaspar for 
 * Borders of the Map - When an object crosses the borders of the map, it appears on the opposite side.
 
 ### PLANNED FEATURES
-* Player Collisions - If the player collides with an asteroid, enemy ship or with a laser beam, it dies.
 * Asteroid Splitting - The asteroids get split in half when shot by the laser beams. The smaller ones get instantly destroyed.
 * Score - When the player destroys asteroids and enemy ships, he gains points.
 * Lives - The player has an amount of lives, that decreases everytime he dies.
