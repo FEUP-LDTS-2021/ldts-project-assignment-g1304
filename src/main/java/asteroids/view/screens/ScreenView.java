@@ -17,7 +17,7 @@ import java.io.IOException;
 public abstract class ScreenView{
 
     protected TextGraphics graphics;
-    private Screen screen;
+    private TerminalScreen screen;
     private Font font;
 
     public void initScreen() throws IOException {
