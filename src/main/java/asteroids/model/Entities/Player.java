@@ -1,32 +1,18 @@
 package asteroids.model.Entities;
 
+import asteroids.control.Rotation;
 import asteroids.model.Creator.LaserBeamCreator;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
 
 
 public class Player extends MovingObject {
-    private enum Rotation{
-        Left(-1),
-        Right(1),
-        None(0);
-
-        private final int value;
-
-        Rotation(int value){
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
 
     private double angle;
     public static final double raio = 10;
-    public static final double acelaration = 1000.0;
+    public static final double acelaration = 300.0;
     public static final double MAX_VELOCITY = 200.0;
-    public static final double angularVelocity = Math.PI*3;
+    public static final double angularVelocity = Math.PI*2;
     private Rotation rotation;
     private boolean acelerate;
     private boolean shoot;
@@ -36,7 +22,7 @@ public class Player extends MovingObject {
         super(position, new Vector2d(0,0), raio, raio);
         this.angle = 0;
         this.acelerate = false;
-        this.rotation = Rotation.None;
+        setRotation(Rotation.None);
         this.shoot = false;
         this.laserBeamCreator = null;
     }
@@ -59,9 +45,8 @@ public class Player extends MovingObject {
 
     public void update(long dt){
         angle += rotation.getValue()*angularVelocity*dt/1000;
-        rotation = Rotation.None;
 
-        if(acelerate) {
+        if(isAccelerating()) {
             getVelocity().addX(acelaration * dt / 1000 * Math.cos(angle));
             getVelocity().addY(acelaration * dt / 1000 * Math.sin(angle));
             if(getVelocity().module() > MAX_VELOCITY)
@@ -70,35 +55,36 @@ public class Player extends MovingObject {
             getVelocity().resize(getVelocity().module()*0.98);
         }
 
-        acelerate=false;
         super.update(dt);       // andar para a frente
-        if (shoot)
+        if (isShooting())
             getLaserBeamCreator().addLaserBeam(getLaserBeamCreator().create());
-        shoot = false;
     }
 
     public void setLaserBeamCreator(LaserBeamCreator laserBeamCreator) {
         this.laserBeamCreator = laserBeamCreator;
     }
 
-    public void rotateLeft(){
-        rotation = Rotation.Left;
+    public void setRotation(Rotation rotation) {
+        this.rotation = rotation;
     }
 
-    public void rotateRight(){
-        rotation = Rotation.Right;
-    }
-
-    public boolean isAcelerate() {
+    public boolean isAccelerating() {
         return acelerate;
     }
 
-    public void acelerate() {
-        this.acelerate=true;
+    public void setAcelerate(boolean acelerate) {
+        this.acelerate = acelerate;
     }
 
-    public void addLaserBeams() {
-        shoot = true;
+    public Rotation getRotation() {
+        return rotation;
     }
 
+    public boolean isShooting() {
+        return shoot;
+    }
+
+    public void setShoot(boolean shoot) {
+        this.shoot = shoot;
+    }
 }

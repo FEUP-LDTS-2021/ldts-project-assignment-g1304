@@ -1,6 +1,5 @@
 package asteroids.control;
 
-import asteroids.input.InputListenner;
 import asteroids.states.ApplicationState;
 import asteroids.states.GameController;
 import asteroids.states.MenuController;
@@ -12,23 +11,16 @@ public class Controller {
 
     private StateController stateControler;
     private ApplicationState applicationState;
-    private final Thread inputThread;
-    private final InputListenner inputListenner;
 
     public Controller(){
-        inputListenner = new InputListenner();
-        inputThread = new Thread(inputListenner);
         changeState(ApplicationState.Menu);
     }
 
     public void run() throws IOException {
-        getInputThread().start();
 
         while (getStateControler() != null)
             getStateControler().run();
 
-        getInputListenner().stop();
-        getInputThread().interrupt();
     }
 
 
@@ -43,14 +35,6 @@ public class Controller {
             case Menu -> stateControler = new MenuController(this);
             case Exit, LeaderBoard -> stateControler=null;
         }
-    }
-
-    public InputListenner getInputListenner() {
-        return inputListenner;
-    }
-
-    public Thread getInputThread() {
-        return inputThread;
     }
 
     public StateController getStateControler() {

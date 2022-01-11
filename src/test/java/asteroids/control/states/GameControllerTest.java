@@ -8,22 +8,23 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import asteroids.control.Controller;
 import asteroids.control.PlayerController;
-import asteroids.input.InputListenner;
 import asteroids.model.GameModel;
+import com.googlecode.lanterna.screen.TerminalScreen;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import asteroids.view.screens.ScreenView;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class GameControllerTest extends Assertions {
     GameController gameControllerSpy;
     Controller context;
     ScreenView screenViewMock;
-    Screen screenMock;
-    InputListenner inputListenner;
+    TerminalScreen screenMock;
     PlayerController playerController;
     Player player;
     GameModel model;
@@ -32,8 +33,6 @@ public class GameControllerTest extends Assertions {
     void initGameController(){
         // create context
         context = Mockito.mock(Controller.class);
-        inputListenner = Mockito.mock(InputListenner.class);
-        Mockito.when(context.getInputListenner()).thenReturn(inputListenner);
 
         // create GameController
         GameController gameController = new GameController(context);
@@ -45,7 +44,7 @@ public class GameControllerTest extends Assertions {
 
         // create screens Mocks
         screenViewMock = Mockito.mock(ScreenView.class);
-        screenMock = Mockito.mock(Screen.class);
+        screenMock = Mockito.mock(TerminalScreen.class);
         Mockito.when(screenViewMock.getScreen()).thenReturn(screenMock);
         Mockito.when(gameControllerSpy.getScreenView()).thenReturn(screenViewMock);
 
@@ -74,19 +73,12 @@ public class GameControllerTest extends Assertions {
     }
 
     @Test
-    void exitGameEOF(){
-        // when
-        gameControllerSpy.processKey(new KeyStroke(KeyType.EOF));
-
-        // then
-        Mockito.verify(gameControllerSpy, Mockito.times(1)).nextState();
-    }
-
-    @Test
     void exitGameEscape(){
-        // when
-        gameControllerSpy.processKey(new KeyStroke(KeyType.Escape));
+        // given
+        KeyEvent e = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0, KeyEvent.VK_ESCAPE, KeyEvent.CHAR_UNDEFINED);
 
+        // when
+        gameControllerSpy.keyPressed(e);
         // then
         Mockito.verify(gameControllerSpy, Mockito.times(1)).nextState();
     }
@@ -107,10 +99,9 @@ public class GameControllerTest extends Assertions {
 
         // then
         Mockito.verify(screenViewMock, Mockito.times(1)).initScreen();
-        Mockito.verify(inputListenner, Mockito.times(1)).setScreen(screenMock);
 
-        Mockito.verify(inputListenner, Mockito.times(1)).addInputObserver(gameControllerSpy);
-        Mockito.verify(inputListenner, Mockito.times(1)).addInputObserver(playerController);
+        Mockito.verify(screenViewMock, Mockito.times(1)).addKeyListenner(gameControllerSpy);
+        Mockito.verify(screenViewMock, Mockito.times(1)).addKeyListenner(playerController);
 
     }
 
@@ -122,9 +113,8 @@ public class GameControllerTest extends Assertions {
         // then
         Mockito.verify(gameControllerSpy, Mockito.times(1)).nextState();
         Mockito.verify(screenViewMock, Mockito.times(1)).close();
-        Mockito.verify(inputListenner, Mockito.times(1)).setScreen(null);
-        Mockito.verify(inputListenner, Mockito.times(1)).removeInputObserver(gameControllerSpy);
-        Mockito.verify(inputListenner, Mockito.times(1)).removeInputObserver(playerController);
+        Mockito.verify(screenViewMock, Mockito.times(1)).removeKeyListenner(gameControllerSpy);
+        Mockito.verify(screenViewMock, Mockito.times(1)).removeKeyListenner(playerController);
 
     }
 

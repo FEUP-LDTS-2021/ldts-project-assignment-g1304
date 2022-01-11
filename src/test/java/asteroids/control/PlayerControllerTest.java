@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,70 +18,110 @@ public class PlayerControllerTest extends Assertions {
 
     PlayerController playerController;
     Player player;
-    List<KeyStroke> keyStrokeList;
-    KeyStroke right;
-    KeyStroke left;
-    KeyStroke up;
+    List<KeyEvent> keyEventList;
+    KeyEvent right;
+    KeyEvent left;
+    KeyEvent up;
+    KeyEvent space;
 
     @BeforeEach
     void initPlayerController(){
         player= Mockito.mock(Player.class);
         playerController = new PlayerController(player);
-        keyStrokeList = new ArrayList<>();
+        keyEventList = new ArrayList<>();
 
-        for(KeyType keyType : KeyType.values()){
-            if (keyType == KeyType.Character)
-                continue;
-            keyStrokeList.add(new KeyStroke(keyType));
+        for(int k = 0; k < 256; k++){
+            KeyEvent e = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0,
+                    k, KeyEvent.CHAR_UNDEFINED);
+            keyEventList.add(e);
         }
 
-        for(char letter = 1; letter < 256 ; letter++){
-            keyStrokeList.add(KeyStroke.fromString(""+letter));
-        }
-
-        right = new KeyStroke(KeyType.ArrowRight);
-        left = new KeyStroke(KeyType.ArrowLeft);
-        up = new KeyStroke(KeyType.ArrowUp);
+        right = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0,
+                KeyEvent.VK_RIGHT, KeyEvent.CHAR_UNDEFINED);
+        left = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0,
+                KeyEvent.VK_LEFT, KeyEvent.CHAR_UNDEFINED);
+        up = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0,
+                KeyEvent.VK_UP, KeyEvent.CHAR_UNDEFINED);
+        space = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0,
+                KeyEvent.VK_SPACE, ' ');
     }
 
     @Test
-    void changeDirectionInput(){
-        playerController.processKey(left);
-        Mockito.verify(player, Mockito.times(1)).rotateLeft();
-        
-        playerController.processKey(left);
-        Mockito.verify(player, Mockito.times(2)).rotateLeft();
+    void changeDirectionLeftInput() {
+        // when
+        playerController.keyPressed(left);
+        Mockito.when(player.getRotation()).thenReturn(Rotation.Left);
 
-        playerController.processKey(left);
-        Mockito.verify(player, Mockito.times(3)).rotateLeft();
+        // then
+        Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.Left);
 
-        playerController.processKey(right);
-        Mockito.verify(player, Mockito.times(1)).rotateRight();
+        // when
+        playerController.keyReleased(left);
 
-        playerController.processKey(right);
-        Mockito.verify(player, Mockito.times(2)).rotateRight();
+        // then
+        Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.None);
+    }
 
+    @Test
+    void changeDirectionRightInput() {
+        // when
+        playerController.keyPressed(right);
+        Mockito.when(player.getRotation()).thenReturn(Rotation.Right);
+
+        // then
+        Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.Right);
+
+        // when
+        playerController.keyReleased(right);
+
+        // thhen
+        Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.None);
+    }
+
+    @Test
+    void changeDirectionLeftThenRightInput() {
+
+        // when
+        Mockito.when(player.getRotation()).thenReturn(Rotation.Right);
+        playerController.keyReleased(left);
+
+        // then
+        Mockito.verify(player, Mockito.times(0)).setRotation(Rotation.None);
+
+        playerController.keyReleased(right);
+        Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.None);
     }
 
     @Test
     void notChangeDirection(){
-        for(KeyStroke keyStroke : keyStrokeList) {
-            if(keyStroke.equals(right) || keyStroke.equals(left) || keyStroke.equals(up))
+        for(KeyEvent keyEvent : keyEventList) {
+            if(keyEvent.getKeyCode()==KeyEvent.VK_RIGHT
+                    || keyEvent.getKeyCode()==KeyEvent.VK_LEFT
+                    || keyEvent.getKeyCode()==KeyEvent.VK_UP
+                    || keyEvent.getKeyCode()==KeyEvent.VK_SPACE)
                 continue;
-            playerController.processKey(keyStroke);
-            Mockito.verify(player, Mockito.never()).rotateLeft();
-            Mockito.verify(player, Mockito.never()).rotateRight();
-            Mockito.verify(player, Mockito.never()).acelerate();
+            playerController.keyPressed(keyEvent);
+            Mockito.verify(player, Mockito.never()).setRotation(Mockito.any());
+            Mockito.verify(player, Mockito.never()).setShoot(Mockito.anyBoolean());
+            Mockito.verify(player, Mockito.never()).setAcelerate(Mockito.anyBoolean());
         }
     }
 
     @Test
     void acelerationInput(){
+        playerController.keyPressed(up);
+        Mockito.verify(player, Mockito.times(1)).setAcelerate(true);
 
-        playerController.processKey(up);
-        Mockito.verify(player, Mockito.times(1)).acelerate();
+        playerController.keyReleased(up);
+        Mockito.verify(player, Mockito.times(1)).setAcelerate(false);
+    }
 
-        playerController.processKey(up);
-        Mockito.verify(player, Mockito.times(2)).acelerate();
+    @Test
+    void shootInput(){
+        playerController.keyPressed(space);
+        Mockito.verify(player, Mockito.times(1)).setShoot(true);
+
+        playerController.keyReleased(space);
+        Mockito.verify(player, Mockito.times(1)).setShoot(false);
     }
 }

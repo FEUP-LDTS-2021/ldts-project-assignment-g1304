@@ -5,14 +5,16 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import asteroids.control.Controller;
 import asteroids.control.PlayerController;
-import asteroids.input.InputObserver;
 import asteroids.model.GameModel;
 import asteroids.view.screens.GameScreen;
 import asteroids.view.screens.ScreenView;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
-public class GameController implements StateController, InputObserver {
+public class GameController implements StateController, KeyListener {
 
     private final ScreenView screenView;
     private final GameModel gameModel;
@@ -28,9 +30,8 @@ public class GameController implements StateController, InputObserver {
 
     public void run() throws IOException {
         getScreenView().initScreen();
-        context.getInputListenner().setScreen(getScreenView().getScreen());
-        context.getInputListenner().addInputObserver(this);
-        context.getInputListenner().addInputObserver(getPlayerController());
+        getScreenView().addKeyListenner(this);
+        getScreenView().addKeyListenner(getPlayerController());
 
         long pastTime =  System.currentTimeMillis();
         while (context.getApplicationState() == ApplicationState.Game && playerAlive()){
@@ -41,9 +42,8 @@ public class GameController implements StateController, InputObserver {
             pastTime=now;
         }
 
-        context.getInputListenner().removeInputObserver(this);
-        context.getInputListenner().removeInputObserver(getPlayerController());
-        context.getInputListenner().setScreen(null);
+        getScreenView().removeKeyListenner(this);
+        getScreenView().removeKeyListenner(getPlayerController());
         getScreenView().close();
         nextState();
 
@@ -70,10 +70,22 @@ public class GameController implements StateController, InputObserver {
         context.changeState(ApplicationState.Menu);
     }
 
+
     @Override
-    public void processKey(KeyStroke key) {
-        if (key.getKeyType() == KeyType.EOF || key.getKeyType() == KeyType.Escape) {
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println(e);
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             nextState();
         }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

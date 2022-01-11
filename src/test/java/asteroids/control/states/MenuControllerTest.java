@@ -6,15 +6,18 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import asteroids.control.Controller;
-import asteroids.input.InputListenner;
 import asteroids.model.Menu.Menu;
 import asteroids.model.Menu.MenuItem;
+import com.googlecode.lanterna.screen.TerminalScreen;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import asteroids.view.screens.ScreenView;
 
+import java.awt.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class MenuControllerTest extends Assertions {
@@ -22,16 +25,13 @@ public class MenuControllerTest extends Assertions {
     MenuController menuControllerSpy;
     Controller context;
     ScreenView screenViewMock;
-    Screen screenMock;
-    InputListenner inputListenner;
+    TerminalScreen screenMock;
     Menu menu;
 
     @BeforeEach
     void initGameController(){
         // create context
         context = Mockito.mock(Controller.class);
-        inputListenner = Mockito.mock(InputListenner.class);
-        Mockito.when(context.getInputListenner()).thenReturn(inputListenner);
 
         // create MenuController
         menuControllerSpy = Mockito.spy(new MenuController(context));
@@ -42,7 +42,7 @@ public class MenuControllerTest extends Assertions {
 
         // create screens Mocks
         screenViewMock = Mockito.mock(ScreenView.class);
-        screenMock = Mockito.mock(Screen.class);
+        screenMock = Mockito.mock(TerminalScreen.class);
         Mockito.when(screenViewMock.getScreen()).thenReturn(screenMock);
         Mockito.when(menuControllerSpy.getScreenView()).thenReturn(screenViewMock);
 
@@ -50,17 +50,22 @@ public class MenuControllerTest extends Assertions {
 
     @Test
     void processKeyArrowDown(){
-        // when
-        menuControllerSpy.processKey(new KeyStroke(KeyType.ArrowDown));
+        // given
+        KeyEvent e = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0, KeyEvent.VK_DOWN, KeyEvent.CHAR_UNDEFINED);
 
+        // when
+        menuControllerSpy.keyPressed(e);
         // then
         Mockito.verify(menu, Mockito.times(1)).selectNext();
     }
 
     @Test
     void processKeyArrowUp(){
+        // given
+        KeyEvent e = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0, KeyEvent.VK_UP, KeyEvent.CHAR_UNDEFINED);
+
         // when
-        menuControllerSpy.processKey(new KeyStroke(KeyType.ArrowUp));
+        menuControllerSpy.keyPressed(e);
 
         // then
         Mockito.verify(menu, Mockito.times(1)).selectprevious();
@@ -68,8 +73,11 @@ public class MenuControllerTest extends Assertions {
 
     @Test
     void processKeyEnter(){
+        // given
+        KeyEvent e = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0, KeyEvent.VK_ENTER, '\n');
+
         // when
-        menuControllerSpy.processKey(new KeyStroke(KeyType.Enter));
+        menuControllerSpy.keyPressed(e);
 
         // then
         Mockito.verify(menu, Mockito.times(1)).choose();
@@ -77,17 +85,11 @@ public class MenuControllerTest extends Assertions {
 
     @Test
     void processKeyEscape(){
-        // when
-        menuControllerSpy.processKey(new KeyStroke(KeyType.Escape));
+        // given
+        KeyEvent e = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0, KeyEvent.VK_ESCAPE, '\n');
 
-        // then
-        Mockito.verify(context, Mockito.times(1)).changeState(ApplicationState.Exit);
-    }
-
-    @Test
-    void processKeyEOF(){
         // when
-        menuControllerSpy.processKey(new KeyStroke(KeyType.EOF));
+        menuControllerSpy.keyPressed(e);
 
         // then
         Mockito.verify(context, Mockito.times(1)).changeState(ApplicationState.Exit);
@@ -100,9 +102,7 @@ public class MenuControllerTest extends Assertions {
 
         // then
         Mockito.verify(screenViewMock, Mockito.times(1)).initScreen();
-        Mockito.verify(inputListenner, Mockito.times(1)).setScreen(screenMock);
-
-        Mockito.verify(inputListenner, Mockito.times(1)).addInputObserver(menuControllerSpy);
+        Mockito.verify(screenViewMock, Mockito.times(1)).addKeyListenner(menuControllerSpy);
 
     }
 
@@ -113,8 +113,7 @@ public class MenuControllerTest extends Assertions {
 
         // then
         Mockito.verify(screenViewMock, Mockito.times(1)).close();
-        Mockito.verify(inputListenner, Mockito.times(1)).setScreen(null);
-        Mockito.verify(inputListenner, Mockito.times(1)).removeInputObserver(menuControllerSpy);
+        Mockito.verify(screenViewMock, Mockito.times(1)).addKeyListenner(menuControllerSpy);
 
     }
 

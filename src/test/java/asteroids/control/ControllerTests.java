@@ -13,35 +13,17 @@ import java.io.IOException;
 
 public class ControllerTests  extends Assertions {
     Controller controllerSpy;
-    Thread thread;
     @BeforeEach
     void initController(){
-        thread = Mockito.mock(Thread.class);
         Controller controller = new Controller();
         controllerSpy = Mockito.spy(controller);
-        Mockito.when(controllerSpy.getInputThread()).thenReturn(thread);
     }
-
-    @Test
-    void startInputThread() throws IOException {
-        // given
-        Mockito.when(controllerSpy.getStateControler()).thenReturn(null);
-
-        // when
-        controllerSpy.run();
-
-        // then
-        Mockito.verify(thread, Mockito.times(1)).start();
-        Mockito.verify(thread, Mockito.times(1)).interrupt();
-    }
-
     @Test
     void runState() throws IOException {
         // given
         StateController stateController = Mockito.mock(StateController.class);
         StateController stateController2 = Mockito.mock(StateController.class);
 
-        Mockito.when(controllerSpy.getInputThread()).thenReturn(thread);
         Mockito.when(controllerSpy.getStateControler()).thenReturn(stateController, stateController, stateController2 ,stateController2, null);
 
         // when

@@ -1,5 +1,6 @@
 package asteroids.model.Entities;
 
+import asteroids.control.Rotation;
 import asteroids.model.Creator.LaserBeamCreator;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
@@ -44,15 +45,15 @@ public class PlayerTest extends Assertions {
     @Test
     void changeDirectionWithTime(){
         Player player = new Player(new Position(10, 10));
-        player.rotateRight();
+        player.setRotation(Rotation.Right);
         player.update(500);
         assertTrue( DoubleComparables.equalDouble(Player.angularVelocity/2, player.getAngle()));
 
-        player.rotateLeft();
+        player.setRotation(Rotation.Left);
         player.update(500);
         assertTrue( DoubleComparables.equalDouble(0.0, player.getAngle()));
 
-        player.rotateLeft();
+        player.setRotation(Rotation.Left);
         player.update(500);
         assertTrue( DoubleComparables.equalDouble(-Player.angularVelocity/2, player.getAngle()));
     }
@@ -73,8 +74,6 @@ public class PlayerTest extends Assertions {
 
         Mockito.verify(velocity, Mockito.never()).addX(Mockito.anyDouble());
         Mockito.verify(velocity, Mockito.never()).addY(Mockito.anyDouble());
-
-        assertFalse(player.isAcelerate());
     }
 
     @Test
@@ -87,7 +86,7 @@ public class PlayerTest extends Assertions {
 
         //when
         Mockito.when(velocity.module()).thenReturn(Player.MAX_VELOCITY);
-        player.acelerate();
+        player.setAcelerate(true);
         player.update(1000);
 
         //then
@@ -104,7 +103,7 @@ public class PlayerTest extends Assertions {
 
         //when
         Mockito.when(velocity.module()).thenReturn(Player.MAX_VELOCITY+1);
-        player.acelerate();
+        player.setAcelerate(true);
         player.update(1000);
 
         //then
@@ -125,15 +124,13 @@ public class PlayerTest extends Assertions {
 
 
         //when
-        player.acelerate();
+        player.setAcelerate(true);
         player.update(1000);
 
         //then
 
         Mockito.verify(velocity, Mockito.times(1)).addX(Player.acelaration);
         Mockito.verify(velocity, Mockito.times(1)).addY(0);
-
-        assertFalse(player.isAcelerate());
     }
 
 
@@ -153,15 +150,13 @@ public class PlayerTest extends Assertions {
 
 
         //when
-        player.acelerate();
+        player.setAcelerate(true);
         player.update(1000);
 
         //then
 
         Mockito.verify(velocity, Mockito.times(1)).addX(Player.acelaration*Math.cos(angle));
         Mockito.verify(velocity, Mockito.times(1)).addY(Player.acelaration*Math.sin(angle));
-
-        assertFalse(player.isAcelerate());
     }
     @Test
     void updateShot() {
@@ -171,11 +166,38 @@ public class PlayerTest extends Assertions {
         player.setLaserBeamCreator(laserBeamCreatorMock);
 
         //when
-        player.addLaserBeams();
+        player.setShoot(true);
         player.update(10);
 
         //then
         Mockito.verify(laserBeamCreatorMock, Mockito.times(1)).addLaserBeam(Mockito.any());
         Mockito.verify(laserBeamCreatorMock, Mockito.times(1)).create();
+    }
+
+    @Test
+    void rotate() {
+        //given
+        Position position = Mockito.mock(Position.class);
+        Player player = new Player(position);
+
+        //when
+        Rotation r1 = player.getRotation();
+
+        player.setRotation(Rotation.Left);
+        Rotation r2 = player.getRotation();
+
+
+        player.setRotation(Rotation.Right);
+        Rotation r3 = player.getRotation();
+
+
+        player.setRotation(Rotation.None);
+        Rotation r4 = player.getRotation();
+
+        //then
+        assertEquals(Rotation.None, r1);
+        assertEquals(Rotation.Left, r2);
+        assertEquals(Rotation.Right, r3);
+        assertEquals(Rotation.None, r4);
     }
 }

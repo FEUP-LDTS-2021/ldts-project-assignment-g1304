@@ -9,9 +9,11 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 public abstract class ScreenView{
@@ -24,6 +26,7 @@ public abstract class ScreenView{
         AWTTerminalFontConfiguration cfg = new SwingTerminalFontConfiguration(true,
                 AWTTerminalFontConfiguration.BoldMode.NOTHING, getFont());
         Terminal terminal = new DefaultTerminalFactory()
+                .setForceAWTOverSwing(true)
                 .setInitialTerminalSize(getSize())
                 .setTerminalEmulatorFontConfiguration(cfg)
                 .createTerminal();
@@ -36,9 +39,17 @@ public abstract class ScreenView{
         setGraphics(screen.newTextGraphics());
     }
 
+    public void addKeyListenner(KeyListener keyListener){
+        ((AWTTerminalFrame)getScreen().getTerminal()).getComponent(0).addKeyListener(keyListener);
+    }
+
+    public void removeKeyListenner(KeyListener keyListener){
+        ((AWTTerminalFrame)getScreen().getTerminal()).getComponent(0).removeKeyListener(keyListener);
+    }
+
     public abstract void draw() throws IOException;
 
-    public Screen getScreen() {
+    public TerminalScreen getScreen() {
         return screen;
     }
 
@@ -56,7 +67,6 @@ public abstract class ScreenView{
         getGraphics().setBackgroundColor(TextColor.Factory.fromString("#000000"));
         getGraphics().fillRectangle(new TerminalPosition(0, 0), getSize(), ' ');
     }
-
 
     public TextGraphics getGraphics() {
         return graphics;

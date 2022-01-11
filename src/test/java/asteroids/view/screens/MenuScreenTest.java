@@ -6,6 +6,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import asteroids.model.Menu.Menu;
 import asteroids.model.Menu.MenuItem;
+import com.googlecode.lanterna.screen.TerminalScreen;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,7 +41,7 @@ public class MenuScreenTest extends Assertions {
         Mockito.doReturn(exit).when(menuScreen).getExit();
 
 
-        Screen screen = Mockito.mock(Screen.class);
+        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
         Mockito.doReturn(screen).when(menuScreen).getScreen();
         Mockito.doNothing().when(menuScreen).choose(Mockito.any());
 

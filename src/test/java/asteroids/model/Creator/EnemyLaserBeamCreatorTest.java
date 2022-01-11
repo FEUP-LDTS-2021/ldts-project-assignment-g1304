@@ -42,8 +42,8 @@ public class EnemyLaserBeamCreatorTest extends Assertions {
         assertEquals(3, enemyLaserBeamCreator.getEntities().size());
         assertEquals(17.17157287525381,laserBeam.getPosition().getX());
         assertEquals(27.17157287525381, laserBeam.getPosition().getY());
-        assertEquals(-176.77669529663692, laserBeam.getVelocity().getX());
-        assertEquals(-176.77669529663686, laserBeam.getVelocity().getY());
+        assertEquals(-212.1320343559643, laserBeam.getVelocity().getX());
+        assertEquals(-212.13203435596424, laserBeam.getVelocity().getY());
         assertEquals(3.9269908169872414, laserBeam.getAngle());
         assertEquals(3, laserBeam.getHeight());
         assertEquals(3,laserBeam.getWidth());

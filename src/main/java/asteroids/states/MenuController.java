@@ -1,15 +1,15 @@
 package asteroids.states;
 
-import com.googlecode.lanterna.input.KeyStroke;
 import asteroids.control.Controller;
-import asteroids.input.InputObserver;
 import asteroids.model.Menu.Menu;
 import asteroids.view.screens.ScreenView;
 import asteroids.view.screens.MenuScreen;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
-public class MenuController implements StateController, InputObserver {
+public class MenuController implements StateController, KeyListener {
 
     private final Controller context;
     private final ScreenView screenView;
@@ -24,8 +24,7 @@ public class MenuController implements StateController, InputObserver {
     @Override
     public void run() throws IOException {
         getScreenView().initScreen();
-        context.getInputListenner().setScreen(getScreenView().getScreen());
-        context.getInputListenner().addInputObserver(this);
+        getScreenView().addKeyListenner(this);
 
         while (context.getApplicationState() == ApplicationState.Menu) {
             getScreenView().draw();
@@ -35,8 +34,7 @@ public class MenuController implements StateController, InputObserver {
         }
 
 
-        context.getInputListenner().removeInputObserver(this);
-        context.getInputListenner().setScreen(null);
+        getScreenView().removeKeyListenner(this);
         getScreenView().close();
     }
 
@@ -56,13 +54,23 @@ public class MenuController implements StateController, InputObserver {
         return menu;
     }
 
+
     @Override
-    public void processKey(KeyStroke key) {
-        switch (key.getKeyType()){
-            case ArrowDown -> getMenu().selectNext();
-            case ArrowUp -> getMenu().selectprevious();
-            case Enter -> getMenu().choose();
-            case Escape, EOF -> context.changeState(ApplicationState.Exit);
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        System.out.println(e);
+        switch (e.getKeyCode()){
+            case KeyEvent.VK_DOWN -> getMenu().selectNext();
+            case KeyEvent.VK_UP -> getMenu().selectprevious();
+            case KeyEvent.VK_ENTER -> getMenu().choose();
+            case KeyEvent.VK_ESCAPE -> context.changeState(ApplicationState.Exit);
         }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
     }
 }

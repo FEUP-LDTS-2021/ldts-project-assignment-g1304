@@ -6,6 +6,8 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,9 +15,11 @@ import org.mockito.Mockito;
 
 
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class ScreenViewTest extends Assertions {
 
@@ -50,7 +54,7 @@ public class ScreenViewTest extends Assertions {
     @Test
     void refresh() throws IOException {
         //given
-        Screen screen = Mockito.mock(Screen.class);
+        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
         Mockito.when(screenView.getScreen()).thenReturn(screen);
 
         // when
@@ -63,7 +67,7 @@ public class ScreenViewTest extends Assertions {
     @Test
     void close() throws IOException {
         //given
-        Screen screen = Mockito.mock(Screen.class);
+        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
         Mockito.when(screenView.getScreen()).thenReturn(screen);
 
         // when
@@ -78,7 +82,7 @@ public class ScreenViewTest extends Assertions {
 
         //given
         TextGraphics graphics = Mockito.mock(TextGraphics.class);
-        Screen screen = Mockito.mock(Screen.class);
+        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
         Mockito.when(screenView.getScreen()).thenReturn(screen);
         Mockito.when(screenView.getGraphics()).thenReturn(graphics);
 
@@ -92,6 +96,46 @@ public class ScreenViewTest extends Assertions {
         Mockito.verify(graphics, times(1)).setBackgroundColor(TextColor.Factory.fromString("#000000"));
         Mockito.verify(graphics, times(1)).fillRectangle(new TerminalPosition(0, 0),
                 new TerminalSize(50,50),' ');
+    }
+
+    @Test
+    void addKeyListenner(){
+        // given
+        AWTTerminalFrame awtTerminalFrame = Mockito.mock(AWTTerminalFrame.class);
+        Component component = Mockito.mock(Component.class);
+        KeyListener keyListener = Mockito.mock(KeyListener.class);
+        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
+
+        Mockito.when(screenView.getScreen()).thenReturn(screen);
+        Mockito.when(screen.getTerminal()).thenReturn(awtTerminalFrame);
+        Mockito.when(awtTerminalFrame.getComponent(0)).thenReturn(component);
+
+
+        // when
+        screenView.addKeyListenner(keyListener);
+
+        // then
+        verify(component).addKeyListener(keyListener);
+    }
+
+    @Test
+    void removeKeyListenner(){
+        // given
+        AWTTerminalFrame awtTerminalFrame = Mockito.mock(AWTTerminalFrame.class);
+        Component component = Mockito.mock(Component.class);
+        KeyListener keyListener = Mockito.mock(KeyListener.class);
+        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
+
+        Mockito.when(screenView.getScreen()).thenReturn(screen);
+        Mockito.when(screen.getTerminal()).thenReturn(awtTerminalFrame);
+        Mockito.when(awtTerminalFrame.getComponent(0)).thenReturn(component);
+
+
+        // when
+        screenView.removeKeyListenner(keyListener);
+
+        // then
+        verify(component).removeKeyListener(keyListener);
     }
 
 }

@@ -1,11 +1,11 @@
 package asteroids.control;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import asteroids.input.InputObserver;
 import asteroids.model.Entities.Player;
 
-public class PlayerController implements InputObserver {
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+public class PlayerController implements KeyListener {
 
     public Player player;
 
@@ -13,17 +13,39 @@ public class PlayerController implements InputObserver {
         this.player = player;
     }
 
+
     @Override
-    public void processKey(KeyStroke key) {
-        switch (key.getKeyType()) {
-            case ArrowLeft -> player.rotateLeft();
-            case ArrowRight -> player.rotateRight();
-            case ArrowUp -> player.acelerate();
-        }
-        if (key.getKeyType() == KeyType.Character && key.getCharacter() == ' ') {
-            player.addLaserBeams();
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_LEFT -> player.setRotation(Rotation.Left);
+            case KeyEvent.VK_RIGHT -> player.setRotation(Rotation.Right);
+            case KeyEvent.VK_UP -> player.setAcelerate(true);
+            case KeyEvent.VK_SPACE -> player.setShoot(true);
         }
     }
 
-
+    @Override
+    public void keyReleased(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_LEFT:
+                if(player.getRotation()==Rotation.Left)
+                    player.setRotation(Rotation.None);
+                break;
+            case KeyEvent.VK_RIGHT:
+                if(player.getRotation()==Rotation.Right)
+                    player.setRotation(Rotation.None);
+                break;
+            case KeyEvent.VK_UP:
+                player.setAcelerate(false);
+                break;
+            case KeyEvent.VK_SPACE:
+                player.setShoot(false);
+                break;
+        }
+    }
 }
