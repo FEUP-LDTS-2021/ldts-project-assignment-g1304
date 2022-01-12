@@ -1,5 +1,7 @@
+
 package asteroids.model.Creator;
 
+import asteroids.model.Constraints;
 import asteroids.model.Entities.Asteroid;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
@@ -16,9 +18,26 @@ public class AsteroidCreator extends Creator {
     @Override
     public Asteroid create() {
         int rangeMin = 0;
-        int rangeMax = 500;
-        Position randomPosition = new Position(rangeMin + (rangeMax - rangeMin) * rand.nextDouble(),
-                rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
+        int rangeMax = Constraints.WIDTH;
+        Position randomPosition = new Position(0.0,0.0);
+        switch (rand.nextInt(4)){
+            case 0:
+                randomPosition.setX(0.0);
+                randomPosition.setY(rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
+                break;
+            case 1:
+                randomPosition.setX(rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
+                randomPosition.setY(0.0);
+                break;
+            case 2:
+                randomPosition.setX(rangeMax);
+                randomPosition.setY(rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
+                break;
+            case 3:
+                randomPosition.setX(rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
+                randomPosition.setY(rangeMax);
+                break;
+        }
         rangeMax = 20;
         rangeMin = -20;
         Vector2d randomVelocity = new Vector2d(rangeMin + (rangeMax - rangeMin) * rand.nextDouble(),
