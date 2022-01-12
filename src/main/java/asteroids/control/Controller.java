@@ -9,18 +9,18 @@ import java.io.IOException;
 
 public class Controller {
 
+    private static Controller controller;
+
     private StateController stateControler;
     private ApplicationState applicationState;
 
-    public Controller(){
+    private Controller(){
         changeState(ApplicationState.Menu);
     }
 
     public void run() throws IOException {
-
         while (getStateControler() != null)
             getStateControler().run();
-
     }
 
 
@@ -41,7 +41,11 @@ public class Controller {
         return stateControler;
     }
 
+
     public static Controller getInstance() {
-        return null;
+        if (controller == null)
+            controller = new Controller();
+
+        return controller;
     }
 }
