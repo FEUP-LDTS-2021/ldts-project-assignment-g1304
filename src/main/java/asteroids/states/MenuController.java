@@ -48,6 +48,7 @@ public class MenuController implements StateController, InputObserver {
         switch (getMenu().getSelected()){
             case Play -> context.changeState(ApplicationState.Game);
             case LeaderBoard -> context.changeState(ApplicationState.LeaderBoard);
+            case Instructions -> context.changeState(ApplicationState.Instructions);
             case Exit -> context.changeState(ApplicationState.Exit);
         }
     }

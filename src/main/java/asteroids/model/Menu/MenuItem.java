@@ -3,6 +3,7 @@ package asteroids.model.Menu;
 public enum MenuItem {
     Play("Play"),
     LeaderBoard("LeaderBoard"),
+    Instructions("Instructions"),
     Exit("Exit");
 
     String name;

@@ -15,6 +15,7 @@ public class MenuScreen extends ScreenView {
     private static final Font font = new Font(Font.MONOSPACED, Font.PLAIN, 20);
     private final MenuItemView play;
     private final MenuItemView leaderBoard;
+    private final MenuItemView instructions;
     private final MenuItemView exit;
 
     public MenuScreen(Menu menu){
@@ -22,6 +23,7 @@ public class MenuScreen extends ScreenView {
         setFont(font);
         play = new MenuItemView(MenuItem.Play);
         leaderBoard = new MenuItemView(MenuItem.LeaderBoard);
+        instructions = new MenuItemView(MenuItem.Instructions);
         exit = new MenuItemView(MenuItem.Exit);
     }
 
@@ -30,10 +32,13 @@ public class MenuScreen extends ScreenView {
         super.initScreen();
 
         getPlay().setGraphics(getGraphics());
-        getPlay().setPosition(getTerminalPosition(0.5, play.getMenuItem().toString().length()));
+        getPlay().setPosition(getTerminalPosition(0.4, play.getMenuItem().toString().length()));
 
         getLeaderBoard().setGraphics(getGraphics());
-        getLeaderBoard().setPosition(getTerminalPosition(0.6, leaderBoard.getMenuItem().toString().length()));
+        getLeaderBoard().setPosition(getTerminalPosition(0.5, leaderBoard.getMenuItem().toString().length()));
+
+        getInstructions().setGraphics(getGraphics());
+        getInstructions().setPosition(getTerminalPosition(0.6, instructions.getMenuItem().toString().length()));
 
         getExit().setGraphics(getGraphics());
         getExit().setPosition(getTerminalPosition(0.7, exit.getMenuItem().toString().length()));
@@ -48,6 +53,7 @@ public class MenuScreen extends ScreenView {
         drawTitle();
 
         getPlay().draw();
+        getInstructions().draw();
         getLeaderBoard().draw();
         getExit().draw();
 
@@ -58,11 +64,13 @@ public class MenuScreen extends ScreenView {
     public void choose(MenuItem menuItem){
         getPlay().setSelected(false);
         getLeaderBoard().setSelected(false);
+        getInstructions().setSelected(false);
         getExit().setSelected(false);
 
         switch (menuItem){
             case Play -> getPlay().setSelected(true);
             case LeaderBoard -> getLeaderBoard().setSelected(true);
+            case Instructions -> getInstructions().setSelected(true);
             case Exit -> getExit().setSelected(true);
         }
     }
@@ -75,13 +83,17 @@ public class MenuScreen extends ScreenView {
         return leaderBoard;
     }
 
+    public MenuItemView getInstructions() {
+        return instructions;
+    }
+
     public MenuItemView getExit() {
         return exit;
     }
 
 
     public void drawTitle(){
-        String title = "asteroids";
+        String title = "Asteroids";
         getGraphics().setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         getGraphics().putString(getTerminalPosition(0.1, title.length()), title);
     }

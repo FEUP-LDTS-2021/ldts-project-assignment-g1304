@@ -1,10 +1,7 @@
 package asteroids.control;
 
 import asteroids.input.InputListenner;
-import asteroids.states.ApplicationState;
-import asteroids.states.GameController;
-import asteroids.states.MenuController;
-import asteroids.states.StateController;
+import asteroids.states.*;
 
 import java.io.IOException;
 
@@ -41,6 +38,7 @@ public class Controller {
         switch (state){
             case Game -> stateControler=new GameController(this);
             case Menu -> stateControler = new MenuController(this);
+            case Instructions -> stateControler = new InstructionsController(this);
             case Exit, LeaderBoard -> stateControler=null;
         }
     }

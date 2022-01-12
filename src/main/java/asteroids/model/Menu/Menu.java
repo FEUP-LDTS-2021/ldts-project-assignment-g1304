@@ -15,7 +15,8 @@ public class Menu {
         if(!choosed) {
             switch (selected) {
                 case Play -> selected = MenuItem.LeaderBoard;
-                case LeaderBoard, Exit -> selected = MenuItem.Exit;
+                case LeaderBoard -> selected = MenuItem.Instructions;
+                case Instructions,Exit -> selected = MenuItem.Exit;
             };
         }
     }
@@ -24,8 +25,9 @@ public class Menu {
         if(!choosed) {
             switch (selected) {
                 case Play, LeaderBoard -> selected = MenuItem.Play;
-                case Exit -> selected = MenuItem.LeaderBoard;
-            };
+                case Instructions -> selected = MenuItem.LeaderBoard;
+                case Exit -> selected = MenuItem.Instructions;
+            }
         }
     }
 

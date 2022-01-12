@@ -20,6 +20,7 @@ public class MenuScreenTest extends Assertions {
     MenuScreen menuScreen;
     MenuItemView play;
     MenuItemView leaderboard;
+    MenuItemView instructions;
     MenuItemView exit;
 
     @BeforeEach
@@ -27,6 +28,7 @@ public class MenuScreenTest extends Assertions {
 
         play = Mockito.mock(MenuItemView.class);
         leaderboard = Mockito.mock(MenuItemView.class);
+        instructions = Mockito.mock(MenuItemView.class);
         exit = Mockito.mock(MenuItemView.class);
 
         menu = Mockito.mock(Menu.class);
@@ -37,6 +39,7 @@ public class MenuScreenTest extends Assertions {
 
         Mockito.doReturn(play).when(menuScreen).getPlay();
         Mockito.doReturn(leaderboard).when(menuScreen).getLeaderBoard();
+        Mockito.doReturn(instructions).when(menuScreen).getInstructions();
         Mockito.doReturn(exit).when(menuScreen).getExit();
 
 
@@ -58,10 +61,12 @@ public class MenuScreenTest extends Assertions {
             TerminalPosition p1 = Mockito.mock(TerminalPosition.class);
             TerminalPosition p2 = Mockito.mock(TerminalPosition.class);
             TerminalPosition p3 = Mockito.mock(TerminalPosition.class);
+            TerminalPosition p4 = Mockito.mock(TerminalPosition.class);
 
-            Mockito.doReturn(p1).when(menuScreen).getTerminalPosition(0.5, MenuItem.Play.toString().length());
-            Mockito.doReturn(p2).when(menuScreen).getTerminalPosition(0.6, MenuItem.LeaderBoard.toString().length());
-            Mockito.doReturn(p3).when(menuScreen).getTerminalPosition(0.7, MenuItem.Exit.toString().length());
+            Mockito.doReturn(p1).when(menuScreen).getTerminalPosition(0.4, MenuItem.Play.toString().length());
+            Mockito.doReturn(p2).when(menuScreen).getTerminalPosition(0.5, MenuItem.LeaderBoard.toString().length());
+            Mockito.doReturn(p3).when(menuScreen).getTerminalPosition(0.6, MenuItem.Instructions.toString().length());
+            Mockito.doReturn(p4).when(menuScreen).getTerminalPosition(0.7, MenuItem.Exit.toString().length());
 
             //when
             menuScreen.initScreen();
@@ -69,11 +74,13 @@ public class MenuScreenTest extends Assertions {
             //then
             Mockito.verify(play).setGraphics(Mockito.notNull());
             Mockito.verify(leaderboard).setGraphics(Mockito.notNull());
+            Mockito.verify(instructions).setGraphics(Mockito.notNull());
             Mockito.verify(exit).setGraphics(Mockito.notNull());
 
             Mockito.verify(play).setPosition(p1);
             Mockito.verify(leaderboard).setPosition(p2);
-            Mockito.verify(exit).setPosition(p3);
+            Mockito.verify(instructions).setPosition(p3);
+            Mockito.verify(exit).setPosition(p4);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,7 +104,7 @@ public class MenuScreenTest extends Assertions {
 
     @Test
     void getTerminalPosition(){
-
+        //given
         TerminalSize size = new TerminalSize(50,40);
         double percentage = 0.7;
         int strlen = 20;
@@ -126,10 +133,12 @@ public class MenuScreenTest extends Assertions {
         //then
         Mockito.verify(play, Mockito.times(1)).setSelected(false);
         Mockito.verify(leaderboard, Mockito.times(1)).setSelected(false);
+        Mockito.verify(instructions, Mockito.times(1)).setSelected(false);
         Mockito.verify(exit, Mockito.times(1)).setSelected(false);
 
         Mockito.verify(play, Mockito.times(1)).setSelected(true);
         Mockito.verify(leaderboard, Mockito.never()).setSelected(true);
+        Mockito.verify(instructions, Mockito.never()).setSelected(true);
         Mockito.verify(exit,Mockito.never()).setSelected(true);
     }
 
@@ -144,10 +153,31 @@ public class MenuScreenTest extends Assertions {
         //then
         Mockito.verify(play, Mockito.times(1)).setSelected(false);
         Mockito.verify(leaderboard, Mockito.times(1)).setSelected(false);
+        Mockito.verify(instructions, Mockito.times(1)).setSelected(false);
         Mockito.verify(exit, Mockito.times(1)).setSelected(false);
 
         Mockito.verify(play, Mockito.never()).setSelected(true);
         Mockito.verify(leaderboard, Mockito.times(1)).setSelected(true);
+        Mockito.verify(instructions, Mockito.never()).setSelected(true);
+        Mockito.verify(exit,Mockito.never()).setSelected(true);
+    }
+    @Test
+    void chooseInstructions(){
+        // given
+        Mockito.doCallRealMethod().when(menuScreen).choose(Mockito.any());
+
+        // when
+        menuScreen.choose(MenuItem.Instructions);
+
+        //then
+        Mockito.verify(play, Mockito.times(1)).setSelected(false);
+        Mockito.verify(leaderboard, Mockito.times(1)).setSelected(false);
+        Mockito.verify(instructions, Mockito.times(1)).setSelected(false);
+        Mockito.verify(exit, Mockito.times(1)).setSelected(false);
+
+        Mockito.verify(play, Mockito.never()).setSelected(true);
+        Mockito.verify(leaderboard, Mockito.never()).setSelected(true);
+        Mockito.verify(instructions, Mockito.times(1)).setSelected(true);
         Mockito.verify(exit,Mockito.never()).setSelected(true);
     }
 
@@ -162,10 +192,12 @@ public class MenuScreenTest extends Assertions {
         //then
         Mockito.verify(play, Mockito.times(1)).setSelected(false);
         Mockito.verify(leaderboard, Mockito.times(1)).setSelected(false);
+        Mockito.verify(instructions, Mockito.times(1)).setSelected(false);
         Mockito.verify(exit, Mockito.times(1)).setSelected(false);
 
         Mockito.verify(play, Mockito.never()).setSelected(true);
         Mockito.verify(leaderboard, Mockito.never()).setSelected(true);
+        Mockito.verify(instructions, Mockito.never()).setSelected(true);
         Mockito.verify(exit,Mockito.times(1)).setSelected(true);
     }
 
@@ -209,6 +241,15 @@ public class MenuScreenTest extends Assertions {
 
         // then
         Mockito.verify(leaderboard, Mockito.times(1)).draw();
+    }
+    @Test
+    void drawInstructions() throws IOException {
+
+        // when
+        menuScreen.draw();
+
+        // then
+        Mockito.verify(instructions, Mockito.times(1)).draw();
     }
 
     @Test
