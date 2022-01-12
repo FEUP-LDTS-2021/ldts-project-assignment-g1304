@@ -12,7 +12,7 @@ public class Player extends MovingObject {
     public static final double raio = 10;
     public static final double acelaration = 300.0;
     public static final double MAX_VELOCITY = 200.0;
-    public static final double angularVelocity = Math.PI*2;
+    public static final double angularVelocity = Math.PI;
     private Rotation rotation;
     private boolean acelerate;
     private boolean shoot;
@@ -52,7 +52,7 @@ public class Player extends MovingObject {
             if(getVelocity().module() > MAX_VELOCITY)
                 getVelocity().resize(MAX_VELOCITY);
         }else {
-            getVelocity().resize(getVelocity().module()*0.98);
+            getVelocity().resize(getVelocity().module()*0.95);
         }
 
         super.update(dt);       // andar para a frente
