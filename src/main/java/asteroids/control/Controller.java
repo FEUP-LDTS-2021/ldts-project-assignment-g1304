@@ -40,4 +40,8 @@ public class Controller {
     public StateController getStateControler() {
         return stateControler;
     }
+
+    public static Controller getInstance() {
+        return null;
+    }
 }
