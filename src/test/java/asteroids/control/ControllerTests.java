@@ -15,7 +15,7 @@ public class ControllerTests  extends Assertions {
     Controller controllerSpy;
     @BeforeEach
     void initController(){
-        Controller controller = new Controller();
+        Controller controller = Controller.getInstance();
         controllerSpy = Mockito.spy(controller);
     }
     @Test
@@ -79,5 +79,19 @@ public class ControllerTests  extends Assertions {
         // then
         assertTrue(controllerSpy.getStateControler() instanceof MenuController);
         assertEquals(controllerSpy.getApplicationState(), ApplicationState.Menu);
+    }
+
+    @Test
+    void singleton(){
+
+        // given
+        Controller controller = Controller.getInstance();
+
+        // when
+        Controller controller1 = Controller.getInstance();
+
+        // then
+        assertEquals(controller, controller1);
+
     }
 }
