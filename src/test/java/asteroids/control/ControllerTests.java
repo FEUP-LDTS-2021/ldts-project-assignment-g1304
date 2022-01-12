@@ -1,9 +1,6 @@
 package asteroids.control;
 
-import asteroids.states.ApplicationState;
-import asteroids.states.GameController;
-import asteroids.states.MenuController;
-import asteroids.states.StateController;
+import asteroids.states.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,8 +47,8 @@ public class ControllerTests  extends Assertions {
         assertEquals(controllerSpy.getApplicationState(), ApplicationState.Game);
     }
 
-    /*
-    @Test
+
+    /*@Test
     void changeStateLeaderboard(){
         //when
         controllerSpy.changeState(ApplicationState.LeaderBoard);
@@ -60,6 +57,16 @@ public class ControllerTests  extends Assertions {
         assertTrue(controllerSpy.getStateControler() instanceof LeaderboardController);
         assertEquals(controllerSpy.getApplicationState(), ApplicationState.LeaderBoard);
     }*/
+
+    @Test
+    void changeStateInstructions(){
+        //when
+        controllerSpy.changeState(ApplicationState.Instructions);
+
+        // then
+        assertTrue(controllerSpy.getStateControler() instanceof InstructionsController);
+        assertEquals(controllerSpy.getApplicationState(), ApplicationState.Instructions);
+    }
 
     @Test
     void changeStateExit(){

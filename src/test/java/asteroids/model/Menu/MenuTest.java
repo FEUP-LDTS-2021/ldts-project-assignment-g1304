@@ -84,7 +84,7 @@ public class MenuTest extends Assertions {
         // then
         assertEquals(MenuItem.Play, select1);
         assertEquals(MenuItem.LeaderBoard, select2);
-        assertEquals(MenuItem.Exit, select3);
+        assertEquals(MenuItem.Instructions, select3);
         assertEquals(MenuItem.Exit, select4);
     }
 
@@ -106,8 +106,8 @@ public class MenuTest extends Assertions {
 
         //then
         assertEquals(MenuItem.Exit, select1);
-        assertEquals(MenuItem.LeaderBoard, select2);
-        assertEquals(MenuItem.Play, select3);
+        assertEquals(MenuItem.Instructions, select2);
+        assertEquals(MenuItem.LeaderBoard, select3);
         assertEquals(MenuItem.Play, select4);
     }
 

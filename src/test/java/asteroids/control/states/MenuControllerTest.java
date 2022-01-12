@@ -227,6 +227,17 @@ public class MenuControllerTest extends Assertions {
         // then
         Mockito.verify(context, Mockito.times(1)).changeState(ApplicationState.LeaderBoard);
     }
+    @Test
+    void chooseInstrucitons(){
+        // given
+        Mockito.when(menu.getSelected()).thenReturn(MenuItem.Instructions);
+
+        // when
+        menuControllerSpy.nextState();
+
+        // then
+        Mockito.verify(context, Mockito.times(1)).changeState(ApplicationState.Instructions);
+    }
 
     @Test
     void chooseExit(){
