@@ -63,4 +63,20 @@ public class LaserBeamTest extends Assertions {
         laserBeam.update(1500);
         Mockito.verify(laserBeam, Mockito.times(1)).dies();
     }
+
+    @Test
+    void isLaserBeam(){
+        // given
+        LaserBeam l1 = new LaserBeam(Mockito.mock(Position.class), 40.0, 3, 3);
+
+        // when
+        boolean is1 = l1.isPlayerBeam();
+        l1.setPlayerBeam(true);
+        boolean is2 = l1.isPlayerBeam();
+
+        // then
+        assertFalse(is1);
+        assertTrue(is2);
+
+    }
 }

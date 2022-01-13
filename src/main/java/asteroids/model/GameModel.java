@@ -19,7 +19,7 @@ public class GameModel {
 
     public GameModel(){
         this.entities = new ArrayList<>();
-        player = new Player(new Position(100, 100));
+        player = new Player(new Position(Constraints.WIDTH/2.0, Constraints.HEIGHT/2.0));
         player.setLaserBeamCreator(new LaserBeamCreator(player, getEntities()));
         entities.add(player);
         this.asteroidSpawner = new AsteroidSpawner(getEntities());
@@ -56,8 +56,10 @@ public class GameModel {
                 if (c1 instanceof Asteroid && c2 instanceof Asteroid)
                     continue;
 
-
                 if (c1.getCollider().intersects(c2.getCollider())) {
+                    getScore(c1, c2);
+                    getScore(c2, c1);
+
                     c1.dies();
                     c2.dies();
                 }
@@ -66,9 +68,22 @@ public class GameModel {
         getEntities().removeIf(c -> !c.isAlive());
     }
 
+    private void getScore(MovingObject c1, MovingObject c2){
+        if(!c1.isAlive() || !c2.isAlive())
+            return;
+
+        boolean hitByPlayer = c1 instanceof Player;
+        boolean hitByLaserPlayer = c1 instanceof LaserBeam && ((LaserBeam) c1).isPlayerBeam();
+        if(hitByPlayer || hitByLaserPlayer){
+            if(c2 instanceof Asteroid)
+                getPlayer().addScore(((Asteroid) c2).getPoints());
+            else if(c2 instanceof EnemyShip)
+                getPlayer().addScore(((EnemyShip) c2).getPoints());
+        }
+    }
+
     public Player getPlayer() {
         return player;
     }
-
 
 }

@@ -200,4 +200,22 @@ public class PlayerTest extends Assertions {
         assertEquals(Rotation.Right, r3);
         assertEquals(Rotation.None, r4);
     }
+
+    @Test
+    void addScore(){
+        // given
+        Player player = new Player(Mockito.mock(Position.class));
+
+        // when
+        int score1 = player.getScore();
+        player.addScore(100);
+        int score2 = player.getScore();
+        player.addScore(50);
+        int score3 = player.getScore();
+
+        // then
+        assertEquals(0, score1);
+        assertEquals(100, score2);
+        assertEquals(150, score3);
+    }
 }

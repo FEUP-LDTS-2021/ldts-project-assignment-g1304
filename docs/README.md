@@ -17,11 +17,14 @@ This project was developed by Afonso Baldo, João Teixeira and José Gaspar for 
 * Enemy Ships - The enemy flying saucers appear randomly on the map and try to shoot at your spaceship.
 * Asteroids Collisions - If the asteroid collides with a ship, kills it.
 * Borders of the Map - When an object crosses the borders of the map, it appears on the opposite side.
+<<<<<<< HEAD
 * Instructions - A page that shows the basic controls for the game.
+=======
+* Score - When the player destroys asteroids and enemy ships, he gains points.
+>>>>>>> Score
 
 ### PLANNED FEATURES
 * Asteroid Splitting - The asteroids get split in half when shot by the laser beams. The smaller ones get instantly destroyed.
-* Score - When the player destroys asteroids and enemy ships, he gains points.
 * Lives - The player has an amount of lives, that decreases everytime he dies.
 * Game Over - When the player runs out of lives, the game ends.
 * Leaderboard - When the user loses, his score is saved to a file.

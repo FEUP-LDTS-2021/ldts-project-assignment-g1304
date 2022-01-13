@@ -18,7 +18,7 @@ For a more detailed version of this description click [here](./docs/README.md).
  - [x] Asteroids Collisions - If the asteroid collides with a ship, kills it.
  - [ ] Asteroid Splitting - The asteroids get split in half when shot by the laser beams. The smaller ones get instantly destroyed.
  - [x] Borders of the Map - When an object crosses the borders of the map, it appears on the opposite side.
- - [ ] Score - When the player destroys asteroids and enemy ships, he gains points.
+ - [x] Score - When the player destroys asteroids and enemy ships, he gains points.
  - [ ] Lives - The player has an amount of lives, that decreases everytime he dies.
  - [ ] Game Over - When the player runs out of lives, the game ends.
  - [x] Instructions - A page that shows the basic controls for the game.

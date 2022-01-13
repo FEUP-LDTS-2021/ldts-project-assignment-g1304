@@ -8,15 +8,17 @@ import asteroids.model.Vector2d;
 
 public class Player extends MovingObject {
 
-    private double angle;
     public static final double raio = 10;
     public static final double acelaration = 300.0;
     public static final double MAX_VELOCITY = 200.0;
-    public static final double angularVelocity = Math.PI;
+    public static final double angularVelocity = Math.PI*2;
+
+    private double angle;
     private Rotation rotation;
     private boolean acelerate;
     private boolean shoot;
     private LaserBeamCreator laserBeamCreator;
+    private int score;
 
     public Player(Position position){
         super(position, new Vector2d(0,0), raio, raio);
@@ -25,6 +27,7 @@ public class Player extends MovingObject {
         setRotation(Rotation.None);
         this.shoot = false;
         this.laserBeamCreator = null;
+        this.score = 0;
     }
 
     public LaserBeamCreator getLaserBeamCreator() {
@@ -87,4 +90,14 @@ public class Player extends MovingObject {
     public void setShoot(boolean shoot) {
         this.shoot = shoot;
     }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void addScore(int score){
+        this.score += score;
+    }
+
+
 }

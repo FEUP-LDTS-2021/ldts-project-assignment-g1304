@@ -4,10 +4,12 @@ import asteroids.model.Position;
 import asteroids.model.Vector2d;
 
 public class LaserBeam extends MovingObject {
-    private double angle;
-    private long timePassed;
+
     public final static double VELOCITY = 300.0;
-    private boolean control = false;
+    private long timePassed;
+    private final double angle;
+    private boolean firstRun = true;
+    private boolean playerBeam = false;
 
     public LaserBeam(Position position, double angle, double width, double height) {
         super(position, new Vector2d(VELOCITY*Math.cos(angle), VELOCITY*Math.sin(angle)), width, height);
@@ -26,12 +28,21 @@ public class LaserBeam extends MovingObject {
         return false;
     }
 
+    public void setPlayerBeam(boolean playerBeam) {
+        this.playerBeam = playerBeam;
+    }
+
+    public boolean isPlayerBeam() {
+        return playerBeam;
+    }
+
     @Override
     public void update(long dt) {
         if (isKillTime(dt))
             dies();
-        if (control)
+
+        if (!firstRun)
             super.update(dt);
-        control = true;
+        firstRun = false;
     }
 }
