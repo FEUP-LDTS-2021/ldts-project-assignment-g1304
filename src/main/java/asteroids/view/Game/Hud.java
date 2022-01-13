@@ -1,5 +1,7 @@
 package asteroids.view.Game;
 
+import asteroids.model.Constraints;
+import asteroids.model.Entities.Player;
 import asteroids.model.GameModel;
 import asteroids.model.Position;
 import com.googlecode.lanterna.TerminalPosition;
@@ -55,17 +57,26 @@ public class Hud extends View{
         }
     }
 
-
     @Override
     public void draw() throws IOException {
         drawScore(model.getPlayer().getScore());
+
+        drawLives(model.getPlayer().getLives());
     }
 
     void drawLives(int nLives){
+        int x = Constraints.HEIGHT - 10;
+        for (int i = 0; i < nLives ; i++)
+            drawPlayer(new Position(x - Player.raio*2*i, Player.raio + 5));
     }
 
     void drawPlayer(Position position){
+        Player player = new Player(position);
+        player.setAngle(-Math.PI/2);
 
+        PlayerView playerView = new PlayerView(player);
+        playerView.setGraphics(getGraphics());
+        playerView.draw();
     }
 
     void drawScore(int score){

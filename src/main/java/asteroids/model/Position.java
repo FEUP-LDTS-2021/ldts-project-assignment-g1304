@@ -27,4 +27,15 @@ public class Position {
     public void setY(double y) {
         this.y = y;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Position position = (Position) o;
+
+        if (Double.compare(position.x, x) != 0) return false;
+        return Double.compare(position.y, y) == 0;
+    }
 }

@@ -34,8 +34,8 @@ public class LaserBeamCreator extends Creator {
         double laserHeight = 3;
 
         Position laserPos = new Position((int) (
-                Math.cos(player.getAngle()) * (player.getRaio()+5) + x - laserWidth / 2),
-                (int) (Math.sin(player.getAngle()) * (player.getRaio()+5) + y - laserHeight / 2));
+                Math.cos(player.getAngle()) * (player.getRaio()+10) + x - laserWidth / 2),
+                (int) (Math.sin(player.getAngle()) * (player.getRaio()+10) + y - laserHeight / 2));
 
         LaserBeam laserBeam = new LaserBeam(laserPos, player.getAngle(), laserWidth, laserHeight);
         laserBeam.setPlayerBeam(true);

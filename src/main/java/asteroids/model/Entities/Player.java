@@ -13,6 +13,7 @@ public class Player extends MovingObject {
     public static final double acelaration = 300.0;
     public static final double MAX_VELOCITY = 200.0;
     public static final double angularVelocity = Math.PI*2;
+    public final Position beginPosition;
 
     private double angle;
     private Rotation rotation;
@@ -20,15 +21,18 @@ public class Player extends MovingObject {
     private boolean shoot;
     private LaserBeamCreator laserBeamCreator;
     private int score;
+    private int lives;
 
     public Player(Position position){
         super(position, new Vector2d(0,0), raio, raio);
+        beginPosition = position.clone();
         this.angle = 0;
         this.acelerate = false;
         setRotation(Rotation.None);
         this.shoot = false;
         this.laserBeamCreator = null;
         this.score = 0;
+        this.lives = 3;
     }
 
     public LaserBeamCreator getLaserBeamCreator() {
@@ -100,6 +104,16 @@ public class Player extends MovingObject {
         this.score += score;
     }
 
+    @Override
+    public void dies() {
+        lives--;
+        setPosition(beginPosition.clone());
+
+        if(lives<=0)
+            super.dies(); // kill player
+    }
+
     public int getLives() {
+        return lives;
     }
 }
