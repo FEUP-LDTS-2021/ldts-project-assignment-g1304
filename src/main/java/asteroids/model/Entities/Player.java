@@ -1,6 +1,7 @@
 package asteroids.model.Entities;
 
 import asteroids.control.Rotation;
+import asteroids.model.Constraints;
 import asteroids.model.Creator.LaserBeamCreator;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
@@ -99,5 +100,6 @@ public class Player extends MovingObject {
         this.score += score;
     }
 
-
+    public int getLives() {
+    }
 }

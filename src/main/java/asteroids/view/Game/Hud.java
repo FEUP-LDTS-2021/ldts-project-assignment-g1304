@@ -1,6 +1,7 @@
 package asteroids.view.Game;
 
 import asteroids.model.GameModel;
+import asteroids.model.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -58,6 +59,13 @@ public class Hud extends View{
     @Override
     public void draw() throws IOException {
         drawScore(model.getPlayer().getScore());
+    }
+
+    void drawLives(int nLives){
+    }
+
+    void drawPlayer(Position position){
+
     }
 
     void drawScore(int score){
