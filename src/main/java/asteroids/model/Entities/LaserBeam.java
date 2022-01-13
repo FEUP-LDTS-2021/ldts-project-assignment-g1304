@@ -15,6 +15,8 @@ public class LaserBeam extends MovingObject {
 
     public double getAngle() {return angle;}
 
+    public boolean isKillTime(long dt);
+
     @Override
     public void update(long dt) {
         if (control)
