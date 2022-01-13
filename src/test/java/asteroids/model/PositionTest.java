@@ -1,5 +1,6 @@
 package asteroids.model;
 
+import net.jqwik.api.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -41,6 +42,11 @@ public class PositionTest extends Assertions {
         assertEquals(pos.getY(),cloned.getY());
     }
 
-
+    @Property
+    public void equals(@ForAll int x, @ForAll int y) {
+        Position p1 = new Position(x, y);
+        Position p2 = new Position(x, y);
+        assert( p1.equals(p2));
+    }
 
 }

@@ -1,7 +1,9 @@
 package asteroids.view.Game;
 
+import asteroids.model.Constraints;
 import asteroids.model.Entities.Player;
 import asteroids.model.GameModel;
+import asteroids.model.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -126,13 +128,14 @@ public class HudTest extends Assertions {
     void draw() throws IOException {
         // given
         Mockito.when(player.getScore()).thenReturn(100);
+        Mockito.when(player.getLives()).thenReturn(3);
 
         // when
         hud.draw();
 
         // then
         Mockito.verify(hud, Mockito.times(1)).drawScore(100);
-
+        Mockito.verify(hud, Mockito.times(1)).drawLives(3);
     }
 
     @Test
@@ -259,7 +262,29 @@ public class HudTest extends Assertions {
                 new TerminalPosition(2 + 10,
                         2+ 10),
                 new TerminalSize(1, 2), ' ');
+    }
 
+    @Test
+    void drawLives(){
+        // given
+
+        int x = Constraints.HEIGHT - 10;
+        Position position1 = new Position(x - Player.raio*0, Player.raio + 5);
+        Position position2 = new Position(x - Player.raio*2, Player.raio + 5);
+        Position position3 = new Position(x - Player.raio*4, Player.raio + 5);
+
+        // when
+        hud.drawLives(3);
+
+        // then
+        Mockito.verify(hud, Mockito.times(1)).drawPlayer(position1);
+        Mockito.verify(hud, Mockito.times(1)).drawPlayer(position2);
+        Mockito.verify(hud, Mockito.times(1)).drawPlayer(position3);
+
+    }
+
+    @Test
+    void drawPlayer(){
 
     }
 }

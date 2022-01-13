@@ -4,3 +4,4 @@ out/
 build
 *.iml
 *.class
+.jqwik-database

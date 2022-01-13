@@ -218,4 +218,44 @@ public class PlayerTest extends Assertions {
         assertEquals(100, score2);
         assertEquals(150, score3);
     }
+
+    @Test
+    void dies(){
+        // given
+        Position positionMock = Mockito.mock(Position.class);
+        Mockito.doReturn(positionMock).when(positionMock).clone();
+        Player p = Mockito.spy(new Player(positionMock));
+
+        // when
+        int lives0 = p.getLives();
+        boolean isalive0 = p.isAlive();
+
+        p.dies();
+        int lives1 = p.getLives();
+        boolean isalive1 = p.isAlive();
+
+        p.dies();
+        int lives2 = p.getLives();
+        boolean isalive2 = p.isAlive();
+
+        p.dies();
+        int lives3 = p.getLives();
+        boolean isalive3 = p.isAlive();
+
+        // then
+        assertEquals(3, lives0);
+        assertTrue(isalive0);
+
+        assertEquals(2, lives1);
+        assertTrue(isalive1);
+
+        assertEquals(1, lives2);
+        assertTrue(isalive2);
+
+        assertEquals(0, lives3);
+        assertFalse(isalive3);
+
+        // go to begin position
+        Mockito.verify(p, Mockito.atLeast(3)).setPosition(positionMock);
+    }
 }

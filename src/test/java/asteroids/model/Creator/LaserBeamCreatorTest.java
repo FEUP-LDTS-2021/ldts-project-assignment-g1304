@@ -44,8 +44,8 @@ public class LaserBeamCreatorTest extends Assertions {
 
         LaserBeamCreator laserBeamCreator = new LaserBeamCreator(playerMock, entities);
 
-        double x = Math.cos(playerMock.getAngle())* (playerMock.getRaio()+5) + playerMock.getPosition().getX();
-        double y = Math.sin(playerMock.getAngle())* (playerMock.getRaio()+5) + playerMock.getPosition().getY();
+        double x = Math.cos(playerMock.getAngle())* (playerMock.getRaio()+10) + playerMock.getPosition().getX();
+        double y = Math.sin(playerMock.getAngle())* (playerMock.getRaio()+10) + playerMock.getPosition().getY();
 
         //when
         LaserBeam laserBeam = laserBeamCreator.create();
