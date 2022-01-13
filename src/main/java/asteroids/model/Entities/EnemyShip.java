@@ -14,6 +14,9 @@ public class EnemyShip extends MovingObject {
         this.lastTime = 0;
     }
 
+    public int getPoints() {
+    }
+
     public void setLaserBeamCreator(EnemyLaserBeamCreator laserBeamCreator) {
         this.laserBeamCreator = laserBeamCreator;
     }

@@ -87,4 +87,10 @@ public class Player extends MovingObject {
     public void setShoot(boolean shoot) {
         this.shoot = shoot;
     }
+
+    public int getScore() {
+    }
+
+    public void addScore(int score){
+    }
 }

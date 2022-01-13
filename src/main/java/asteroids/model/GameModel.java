@@ -5,10 +5,8 @@ import asteroids.model.Entities.*;
 import asteroids.model.Spawner.AsteroidSpawner;
 import asteroids.model.Spawner.EnemyShipSpawner;
 
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class GameModel {
 
@@ -19,7 +17,7 @@ public class GameModel {
 
     public GameModel(){
         this.entities = new ArrayList<>();
-        player = new Player(new Position(100, 100));
+        player = new Player(new Position(Constraints.WIDTH/2.0, Constraints.HEIGHT/2.0));
         player.setLaserBeamCreator(new LaserBeamCreator(player, getEntities()));
         entities.add(player);
         this.asteroidSpawner = new AsteroidSpawner(getEntities());
@@ -38,6 +36,7 @@ public class GameModel {
             getEntities().get(i).update(dt);
 
         checkCollisions();
+        getEntities().removeIf(c -> !c.isAlive());
     }
 
     public AsteroidSpawner getAsteroidSpawner() {
@@ -63,12 +62,13 @@ public class GameModel {
                 }
             }
         }
-        getEntities().removeIf(c -> !c.isAlive());
+    }
+
+    private void calculeScore(MovingObject c1, MovingObject c2){
     }
 
     public Player getPlayer() {
         return player;
     }
-
 
 }

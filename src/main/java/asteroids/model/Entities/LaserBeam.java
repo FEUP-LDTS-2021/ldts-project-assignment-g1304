@@ -4,7 +4,7 @@ import asteroids.model.Position;
 import asteroids.model.Vector2d;
 
 public class LaserBeam extends MovingObject {
-    private double angle;
+    private final double angle;
     public final static double VELOCITY = 300.0;
     private boolean control = false;
 
@@ -14,6 +14,12 @@ public class LaserBeam extends MovingObject {
     }
 
     public double getAngle() {return angle;}
+
+    public void setPlayerBeam(boolean playerBeam) {
+    }
+
+    public boolean isPlayerBeam() {
+    }
 
     @Override
     public void update(long dt) {

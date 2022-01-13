@@ -1,14 +1,11 @@
 
 package asteroids.states;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import asteroids.control.Controller;
 import asteroids.control.PlayerController;
 import asteroids.model.GameModel;
 import asteroids.view.screens.GameScreen;
 import asteroids.view.screens.ScreenView;
-import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -78,7 +75,6 @@ public class GameController implements StateController, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println(e);
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             nextState();
         }
