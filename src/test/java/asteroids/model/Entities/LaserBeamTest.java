@@ -26,6 +26,24 @@ public class LaserBeamTest extends Assertions {
     }
 
     @Test
+    void killTimeFalse() {
+        Position positionMock = Mockito.mock(Position.class);
+        Mockito.when(positionMock.getX()).thenReturn(10.0);
+        Mockito.when(positionMock.getY()).thenReturn(20.0);
+        LaserBeam l = new LaserBeam(positionMock, 30.0, 3, 3);
+        assertFalse(l.isKillTime(200));
+    }
+
+    @Test
+    void killTimeTrue() {
+        Position positionMock = Mockito.mock(Position.class);
+        Mockito.when(positionMock.getX()).thenReturn(10.0);
+        Mockito.when(positionMock.getY()).thenReturn(20.0);
+        LaserBeam l = new LaserBeam(positionMock, 30.0, 3, 3);
+        assertTrue(l.isKillTime(1500));
+    }
+
+    @Test
     void update() {
         LaserBeam l1 = new LaserBeam(new Position(10.0, 10.0), 40.0, 3, 3);
         LaserBeam l2 = new LaserBeam(
@@ -37,5 +55,12 @@ public class LaserBeamTest extends Assertions {
         l1.update(10);
         assertEquals(l1.getPosition().getX(), l2.getPosition().getX());
         assertEquals(l1.getPosition().getY(), l2.getPosition().getY());
+    }
+
+    @Test
+    void updateDies() {
+        LaserBeam laserBeam = Mockito.spy(new LaserBeam(new Position(10.0, 10.0), 40.0, 3, 3));
+        laserBeam.update(1500);
+        Mockito.verify(laserBeam, Mockito.times(1)).dies();
     }
 }
