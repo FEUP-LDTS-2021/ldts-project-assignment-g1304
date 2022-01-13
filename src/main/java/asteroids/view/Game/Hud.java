@@ -1,23 +1,101 @@
 package asteroids.view.Game;
 
+import asteroids.model.GameModel;
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
+
 import java.io.*;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Hud extends View{
+    private final GameModel model;
+    private final int CHAR_WIDTH = 1;
+    private final int CHAR_HEIGHT = 2;
+
+    private final String[] scoreString = {
+            "#######  ######  ######  ######  #######      ",
+            "##      ##      ##    ## ##   ## ##      ##   ",
+            "####### ##      ##    ## ######  #####        ",
+            "     ## ##      ##    ## ##   ## ##      ##   ",
+            "#######  ######  ######  ##   ## #######      "};
+
+    private final List<String[]> numbers;
+
+    public Hud(GameModel model){
+        this.model = model;
+        numbers = new ArrayList<>();
+        try {
+            loadFonts("Font/numbers.font");
+        } catch (URISyntaxException | IOException e) {
+            System.out.println("Nao foi possivel ler o ficheiro");
+        }
+    }
 
     private void loadFonts(String path) throws URISyntaxException, IOException {
+
+        InputStreamReader file = new InputStreamReader(getClass().getClassLoader().getResourceAsStream(path));
+        BufferedReader bufferedReader = new BufferedReader(file);
+
+        String n = bufferedReader.readLine();
+        System.out.println(n);
+        int numberHeight = Integer.parseInt(n);
+
+        int fileLine = 0;
+        while (bufferedReader.ready()){
+            int number = fileLine/numberHeight;
+            if(numbers.size() <= number)
+                numbers.add(new String[numberHeight]);
+
+            int numberLine = fileLine % numberHeight;
+            numbers.get(number)[numberLine] = bufferedReader.readLine();
+            fileLine++;
+        }
     }
 
 
     @Override
     public void draw() throws IOException {
+        drawScore(model.getPlayer().getScore());
     }
 
-    private void drawScore(int score){
+    void drawScore(int score){
+        getGraphics().setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
+
+        // draw "Score" string
+        draw(getScoreString(), 10, 10);
+
+        // draw score Number
+        int x = 46*CHAR_WIDTH + 10;
+        String number = String.format("%05d", score);
+        for(char c : number.toCharArray()){
+            int digit = Integer.parseInt(""+c);
+            draw(getNumbers().get(digit), x, 10);
+            x+=getNumbers().get(digit)[0].length()*CHAR_WIDTH+2;
+        }
 
     }
 
-    private void draw(String [] asciiArt, int paddingX, int paddingY){
+    void draw(String [] asciiArt, int paddingX, int paddingY){
+        int y = 0;
+        for (String line : asciiArt) {
+            for(int x = 0; x < line.length(); x++){
+                if(line.charAt(x)=='#')
+                    getGraphics().fillRectangle(new TerminalPosition(x*CHAR_WIDTH + paddingX,
+                                    y*CHAR_HEIGHT+ paddingY),
+                            new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');
+            }
+            y++;
+        }
     }
 
+    public List<String[]> getNumbers() {
+        return numbers;
+    }
+
+    public String[] getScoreString() {
+        return scoreString;
+    }
 }

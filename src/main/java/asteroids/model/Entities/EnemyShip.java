@@ -6,6 +6,8 @@ import asteroids.model.Vector2d;
 
 public class EnemyShip extends MovingObject {
     private EnemyLaserBeamCreator laserBeamCreator;
+    private static final int points = 50;
+
     long lastTime;
 
     public EnemyShip(Position position, Vector2d velocity, double width, double height) {
@@ -15,6 +17,7 @@ public class EnemyShip extends MovingObject {
     }
 
     public int getPoints() {
+        return points;
     }
 
     public void setLaserBeamCreator(EnemyLaserBeamCreator laserBeamCreator) {

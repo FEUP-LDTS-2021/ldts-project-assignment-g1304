@@ -13,9 +13,11 @@ import java.io.IOException;
 public class GameScreen extends ScreenView {
 
     private final GameModel model;
+    private final Hud gameHud;
 
-    public GameScreen(GameModel model) {
+    public GameScreen(GameModel model, Hud gameHud) {
         this.model = model;
+        this.gameHud = gameHud;
         setFont(new Font(Font.MONOSPACED,Font.PLAIN, 1));
     }
 
@@ -40,6 +42,7 @@ public class GameScreen extends ScreenView {
             }
         }
 
+        gameHud.draw();
         refresh();
     }
 
@@ -66,6 +69,7 @@ public class GameScreen extends ScreenView {
     @Override
     public void setGraphics(TextGraphics graphics) {
         super.setGraphics(graphics);
+        gameHud.setGraphics(graphics);
     }
 
     public TerminalSize getSize(){

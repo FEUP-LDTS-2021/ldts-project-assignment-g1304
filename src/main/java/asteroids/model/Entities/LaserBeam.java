@@ -7,6 +7,7 @@ public class LaserBeam extends MovingObject {
     private final double angle;
     public final static double VELOCITY = 300.0;
     private boolean control = false;
+    private boolean playerBeam = false;
 
     public LaserBeam(Position position, double angle, double width, double height) {
         super(position, new Vector2d(VELOCITY*Math.cos(angle), VELOCITY*Math.sin(angle)), width, height);
@@ -16,9 +17,11 @@ public class LaserBeam extends MovingObject {
     public double getAngle() {return angle;}
 
     public void setPlayerBeam(boolean playerBeam) {
+        this.playerBeam = playerBeam;
     }
 
     public boolean isPlayerBeam() {
+        return playerBeam;
     }
 
     @Override

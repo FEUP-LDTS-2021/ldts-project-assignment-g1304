@@ -4,6 +4,7 @@ package asteroids.states;
 import asteroids.control.Controller;
 import asteroids.control.PlayerController;
 import asteroids.model.GameModel;
+import asteroids.view.Game.Hud;
 import asteroids.view.screens.GameScreen;
 import asteroids.view.screens.ScreenView;
 
@@ -21,7 +22,7 @@ public class GameController implements StateController, KeyListener {
     public GameController(Controller context){
         this.context = context;
         gameModel = new GameModel();
-        screenView = new GameScreen(gameModel);
+        screenView = new GameScreen(gameModel, new Hud(gameModel));
         playerController = new PlayerController(gameModel.getPlayer());
     }
 
