@@ -21,11 +21,13 @@ public class GameScreenTest extends Assertions {
     GameScreen screen;
     List<MovingObject> entities;
     TextGraphics graphics;
+    Hud hud;
 
     @BeforeEach
     void init() throws IOException {
         model = Mockito.mock(GameModel.class);
-        screen = Mockito.spy(new GameScreen(model));
+        hud = Mockito.mock(Hud.class);
+        screen = Mockito.spy(new GameScreen(model, hud));
         entities = new ArrayList<>();
         graphics = Mockito.mock(TextGraphics.class);
 
@@ -143,6 +145,16 @@ public class GameScreenTest extends Assertions {
     }
 
     @Test
+    void drawHud() throws IOException {
+
+        // when
+        screen.draw();
+
+        // then
+        Mockito.verify(hud, Mockito.times(1)).draw();
+    }
+
+    @Test
     void getModel(){
         // when
         GameModel modelReturned = screen.getModel();
@@ -224,6 +236,7 @@ public class GameScreenTest extends Assertions {
 
         //then
         assertEquals(screen.getGraphics(), graphics);
+        Mockito.verify(hud, Mockito.times(1)).setGraphics(graphics);
     }
 
 }

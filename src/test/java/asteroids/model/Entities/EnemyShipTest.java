@@ -73,4 +73,14 @@ public class EnemyShipTest extends Assertions {
         Mockito.verify(enemyShip1,Mockito.times(1)).shooting(1001);
 
     }
+
+    @Test
+    void getPoints(){
+
+        // when
+        int points = enemyShip.getPoints();
+
+        // then
+        assertEquals(50, enemyShip.getPoints());
+    }
 }

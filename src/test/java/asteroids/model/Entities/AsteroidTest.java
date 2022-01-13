@@ -50,4 +50,16 @@ public class AsteroidTest extends Assertions {
         assertEquals(45,a.getPosition().getY());
 
     }
+
+    @Test
+    void getPoints(){
+        //given
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),15);
+
+        // when
+        int points = asteroid.getPoints();
+
+        // then
+        assertEquals(20, asteroid.getPoints());
+    }
 }

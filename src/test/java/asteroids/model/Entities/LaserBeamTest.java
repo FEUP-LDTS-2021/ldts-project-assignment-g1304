@@ -38,4 +38,20 @@ public class LaserBeamTest extends Assertions {
         assertEquals(l1.getPosition().getX(), l2.getPosition().getX());
         assertEquals(l1.getPosition().getY(), l2.getPosition().getY());
     }
+
+    @Test
+    void isLaserBeam(){
+        // given
+        LaserBeam l1 = new LaserBeam(Mockito.mock(Position.class), 40.0, 3, 3);
+
+        // when
+        boolean is1 = l1.isPlayerBeam();
+        l1.setPlayerBeam(true);
+        boolean is2 = l1.isPlayerBeam();
+
+        // then
+        assertFalse(is1);
+        assertTrue(is2);
+
+    }
 }
