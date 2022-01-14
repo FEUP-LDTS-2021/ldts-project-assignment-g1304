@@ -67,7 +67,7 @@ public class GameControllerTest extends Assertions {
         gameControllerSpy.run();
 
         // then
-        Mockito.verify(model, Mockito.times(2)).update(Mockito.anyLong());
+        Mockito.verify(gameControllerSpy, Mockito.times(2)).update(Mockito.anyLong());
         Mockito.verify(screenViewMock, Mockito.times(2)).draw();
         Mockito.verify(player, Mockito.times(3)).isAlive();
     }
@@ -127,7 +127,7 @@ public class GameControllerTest extends Assertions {
         gameControllerSpy.run();
 
         // then
-        Mockito.verify(model, Mockito.times(2)).update(Mockito.anyLong());
+        Mockito.verify(gameControllerSpy, Mockito.times(2)).update(Mockito.anyLong());
         Mockito.verify(screenViewMock, Mockito.times(2)).draw();
 
     }
@@ -142,7 +142,7 @@ public class GameControllerTest extends Assertions {
         gameControllerSpy.run();
 
         // then
-        Mockito.verify(model, Mockito.times(1)).update(Mockito.anyLong());
+        Mockito.verify(gameControllerSpy, Mockito.times(1)).update(Mockito.anyLong());
         Mockito.verify(screenViewMock, Mockito.times(1)).draw();
 
     }
@@ -157,7 +157,7 @@ public class GameControllerTest extends Assertions {
         gameControllerSpy.run();
 
         // then
-        Mockito.verify(model, Mockito.times(2)).update(Mockito.anyLong());
+        Mockito.verify(gameControllerSpy, Mockito.times(2)).update(Mockito.anyLong());
         Mockito.verify(screenViewMock, Mockito.times(2)).draw();
 
     }
@@ -172,8 +172,50 @@ public class GameControllerTest extends Assertions {
         gameControllerSpy.run();
 
         // then
-        Mockito.verify(model, Mockito.times(0)).update(Mockito.anyLong());
+        Mockito.verify(gameControllerSpy, Mockito.times(0)).update(Mockito.anyLong());
         Mockito.verify(screenViewMock, Mockito.times(0)).draw();
 
+    }
+
+    @Test
+    void updateLessThanFrameRate(){
+        // given
+        Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.Exit);
+
+
+        // when
+        long lastUpdate = gameControllerSpy.update(10);
+
+        // then
+        assertEquals(10, lastUpdate);
+        Mockito.verify(model, Mockito.times(0)).update(Mockito.anyLong());
+    }
+
+    @Test
+    void updateWithEqualFrameRate(){
+        // given
+        Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.Exit);
+
+
+        // when
+        long lastUpdate = gameControllerSpy.update(GameController.FRAME_TIME);
+
+        // then
+        assertEquals(0, lastUpdate);
+        Mockito.verify(model, Mockito.times(1)).update(GameController.FRAME_TIME);
+    }
+
+    @Test
+    void updateMoreThanFrameRate(){
+        // given
+        Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.Exit);
+
+
+        // when
+        long lastUpdate = gameControllerSpy.update(GameController.FRAME_TIME*3 + 20);
+
+        // then
+        assertEquals(20, lastUpdate);
+        Mockito.verify(model, Mockito.times(3)).update(GameController.FRAME_TIME);
     }
 }

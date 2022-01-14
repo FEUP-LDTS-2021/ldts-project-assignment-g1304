@@ -18,6 +18,7 @@ public class GameController implements StateController, KeyListener {
     private final GameModel gameModel;
     private final PlayerController playerController;
     private final Controller context;
+    public static final int FRAME_TIME = 50;
 
     public GameController(Controller context){
         this.context = context;
@@ -32,9 +33,15 @@ public class GameController implements StateController, KeyListener {
         getScreenView().addKeyListenner(getPlayerController());
 
         long pastTime =  System.currentTimeMillis();
+        long lastUpdate = 0L;
+
         while (context.getApplicationState() == ApplicationState.Game && playerAlive()){
             long now = System.currentTimeMillis();
-            getGameModel().update(now-pastTime);
+            long deltaTime = now - pastTime;
+
+            lastUpdate += deltaTime;
+            lastUpdate = update(lastUpdate);
+
             getScreenView().draw();
 
             pastTime=now;
@@ -45,6 +52,15 @@ public class GameController implements StateController, KeyListener {
         getScreenView().close();
         nextState();
 
+    }
+
+    public long update(long lastUpdate){
+        while(lastUpdate >= FRAME_TIME) {
+            getGameModel().update(FRAME_TIME);
+            lastUpdate -= FRAME_TIME;
+        }
+
+        return  lastUpdate;
     }
 
     private boolean playerAlive(){
