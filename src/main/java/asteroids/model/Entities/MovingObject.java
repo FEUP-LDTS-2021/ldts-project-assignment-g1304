@@ -1,7 +1,7 @@
 package asteroids.model.Entities;
 
 import asteroids.model.Collider.CollidableObject;
-import asteroids.model.Constraints;
+import asteroids.Constants;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
 
@@ -73,15 +73,15 @@ public abstract class MovingObject implements CollidableObject {
     }
 
     public final void fixPassScreenBorder(){
-        if(getPosition().getX() > Constraints.WIDTH)
+        if(getPosition().getX() > Constants.WIDTH)
             getPosition().setX(-getWidth());
         else if(getPosition().getX() < -getWidth())
-            getPosition().setX(Constraints.WIDTH);
+            getPosition().setX(Constants.WIDTH);
 
-        if(getPosition().getY() > Constraints.HEIGHT)
+        if(getPosition().getY() > Constants.HEIGHT)
             getPosition().setY(-getHeight());
         else if(getPosition().getY() < -getHeight())
-            getPosition().setY(Constraints.HEIGHT);
+            getPosition().setY(Constants.HEIGHT);
     }
 
     public Rectangle2D.Double getCollider() {

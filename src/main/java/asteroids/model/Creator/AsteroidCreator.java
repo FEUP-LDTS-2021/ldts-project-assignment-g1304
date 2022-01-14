@@ -1,7 +1,7 @@
 
 package asteroids.model.Creator;
 
-import asteroids.model.Constraints;
+import asteroids.Constants;
 import asteroids.model.Entities.Asteroid;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
@@ -18,7 +18,7 @@ public class AsteroidCreator extends Creator {
     @Override
     public Asteroid create() {
         int rangeMin = 0;
-        int rangeMax = Constraints.WIDTH;
+        int rangeMax = Constants.WIDTH;
         Position randomPosition = new Position(0.0,0.0);
         switch (rand.nextInt(4)){
             case 0:

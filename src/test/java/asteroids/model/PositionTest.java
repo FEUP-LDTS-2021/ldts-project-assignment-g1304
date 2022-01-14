@@ -49,4 +49,31 @@ public class PositionTest extends Assertions {
         assert( p1.equals(p2));
     }
 
+    @Property
+    public void equals(@ForAll int x1, @ForAll int y1, @ForAll int x2, @ForAll int y2) {
+        Position p1 = new Position(x1, y1);
+        Position p2 = new Position(x2, y2);
+        assert( p1.equals(p2) == (x1==x2 && y1==y2));
+    }
+
+    @Property
+    public void equalsNull(@ForAll int x, @ForAll int y) {
+        Position p1 = new Position(x, y);
+        assert( !p1.equals(null));
+    }
+
+    @Property
+    public void equalsThis(@ForAll int x, @ForAll int y) {
+        Position p1 = new Position(x, y);
+        Position p2 = p1;
+        assert( p1.equals(p2));
+    }
+
+    @Property
+    public void equalsDiferentClasses(@ForAll int x, @ForAll int y) {
+        Position p1 = new Position(x, y);
+        String p2 = new String();
+        assert( !p1.equals(p2));
+    }
+
 }

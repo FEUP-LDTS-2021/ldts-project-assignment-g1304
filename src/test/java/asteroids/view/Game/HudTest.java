@@ -1,6 +1,6 @@
 package asteroids.view.Game;
 
-import asteroids.model.Constraints;
+import asteroids.Constants;
 import asteroids.model.Entities.Player;
 import asteroids.model.GameModel;
 import asteroids.model.Position;
@@ -268,7 +268,7 @@ public class HudTest extends Assertions {
     void drawLives(){
         // given
 
-        int x = Constraints.HEIGHT - 10;
+        int x = Constants.HEIGHT - 10;
         Position position1 = new Position(x - Player.raio*0, Player.raio + 5);
         Position position2 = new Position(x - Player.raio*2, Player.raio + 5);
         Position position3 = new Position(x - Player.raio*4, Player.raio + 5);

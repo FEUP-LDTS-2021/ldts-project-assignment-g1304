@@ -1,5 +1,6 @@
 package asteroids.model;
 
+import asteroids.Constants;
 import asteroids.model.Creator.LaserBeamCreator;
 import asteroids.model.Entities.*;
 import asteroids.model.Spawner.AsteroidSpawner;
@@ -19,7 +20,7 @@ public class GameModel {
 
     public GameModel(){
         this.entities = new ArrayList<>();
-        player = new Player(new Position(Constraints.WIDTH/2.0, Constraints.HEIGHT/2.0));
+        player = new Player(new Position(Constants.WIDTH/2.0, Constants.HEIGHT/2.0));
         player.setLaserBeamCreator(new LaserBeamCreator(player, getEntities()));
         entities.add(player);
         this.asteroidSpawner = new AsteroidSpawner(getEntities());

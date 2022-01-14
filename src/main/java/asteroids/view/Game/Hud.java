@@ -1,6 +1,6 @@
 package asteroids.view.Game;
 
-import asteroids.model.Constraints;
+import asteroids.Constants;
 import asteroids.model.Entities.Player;
 import asteroids.model.GameModel;
 import asteroids.model.Position;
@@ -65,7 +65,7 @@ public class Hud extends View{
     }
 
     void drawLives(int nLives){
-        int x = Constraints.HEIGHT - 10;
+        int x = Constants.HEIGHT - 10;
         for (int i = 0; i < nLives ; i++)
             drawPlayer(new Position(x - Player.raio*2*i, Player.raio + 5));
     }

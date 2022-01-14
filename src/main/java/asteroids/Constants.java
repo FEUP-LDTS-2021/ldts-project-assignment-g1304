@@ -1,6 +1,6 @@
-package asteroids.model;
+package asteroids;
 
-public class Constraints {
+public class Constants {
     public static int WIDTH = 500;
     public static int HEIGHT = 500;
 }

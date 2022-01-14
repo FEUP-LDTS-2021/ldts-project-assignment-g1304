@@ -1,6 +1,6 @@
 package asteroids.model.Creator;
 
-import asteroids.model.Constraints;
+import asteroids.Constants;
 import asteroids.model.Entities.EnemyShip;
 import asteroids.model.Entities.MovingObject;
 import asteroids.model.Entities.Player;
@@ -96,7 +96,7 @@ public class EnemyShipCreatorTest extends Assertions {
         //then
         assertEquals(playerMock,enemyShipCreator.getPlayer());
         assertEquals(50.0 ,enemyShip.getPosition().getX());
-        assertEquals(Constraints.WIDTH,enemyShip.getPosition().getY());
+        assertEquals(Constants.WIDTH,enemyShip.getPosition().getY());
         assertEquals(0.0,enemyShip.getVelocity().getX());
         assertEquals(-35.0,enemyShip.getVelocity().getY());
         assertEquals(2,enemyShipCreator.getEntities().size());
@@ -124,7 +124,7 @@ public class EnemyShipCreatorTest extends Assertions {
 
         //then
         assertEquals(playerMock,enemyShipCreator.getPlayer());
-        assertEquals(Constraints.WIDTH,enemyShip.getPosition().getX());
+        assertEquals(Constants.WIDTH,enemyShip.getPosition().getX());
         assertEquals(50.0,enemyShip.getPosition().getY());
 
         assertEquals(-35.0,enemyShip.getVelocity().getX());

@@ -4,7 +4,7 @@ import asteroids.model.Entities.*;
 import asteroids.view.Game.*;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import asteroids.model.Constraints;
+import asteroids.Constants;
 import asteroids.model.GameModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -223,7 +223,7 @@ public class GameScreenTest extends Assertions {
         TerminalSize size = screen.getSize();
 
         //then
-        assertEquals(size, new TerminalSize(Constraints.WIDTH, Constraints.HEIGHT));
+        assertEquals(size, new TerminalSize(Constants.WIDTH, Constants.HEIGHT));
     }
 
     @Test

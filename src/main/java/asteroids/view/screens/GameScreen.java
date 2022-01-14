@@ -2,7 +2,7 @@ package asteroids.view.screens;
 
 import asteroids.model.Entities.*;
 import asteroids.view.Game.*;
-import asteroids.model.Constraints;
+import asteroids.Constants;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import asteroids.model.GameModel;
@@ -73,7 +73,7 @@ public class GameScreen extends ScreenView {
     }
 
     public TerminalSize getSize(){
-        return new TerminalSize(Constraints.WIDTH, Constraints.HEIGHT);
+        return new TerminalSize(Constants.WIDTH, Constants.HEIGHT);
     }
 
 }

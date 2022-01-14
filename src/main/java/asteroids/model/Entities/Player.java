@@ -1,7 +1,6 @@
 package asteroids.model.Entities;
 
 import asteroids.control.Rotation;
-import asteroids.model.Constraints;
 import asteroids.model.Creator.LaserBeamCreator;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
