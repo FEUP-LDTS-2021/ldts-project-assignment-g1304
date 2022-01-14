@@ -31,8 +31,9 @@ public class Controller {
         switch (state){
             case Game -> stateControler=new GameController(this);
             case Menu -> stateControler = new MenuController(this);
+            case LeaderBoard -> stateControler = new LeaderboardController(this);
             case Instructions -> stateControler = new InstructionsController(this);
-            case Exit, LeaderBoard -> stateControler=null;
+            case Exit-> stateControler=null;
         }
     }
 
