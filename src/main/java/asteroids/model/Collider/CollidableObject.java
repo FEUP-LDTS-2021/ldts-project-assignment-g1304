@@ -1,7 +1,12 @@
 package asteroids.model.Collider;
 
-import java.awt.geom.Rectangle2D;
+
+import java.awt.Polygon;
 
 public interface CollidableObject {
-    Rectangle2D.Double getCollider();
+    Polygon getCollider();
+
+    default boolean collide(CollidableObject object){
+        return false;
+    }
 }
