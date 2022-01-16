@@ -4,6 +4,8 @@ import asteroids.model.Creator.EnemyLaserBeamCreator;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
 
+import java.awt.*;
+
 public class EnemyShip extends MovingObject {
     private EnemyLaserBeamCreator laserBeamCreator;
     private static final int points = 50;
@@ -47,4 +49,19 @@ public class EnemyShip extends MovingObject {
         super.update(dt);
         shooting(dt);
     }
+
+    @Override
+    public Polygon getCollider() {
+        Polygon polygon = new Polygon();
+        double x = getPosition().getX();
+        double y = getPosition().getY();
+
+        polygon.addPoint((int)x, (int)y);
+        polygon.addPoint((int)x, (int)(y +getHeight()));
+        polygon.addPoint((int)(x +getWidth()), (int)(y +getHeight()));
+        polygon.addPoint((int)(x +getWidth()), (int)y);
+
+        return polygon;
+    }
+
 }

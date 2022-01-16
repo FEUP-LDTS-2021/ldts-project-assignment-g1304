@@ -57,7 +57,7 @@ public class GameModel {
                 if (c1 instanceof Asteroid && c2 instanceof Asteroid)
                     continue;
 
-                if (c1.getCollider().intersects(c2.getCollider())) {
+                if (c1.collide(c2) ) {
                     getScore(c1, c2);
                     getScore(c2, c1);
 
