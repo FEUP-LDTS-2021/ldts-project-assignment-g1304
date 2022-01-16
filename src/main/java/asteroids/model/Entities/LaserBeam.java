@@ -21,7 +21,7 @@ public class LaserBeam extends MovingObject {
 
     public boolean isKillTime(long dt){
         timePassed += dt;
-        if(timePassed >= 1200){
+        if(timePassed >= 1100){
             timePassed = 0;
             return true;
         }

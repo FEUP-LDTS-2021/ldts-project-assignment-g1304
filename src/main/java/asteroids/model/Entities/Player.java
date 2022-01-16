@@ -9,9 +9,9 @@ import asteroids.model.Vector2d;
 public class Player extends MovingObject {
 
     public static final double raio = 10;
-    public static final double acelaration = 300.0;
-    public static final double MAX_VELOCITY = 200.0;
-    public static final double angularVelocity = Math.PI*2;
+    public static final double acelaration = 250.0;
+    public static final double MAX_VELOCITY = 175.0;
+    public static final double angularVelocity = Math.PI*1.5;
     public final Position beginPosition;
 
     private double angle;

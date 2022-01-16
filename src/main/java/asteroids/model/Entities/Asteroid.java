@@ -5,8 +5,6 @@ import asteroids.model.Vector2d;
 
 public class Asteroid extends MovingObject{
 
-    private static final int points = 20;
-
     private AsteroidSizes size;
 
     public Asteroid(Position position, Vector2d velocity, AsteroidSizes size){
@@ -15,15 +13,37 @@ public class Asteroid extends MovingObject{
     }
 
     public int getPoints() {
-        return points;
+        if (size == AsteroidSizes.LARGE) {
+            return 20;
+        }
+        else if (size == AsteroidSizes.MEDIUM) {
+            return 50;
+        }
+        else return 100;
     }
 
-    public void decreaseSize();
+    public void decreaseSize() {
+        if (size == AsteroidSizes.LARGE) {
+            setSize(AsteroidSizes.MEDIUM);
+        }
+        else if (size == AsteroidSizes.MEDIUM) {
+            setSize(AsteroidSizes.SMALL);
+        }
+    }
 
-    public AsteroidSizes getSize();
+    public AsteroidSizes getSize() {
+        return size;
+    }
 
-    public void setSize(AsteroidSizes size);
+    public void setSize(AsteroidSizes size) {
+        this.size = size;
+        setHeight(size.size);
+        setWidth(size.size);
+    }
 
     @Override
-    public void dies();
+    public void dies() {
+        if (getSize() == AsteroidSizes.SMALL)
+            super.dies();
+    }
 }
