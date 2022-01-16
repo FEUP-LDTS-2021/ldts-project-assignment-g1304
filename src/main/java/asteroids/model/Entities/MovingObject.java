@@ -5,6 +5,7 @@ import asteroids.Constants;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
 
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public abstract class MovingObject implements CollidableObject {
@@ -84,7 +85,5 @@ public abstract class MovingObject implements CollidableObject {
             getPosition().setY(Constants.HEIGHT);
     }
 
-    public Rectangle2D.Double getCollider() {
-        return new Rectangle2D.Double(getPosition().getX(), getPosition().getY(), getWidth(), getHeight());
-    }
+    public abstract Polygon getCollider();
 }

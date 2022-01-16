@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -151,30 +150,30 @@ public class GameModelTest extends Assertions {
         Mockito.when(c1.getVelocity()).thenReturn(v);
         Mockito.when(c2.getVelocity()).thenReturn(v);
 
-        Mockito.when(r0.intersects(r1)).thenReturn(false);
-        Mockito.when(r0.intersects(r2)).thenReturn(true);
-        Mockito.when(r0.intersects(r3)).thenReturn(false);
-        Mockito.when(r0.intersects(r4)).thenReturn(false);
-        Mockito.when(r0.intersects(r5)).thenReturn(false);
-        Mockito.when(r0.intersects(r6)).thenReturn(false);
+        Mockito.when(c0.collide(c1)).thenReturn(false);
+        Mockito.when(c0.collide(c2)).thenReturn(true);
+        Mockito.when(c0.collide(c3)).thenReturn(false);
+        Mockito.when(c0.collide(c4)).thenReturn(false);
+        Mockito.when(c0.collide(c5)).thenReturn(false);
+        Mockito.when(c0.collide(c6)).thenReturn(false);
 
-        Mockito.when(r1.intersects(r2)).thenReturn(true);
-        Mockito.when(r1.intersects(r3)).thenReturn(false);
-        Mockito.when(r1.intersects(r4)).thenReturn(false);
-        Mockito.when(r1.intersects(r5)).thenReturn(false);
-        Mockito.when(r1.intersects(r6)).thenReturn(false);
+        Mockito.when(c1.collide(c2)).thenReturn(true);
+        Mockito.when(c1.collide(c3)).thenReturn(false);
+        Mockito.when(c1.collide(c4)).thenReturn(false);
+        Mockito.when(c1.collide(c5)).thenReturn(false);
+        Mockito.when(c1.collide(c6)).thenReturn(false);
 
-        Mockito.when(r2.intersects(r3)).thenReturn(true);
-        Mockito.when(r2.intersects(r4)).thenReturn(false);
-        Mockito.when(r2.intersects(r5)).thenReturn(false);
-        Mockito.when(r1.intersects(r6)).thenReturn(false);
+        Mockito.when(c2.collide(c3)).thenReturn(true);
+        Mockito.when(c2.collide(c4)).thenReturn(false);
+        Mockito.when(c2.collide(c5)).thenReturn(false);
+        Mockito.when(c2.collide(c6)).thenReturn(false);
 
-        Mockito.when(r3.intersects(r4)).thenReturn(true);
-        Mockito.when(r3.intersects(r5)).thenReturn(false);
-        Mockito.when(r1.intersects(r6)).thenReturn(false);
+        Mockito.when(c3.collide(c4)).thenReturn(true);
+        Mockito.when(c3.collide(c5)).thenReturn(false);
+        Mockito.when(c3.collide(c6)).thenReturn(false);
 
-        Mockito.when(r4.intersects(r5)).thenReturn(true);
-        Mockito.when(r1.intersects(r6)).thenReturn(false);
+        Mockito.when(c4.collide(c5)).thenReturn(true);
+        Mockito.when(c4.collide(c6)).thenReturn(false);
 
         Mockito.when(gameModel.getEntities()).thenReturn(movingObjects);
 
@@ -236,22 +235,6 @@ public class GameModelTest extends Assertions {
         Mockito.doReturn(playermock).when(gameModel).getPlayer();
         Mockito.when(playermock.isAlive()).thenReturn(true);
 
-        // create colliders
-        Rectangle2D.Double r0 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r1 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r2 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r3 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r4 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r5 = Mockito.mock(Rectangle2D.Double.class);
-
-        Mockito.when(asteroid1.getCollider()).thenReturn(r0);
-        Mockito.when(asteroid2.getCollider()).thenReturn(r1);
-        Mockito.when(laserPlayer.getCollider()).thenReturn(r2);
-        Mockito.when(laserEnemy.getCollider()).thenReturn(r3);
-        Mockito.when(enemyShip.getCollider()).thenReturn(r4);
-        Mockito.when(playermock.getCollider()).thenReturn(r5);
-
-
         // add moving objects to entities
         List<MovingObject> movingObjects = new ArrayList<>();
         movingObjects.add(asteroid1);
@@ -264,25 +247,25 @@ public class GameModelTest extends Assertions {
         Mockito.when(gameModel.getEntities()).thenReturn(movingObjects);
 
         // set collisions
-        Mockito.when(r0.intersects(r1)).thenReturn(false);  // asteroid  - asteroide
-        Mockito.when(r0.intersects(r2)).thenReturn(true);   // asteroid  - laserbeam player
-        Mockito.when(r0.intersects(r3)).thenReturn(true);   // asteroid  - laserbeam enenmy
-        Mockito.when(r0.intersects(r4)).thenReturn(false);  // asteroid  - enemyShip
-        Mockito.when(r0.intersects(r5)).thenReturn(true);   // asteroid  - player
+        Mockito.when(asteroid1.collide(asteroid2)).thenReturn(false);  // asteroid  - asteroide
+        Mockito.when(asteroid1.collide(laserPlayer)).thenReturn(true);   // asteroid  - laserbeam player
+        Mockito.when(asteroid1.collide(laserEnemy)).thenReturn(true);   // asteroid  - laserbeam enenmy
+        Mockito.when(asteroid1.collide(enemyShip)).thenReturn(false);  // asteroid  - enemyShip
+        Mockito.when(asteroid1.collide(playermock)).thenReturn(true);   // asteroid  - player
 
-        Mockito.when(r1.intersects(r2)).thenReturn(false);  // asteroid  - laserbeam player
-        Mockito.when(r1.intersects(r3)).thenReturn(false);  // asteroid  - laserbeam enenmy
-        Mockito.when(r1.intersects(r4)).thenReturn(true);   // asteroid  - enemyShip
-        Mockito.when(r1.intersects(r5)).thenReturn(false);   // asteroid  - player
+        Mockito.when(asteroid2.collide(laserPlayer)).thenReturn(false);  // asteroid  - laserbeam player
+        Mockito.when(asteroid2.collide(laserEnemy)).thenReturn(false);  // asteroid  - laserbeam enenmy
+        Mockito.when(asteroid2.collide(enemyShip)).thenReturn(true);   // asteroid  - enemyShip
+        Mockito.when(asteroid2.collide(playermock)).thenReturn(false);   // asteroid  - player
 
-        Mockito.when(r2.intersects(r3)).thenReturn(true);   // laserbeam player  - laserbeam enenmy
-        Mockito.when(r2.intersects(r4)).thenReturn(true);   // laserbeam player  - enemyShip
-        Mockito.when(r2.intersects(r5)).thenReturn(true);   // laserbeam player  - player
+        Mockito.when(laserPlayer.collide(laserEnemy)).thenReturn(true);   // laserbeam player  - laserbeam enenmy
+        Mockito.when(laserPlayer.collide(enemyShip)).thenReturn(true);   // laserbeam player  - enemyShip
+        Mockito.when(laserPlayer.collide(playermock)).thenReturn(true);   // laserbeam player  - player
 
-        Mockito.when(r3.intersects(r4)).thenReturn(true);   // laserbeam enenmy  - enemyShip
-        Mockito.when(r3.intersects(r5)).thenReturn(true);   // laserbeam enenmy  - player
+        Mockito.when(laserEnemy.collide(enemyShip)).thenReturn(true);   // laserbeam enenmy  - enemyShip
+        Mockito.when(laserEnemy.collide(playermock)).thenReturn(true);   // laserbeam enenmy  - player
 
-        Mockito.when(r4.intersects(r5)).thenReturn(true);   // enenmy  - player
+        Mockito.when(enemyShip.collide(playermock)).thenReturn(true);   // enenmy  - player
 
 
         // when
@@ -327,21 +310,6 @@ public class GameModelTest extends Assertions {
         Mockito.doReturn(playermock).when(gameModel).getPlayer();
         Mockito.when(playermock.isAlive()).thenReturn(false);
 
-        // create colliders
-        Rectangle2D.Double r0 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r1 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r2 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r3 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r4 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r5 = Mockito.mock(Rectangle2D.Double.class);
-
-        Mockito.when(asteroid1.getCollider()).thenReturn(r0);
-        Mockito.when(asteroid2.getCollider()).thenReturn(r1);
-        Mockito.when(laserPlayer.getCollider()).thenReturn(r2);
-        Mockito.when(laserEnemy.getCollider()).thenReturn(r3);
-        Mockito.when(enemyShip.getCollider()).thenReturn(r4);
-        Mockito.when(playermock.getCollider()).thenReturn(r5);
-
 
         // add moving objects to entities
         List<MovingObject> movingObjects = new ArrayList<>();
@@ -355,25 +323,25 @@ public class GameModelTest extends Assertions {
         Mockito.when(gameModel.getEntities()).thenReturn(movingObjects);
 
         // set collisions
-        Mockito.when(r0.intersects(r1)).thenReturn(false);  // asteroid  - asteroide
-        Mockito.when(r0.intersects(r2)).thenReturn(true);   // asteroid  - laserbeam player
-        Mockito.when(r0.intersects(r3)).thenReturn(true);   // asteroid  - laserbeam enenmy
-        Mockito.when(r0.intersects(r4)).thenReturn(false);  // asteroid  - enemyShip
-        Mockito.when(r0.intersects(r5)).thenReturn(true);   // asteroid  - player
+        Mockito.when(asteroid1.collide(asteroid2)).thenReturn(false);  // asteroid  - asteroide
+        Mockito.when(asteroid1.collide(laserPlayer)).thenReturn(true);   // asteroid  - laserbeam player
+        Mockito.when(asteroid1.collide(laserEnemy)).thenReturn(true);   // asteroid  - laserbeam enenmy
+        Mockito.when(asteroid1.collide(enemyShip)).thenReturn(false);  // asteroid  - enemyShip
+        Mockito.when(asteroid1.collide(playermock)).thenReturn(true);   // asteroid  - player
 
-        Mockito.when(r1.intersects(r2)).thenReturn(false);  // asteroid  - laserbeam player
-        Mockito.when(r1.intersects(r3)).thenReturn(false);  // asteroid  - laserbeam enenmy
-        Mockito.when(r1.intersects(r4)).thenReturn(true);   // asteroid  - enemyShip
-        Mockito.when(r1.intersects(r5)).thenReturn(false);   // asteroid  - player
+        Mockito.when(asteroid2.collide(laserPlayer)).thenReturn(false);  // asteroid  - laserbeam player
+        Mockito.when(asteroid2.collide(laserEnemy)).thenReturn(false);  // asteroid  - laserbeam enenmy
+        Mockito.when(asteroid2.collide(enemyShip)).thenReturn(true);   // asteroid  - enemyShip
+        Mockito.when(asteroid2.collide(playermock)).thenReturn(false);   // asteroid  - player
 
-        Mockito.when(r2.intersects(r3)).thenReturn(true);   // laserbeam player  - laserbeam enenmy
-        Mockito.when(r2.intersects(r4)).thenReturn(true);   // laserbeam player  - enemyShip
-        Mockito.when(r2.intersects(r5)).thenReturn(true);   // laserbeam player  - player
+        Mockito.when(laserPlayer.collide(laserEnemy)).thenReturn(true);   // laserbeam player  - laserbeam enenmy
+        Mockito.when(laserPlayer.collide(enemyShip)).thenReturn(true);   // laserbeam player  - enemyShip
+        Mockito.when(laserPlayer.collide(playermock)).thenReturn(true);   // laserbeam player  - player
 
-        Mockito.when(r3.intersects(r4)).thenReturn(true);   // laserbeam enenmy  - enemyShip
-        Mockito.when(r3.intersects(r5)).thenReturn(true);   // laserbeam enenmy  - player
+        Mockito.when(laserEnemy.collide(enemyShip)).thenReturn(true);   // laserbeam enenmy  - enemyShip
+        Mockito.when(laserEnemy.collide(playermock)).thenReturn(true);   // laserbeam enenmy  - player
 
-        Mockito.when(r4.intersects(r5)).thenReturn(true);   // enenmy  - player
+        Mockito.when(enemyShip.collide(playermock)).thenReturn(true);   // enenmy  - player
 
 
         // when

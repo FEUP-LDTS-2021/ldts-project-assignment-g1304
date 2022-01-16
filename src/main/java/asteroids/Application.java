@@ -11,7 +11,7 @@ public class Application {
 
         try {
             Controller controller = new Controller();
-            controller.run();
+            controller.run() ;
         }catch (IOException ex){
             ex.printStackTrace();
         }

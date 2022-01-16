@@ -5,6 +5,8 @@ import asteroids.model.Creator.LaserBeamCreator;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
 
+import java.awt.*;
+
 
 public class Player extends MovingObject {
 
@@ -65,6 +67,23 @@ public class Player extends MovingObject {
         super.update(dt);       // andar para a frente
         if (isShooting())
             getLaserBeamCreator().addLaserBeam(getLaserBeamCreator().create());
+    }
+
+    @Override
+    public Polygon getCollider() {
+        Polygon polygon = new Polygon();
+        double anglePontaNave = angle;
+        double anglePontaEsq = anglePontaNave + Math.PI*0.8333;   // 5/6
+        double anglePontaDir = anglePontaNave + Math.PI*1.1666;   // 7/6
+        addPoint(polygon, anglePontaNave);
+        addPoint(polygon, anglePontaEsq);
+        addPoint(polygon, anglePontaDir);
+        return polygon;
+    }
+
+    private void addPoint(Polygon polygon, double angle){
+        polygon.addPoint((int) (Math.cos(angle)*raio + getPosition().getX()),
+                (int) (Math.sin(angle)*raio + getPosition().getY()));
     }
 
     public void setLaserBeamCreator(LaserBeamCreator laserBeamCreator) {

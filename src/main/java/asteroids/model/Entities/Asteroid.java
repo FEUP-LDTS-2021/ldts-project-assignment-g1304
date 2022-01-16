@@ -1,7 +1,7 @@
 package asteroids.model.Entities;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
-
+import java.awt.*;
 
 public class Asteroid extends MovingObject{
 
@@ -45,5 +45,19 @@ public class Asteroid extends MovingObject{
     public void dies() {
         if (getSize() == AsteroidSizes.SMALL)
             super.dies();
+    }
+
+    @Override
+    public Polygon getCollider() {
+        Polygon polygon = new Polygon();
+        double x = getPosition().getX();
+        double y = getPosition().getY();
+
+        polygon.addPoint((int)x, (int)y);
+        polygon.addPoint((int)(x +getWidth()), (int)y);
+        polygon.addPoint((int)(x +getWidth()), (int)(y +getHeight()));
+        polygon.addPoint((int)x, (int)(y +getHeight()));
+
+        return polygon;
     }
 }
