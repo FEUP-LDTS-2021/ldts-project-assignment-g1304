@@ -110,22 +110,6 @@ public class GameModelTest extends Assertions {
         movingObjects.add(c5);
         movingObjects.add(c6);
 
-        Rectangle2D.Double r0 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r1 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r2 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r3 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r4 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r5 = Mockito.mock(Rectangle2D.Double.class);
-        Rectangle2D.Double r6 = Mockito.mock(Rectangle2D.Double.class);
-
-        Mockito.when(c0.getCollider()).thenReturn(r0);
-        Mockito.when(c1.getCollider()).thenReturn(r1);
-        Mockito.when(c2.getCollider()).thenReturn(r2);
-        Mockito.when(c3.getCollider()).thenReturn(r3);
-        Mockito.when(c4.getCollider()).thenReturn(r4);
-        Mockito.when(c5.getCollider()).thenReturn(r5);
-        Mockito.when(c6.getCollider()).thenReturn(r6);
-
         Mockito.when(c0.isAlive()).thenReturn(true);
         Mockito.when(c1.isAlive()).thenReturn(true);
         Mockito.when(c2.isAlive()).thenReturn(true);
