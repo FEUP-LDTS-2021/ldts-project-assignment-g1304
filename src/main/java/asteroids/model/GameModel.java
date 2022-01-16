@@ -18,9 +18,9 @@ public class GameModel {
     private final Player player;
     private final List<MovingObject> entities;
 
-    public GameModel(){
+    public GameModel() {
         this.entities = new ArrayList<>();
-        player = new Player(new Position(Constants.WIDTH/2.0, Constants.HEIGHT/2.0));
+        player = new Player(new Position(Constants.WIDTH / 2.0, Constants.HEIGHT / 2.0));
         player.setLaserBeamCreator(new LaserBeamCreator(player, getEntities()));
         entities.add(player);
         this.asteroidSpawner = new AsteroidSpawner(getEntities());
@@ -31,7 +31,7 @@ public class GameModel {
         return entities;
     }
 
-    public void update(long dt){
+    public void update(long dt) {
         getEnemyShipSpawner().update(dt);
         getAsteroidSpawner().update();
 
@@ -51,34 +51,41 @@ public class GameModel {
 
     public void checkCollisions() {
         for (int i = 0; i < getEntities().size() - 1; i++) {
-            for (int j = i+1; j < getEntities().size(); j++) {
+            for (int j = i + 1; j < getEntities().size(); j++) {
                 MovingObject c1 = getEntities().get(i);
                 MovingObject c2 = getEntities().get(j);
+
                 if (c1 instanceof Asteroid && c2 instanceof Asteroid)
                     continue;
 
-                if (c1.getCollider().intersects(c2.getCollider())) {
+                if (c1.getCollider().intersects(c2.getCollider()) && c1.isAlive() && c2.isAlive()) {
                     getScore(c1, c2);
                     getScore(c2, c1);
 
                     c1.dies();
                     c2.dies();
+
+                    if (c1 instanceof Asteroid) {
+                        asteroidSplitter((Asteroid) c1);
+                    } else if (c2 instanceof Asteroid) {
+                        asteroidSplitter((Asteroid) c2);
+                    }
                 }
             }
         }
         getEntities().removeIf(c -> !c.isAlive());
     }
 
-    private void getScore(MovingObject c1, MovingObject c2){
-        if(!c1.isAlive() || !c2.isAlive())
+    private void getScore(MovingObject c1, MovingObject c2) {
+        if (!c1.isAlive() || !c2.isAlive())
             return;
 
         boolean hitByPlayer = c1 instanceof Player;
         boolean hitByLaserPlayer = c1 instanceof LaserBeam && ((LaserBeam) c1).isPlayerBeam();
-        if(hitByPlayer || hitByLaserPlayer){
-            if(c2 instanceof Asteroid)
+        if (hitByPlayer || hitByLaserPlayer) {
+            if (c2 instanceof Asteroid)
                 getPlayer().addScore(((Asteroid) c2).getPoints());
-            else if(c2 instanceof EnemyShip)
+            else if (c2 instanceof EnemyShip)
                 getPlayer().addScore(((EnemyShip) c2).getPoints());
         }
     }
@@ -87,4 +94,14 @@ public class GameModel {
         return player;
     }
 
+    private void asteroidSplitter(Asteroid c1) {
+        if (c1.getSize() == AsteroidSizes.SMALL) return;
+        c1.decreaseSize();
+        Asteroid asteroid = getAsteroidSpawner().getAsteroidCreator().create();
+        asteroid.setPosition(c1.getPosition().clone());
+        asteroid.setVelocity(c1.getVelocity().clone());
+        asteroid.getVelocity().scale(-1);
+        asteroid.setSize(c1.getSize());
+        getEntities().add(asteroid);
+    }
 }

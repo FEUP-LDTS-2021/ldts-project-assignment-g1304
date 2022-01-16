@@ -218,4 +218,16 @@ public class Vector2dTest extends Assertions {
         assertEquals(2.4 + 13.68, result2);
     }
 
+    @Test
+    void cloneTest(){
+        //given
+        Vector2d v = new Vector2d(20.0,23.1);
+
+        //when
+        Vector2d cloned = v.clone();
+
+        //then
+        assertEquals(v.getX(),cloned.getX());
+        assertEquals(v.getY(),cloned.getY());
+    }
 }

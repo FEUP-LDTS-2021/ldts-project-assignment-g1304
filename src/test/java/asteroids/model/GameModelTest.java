@@ -1,11 +1,13 @@
 package asteroids.model;
 
+import asteroids.model.Creator.AsteroidCreator;
 import asteroids.model.Entities.*;
 import asteroids.model.Spawner.AsteroidSpawner;
 import asteroids.model.Spawner.EnemyShipSpawner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.awt.geom.Rectangle2D;
@@ -18,6 +20,7 @@ public class GameModelTest extends Assertions {
     private Player player;
     private EnemyShipSpawner enemyShipSpawner;
     private AsteroidSpawner asteroidSpawner;
+    private AsteroidCreator asteroidCreator;
     @BeforeEach
     void init(){
         gameModel = Mockito.spy(new GameModel());
@@ -27,7 +30,15 @@ public class GameModelTest extends Assertions {
 
 
         asteroidSpawner = Mockito.mock(AsteroidSpawner.class);
+        asteroidCreator = Mockito.mock(AsteroidCreator.class);
         Mockito.when(gameModel.getAsteroidSpawner()).thenReturn(asteroidSpawner);
+        Mockito.when(gameModel.getAsteroidSpawner().getAsteroidCreator()).thenReturn(asteroidCreator);
+
+        Asteroid asteroid = Mockito.mock(Asteroid.class);
+        Mockito.when(asteroid.getPosition()).thenReturn(Mockito.mock(Position.class));
+        Mockito.when(asteroid.getVelocity()).thenReturn(Mockito.mock(Vector2d.class));
+
+        Mockito.when(asteroidCreator.create()).thenReturn(asteroid);
     }
 
     @Test
@@ -116,6 +127,30 @@ public class GameModelTest extends Assertions {
         Mockito.when(c5.getCollider()).thenReturn(r5);
         Mockito.when(c6.getCollider()).thenReturn(r6);
 
+        Mockito.when(c0.isAlive()).thenReturn(true);
+        Mockito.when(c1.isAlive()).thenReturn(true);
+        Mockito.when(c2.isAlive()).thenReturn(true);
+        Mockito.when(c3.isAlive()).thenReturn(true);
+        Mockito.when(c4.isAlive()).thenReturn(true);
+        Mockito.when(c5.isAlive()).thenReturn(true);
+        Mockito.when(c6.isAlive()).thenReturn(true);
+
+        Position position = Mockito.mock(Position.class);
+
+        Mockito.when(position.clone()).thenReturn(position);
+
+        Mockito.when(c0.getPosition()).thenReturn(position);
+        Mockito.when(c1.getPosition()).thenReturn(position);
+        Mockito.when(c2.getPosition()).thenReturn(position);
+
+        Vector2d v = Mockito.mock(Vector2d.class);
+
+        Mockito.when(v.clone()).thenReturn(v);
+
+        Mockito.when(c0.getVelocity()).thenReturn(v);
+        Mockito.when(c1.getVelocity()).thenReturn(v);
+        Mockito.when(c2.getVelocity()).thenReturn(v);
+
         Mockito.when(r0.intersects(r1)).thenReturn(false);
         Mockito.when(r0.intersects(r2)).thenReturn(true);
         Mockito.when(r0.intersects(r3)).thenReturn(false);
@@ -181,6 +216,20 @@ public class GameModelTest extends Assertions {
         Mockito.when(laserPlayer.isAlive()).thenReturn(true);
         Mockito.when(laserEnemy.isAlive()).thenReturn(true);
         Mockito.when(enemyShip.isAlive()).thenReturn(true);
+
+        Position position = Mockito.mock(Position.class);
+
+        Mockito.when(position.clone()).thenReturn(position);
+
+        Mockito.when(asteroid1.getPosition()).thenReturn(position);
+        Mockito.when(asteroid2.getPosition()).thenReturn(position);
+
+        Vector2d v = Mockito.mock(Vector2d.class);
+
+        Mockito.when(v.clone()).thenReturn(v);
+
+        Mockito.when(asteroid1.getVelocity()).thenReturn(v);
+        Mockito.when(asteroid2.getVelocity()).thenReturn(v);
 
         // add mock of player
         Player playermock = Mockito.mock(Player.class);

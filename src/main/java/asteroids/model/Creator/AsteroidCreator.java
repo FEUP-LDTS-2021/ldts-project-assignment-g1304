@@ -1,11 +1,10 @@
-
 package asteroids.model.Creator;
 
 import asteroids.Constants;
 import asteroids.model.Entities.Asteroid;
+import asteroids.model.Entities.AsteroidSizes;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
-
 import java.util.Random;
 
 public class AsteroidCreator extends Creator {
@@ -43,6 +42,6 @@ public class AsteroidCreator extends Creator {
         Vector2d randomVelocity = new Vector2d(rangeMin + (rangeMax - rangeMin) * rand.nextDouble(),
                 rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
         randomVelocity.resize(30 + 50 * rand.nextDouble());
-        return new Asteroid(randomPosition,randomVelocity,40);
+        return new Asteroid(randomPosition,randomVelocity, AsteroidSizes.LARGE);
     }
 }
