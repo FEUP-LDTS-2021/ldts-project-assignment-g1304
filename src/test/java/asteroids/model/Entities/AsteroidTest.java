@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.awt.*;
+
 
 public class AsteroidTest extends Assertions {
     @Test
@@ -61,5 +63,33 @@ public class AsteroidTest extends Assertions {
 
         // then
         assertEquals(20, asteroid.getPoints());
+    }
+
+    @Test
+    void collider(){
+        // Given
+        Position position = Mockito.mock(Position.class);
+        Mockito.when(position.getX()).thenReturn(10.0);
+        Mockito.when(position.getY()).thenReturn(15.0);
+        Asteroid asteroid = new Asteroid(position, Mockito.mock(Vector2d.class), 20);
+
+        Polygon polygon = new Polygon();
+        double x = 10;
+        double y = 15;
+
+        polygon.addPoint((int)x, (int)y);
+        polygon.addPoint((int)(x + 20), (int)y);
+        polygon.addPoint((int)(x + 20), (int)(y + 20));
+        polygon.addPoint((int)x, (int)(y + 20));
+
+
+        // when
+        Polygon asteroidCollider = asteroid.getCollider();
+
+        // then
+        assertEquals(polygon.npoints, asteroidCollider.npoints);
+        assertArrayEquals(polygon.xpoints, asteroidCollider.xpoints);
+        assertArrayEquals(polygon.ypoints, asteroidCollider.ypoints);
+
     }
 }

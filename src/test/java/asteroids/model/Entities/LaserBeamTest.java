@@ -1,9 +1,12 @@
 package asteroids.model.Entities;
 
 import asteroids.model.Position;
+import asteroids.model.Vector2d;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import java.awt.*;
 
 public class LaserBeamTest extends Assertions {
 
@@ -79,4 +82,34 @@ public class LaserBeamTest extends Assertions {
         assertTrue(is2);
 
     }
+
+    @Test
+    void collider(){
+        // Given
+        Position position = Mockito.mock(Position.class);
+        Mockito.when(position.getX()).thenReturn(10.0);
+        Mockito.when(position.getY()).thenReturn(15.0);
+        LaserBeam laserBeam = new LaserBeam(position, 10, 3, 4);
+
+        Polygon polygon = new Polygon();
+        double x = 10;
+        double y = 15;
+
+        polygon.addPoint((int)x, (int)y);
+        polygon.addPoint((int)(x + 3), (int)y);
+        polygon.addPoint((int)(x + 3), (int)(y + 4));
+        polygon.addPoint((int)x, (int)(y + 4));
+
+
+        // when
+        Polygon laserBeamCollider = laserBeam.getCollider();
+
+        // then
+        assertEquals(polygon.npoints, laserBeamCollider.npoints);
+        assertArrayEquals(polygon.xpoints, laserBeamCollider.xpoints);
+        assertArrayEquals(polygon.ypoints, laserBeamCollider.ypoints);
+
+    }
+
+
 }

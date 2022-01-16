@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.awt.*;
+
 public class EnemyShipTest extends Assertions {
 
     Position positionMock;
@@ -82,5 +84,32 @@ public class EnemyShipTest extends Assertions {
 
         // then
         assertEquals(50, enemyShip.getPoints());
+    }
+
+    @Test
+    void collider(){
+        // Given
+        Position position = Mockito.mock(Position.class);
+        Mockito.when(position.getX()).thenReturn(10.0);
+        Mockito.when(position.getY()).thenReturn(15.0);
+        EnemyShip enemyShip = new EnemyShip(position, Mockito.mock(Vector2d.class), 20, 30);
+
+        Polygon polygon = new Polygon();
+        double x = 10;
+        double y = 15;
+
+        polygon.addPoint((int)x, (int)y);
+        polygon.addPoint((int)x , (int)(y + 30));
+        polygon.addPoint((int)(x + 20), (int)(y + 30));
+        polygon.addPoint((int)(x + 20), (int)y);
+
+
+        // when
+        Polygon enemyShipCollider = enemyShip.getCollider();
+
+        // then
+        assertEquals(polygon.npoints, enemyShipCollider.npoints);
+        assertArrayEquals(polygon.xpoints, enemyShipCollider.xpoints);
+        assertArrayEquals(polygon.ypoints, enemyShipCollider.ypoints);
     }
 }

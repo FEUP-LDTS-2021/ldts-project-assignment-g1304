@@ -7,9 +7,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-
-import java.awt.geom.Rectangle2D;
 
 public class MovingObjectsTest extends Assertions {
 
@@ -246,23 +243,5 @@ public class MovingObjectsTest extends Assertions {
 
         assertEquals(object.getPosition().getX(), -object.getWidth());
         assertEquals(object.getPosition().getY(), -object.getHeight());
-    }
-    @Test
-    void getCollider() {
-        Position positionMock = Mockito.mock(Position.class);
-        Mockito.when(positionMock.getX()).thenReturn(10.0);
-        Mockito.when(positionMock.getY()).thenReturn(20.0);
-        MovingObject movingObjectMock = Mockito.mock(MovingObject.class, InvocationOnMock::callRealMethod);
-        movingObjectMock.setPosition(positionMock);
-        Mockito.when(movingObjectMock.getPosition()).thenReturn(positionMock);
-        Mockito.when(movingObjectMock.getWidth()).thenReturn(5.0);
-        Mockito.when(movingObjectMock.getHeight()).thenReturn(5.0);
-        double x = movingObjectMock.getPosition().getX();
-        double y = movingObjectMock.getPosition().getY();
-        double width = movingObjectMock.getWidth();
-        double height = movingObjectMock.getHeight();
-        Rectangle2D.Double rec = new Rectangle2D.Double(x, y, width, height);
-
-        assertEquals(movingObjectMock.getCollider(), rec);
     }
 }

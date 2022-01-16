@@ -41,7 +41,6 @@ public class HudTest extends Assertions {
         assertEquals(arr1.length, arr2.length);
         for (int i = 0; i < arr1.length; i++)
             assertEquals(arr1[i], arr2[i]);
-
     }
     @Test
     void loadNumbers(){
@@ -283,8 +282,4 @@ public class HudTest extends Assertions {
 
     }
 
-    @Test
-    void drawPlayer(){
-
-    }
 }

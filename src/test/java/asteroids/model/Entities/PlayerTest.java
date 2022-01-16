@@ -7,9 +7,9 @@ import asteroids.model.Vector2d;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.mockito.stubbing.Answer;
 import asteroids.utils.DoubleComparables;
 
+import java.awt.*;
 
 public class PlayerTest extends Assertions {
 
@@ -257,5 +257,36 @@ public class PlayerTest extends Assertions {
 
         // go to begin position
         Mockito.verify(p, Mockito.atLeast(3)).setPosition(positionMock);
+    }
+
+    @Test
+    void collider(){
+        // Given
+        Position position = Mockito.mock(Position.class);
+        Mockito.when(position.getX()).thenReturn(10.0);
+        Mockito.when(position.getY()).thenReturn(15.0);
+        Player player = new Player(position);
+        player.setAngle(15);
+
+        Polygon polygon = new Polygon();
+        double anglePontaNave = 15;
+        double anglePontaEsq = anglePontaNave + Math.PI*0.8333;   // 5/6
+        double anglePontaDir = anglePontaNave + Math.PI*1.1666;   // 7/6
+        polygon.addPoint((int) (Math.cos(anglePontaNave)*Player.raio + 10),
+                (int) (Math.sin(anglePontaNave)*Player.raio + 15));
+        polygon.addPoint((int) (Math.cos(anglePontaEsq)*Player.raio + 10),
+                (int) (Math.sin(anglePontaEsq)*Player.raio + 15));
+        polygon.addPoint((int) (Math.cos(anglePontaDir)*Player.raio + 10),
+                (int) (Math.sin(anglePontaDir)*Player.raio + 15));
+
+
+        // when
+        Polygon playerCollider = player.getCollider();
+
+        // then
+        assertEquals(polygon.npoints, playerCollider.npoints);
+        assertArrayEquals(polygon.xpoints, playerCollider.xpoints);
+        assertArrayEquals(polygon.ypoints, playerCollider.ypoints);
+
     }
 }
