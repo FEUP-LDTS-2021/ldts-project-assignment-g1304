@@ -31,4 +31,8 @@ public class Vector2d extends Position {
     public double dotProduct(Vector2d vec){
         return vec.getX()*getX() + vec.getY()*getY();
     }
+
+    public Vector2d clone() {
+        return new Vector2d(getX(), getY());
+    }
 }
