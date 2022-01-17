@@ -47,6 +47,10 @@ public abstract class ScreenView{
         ((AWTTerminalFrame)getScreen().getTerminal()).getComponent(0).removeKeyListener(keyListener);
     }
 
+    public void setColor(String color){
+        getGraphics().setForegroundColor(TextColor.Factory.fromString(color));
+    }
+
     public abstract void draw() throws IOException;
 
     public TerminalScreen getScreen() {

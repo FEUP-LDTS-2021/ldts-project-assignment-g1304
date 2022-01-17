@@ -24,14 +24,14 @@ public class GameOverScreen extends ScreenView {
         String gameOver = "G A M E   O V E R";
         String score = "Score : " + scoreValue;
         String outputName = "Enter your name:";
-        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FF0000"));
+        setColor("#FF0000");
         getGraphics().putString(getTerminalPosition(0.3, gameOver.length()), gameOver);
-        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FF0000"));
         getGraphics().putString(getTerminalPosition(0.4, score.length()), score);
-        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+
+        setColor("#FFFFFF");
         getGraphics().putString(getTerminalPosition(0.6, outputName.length()), outputName);
-        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         getGraphics().putString(getTerminalPosition(0.7, nickNameSpaces.length()), nickNameSpaces);
+
         refresh();
     }
 
