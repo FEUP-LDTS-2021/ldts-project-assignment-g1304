@@ -71,9 +71,9 @@ public class EnemyShipTest extends Assertions {
         //when
         enemyShip1.setLaserBeamCreator(laserBeamCreatorMock);
         enemyShip1.update(1001);
+
         //then
         Mockito.verify(enemyShip1,Mockito.times(1)).shooting(1001);
-
     }
 
     @Test

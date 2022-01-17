@@ -44,7 +44,7 @@ public class GameModel {
     public AsteroidSpawner getAsteroidSpawner() {
         return asteroidSpawner;
     }
-
+ 
     public EnemyShipSpawner getEnemyShipSpawner() {
         return enemyShipSpawner;
     }
@@ -97,10 +97,11 @@ public class GameModel {
     private void asteroidSplitter(Asteroid c1) {
         if (c1.getSize() == AsteroidSizes.SMALL) return;
         c1.decreaseSize();
+        c1.getVelocity().scale(1.1);
         Asteroid asteroid = getAsteroidSpawner().getAsteroidCreator().create();
         asteroid.setPosition(c1.getPosition().clone());
         asteroid.setVelocity(c1.getVelocity().clone());
-        //asteroid.getVelocity().scale(-1);
+        asteroid.getVelocity().scale(-1.1);
         asteroid.setSize(c1.getSize());
         getEntities().add(asteroid);
     }

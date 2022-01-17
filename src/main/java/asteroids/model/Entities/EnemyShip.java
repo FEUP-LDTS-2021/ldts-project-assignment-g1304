@@ -7,6 +7,7 @@ import asteroids.model.Vector2d;
 import java.awt.*;
 
 public class EnemyShip extends MovingObject {
+
     private EnemyLaserBeamCreator laserBeamCreator;
     private static final int points = 50;
 
@@ -22,6 +23,10 @@ public class EnemyShip extends MovingObject {
         return points;
     }
 
+    public EnemyLaserBeamCreator getLaserBeamCreator() {
+        return laserBeamCreator;
+    }
+
     public void setLaserBeamCreator(EnemyLaserBeamCreator laserBeamCreator) {
         this.laserBeamCreator = laserBeamCreator;
     }
@@ -33,7 +38,7 @@ public class EnemyShip extends MovingObject {
 
     public boolean isShootingTime(long dt) {
         lastTime += dt;
-        if (lastTime > 1000) {
+        if (lastTime >= 1001) {
             lastTime -= 1000;
             return true;
         }

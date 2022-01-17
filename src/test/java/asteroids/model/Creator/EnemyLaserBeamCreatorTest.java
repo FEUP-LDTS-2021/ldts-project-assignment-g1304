@@ -51,6 +51,8 @@ public class EnemyLaserBeamCreatorTest extends Assertions {
         assertEquals(3.3865713167166573, laserBeam.getAngle());
         assertEquals(3, laserBeam.getHeight());
         assertEquals(3,laserBeam.getWidth());
+        assertEquals(playerMock, enemyLaserBeamCreator.getPlayer());
+        assertEquals(enemyShipMock, enemyLaserBeamCreator.getEnemyShip());
     }
 
     @Test
@@ -88,6 +90,8 @@ public class EnemyLaserBeamCreatorTest extends Assertions {
         assertEquals(0.24497866312686423, laserBeam.getAngle());
         assertEquals(3, laserBeam.getHeight());
         assertEquals(3,laserBeam.getWidth());
+        assertEquals(playerMock, enemyLaserBeamCreator.getPlayer());
+        assertEquals(enemyShipMock, enemyLaserBeamCreator.getEnemyShip());
     }
 
     @Test
@@ -125,5 +129,7 @@ public class EnemyLaserBeamCreatorTest extends Assertions {
         assertEquals(NaN, laserBeam.getAngle());
         assertEquals(3, laserBeam.getHeight());
         assertEquals(3,laserBeam.getWidth());
+        assertEquals(playerMock, enemyLaserBeamCreator.getPlayer());
+        assertEquals(enemyShipMock, enemyLaserBeamCreator.getEnemyShip());
     }
 }

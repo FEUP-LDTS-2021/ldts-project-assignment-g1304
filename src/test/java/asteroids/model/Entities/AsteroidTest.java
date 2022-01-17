@@ -102,6 +102,20 @@ public class AsteroidTest extends Assertions {
     }
 
     @Test
+    void setHeightWidth() {
+        //given
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.MEDIUM);
+        Asteroid asteroid1 = Mockito.spy(asteroid);
+
+        //when
+        asteroid1.setSize(AsteroidSizes.LARGE);
+
+        //then
+        Mockito.verify(asteroid1, Mockito.times(1)).setHeight(AsteroidSizes.LARGE.size);
+        Mockito.verify(asteroid1, Mockito.times(1)).setWidth(AsteroidSizes.LARGE.size);
+    }
+
+    @Test
     void smallDies() {
         //given
         Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.SMALL);
