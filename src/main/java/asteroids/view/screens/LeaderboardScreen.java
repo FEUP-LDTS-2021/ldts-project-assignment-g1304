@@ -8,7 +8,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class LeaderboardScreen extends ScreenView {
@@ -23,8 +22,10 @@ public class LeaderboardScreen extends ScreenView {
         int stringPos = (getSize().getRows()-15)/2;
         int initStringPos = stringPos;
         try {
-            File myObj = new File(getClass().getClassLoader().getResource("leaderboardDraw.txt").toURI());
-            Scanner myReader = new Scanner(myObj);
+            String rootPath = new File(System.getProperty("user.dir")).getPath();
+            String filePath= rootPath + "/src/main/resources/leaderboardDraw.txt";
+            File file= new File(filePath);
+            Scanner myReader = new Scanner(file);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 getGraphics().setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
@@ -46,8 +47,6 @@ public class LeaderboardScreen extends ScreenView {
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         refresh();

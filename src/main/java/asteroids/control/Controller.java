@@ -33,7 +33,9 @@ public class Controller {
             case Menu -> stateControler = new MenuController(this);
             case LeaderBoard -> stateControler = new LeaderboardController(this);
             case Instructions -> stateControler = new InstructionsController(this);
+            case GameOver -> stateControler = new GameOverController(this);
             case Exit-> stateControler=null;
+
         }
     }
 

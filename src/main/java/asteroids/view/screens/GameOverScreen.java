@@ -2,25 +2,61 @@ package asteroids.view.screens;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 
+import java.awt.*;
+import java.io.IOException;
 
 public class GameOverScreen extends ScreenView {
+    private static final Font font = new Font(Font.MONOSPACED, Font.PLAIN, 30);
+    private String scoreValue;
+    private String nickNameSpaces;
 
-    public GameOverScreen();
+    public GameOverScreen() {
+        setFont(font);
+        scoreValue = "";
+        nickNameSpaces = "_ _ _ _ _ _ _ _ _ _ _";
+    }
 
     @Override
-    public void draw();
+    public void draw() throws IOException {
+        clear();
+        String gameOver = "G A M E   O V E R";
+        String score = "Score : " + scoreValue;
+        String outputName = "Enter your name:";
+        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FF0000"));
+        getGraphics().putString(getTerminalPosition(0.3, gameOver.length()), gameOver);
+        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FF0000"));
+        getGraphics().putString(getTerminalPosition(0.4, score.length()), score);
+        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        getGraphics().putString(getTerminalPosition(0.6, outputName.length()), outputName);
+        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        getGraphics().putString(getTerminalPosition(0.7, nickNameSpaces.length()), nickNameSpaces);
+        refresh();
+    }
 
     @Override
-    public TerminalSize getSize();
+    public TerminalSize getSize() {
+        return new TerminalSize(35, 15);
+    }
 
-    public TerminalPosition getTerminalPosition(double percentageRows, int stringLen) ;
+    public TerminalPosition getTerminalPosition(double percentageRows, int stringLen) {
+        return new TerminalPosition(getSize().getColumns() / 2 - stringLen / 2, (int) (getSize().getRows() * percentageRows));
+    }
 
-    public void setScore(int score);
+    public void setScore(int score) {
+        scoreValue = Integer.toString(score);
+    }
 
-    public String getScoreValue();
+    public String getScoreValue() {
+        return scoreValue;
+    }
 
-    public void setNickNameSpaces(String nickNameSpaces);
+    public void setNickNameSpaces(String nickNameSpaces) {
+        this.nickNameSpaces = nickNameSpaces;
+    }
 
-    public String getNickNameSpaces();
+    public String getNickNameSpaces() {
+        return nickNameSpaces;
+    }
 }

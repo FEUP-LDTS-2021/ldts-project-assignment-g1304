@@ -6,4 +6,5 @@ public interface StateController {
     void run() throws IOException;
 
     void nextState();
+
 }
