@@ -3,6 +3,7 @@ package asteroids.control.states;
 import asteroids.model.Entities.Player;
 import asteroids.states.ApplicationState;
 import asteroids.states.GameController;
+import asteroids.states.GameOverController;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
@@ -33,6 +34,7 @@ public class GameControllerTest extends Assertions {
     void initGameController(){
         // create context
         context = Mockito.mock(Controller.class);
+        Mockito.when(context.getStateControler()).thenReturn(Mockito.mock(GameOverController.class));
 
         // create GameController
         GameController gameController = new GameController(context);
@@ -54,6 +56,7 @@ public class GameControllerTest extends Assertions {
         Mockito.when(gameControllerSpy.getGameModel()).thenReturn(model);
         Mockito.when(model.getPlayer()).thenReturn(player);
         Mockito.when(player.isAlive()).thenReturn(true);
+        Mockito.when(player.getScore()).thenReturn(200);
 
 
     }
@@ -84,12 +87,13 @@ public class GameControllerTest extends Assertions {
     }
 
     @Test
-    void nextStatetoMenu(){
+    void nextStatetoGameOver(){
         // when
         gameControllerSpy.nextState();
 
         //then
-        Mockito.verify(context, Mockito.times(1)).changeState(ApplicationState.Menu);
+        Mockito.verify(context, Mockito.times(1)).changeState(ApplicationState.GameOver);
+        Mockito.verify((GameOverController)context.getStateControler(), Mockito.times(1)).setScore(200);
     }
 
     @Test
