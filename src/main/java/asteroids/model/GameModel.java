@@ -44,7 +44,7 @@ public class GameModel {
     public AsteroidSpawner getAsteroidSpawner() {
         return asteroidSpawner;
     }
- 
+
     public EnemyShipSpawner getEnemyShipSpawner() {
         return enemyShipSpawner;
     }
@@ -65,11 +65,11 @@ public class GameModel {
                     c1.dies();
                     c2.dies();
 
-                    if (c1 instanceof Asteroid) {
+                    if (c1 instanceof Asteroid)
                         asteroidSplitter((Asteroid) c1);
-                    } else if (c2 instanceof Asteroid) {
+                    else if (c2 instanceof Asteroid)
                         asteroidSplitter((Asteroid) c2);
-                    }
+
                 }
             }
         }
@@ -77,8 +77,6 @@ public class GameModel {
     }
 
     private void getScore(MovingObject c1, MovingObject c2) {
-        if (!c1.isAlive() || !c2.isAlive())
-            return;
 
         boolean hitByPlayer = c1 instanceof Player;
         boolean hitByLaserPlayer = c1 instanceof LaserBeam && ((LaserBeam) c1).isPlayerBeam();
@@ -97,11 +95,10 @@ public class GameModel {
     private void asteroidSplitter(Asteroid c1) {
         if (c1.getSize() == AsteroidSizes.SMALL) return;
         c1.decreaseSize();
-        c1.getVelocity().scale(1.1);
         Asteroid asteroid = getAsteroidSpawner().getAsteroidCreator().create();
         asteroid.setPosition(c1.getPosition().clone());
         asteroid.setVelocity(c1.getVelocity().clone());
-        asteroid.getVelocity().scale(-1.1);
+        asteroid.getVelocity().scale(-1);
         asteroid.setSize(c1.getSize());
         getEntities().add(asteroid);
     }
