@@ -26,7 +26,7 @@ public class LeaderboardControllerTest {
         // create context
         context = Mockito.mock(Controller.class);
 
-        // create InstructionController
+        // create LeaderboardController
         leaderboardControllerSpy = Mockito.spy(new LeaderboardController(context));
 
         // create screens Mocks

@@ -5,6 +5,7 @@ import asteroids.control.Controller;
 import asteroids.control.PlayerController;
 import asteroids.model.GameModel;
 import asteroids.view.Game.Hud;
+import asteroids.view.screens.GameOverScreen;
 import asteroids.view.screens.GameScreen;
 import asteroids.view.screens.ScreenView;
 
@@ -81,7 +82,8 @@ public class GameController implements StateController, KeyListener {
 
     @Override
     public void nextState() {
-        context.changeState(ApplicationState.Menu);
+        context.changeState(ApplicationState.GameOver);
+        ((GameOverController)context.getStateControler()).setScore(getGameModel().getPlayer().getScore());
     }
 
 

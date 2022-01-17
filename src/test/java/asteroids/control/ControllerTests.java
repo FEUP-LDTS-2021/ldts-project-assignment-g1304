@@ -48,7 +48,7 @@ public class ControllerTests  extends Assertions {
     }
 
 
-    /*@Test
+    @Test
     void changeStateLeaderboard(){
         //when
         controllerSpy.changeState(ApplicationState.LeaderBoard);
@@ -56,7 +56,16 @@ public class ControllerTests  extends Assertions {
         // then
         assertTrue(controllerSpy.getStateControler() instanceof LeaderboardController);
         assertEquals(controllerSpy.getApplicationState(), ApplicationState.LeaderBoard);
-    }*/
+    }
+    @Test
+    void changeStateGameOver(){
+        //when
+        controllerSpy.changeState(ApplicationState.GameOver);
+
+        // then
+        assertTrue(controllerSpy.getStateControler() instanceof GameOverController);
+        assertEquals(controllerSpy.getApplicationState(), ApplicationState.GameOver);
+    }
 
     @Test
     void changeStateInstructions(){

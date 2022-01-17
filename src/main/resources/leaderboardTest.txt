@@ -8,8 +8,8 @@
 || 6  - Destroyer         02000 ||
 || 7  - ErenJagger        01696 ||
 || 8  - yellena           00220 ||
-|| 9  - Teo               00170 ||
-|| 10 - anabelle          00110 ||
+|| 9  - ZeNabo            00100 ||
+|| 10 - esteves           00020 ||
 ||                              ||
 ||    PRESS ESC TO GO BACK      ||
 ==================================
