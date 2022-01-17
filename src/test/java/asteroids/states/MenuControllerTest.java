@@ -1,10 +1,5 @@
-package asteroids.control.states;
+package asteroids.states;
 
-import asteroids.states.ApplicationState;
-import asteroids.states.MenuController;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
 import asteroids.control.Controller;
 import asteroids.model.Menu.Menu;
 import asteroids.model.Menu.MenuItem;
@@ -16,7 +11,6 @@ import org.mockito.Mockito;
 import asteroids.view.screens.ScreenView;
 
 import java.awt.*;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
@@ -113,7 +107,7 @@ public class MenuControllerTest extends Assertions {
 
         // then
         Mockito.verify(screenViewMock, Mockito.times(1)).close();
-        Mockito.verify(screenViewMock, Mockito.times(1)).addKeyListenner(menuControllerSpy);
+        Mockito.verify(screenViewMock, Mockito.times(1)).removeKeyListenner(menuControllerSpy);
 
     }
 

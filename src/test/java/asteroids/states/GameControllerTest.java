@@ -1,12 +1,6 @@
-package asteroids.control.states;
+package asteroids.states;
 
 import asteroids.model.Entities.Player;
-import asteroids.states.ApplicationState;
-import asteroids.states.GameController;
-import asteroids.states.GameOverController;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
 import asteroids.control.Controller;
 import asteroids.control.PlayerController;
 import asteroids.model.GameModel;

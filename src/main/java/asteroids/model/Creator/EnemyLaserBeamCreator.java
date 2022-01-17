@@ -9,7 +9,10 @@ import asteroids.model.Vector2d;
 
 import java.util.List;
 
+import static java.lang.Math.signum;
+
 public class EnemyLaserBeamCreator extends Creator {
+
     private final Player player;
     private final EnemyShip enemyShip;
     private final List<MovingObject> entities;
@@ -18,6 +21,14 @@ public class EnemyLaserBeamCreator extends Creator {
         this.player = player;
         this.enemyShip = enemyShip;
         this.entities = entities;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public EnemyShip getEnemyShip() {
+        return enemyShip;
     }
 
     public List<MovingObject> getEntities() {
@@ -29,7 +40,7 @@ public class EnemyLaserBeamCreator extends Creator {
         Vector2d velocity = new Vector2d(player.getPosition().getX() - enemyShip.getPosition().getX(),
                 player.getPosition().getY() - enemyShip.getPosition().getY());
         double angle = Math.acos(velocity.dotProduct(new Vector2d(1,0))/velocity.module());
-        if(velocity.getY() < 0)
+        if(signum(velocity.getY()) == -1)
             angle = Math.PI*2 - angle;
 
         int laserWidth = 3;

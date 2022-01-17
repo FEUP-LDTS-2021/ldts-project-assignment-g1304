@@ -59,7 +59,6 @@ public class MovingObjectsTest extends Assertions {
         object.update(1000);
 
         Mockito.verify(object, Mockito.times(1)).goFoward(1000);
-
     }
 
     @Test

@@ -66,7 +66,7 @@ public class Hud extends View{
 
     void drawLives(int nLives){
         int x = Constants.HEIGHT - 10;
-        for (int i = 0; i < nLives ; i++)
+        for (int i = 0; i <= nLives-1 ; i++)
             drawPlayer(new Position(x - Player.raio*2*i, Player.raio + 5));
     }
 

@@ -53,6 +53,7 @@ public class LaserBeamCreatorTest extends Assertions {
         //then
         assertEquals((int)(x-laserBeam.getWidth()/2), laserBeam.getPosition().getX());
         assertEquals((int)(y-laserBeam.getHeight()/2), laserBeam.getPosition().getY());
+        assertTrue(laserBeam.isPlayerBeam());
 
     }
 

@@ -16,29 +16,26 @@ public class AsteroidCreator extends Creator {
 
     @Override
     public Asteroid create() {
-        int rangeMin = 0;
         int rangeMax = Constants.WIDTH;
         Position randomPosition = new Position(0.0,0.0);
         switch (rand.nextInt(4)){
             case 0:
-                randomPosition.setX(0.0);
-                randomPosition.setY(rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
+                randomPosition.setY(rangeMax * rand.nextDouble());
                 break;
             case 1:
-                randomPosition.setX(rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
-                randomPosition.setY(0.0);
+                randomPosition.setX(rangeMax * rand.nextDouble());
                 break;
             case 2:
                 randomPosition.setX(rangeMax);
-                randomPosition.setY(rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
+                randomPosition.setY(rangeMax * rand.nextDouble());
                 break;
             case 3:
-                randomPosition.setX(rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
+                randomPosition.setX(rangeMax * rand.nextDouble());
                 randomPosition.setY(rangeMax);
                 break;
         }
         rangeMax = 20;
-        rangeMin = -20;
+        int rangeMin = -20;
         Vector2d randomVelocity = new Vector2d(rangeMin + (rangeMax - rangeMin) * rand.nextDouble(),
                 rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
         randomVelocity.resize(30 + 50 * rand.nextDouble());

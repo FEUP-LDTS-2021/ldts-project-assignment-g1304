@@ -13,6 +13,8 @@ public class AsteroidSpawnerTest extends Assertions {
     void createAsteroidSpawner() {
         //given
         List<MovingObject> entities = new ArrayList<>();
+        Player playerMock = Mockito.mock(Player.class);
+        entities.add(playerMock);
 
         //when
         AsteroidSpawner asteroidSpawner = new AsteroidSpawner(entities);

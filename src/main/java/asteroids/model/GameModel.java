@@ -65,11 +65,11 @@ public class GameModel {
                     c1.dies();
                     c2.dies();
 
-                    if (c1 instanceof Asteroid) {
+                    if (c1 instanceof Asteroid)
                         asteroidSplitter((Asteroid) c1);
-                    } else if (c2 instanceof Asteroid) {
+                    else if (c2 instanceof Asteroid)
                         asteroidSplitter((Asteroid) c2);
-                    }
+
                 }
             }
         }
@@ -77,8 +77,6 @@ public class GameModel {
     }
 
     private void getScore(MovingObject c1, MovingObject c2) {
-        if (!c1.isAlive() || !c2.isAlive())
-            return;
 
         boolean hitByPlayer = c1 instanceof Player;
         boolean hitByLaserPlayer = c1 instanceof LaserBeam && ((LaserBeam) c1).isPlayerBeam();

@@ -1,8 +1,10 @@
 package asteroids.view.screens;
 
+import asteroids.model.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import asteroids.model.Menu.MenuItem;
+import com.googlecode.lanterna.terminal.Terminal;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -103,6 +105,19 @@ public class MenuItemViewTest extends Assertions {
         assertEquals(l, MenuItem.LeaderBoard);
         assertEquals(e, MenuItem.Exit);
 
+    }
+
+    @Test
+    void getTerminalPosition() {
+        //given
+        TerminalPosition terminalPositionMock = Mockito.mock(TerminalPosition.class);
+        MenuItemView play = new MenuItemView(MenuItem.Play);
+
+        //when
+        play.setPosition(terminalPositionMock);
+
+        //then
+        assertEquals(terminalPositionMock, play.getPosition());
     }
 
 }

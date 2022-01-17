@@ -43,7 +43,7 @@ public class LaserBeamTest extends Assertions {
         Mockito.when(positionMock.getX()).thenReturn(10.0);
         Mockito.when(positionMock.getY()).thenReturn(20.0);
         LaserBeam l = new LaserBeam(positionMock, 30.0, 3, 3);
-        assertTrue(l.isKillTime(1500));
+        assertTrue(l.isKillTime(1100));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class LaserBeamTest extends Assertions {
     @Test
     void updateDies() {
         LaserBeam laserBeam = Mockito.spy(new LaserBeam(new Position(10.0, 10.0), 40.0, 3, 3));
-        laserBeam.update(1500);
+        laserBeam.update(1100);
         Mockito.verify(laserBeam, Mockito.times(1)).dies();
     }
 

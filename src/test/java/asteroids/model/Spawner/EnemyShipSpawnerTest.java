@@ -27,6 +27,22 @@ public class EnemyShipSpawnerTest extends Assertions {
         assertEquals(0,enemyShipSpawner.getTimePassed());
         assertEquals(playerMock,enemyShipSpawner.getPlayer());
     }
+
+    @Test
+    void isNotSpawnTime(){
+        //given
+        Player playerMock = Mockito.mock(Player.class);
+        List<MovingObject> entitiesMock = List.of(playerMock);
+
+        //when
+        EnemyShipSpawner enemyShipSpawner = new EnemyShipSpawner(playerMock, entitiesMock);
+        boolean time = enemyShipSpawner.isSpawnTime(4999);
+
+        //then
+        assertFalse(time);
+        assertEquals(4999,enemyShipSpawner.getTimePassed());
+    }
+
     @Test
     void isSpawnTime(){
         //given
@@ -35,12 +51,10 @@ public class EnemyShipSpawnerTest extends Assertions {
 
         //when
         EnemyShipSpawner enemyShipSpawner = new EnemyShipSpawner(playerMock, entitiesMock);
-        boolean firstTime = enemyShipSpawner.isSpawnTime(4999);
-        boolean secondTime = enemyShipSpawner.isSpawnTime(1);
+        boolean time = enemyShipSpawner.isSpawnTime(5000);
 
         //then
-        assertTrue(secondTime);
-        assertFalse(firstTime);
+        assertTrue(time);
         assertEquals(0,enemyShipSpawner.getTimePassed());
     }
 

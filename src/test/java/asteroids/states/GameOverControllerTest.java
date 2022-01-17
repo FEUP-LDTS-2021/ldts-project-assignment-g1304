@@ -1,4 +1,4 @@
-package asteroids.control.states;
+package asteroids.states;
 
 import asteroids.control.Controller;
 import asteroids.states.ApplicationState;
