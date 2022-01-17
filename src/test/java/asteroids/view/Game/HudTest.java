@@ -279,7 +279,7 @@ public class HudTest extends Assertions {
         Mockito.verify(hud, Mockito.times(1)).drawPlayer(position1);
         Mockito.verify(hud, Mockito.times(1)).drawPlayer(position2);
         Mockito.verify(hud, Mockito.times(1)).drawPlayer(position3);
+        Mockito.verify(hud, Mockito.times(3)).drawPlayer(Mockito.any());
 
     }
-
 }
