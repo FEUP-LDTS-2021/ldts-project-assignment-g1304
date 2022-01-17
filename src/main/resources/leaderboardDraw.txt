@@ -7,9 +7,9 @@
 || 5  - MVCforTheWin      09005 ||
 || 6  - Destroyer         02000 ||
 || 7  - ErenJagger        01696 ||
-|| 8  - yellena           00220 ||
-|| 9  - Teo               00170 ||
-|| 10 - anabelle          00110 ||
+|| 8  - AntonioZe         00860 ||
+|| 9  - yellena           00220 ||
+|| 10 - Teo               00170 ||
 ||                              ||
 ||    PRESS ESC TO GO BACK      ||
 ==================================
