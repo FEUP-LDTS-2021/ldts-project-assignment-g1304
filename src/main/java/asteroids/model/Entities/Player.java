@@ -13,6 +13,7 @@ public class Player extends MovingObject {
     public static final double raio = 10;
     public static final double acelaration = 250.0;
     public static final double MAX_VELOCITY = 175.0;
+    public static final int MAX_SCORE = 99990;
     public static final double angularVelocity = Math.PI*1.5;
     public final Position beginPosition;
 
@@ -22,6 +23,7 @@ public class Player extends MovingObject {
     private boolean shoot;
     private LaserBeamCreator laserBeamCreator;
     private int score;
+    private int scoreLife;
     private int lives;
 
     public Player(Position position){
@@ -33,6 +35,7 @@ public class Player extends MovingObject {
         this.shoot = false;
         this.laserBeamCreator = null;
         this.score = 0;
+        this.scoreLife = 0;
         this.lives = 3;
     }
 
@@ -135,5 +138,10 @@ public class Player extends MovingObject {
 
     public int getLives() {
         return lives;
+    }
+    public void extraLife();
+
+    public int getScoreLife() {
+        return scoreLife;
     }
 }
