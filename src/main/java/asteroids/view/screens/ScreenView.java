@@ -3,7 +3,6 @@ package asteroids.view.screens;
 import asteroids.Color;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
@@ -48,10 +47,6 @@ public abstract class ScreenView{
         ((AWTTerminalFrame)getScreen().getTerminal()).getComponent(0).removeKeyListener(keyListener);
     }
 
-    public void setColor(Color color){
-        getGraphics().setForegroundColor(color.getColor());
-    }
-
     public abstract void draw() throws IOException;
 
     public TerminalScreen getScreen() {
@@ -68,8 +63,16 @@ public abstract class ScreenView{
         getScreen().close();
     }
 
+    public void setForegroundColor(Color color){
+        getGraphics().setForegroundColor(color.getColor());
+    }
+
+    public void setBackgroundColor(Color color){
+        getGraphics().setBackgroundColor(color.getColor());
+    }
+
     public void clear() {
-        getGraphics().setBackgroundColor(TextColor.Factory.fromString("#000000"));
+        setBackgroundColor(Color.Black);
         getGraphics().fillRectangle(new TerminalPosition(0, 0), getSize(), ' ');
     }
 

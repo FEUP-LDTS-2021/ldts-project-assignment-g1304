@@ -33,7 +33,7 @@ public class InstructionScreen extends ScreenView{
             while (myReader.hasNextLine()) {
                 String line = myReader.nextLine();
 
-                setColor(Color.White);
+                setForegroundColor(Color.White);
                 printLine(line, PADDING_X, y);
                 if (List.of(3, 13, 21).contains(y))
                     drawRedLine(line, y);
@@ -48,7 +48,7 @@ public class InstructionScreen extends ScreenView{
     }
 
     private void drawRedLine(String line, int y){
-        setColor(Color.Red);
+        setForegroundColor(Color.Red);
         int beginBorder = line.indexOf("||") + 2;
         int endBorder = line.indexOf("||", beginBorder);
         printLine(line.substring(beginBorder, endBorder), PADDING_X + beginBorder, y);

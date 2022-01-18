@@ -1,5 +1,6 @@
 package asteroids.view.Game;
 
+import asteroids.Color;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -15,7 +16,7 @@ public class LaserView extends View {
 
     @Override
     public void draw(){
-        getGraphics().setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        setBackgroundColor(Color.White);
         TerminalPosition terminalPosition = new TerminalPosition((int)(
                 laserBeam.getPosition().getX()), (int)(laserBeam.getPosition().getY()));
                 TerminalSize size = new TerminalSize((int)laserBeam.getWidth(), (int)laserBeam.getHeight());

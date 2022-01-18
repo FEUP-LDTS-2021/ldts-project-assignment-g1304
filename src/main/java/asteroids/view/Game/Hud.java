@@ -1,5 +1,6 @@
 package asteroids.view.Game;
 
+import asteroids.Color;
 import asteroids.Constants;
 import asteroids.model.Entities.Player;
 import asteroids.model.GameModel;
@@ -80,7 +81,7 @@ public class Hud extends View{
     }
 
     void drawScore(int score){
-        getGraphics().setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        setBackgroundColor(Color.White);
 
         // draw "Score" string
         draw(getScoreString(), 10, 10);

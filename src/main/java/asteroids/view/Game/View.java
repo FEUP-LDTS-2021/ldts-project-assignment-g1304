@@ -1,5 +1,6 @@
 package asteroids.view.Game;
 
+import asteroids.Color;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.io.IOException;
@@ -18,4 +19,11 @@ public abstract class View {
 
     public abstract void draw() throws IOException;
 
+    public void setForegroundColor(Color color){
+        getGraphics().setForegroundColor(color.getColor());
+    }
+
+    public void setBackgroundColor(Color color){
+        getGraphics().setBackgroundColor(color.getColor());
+    }
 }
