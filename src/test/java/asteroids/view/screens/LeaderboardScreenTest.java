@@ -46,7 +46,7 @@ public class LeaderboardScreenTest extends Assertions {
 
         // then
         Mockito.verify(leaderboardScreen, Mockito.times(1)).clear();
-        Mockito.verify(leaderboardScreen, Mockito.times(36)).getGraphics();
+        Mockito.verify(leaderboardScreen, Mockito.times(34)).getGraphics();
         Mockito.verify(leaderboardScreen, Mockito.times(1)).refresh();
     }
 }

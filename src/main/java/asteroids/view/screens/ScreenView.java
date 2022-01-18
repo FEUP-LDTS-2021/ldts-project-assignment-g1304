@@ -1,5 +1,6 @@
 package asteroids.view.screens;
 
+import asteroids.Color;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -47,8 +48,8 @@ public abstract class ScreenView{
         ((AWTTerminalFrame)getScreen().getTerminal()).getComponent(0).removeKeyListener(keyListener);
     }
 
-    public void setColor(String color){
-        getGraphics().setForegroundColor(TextColor.Factory.fromString(color));
+    public void setColor(Color color){
+        getGraphics().setForegroundColor(color.getColor());
     }
 
     public abstract void draw() throws IOException;

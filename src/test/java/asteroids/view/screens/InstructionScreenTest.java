@@ -48,7 +48,7 @@ public class InstructionScreenTest extends Assertions {
 
         // then
         Mockito.verify(instructionScreen, Mockito.times(1)).clear();
-        Mockito.verify(instructionScreen, Mockito.times(58)).getGraphics();
+        Mockito.verify(instructionScreen, Mockito.times(52)).getGraphics();
         Mockito.verify(instructionScreen, Mockito.times(1)).refresh();
     }
 }

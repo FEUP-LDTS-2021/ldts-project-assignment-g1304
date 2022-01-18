@@ -48,7 +48,7 @@ public class GameOverScreenTest extends Assertions {
 
         // then
         Mockito.verify(gameOverScreen, Mockito.times(1)).clear();
-        Mockito.verify(gameOverScreen, Mockito.times(10)).getGraphics();
+        Mockito.verify(gameOverScreen, Mockito.times(8)).getGraphics();
         Mockito.verify(gameOverScreen, Mockito.times(1)).refresh();
     }
     @Test

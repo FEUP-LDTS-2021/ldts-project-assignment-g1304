@@ -1,5 +1,7 @@
 package asteroids.view.Game;
 
+import asteroids.Color;
+import asteroids.Constants;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -15,7 +17,7 @@ public class AsteroidView extends View {
 
     @Override
     public void draw(){
-        getGraphics().setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        getGraphics().setBackgroundColor(Color.White.getColor());
         getGraphics().drawRectangle(new TerminalPosition((int)asteroid.getPosition().getX(),
                         (int)asteroid.getPosition().getY()),
                 new TerminalSize((int)asteroid.getWidth(), (int)asteroid.getHeight()),' ');

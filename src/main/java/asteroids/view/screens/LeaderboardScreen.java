@@ -1,5 +1,6 @@
 package asteroids.view.screens;
 
+import asteroids.Color;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -31,7 +32,7 @@ public class LeaderboardScreen extends ScreenView {
             while (myReader.hasNextLine()) {
                 String line = myReader.nextLine();
 
-                setColor("#FFFFFF");
+                setColor(Color.White);
                 printLine(line, PADDING_X, y);
                 if (y == PADDING_Y+13)
                     drawRedLine(line, y);
@@ -46,7 +47,7 @@ public class LeaderboardScreen extends ScreenView {
     }
 
     private void drawRedLine(String line, int y){
-        setColor("#FF0000");
+        setColor(Color.Red);
         int beginBorder = line.indexOf("||") + 2;
         int endBorder = line.indexOf("||", beginBorder);
         printLine(line.substring(beginBorder, endBorder), PADDING_X + beginBorder, y);
