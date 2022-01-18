@@ -65,12 +65,13 @@ public class GameOverControllerTest extends Assertions {
     @Test
     void processEnterKey(){
         //given
+        Mockito.doNothing().when(gameOverControllerSpy).updateLeaderboard(Mockito.anyString());
         KeyEvent enter = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0, KeyEvent.VK_ENTER, '\n');
         //when
         gameOverControllerSpy.keyPressed(enter);
 
         //then
-        Mockito.verify(gameOverControllerSpy, Mockito.times(1)).updateLeaderboard(Mockito.anyString());
+        Mockito.verify(gameOverControllerSpy, Mockito.times(1)).updateLeaderboard(Constants.LEADERBOARD_FILE);
     }
     @Test
     void startRun() throws IOException {

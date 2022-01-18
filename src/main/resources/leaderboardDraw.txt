@@ -7,9 +7,9 @@
 || 5  - MVCforTheWin      09005 ||
 || 6  - Destroyer         02000 ||
 || 7  - ErenJagger        01696 ||
-|| 8  - ola               01630 ||
-|| 9  - aaaaaaa           01080 ||
-|| 10 - AntonioZe         00860 ||
+|| 8  - Player1           00060 ||
+|| 9  - ola               00030 ||
+|| 10 - aaaaaaa           00020 ||
 ||                              ||
 ||    PRESS ESC TO GO BACK      ||
 ==================================

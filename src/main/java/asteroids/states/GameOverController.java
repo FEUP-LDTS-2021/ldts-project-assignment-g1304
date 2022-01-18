@@ -86,8 +86,7 @@ public class GameOverController implements StateController, KeyListener {
         int newRank = 0;
 
         try {
-            String rootPath = new File(System.getProperty("user.dir")).getPath();
-            File myObj = new File(rootPath+path);
+            File myObj = new File(Constants.ROOT+path);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
@@ -102,7 +101,6 @@ public class GameOverController implements StateController, KeyListener {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
         }
         if(newRank > 0 && newRank <= 10) { // se ficar nos 10 melhores
@@ -120,8 +118,7 @@ public class GameOverController implements StateController, KeyListener {
 
     public void writeLeaderboard(String path) {
         try {
-            String rootPath = new File(System.getProperty("user.dir")).getPath();
-            FileWriter myWriter = new FileWriter(rootPath+path);
+            FileWriter myWriter = new FileWriter(Constants.ROOT+path);
             myWriter.write("======L E A D E R B O A R D=======\n");
             myWriter.write("||                              ||\n");
 
@@ -137,9 +134,7 @@ public class GameOverController implements StateController, KeyListener {
             myWriter.write("||    PRESS ESC TO GO BACK      ||\n");
             myWriter.write("==================================\n");
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }

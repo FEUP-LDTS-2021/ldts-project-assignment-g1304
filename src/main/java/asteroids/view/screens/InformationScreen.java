@@ -42,7 +42,7 @@ public class InformationScreen extends ScreenView{
 
             y++;
         }
-        //myReader.close();
+        myReader.close();
         refresh();
     }
 
