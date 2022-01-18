@@ -1,7 +1,5 @@
 package asteroids.view.screens;
 
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import org.junit.jupiter.api.Assertions;
@@ -19,22 +17,7 @@ public class LeaderboardScreenTest extends Assertions {
         leaderboardScreen = Mockito.spy(new LeaderboardScreen());
     }
 
-    @Test
-    void getTerminalPosition(){
-        //given
-        TerminalSize size = new TerminalSize(50,40);
-        int strlen = 20;
-        TerminalPosition position = new TerminalPosition(size.getColumns()/2-strlen/2, size.getRows());
 
-        Mockito.doReturn(size).when(leaderboardScreen).getSize();
-
-        // when
-        TerminalPosition p = leaderboardScreen.getTerminalPosition(size.getRows(), strlen);
-
-        //then
-        assertEquals(p, position);
-
-    }
     @Test
     void draw() throws IOException {
         TextGraphics graphics = Mockito.mock(TextGraphics.class);

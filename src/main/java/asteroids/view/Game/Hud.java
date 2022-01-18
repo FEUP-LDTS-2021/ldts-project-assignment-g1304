@@ -103,8 +103,8 @@ public class Hud extends View{
             for(int x = 0; x < line.length(); x++){
                 if(line.charAt(x)=='#')
                     getGraphics().fillRectangle(new TerminalPosition(x*CHAR_WIDTH + paddingX,
-                                    y*CHAR_HEIGHT+ paddingY),
-                            new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');
+                                                                        y*CHAR_HEIGHT+ paddingY),
+                                            new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');
             }
             y++;
         }
