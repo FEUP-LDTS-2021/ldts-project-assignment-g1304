@@ -7,7 +7,6 @@ import asteroids.model.GameModel;
 import asteroids.model.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 
 import java.io.*;
 import java.net.URISyntaxException;

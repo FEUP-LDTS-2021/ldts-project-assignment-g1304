@@ -1,8 +1,7 @@
 package asteroids.states;
 
+import asteroids.Constants;
 import asteroids.control.Controller;
-import asteroids.states.ApplicationState;
-import asteroids.states.GameOverController;
 import asteroids.view.screens.GameOverScreen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import org.junit.jupiter.api.Assertions;
@@ -148,7 +147,7 @@ public class GameOverControllerTest extends Assertions {
     @Test
     void updateLeaderboard(){
         //given
-        Mockito.doNothing().when(gameOverControllerSpy).writeLeaderboard("src/main/resources/leaderboardTest.txt");
+        Mockito.doNothing().when(gameOverControllerSpy).writeLeaderboard("/src/test/resources/leaderboardTest.txt");
         List<Integer> expectedScore = new ArrayList<>(List.of(99990,50012,20321,14975,9005,2001,2000,1696,220,100));
         List<String> expectedNick = new ArrayList<>(List.of("Asian5yoBoy       ","JonasGameplays    ","Mr.Batolas        ",
                 "Rui_Silva         ","MVCforTheWin      ","                  ","Destroyer         ","ErenJagger        ","yellena           ",
@@ -156,7 +155,7 @@ public class GameOverControllerTest extends Assertions {
 
         //when
         gameOverControllerSpy.setScore(2001);
-        gameOverControllerSpy.updateLeaderboard("leaderboardTest.txt");
+        gameOverControllerSpy.updateLeaderboard("/src/test/resources/leaderboardTest.txt");
 
         //then
         for(int i = 0; i < expectedNick.size();i++){
@@ -177,16 +176,15 @@ public class GameOverControllerTest extends Assertions {
         //when
         gameOverController.setScoreList(expectedScore);
         gameOverController.setName(expectedNick);
-        gameOverController.writeLeaderboard("src/main/resources/FilesForTests/leaderboardTest2.txt");
+        gameOverController.writeLeaderboard("/src/test/resources/leaderboardTest2.txt");
 
         //then
         try {
-        String rootPath = new File(System.getProperty("user.dir")).getPath();
-        String filePath= rootPath + "/src/main/resources/FilesForTests/leaderboardTest1.txt";
+        String filePath= Constants.ROOT + "/src/test/resources/leaderboardTest1.txt";
         File myObj1 = new File(filePath);
         Scanner myReader1 = new Scanner(myObj1);
-        String rootPath2 = new File(System.getProperty("user.dir")).getPath();
-        String filePath2= rootPath2 + "/src/main/resources/FilesForTests/leaderboardTest2.txt";
+
+        String filePath2= Constants.ROOT + "/src/test/resources/leaderboardTest2.txt";
         File myObj2 = new File(filePath2);
         Scanner myReader2 = new Scanner(myObj2);
 
@@ -198,13 +196,12 @@ public class GameOverControllerTest extends Assertions {
         myReader1.close();                  //function that's being tested
         myReader2.close();
 
-        File file = new File("src/main/resources/FilesForTests/leaderboardTest2.txt");
+        File file = new File(Constants.ROOT + "/src/test/resources/leaderboardTest2.txt");
         PrintWriter writer = new PrintWriter(file);
         writer.print("");                              //cleaning the file to ensure
         writer.close();                                //the proper functioning of the test
         } catch (FileNotFoundException e) {            //for the next time running it
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            assert false;
         }
 
     }

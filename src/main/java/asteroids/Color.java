@@ -7,7 +7,7 @@ public enum Color{
     Black(TextColor.Factory.fromString("#000000")),
     Red(TextColor.Factory.fromString("#FF0000"));
 
-    TextColor color;
+    private final TextColor color;
     Color(TextColor color){
         this.color = color;
     }

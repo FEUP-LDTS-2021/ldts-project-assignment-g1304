@@ -8,8 +8,8 @@
 || 6  - Destroyer         02000 ||
 || 7  - ErenJagger        01696 ||
 || 8  - ola               01630 ||
-|| 9  - AntonioZe         00860 ||
-|| 10 - ola               00440 ||
+|| 9  - aaaaaaa           01080 ||
+|| 10 - AntonioZe         00860 ||
 ||                              ||
 ||    PRESS ESC TO GO BACK      ||
 ==================================

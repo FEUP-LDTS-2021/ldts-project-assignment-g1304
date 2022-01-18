@@ -1,35 +1,32 @@
 package asteroids.view.screens;
 
 import asteroids.Color;
+import asteroids.Constants;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 
 import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class InformationScreen extends ScreenView{
+public class InformationScreen extends ScreenView{
     private static final Font font = new Font(Font.MONOSPACED, Font.PLAIN, 20);
     private final int PADDING_X;
     private final int PADDING_Y;
 
     private final List<Integer> redLines;
-    private File informationFile;
+    private final File informationFile;
 
     public InformationScreen( List<Integer> redLines, String path, int paddingX, int paddingY) {
         setFont(font);
         PADDING_X = paddingX;
         PADDING_Y = paddingY;
         this.redLines = redLines;
-        try {
-            informationFile = new File(getClass().getClassLoader().getResource(path).toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        informationFile = new File(Constants.ROOT+path);
     }
+
     @Override
     public void draw() throws IOException {
         clear();
@@ -38,15 +35,14 @@ public abstract class InformationScreen extends ScreenView{
         int y = PADDING_Y;
         while (myReader.hasNextLine()) {
             String line = myReader.nextLine();
-
-            setForegroundColor(asteroids.Color.White);
+            setForegroundColor(Color.White);
             printLine(line, PADDING_X, y);
             if (redLines.contains(y))
                 drawRedLine(line, y);
 
             y++;
         }
-        myReader.close();
+        //myReader.close();
         refresh();
     }
 

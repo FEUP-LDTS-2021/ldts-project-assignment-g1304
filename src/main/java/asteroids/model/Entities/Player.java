@@ -52,6 +52,7 @@ public class Player extends MovingObject {
         return raio;
     }
 
+    @Override
     public void update(long dt){
         angle += rotation.getValue()*angularVelocity*dt/1000;
 
