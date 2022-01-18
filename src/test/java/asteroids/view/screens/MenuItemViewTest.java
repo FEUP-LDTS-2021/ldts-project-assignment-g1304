@@ -56,7 +56,7 @@ public class MenuItemViewTest extends Assertions {
         menuItemView.drawSelected();
 
         //then
-        Mockito.verify(graphics).setForegroundColor(MenuItemView.selectedColor);
+        Mockito.verify(graphics).setForegroundColor(MenuItemView.selectedColor.getColor());
         Mockito.verify(graphics).putString(position, menuItemView.getMenuItem().toString());
     }
 
@@ -67,7 +67,7 @@ public class MenuItemViewTest extends Assertions {
         menuItemView.drawNotSelected();
 
         //then
-        Mockito.verify(graphics).setForegroundColor(MenuItemView.notSelectedColor);
+        Mockito.verify(graphics).setForegroundColor(MenuItemView.notSelectedColor.getColor());
         Mockito.verify(graphics).putString(position, menuItemView.getMenuItem().toString());
     }
 

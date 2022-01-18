@@ -1,5 +1,6 @@
 package asteroids.view.Game;
 
+import asteroids.Color;
 import asteroids.model.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
@@ -23,7 +24,7 @@ public class PlayerView extends View {
 
     @Override
     public void draw(){
-        getGraphics().setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        setBackgroundColor(Color.White);
         Position position = new Position(player.getPosition().getX(), player.getPosition().getY());
 
         double anglePontaNave = player.getAngle();

@@ -7,9 +7,9 @@
 || 5  - MVCforTheWin      09005 ||
 || 6  - Destroyer         02000 ||
 || 7  - ErenJagger        01696 ||
-|| 8  - AntonioZe         00860 ||
-|| 9  - golias            00530 ||
-|| 10 - yellena           00220 ||
+|| 8  - JoaopLayer        01390 ||
+|| 9  - AntonioZe         00860 ||
+|| 10 - golias            00530 ||
 ||                              ||
 ||    PRESS ESC TO GO BACK      ||
 ==================================

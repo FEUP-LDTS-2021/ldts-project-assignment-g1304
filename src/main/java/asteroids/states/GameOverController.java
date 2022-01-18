@@ -1,5 +1,6 @@
 package asteroids.states;
 
+import asteroids.Constants;
 import asteroids.control.Controller;
 import asteroids.view.screens.GameOverScreen;
 
@@ -75,7 +76,7 @@ public class GameOverController implements StateController, KeyListener {
             }
         }
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
-            updateLeaderboard("leaderboardDraw.txt");
+            updateLeaderboard(Constants.LEADERBOARD_FILE);
             nextState();
         }
     }
@@ -85,7 +86,7 @@ public class GameOverController implements StateController, KeyListener {
         int newRank = 0;
 
         try {
-            File myObj = new File(getClass().getClassLoader().getResource(path).toURI());
+            File myObj = new File(Constants.ROOT+path);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
@@ -99,8 +100,7 @@ public class GameOverController implements StateController, KeyListener {
                 }
             }
             myReader.close();
-        } catch (FileNotFoundException | URISyntaxException e) {
-            System.out.println("An error occurred.");
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         if(newRank > 0 && newRank <= 10) { // se ficar nos 10 melhores
@@ -113,12 +113,12 @@ public class GameOverController implements StateController, KeyListener {
             name.remove(10);
         }
 
-        writeLeaderboard("src/main/resources/" + path);
+        writeLeaderboard(path);
     }
 
     public void writeLeaderboard(String path) {
         try {
-            FileWriter myWriter = new FileWriter(path);
+            FileWriter myWriter = new FileWriter(Constants.ROOT+path);
             myWriter.write("======L E A D E R B O A R D=======\n");
             myWriter.write("||                              ||\n");
 
@@ -134,9 +134,7 @@ public class GameOverController implements StateController, KeyListener {
             myWriter.write("||    PRESS ESC TO GO BACK      ||\n");
             myWriter.write("==================================\n");
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }

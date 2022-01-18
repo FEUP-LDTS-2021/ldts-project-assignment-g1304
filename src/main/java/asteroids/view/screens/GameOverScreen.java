@@ -1,5 +1,6 @@
 package asteroids.view.screens;
 
+import asteroids.Color;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -24,14 +25,14 @@ public class GameOverScreen extends ScreenView {
         String gameOver = "G A M E   O V E R";
         String score = "Score : " + scoreValue;
         String outputName = "Enter your name:";
-        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FF0000"));
+        setForegroundColor(Color.Red);
         getGraphics().putString(getTerminalPosition(0.3, gameOver.length()), gameOver);
-        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FF0000"));
         getGraphics().putString(getTerminalPosition(0.4, score.length()), score);
-        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+
+        setForegroundColor(Color.White);
         getGraphics().putString(getTerminalPosition(0.6, outputName.length()), outputName);
-        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         getGraphics().putString(getTerminalPosition(0.7, nickNameSpaces.length()), nickNameSpaces);
+
         refresh();
     }
 

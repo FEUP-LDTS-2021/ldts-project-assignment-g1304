@@ -1,12 +1,12 @@
 package asteroids.view.Game;
 
+import asteroids.Color;
 import asteroids.Constants;
 import asteroids.model.Entities.Player;
 import asteroids.model.GameModel;
 import asteroids.model.Position;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -80,7 +80,7 @@ public class Hud extends View{
     }
 
     void drawScore(int score){
-        getGraphics().setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        setBackgroundColor(Color.White);
 
         // draw "Score" string
         draw(getScoreString(), 10, 10);
@@ -102,8 +102,8 @@ public class Hud extends View{
             for(int x = 0; x < line.length(); x++){
                 if(line.charAt(x)=='#')
                     getGraphics().fillRectangle(new TerminalPosition(x*CHAR_WIDTH + paddingX,
-                                    y*CHAR_HEIGHT+ paddingY),
-                            new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');
+                                                                        y*CHAR_HEIGHT+ paddingY),
+                                            new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');
             }
             y++;
         }
