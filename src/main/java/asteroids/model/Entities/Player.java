@@ -65,8 +65,10 @@ public class Player extends MovingObject {
         }
 
         super.update(dt);       // andar para a frente
-        if (isShooting())
+        if (isShooting()) {
             getLaserBeamCreator().addLaserBeam(getLaserBeamCreator().create());
+            shoot = false;
+        }
     }
 
     @Override

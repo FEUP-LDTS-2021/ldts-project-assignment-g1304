@@ -181,27 +181,27 @@ public class GameOverControllerTest extends Assertions {
 
         //then
         try {
-        String rootPath = new File(System.getProperty("user.dir")).getPath();
-        String filePath= rootPath + "/src/main/resources/FilesForTests/leaderboardTest1.txt";
-        File myObj1 = new File(filePath);
-        Scanner myReader1 = new Scanner(myObj1);
-        String rootPath2 = new File(System.getProperty("user.dir")).getPath();
-        String filePath2= rootPath2 + "/src/main/resources/FilesForTests/leaderboardTest2.txt";
-        File myObj2 = new File(filePath2);
-        Scanner myReader2 = new Scanner(myObj2);
+            String rootPath = new File(System.getProperty("user.dir")).getPath();
+            String filePath= rootPath + "/src/main/resources/FilesForTests/leaderboardTest1.txt";
+            File myObj1 = new File(filePath);
+            Scanner myReader1 = new Scanner(myObj1);
+            String rootPath2 = new File(System.getProperty("user.dir")).getPath();
+            String filePath2= rootPath2 + "/src/main/resources/FilesForTests/leaderboardTest2.txt";
+            File myObj2 = new File(filePath2);
+            Scanner myReader2 = new Scanner(myObj2);
 
-        while (myReader1.hasNextLine()) {
-            String data1 = myReader1.nextLine();
-            String data2 = myReader2.nextLine();
-            assertEquals(data1,data2);      //comparing the expected file leaderboardTest1.txt
-        }                                   //with the file leaderboardTest2.txt written by the
-        myReader1.close();                  //function that's being tested
-        myReader2.close();
+            while (myReader1.hasNextLine()) {
+                String data1 = myReader1.nextLine();
+                String data2 = myReader2.nextLine();
+                assertEquals(data1,data2);      //comparing the expected file leaderboardTest1.txt
+            }                                   //with the file leaderboardTest2.txt written by the
+            myReader1.close();                  //function that's being tested
+            myReader2.close();
 
-        File file = new File("src/main/resources/FilesForTests/leaderboardTest2.txt");
-        PrintWriter writer = new PrintWriter(file);
-        writer.print("");                              //cleaning the file to ensure
-        writer.close();                                //the proper functioning of the test
+            File file = new File("src/main/resources/FilesForTests/leaderboardTest2.txt");
+            PrintWriter writer = new PrintWriter(file);
+            writer.print("");                              //cleaning the file to ensure
+            writer.close();                                //the proper functioning of the test
         } catch (FileNotFoundException e) {            //for the next time running it
             System.out.println("An error occurred.");
             e.printStackTrace();

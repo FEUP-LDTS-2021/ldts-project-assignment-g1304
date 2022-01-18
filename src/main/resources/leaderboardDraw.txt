@@ -8,8 +8,8 @@
 || 6  - Destroyer         02000 ||
 || 7  - ErenJagger        01696 ||
 || 8  - AntonioZe         00860 ||
-|| 9  - yellena           00220 ||
-|| 10 - Teo               00170 ||
+|| 9  - golias            00530 ||
+|| 10 - yellena           00220 ||
 ||                              ||
 ||    PRESS ESC TO GO BACK      ||
 ==================================

@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 public class PlayerController implements KeyListener {
 
     public Player player;
+    boolean canShoot = true;
 
     public PlayerController(Player player){
         this.player = player;
@@ -22,10 +23,21 @@ public class PlayerController implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT -> player.setRotation(Rotation.Left);
-            case KeyEvent.VK_RIGHT -> player.setRotation(Rotation.Right);
-            case KeyEvent.VK_UP -> player.setAcelerate(true);
-            case KeyEvent.VK_SPACE -> player.setShoot(true);
+            case KeyEvent.VK_LEFT:
+                player.setRotation(Rotation.Left);
+                break;
+            case KeyEvent.VK_RIGHT:
+                player.setRotation(Rotation.Right);
+                break;
+            case KeyEvent.VK_UP:
+                player.setAcelerate(true);
+                break;
+            case KeyEvent.VK_SPACE:
+                if(canShoot){
+                    player.setShoot(true);
+                    canShoot = false;
+                }
+                break;
         }
     }
 
@@ -45,6 +57,7 @@ public class PlayerController implements KeyListener {
                 break;
             case KeyEvent.VK_SPACE:
                 player.setShoot(false);
+                canShoot = true;
                 break;
         }
     }
