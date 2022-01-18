@@ -124,7 +124,12 @@ public class Player extends MovingObject {
     }
 
     public void addScore(int score){
-        this.score += score;
+        if(this.score + score > MAX_SCORE)
+            this.score = MAX_SCORE;
+        else
+            this.score += score;
+        this.scoreLife += score;
+        extraLife();
     }
 
     @Override
@@ -139,7 +144,12 @@ public class Player extends MovingObject {
     public int getLives() {
         return lives;
     }
-    public void extraLife();
+    public void extraLife(){
+        if(scoreLife >= 10000){
+            lives++;
+            scoreLife-= 10000;
+        }
+    }
 
     public int getScoreLife() {
         return scoreLife;
