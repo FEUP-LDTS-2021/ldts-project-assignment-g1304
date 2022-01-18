@@ -204,21 +204,47 @@ public class PlayerTest extends Assertions {
     @Test
     void addScore(){
         // given
-        Player player = new Player(Mockito.mock(Position.class));
+        Player player = Mockito.spy(new Player(Mockito.mock(Position.class)));
 
         // when
         int score1 = player.getScore();
+        int scoreLife1 = player.getScoreLife();
         player.addScore(100);
         int score2 = player.getScore();
+        int scoreLife2 = player.getScoreLife();
         player.addScore(50);
         int score3 = player.getScore();
+        int scoreLife3 = player.getScoreLife();
+        player.addScore(99841);
 
         // then
         assertEquals(0, score1);
+        assertEquals(0,scoreLife1);
         assertEquals(100, score2);
+        assertEquals(100,scoreLife2);
         assertEquals(150, score3);
+        assertEquals(150,scoreLife3);
+        assertEquals(99990,player.getScore());
+        Mockito.verify(player,Mockito.times(3)).extraLife();
     }
+    @Test
+    void extraLife(){
+        // given
+        Player player = new Player(Mockito.mock(Position.class));
 
+        //when
+        player.addScore(10001);
+        player.extraLife();
+        int scoreLife1 = player.getScoreLife();
+        player.addScore(9999);
+        player.extraLife();
+        int scoreLife2 = player.getScoreLife();
+
+        //then
+        assertEquals(5,player.getLives());
+        assertEquals(1,scoreLife1);
+        assertEquals(0,scoreLife2);
+    }
     @Test
     void dies(){
         // given
