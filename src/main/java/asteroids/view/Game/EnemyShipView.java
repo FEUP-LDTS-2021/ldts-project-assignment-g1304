@@ -26,9 +26,9 @@ public class EnemyShipView extends View {
         super(CHAR_WIDTH, CHAR_HEIGHT);
         this.enemyShip = enemyShip;
     }
+
     @Override
     public void draw() {
-
         int x = (int)enemyShip.getPosition().getX();
         int y = (int)enemyShip.getPosition().getY();
         drawImage(enemyShipDraw, x, y);

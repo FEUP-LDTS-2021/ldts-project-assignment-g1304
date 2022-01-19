@@ -5,12 +5,15 @@ import asteroids.model.Position;
 import asteroids.model.Vector2d;
 
 import java.awt.*;
+import java.util.List;
+
 
 public class EnemyShip extends MovingObject {
 
+    private static final List<Integer> pointsListX = List.of(16, 22, 30, 38, 30, 8, 0, 8, 12);
+    private static final List<Integer> pointsListY = List.of(0, 0, 12, 18, 24, 24, 18, 12,  2);
     private EnemyLaserBeamCreator laserBeamCreator;
     private static final int points = 50;
-
     long lastTime;
 
     public EnemyShip(Position position, Vector2d velocity, double width, double height) {
@@ -54,17 +57,14 @@ public class EnemyShip extends MovingObject {
         super.update(dt);
         shooting(dt);
     }
-
     @Override
     public Polygon getCollider() {
         Polygon polygon = new Polygon();
         double x = getPosition().getX();
         double y = getPosition().getY();
 
-        polygon.addPoint((int)x, (int)y);
-        polygon.addPoint((int)x, (int)(y +getHeight()));
-        polygon.addPoint((int)(x +getWidth()), (int)(y +getHeight()));
-        polygon.addPoint((int)(x +getWidth()), (int)y);
+        for(int i = 0; i < pointsListX.size(); i++)
+            polygon.addPoint((int)x+pointsListX.get(i), (int)y+pointsListY.get(i));
 
         return polygon;
     }

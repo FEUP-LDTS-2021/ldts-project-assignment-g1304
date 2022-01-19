@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.awt.*;
+import java.util.List;
 
 public class EnemyShipTest extends Assertions {
 
@@ -22,7 +23,7 @@ public class EnemyShipTest extends Assertions {
     void init() {
         positionMock = Mockito.mock(Position.class);
         Mockito.when(positionMock.getX()).thenReturn(100.0);
-        Mockito.when(positionMock.getY()).thenReturn(100.0);
+        Mockito.when(positionMock.getY()).thenReturn(120.0);
 
         velocityMock = Mockito.mock(Vector2d.class);
         Mockito.when(velocityMock.getX()).thenReturn(1.0);
@@ -87,29 +88,21 @@ public class EnemyShipTest extends Assertions {
     }
 
     @Test
-    void collider(){
-        // Given
-        Position position = Mockito.mock(Position.class);
-        Mockito.when(position.getX()).thenReturn(10.0);
-        Mockito.when(position.getY()).thenReturn(15.0);
-        EnemyShip enemyShip = new EnemyShip(position, Mockito.mock(Vector2d.class), 20, 30);
-
-        Polygon polygon = new Polygon();
-        double x = 10;
-        double y = 15;
-
-        polygon.addPoint((int)x, (int)y);
-        polygon.addPoint((int)x , (int)(y + 30));
-        polygon.addPoint((int)(x + 20), (int)(y + 30));
-        polygon.addPoint((int)(x + 20), (int)y);
+    void getCollider() {
+        // given
+        int[] pointsListX = new int []{16, 22, 30, 38, 30, 8, 0, 8, 12};
+        int[] pointsListY = new int []{0, 0, 12, 18, 24, 24, 18, 12, 2};
 
 
         // when
-        Polygon enemyShipCollider = enemyShip.getCollider();
+        Polygon returned = enemyShip.getCollider();
 
         // then
-        assertEquals(polygon.npoints, enemyShipCollider.npoints);
-        assertArrayEquals(polygon.xpoints, enemyShipCollider.xpoints);
-        assertArrayEquals(polygon.ypoints, enemyShipCollider.ypoints);
+
+        for(int i = 0 ; i<returned.npoints; i++){
+            assertEquals(100+pointsListX[i], returned.xpoints[i]);
+            assertEquals(120+pointsListY[i], returned.ypoints[i]);
+        }
+
     }
 }
