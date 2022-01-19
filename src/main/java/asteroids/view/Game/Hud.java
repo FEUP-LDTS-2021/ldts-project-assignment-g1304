@@ -1,6 +1,6 @@
 package asteroids.view.Game;
 
-import asteroids.Color;
+import asteroids.view.Color;
 import asteroids.Constants;
 import asteroids.model.Entities.Player;
 import asteroids.model.GameModel;
@@ -15,8 +15,6 @@ import java.util.List;
 
 public class Hud extends View{
     private final GameModel model;
-    private final int CHAR_WIDTH = 1;
-    private final int CHAR_HEIGHT = 2;
 
     private final String[] scoreString = {
             "#######  ######  ######  ######  #######      ",
@@ -28,6 +26,7 @@ public class Hud extends View{
     private final List<String[]> numbers;
 
     public Hud(GameModel model){
+        super(1, 2);
         this.model = model;
         numbers = new ArrayList<>();
         try {
@@ -86,12 +85,12 @@ public class Hud extends View{
         draw(getScoreString(), 10, 10);
 
         // draw score Number
-        int x = 46*CHAR_WIDTH + 10;
+        int x = 46*charWidth + 10;
         String number = String.format("%05d", score);
         for(char c : number.toCharArray()){
             int digit = Integer.parseInt(""+c);
             draw(getNumbers().get(digit), x, 10);
-            x+=getNumbers().get(digit)[0].length()*CHAR_WIDTH+2;
+            x+=getNumbers().get(digit)[0].length()*charWidth+2;
         }
 
     }
@@ -101,9 +100,9 @@ public class Hud extends View{
         for (String line : asciiArt) {
             for(int x = 0; x < line.length(); x++){
                 if(line.charAt(x)=='#')
-                    getGraphics().fillRectangle(new TerminalPosition(x*CHAR_WIDTH + paddingX,
-                                                                        y*CHAR_HEIGHT+ paddingY),
-                                            new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');
+                    getGraphics().fillRectangle(new TerminalPosition(x*charWidth + paddingX,
+                                                                        y*charHeight+ paddingY),
+                                            new TerminalSize(charWidth, charHeight), ' ');
             }
             y++;
         }

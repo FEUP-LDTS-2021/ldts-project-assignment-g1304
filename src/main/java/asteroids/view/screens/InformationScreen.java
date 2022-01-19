@@ -1,6 +1,6 @@
 package asteroids.view.screens;
 
-import asteroids.Color;
+import asteroids.view.Color;
 import asteroids.Constants;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
