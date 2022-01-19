@@ -125,14 +125,17 @@ public class GameScreenTest extends Assertions {
     void drawEnemyShip() throws IOException {
         // given
         EnemyShip enemyShip1 = Mockito.mock(EnemyShip.class);
+
         EnemyShipView view1 = Mockito.mock(EnemyShipView.class);
         entities.add(enemyShip1);
-        Mockito.when(screen.getView(enemyShip1)).thenReturn(view1);
+        Mockito.when(enemyShip1.getSize()).thenReturn(Sizes.MEDIUM);
+        Mockito.doReturn(view1).when(screen).getView(enemyShip1);
 
         EnemyShip enemyShip2 = Mockito.mock(EnemyShip.class);
+        Mockito.when(enemyShip2.getSize()).thenReturn(Sizes.MEDIUM);
         EnemyShipView view2 = Mockito.mock(EnemyShipView.class);
         entities.add(enemyShip2);
-        Mockito.when(screen.getView(enemyShip2)).thenReturn(view2);
+        Mockito.doReturn(view2).when(screen).getView(enemyShip2);
 
         // when
         screen.draw();
@@ -211,6 +214,7 @@ public class GameScreenTest extends Assertions {
     void getEnemyShipsView(){
         // given
         EnemyShip enemyShip = Mockito.mock(EnemyShip.class);
+        Mockito.when(enemyShip.getSize()).thenReturn(Sizes.MEDIUM);
 
         // when
         View view = screen.getView(enemyShip);

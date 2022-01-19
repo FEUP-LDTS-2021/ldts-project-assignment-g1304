@@ -298,12 +298,12 @@ public class PlayerTest extends Assertions {
         double anglePontaNave = 15;
         double anglePontaEsq = anglePontaNave + Math.PI*0.8333;   // 5/6
         double anglePontaDir = anglePontaNave + Math.PI*1.1666;   // 7/6
-        polygon.addPoint((int) (Math.cos(anglePontaNave)*Player.raio + 10),
-                (int) (Math.sin(anglePontaNave)*Player.raio + 15));
-        polygon.addPoint((int) (Math.cos(anglePontaEsq)*Player.raio + 10),
-                (int) (Math.sin(anglePontaEsq)*Player.raio + 15));
-        polygon.addPoint((int) (Math.cos(anglePontaDir)*Player.raio + 10),
-                (int) (Math.sin(anglePontaDir)*Player.raio + 15));
+        polygon.addPoint((int) ((Math.cos(anglePontaNave)+1)*Player.raio + 10),
+                (int)((Math.sin(anglePontaNave)+1)*Player.raio + 15));
+        polygon.addPoint((int) ((Math.cos(anglePontaEsq)+1)*Player.raio + 10),
+                (int) ((Math.sin(anglePontaEsq)+1)*Player.raio + 15));
+        polygon.addPoint((int) ((Math.cos(anglePontaDir)+1)*Player.raio + 10),
+                (int) ((Math.sin(anglePontaDir)+1)*Player.raio + 15));
 
 
         // when

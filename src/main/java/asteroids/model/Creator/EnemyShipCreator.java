@@ -40,7 +40,12 @@ public class EnemyShipCreator extends Creator {
         Vector2d velocity = chooseVelocity(locationChoice);
         velocity.resize(MIN_VELOCITY + (MAX_VELOCITY-MIN_VELOCITY) * rand.nextDouble());
 
-        return new EnemyShip(choosePosition(locationChoice), velocity, WIDTH, HEIGHT);
+
+        EnemyShip enemyShip = new EnemyShip(choosePosition(locationChoice), velocity, WIDTH, HEIGHT);
+
+        enemyShip.setLaserBeamCreator(chooseLaserBeamCreator(enemyShip));
+
+        return enemyShip;
     }
 
     // random Position close to screen borders
@@ -64,5 +69,20 @@ public class EnemyShipCreator extends Creator {
             case 3 -> new Vector2d(-1.0, 0.0);
             default ->  null;
         };
+    }
+
+    private LaserBeamCreator chooseLaserBeamCreator(EnemyShip enemyShip){
+        LaserBeamCreator laserBeamCreator=null;
+        switch (rand.nextInt(2)){
+            case 0->{
+                laserBeamCreator = new TargetLaserBeamCreator(player, enemyShip, entities);
+                enemyShip.setSize(Sizes.MEDIUM);
+            }
+            case 1->{
+                laserBeamCreator = new DumbLaserBeamCreator(enemyShip, entities);
+                enemyShip.setSize(Sizes.LARGE);
+            }
+        };
+        return laserBeamCreator;
     }
 }

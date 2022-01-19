@@ -32,12 +32,12 @@ public class PlayerViewTest {
         Mockito.verify(playerView,Mockito.times(2)).getGraphics();
         Mockito.verify(graphicsMock,Mockito.times(1)).setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         Mockito.verify(graphicsMock,Mockito.times(1)).drawTriangle(
-                new TerminalPosition((int) (Math.cos(anglePontaNave)* playerMock.getRaio() + playerMock.getPosition().getX()),
-                        (int) (Math.sin(anglePontaNave)*playerMock.getRaio() + playerMock.getPosition().getY())),
-                new TerminalPosition((int) (Math.cos(anglePontaEsq)* playerMock.getRaio() + playerMock.getPosition().getX()),
-                        (int) (Math.sin(anglePontaEsq)*playerMock.getRaio() + playerMock.getPosition().getY())),
-                new TerminalPosition((int) (Math.cos(anglePontaDir)* playerMock.getRaio() + playerMock.getPosition().getX()),
-                        (int) (Math.sin(anglePontaDir)*playerMock.getRaio() + playerMock.getPosition().getY())),
+                new TerminalPosition((int) ((Math.cos(anglePontaNave)+1)* playerMock.getRaio() + playerMock.getPosition().getX()),
+                        (int) ((Math.sin(anglePontaNave)+1)*playerMock.getRaio() + playerMock.getPosition().getY())),
+                new TerminalPosition((int) ((Math.cos(anglePontaEsq)+1)* playerMock.getRaio() + playerMock.getPosition().getX()),
+                        (int) ((Math.sin(anglePontaEsq)+1)*playerMock.getRaio() + playerMock.getPosition().getY())),
+                new TerminalPosition((int) ((Math.cos(anglePontaDir)+1)* playerMock.getRaio() + playerMock.getPosition().getX()),
+                        (int) ((Math.sin(anglePontaDir)+1)*playerMock.getRaio() + playerMock.getPosition().getY())),
                 ' ');
     }
 }

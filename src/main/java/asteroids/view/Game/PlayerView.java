@@ -16,8 +16,8 @@ public class PlayerView extends View {
     }
 
     private static TerminalPosition toTerminalPosition(Position position, double angle, double raio){
-        return new TerminalPosition((int) (Math.cos(angle)*raio + position.getX()),
-                (int) (Math.sin(angle)*raio + position.getY()));
+        return new TerminalPosition((int) (position.getX() + (Math.cos(angle)+1)*raio),
+                (int) ((Math.sin(angle)+1)*raio + position.getY()));
     }
 
     @Override
