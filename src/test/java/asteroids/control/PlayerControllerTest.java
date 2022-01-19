@@ -225,4 +225,9 @@ public class PlayerControllerTest extends Assertions {
         }
 
     }
+
+    @Test
+    void getPlayer() {
+        assertNotNull(playerController.getPlayer());
+    }
 }

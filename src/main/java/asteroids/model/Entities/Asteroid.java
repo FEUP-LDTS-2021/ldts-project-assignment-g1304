@@ -6,12 +6,15 @@ import java.util.List;
 
 public class Asteroid extends MovingObject{
 
+    private static final int WIDTH = 17;
+    private static final int HEIGHT = 15;
+
     private AsteroidSizes size;
     private List<Integer> pointsListX = List.of(5, 2, 2, 1, 1, 0, 0, 2, 3, 6, 13, 16, 17, 17, 16, 16, 15, 14, 12);
     private List<Integer> pointsListY = List.of(0, 3, 4, 5, 6, 7, 11, 12, 13, 14, 14, 12, 9, 8, 7, 4, 2, 1, 0);
 
     public Asteroid(Position position, Vector2d velocity, AsteroidSizes size){
-        super(position,velocity, size.getSize(), size.getSize());
+        super(position,velocity, size.getSize()*HEIGHT, size.getSize()*WIDTH);
         this.size = size;
     }
 
@@ -40,8 +43,8 @@ public class Asteroid extends MovingObject{
 
     public void setSize(AsteroidSizes size) {
         this.size = size;
-        setHeight(size.size);
-        setWidth(size.size);
+        setHeight(size.size*HEIGHT);
+        setWidth(size.size*WIDTH);
     }
 
     @Override
@@ -57,7 +60,8 @@ public class Asteroid extends MovingObject{
         double y = getPosition().getY();
 
         for (int i = 0; i < pointsListX.size(); i++) {
-            polygon.addPoint((int)x+pointsListX.get(i), (int)y+pointsListY.get(i));
+            polygon.addPoint((int)x+pointsListX.get(i)*getAsteroidSize().getSize(),
+                    (int)y+pointsListY.get(i)*getAsteroidSize().getSize());
         }
 
         return polygon;
