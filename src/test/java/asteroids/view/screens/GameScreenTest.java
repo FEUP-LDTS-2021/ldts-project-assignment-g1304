@@ -70,13 +70,13 @@ public class GameScreenTest extends Assertions {
     void drawAsteroids() throws IOException {
         // given
         Asteroid asteroid1 = Mockito.mock(Asteroid.class);
-        Mockito.when(asteroid1.getAsteroidSize()).thenReturn(AsteroidSizes.LARGE);
+        Mockito.when(asteroid1.getAsteroidSize()).thenReturn(Sizes.LARGE);
         AsteroidView view1 = Mockito.mock(AsteroidView.class);
         entities.add(asteroid1);
         Mockito.doReturn(view1).when(screen).getView(asteroid1);
         Mockito.when(screen.getView(asteroid1)).thenReturn(view1);
         Asteroid asteroid2 = Mockito.mock(Asteroid.class);
-        Mockito.when(asteroid2.getAsteroidSize()).thenReturn(AsteroidSizes.LARGE);
+        Mockito.when(asteroid2.getAsteroidSize()).thenReturn(Sizes.LARGE);
         AsteroidView view2 = Mockito.mock(AsteroidView.class);
         entities.add(asteroid2);
         Mockito.doReturn(view2).when(screen).getView(asteroid2);
@@ -183,8 +183,7 @@ public class GameScreenTest extends Assertions {
     void getAsteroidView(){
         // given
         Asteroid asteroid = Mockito.mock(Asteroid.class);
-        Mockito.when(asteroid.getAsteroidSize()).thenReturn(AsteroidSizes.LARGE);
-        //Mockito.when(asteroid.getAsteroidSize().getSize()).thenReturn(3);
+        Mockito.when(asteroid.getAsteroidSize()).thenReturn(Sizes.LARGE);
 
         // when
         View view = screen.getView(asteroid);

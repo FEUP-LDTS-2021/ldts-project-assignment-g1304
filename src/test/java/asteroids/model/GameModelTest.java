@@ -264,9 +264,9 @@ public class GameModelTest extends Assertions {
             Mockito.when(split1.getVelocity()).thenReturn(velocityClone);
 
             // mock decrezeSize
-            Mockito.when(original.getAsteroidSize()).thenReturn(AsteroidSizes.MEDIUM);
+            Mockito.when(original.getAsteroidSize()).thenReturn(Sizes.MEDIUM);
             Mockito.doAnswer(invocation -> {
-                Mockito.when(original.getAsteroidSize()).thenReturn(AsteroidSizes.SMALL);
+                Mockito.when(original.getAsteroidSize()).thenReturn(Sizes.SMALL);
                 return null;
             }).when(original).decreaseSize();
 
@@ -279,7 +279,7 @@ public class GameModelTest extends Assertions {
             Mockito.verify(split1).setPosition(positionClone);
             Mockito.verify(split1).setVelocity(velocityClone);
             Mockito.verify(velocityClone).scale(-1);
-            Mockito.verify(split1).setSize(AsteroidSizes.SMALL);
+            Mockito.verify(split1).setSize(Sizes.SMALL);
 
             assertTrue(entities.contains(split1));
             assertTrue(entities.contains(original));
@@ -321,9 +321,9 @@ public class GameModelTest extends Assertions {
             Mockito.when(split1.getVelocity()).thenReturn(velocityClone);
 
             // mock decrezeSize
-            Mockito.when(original.getAsteroidSize()).thenReturn(AsteroidSizes.MEDIUM);
+            Mockito.when(original.getAsteroidSize()).thenReturn(Sizes.MEDIUM);
             Mockito.doAnswer(invocation -> {
-                Mockito.when(original.getAsteroidSize()).thenReturn(AsteroidSizes.SMALL);
+                Mockito.when(original.getAsteroidSize()).thenReturn(Sizes.SMALL);
                 return null;
             }).when(original).decreaseSize();
 
@@ -336,7 +336,7 @@ public class GameModelTest extends Assertions {
             Mockito.verify(split1).setPosition(positionClone);
             Mockito.verify(split1).setVelocity(velocityClone);
             Mockito.verify(velocityClone).scale(-1);
-            Mockito.verify(split1).setSize(AsteroidSizes.SMALL);
+            Mockito.verify(split1).setSize(Sizes.SMALL);
 
             assertTrue(entities.contains(split1));
             assertTrue(entities.contains(original));
@@ -354,7 +354,7 @@ public class GameModelTest extends Assertions {
             List<MovingObject> entities = getObjects();
             Mockito.doReturn(entities).when(gameModel).getEntities();
             Asteroid original = (Asteroid) entities.get(0);
-            Mockito.when(original.getAsteroidSize()).thenReturn(AsteroidSizes.SMALL);
+            Mockito.when(original.getAsteroidSize()).thenReturn(Sizes.SMALL);
 
             int size = entities.size();
 
