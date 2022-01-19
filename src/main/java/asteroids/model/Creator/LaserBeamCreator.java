@@ -1,49 +1,17 @@
 package asteroids.model.Creator;
 
-import asteroids.model.Entities.LaserBeam;
 import asteroids.model.Entities.MovingObject;
-import asteroids.model.Entities.Player;
 import asteroids.model.Position;
 
 import java.util.List;
 
+public abstract class LaserBeamCreator extends Creator {
 
-public class LaserBeamCreator extends Creator {
+    public List<MovingObject> getEntities() ;
 
-    private final Player player;
-    private final List <MovingObject> entities;
+    public void addLaserBeam(MovingObject object);
 
-    public LaserBeamCreator(Player player, List<MovingObject> entities) {
-        this.player = player;
-        this.entities = entities;
-    }
+    public Position ajustPosition(double angle, MovingObject shooter);
 
-    public List<MovingObject> getEntities() {
-        return entities;
-    }
 
-    public Player getPlayer() {
-        return player;
-    }
-
-    public LaserBeam create() {
-
-        double x = player.getPosition().getX();
-        double y = player.getPosition().getY();
-        double laserWidth = 3;
-        double laserHeight = 3;
-
-        Position laserPos = new Position((int) (
-                Math.cos(player.getAngle()) * (player.getRaio()+10) + x - laserWidth / 2),
-                (int) (Math.sin(player.getAngle()) * (player.getRaio()+10) + y - laserHeight / 2));
-
-        LaserBeam laserBeam = new LaserBeam(laserPos, player.getAngle(), laserWidth, laserHeight);
-        laserBeam.setPlayerBeam(true);
-        return laserBeam;
-
-    }
-
-    public void addLaserBeam(LaserBeam laserBeam) {
-        entities.add(laserBeam);
-    }
 }
