@@ -4,6 +4,7 @@ import asteroids.Constants;
 import asteroids.model.Entities.EnemyShip;
 import asteroids.model.Entities.MovingObject;
 import asteroids.model.Entities.Player;
+import asteroids.model.Entities.Sizes;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
 
@@ -11,6 +12,10 @@ import java.util.List;
 import java.util.Random;
 
 public class EnemyShipCreator extends Creator {
+    private static final int WIDTH = 38;
+    private static final int HEIGHT = 22;
+    private static final int MIN_VELOCITY = 30;
+    private static final int MAX_VELOCITY = 80;
     private final Random rand;
     private final Player player;
     private final List<MovingObject> entities;
@@ -31,32 +36,33 @@ public class EnemyShipCreator extends Creator {
 
     @Override
     public MovingObject create() {
-        int choice = rand.nextInt(4);
-        EnemyShip enemyShip;
-        Position position = null;
-        Vector2d velocity = null;
-        switch (choice) {
-            case 0 -> {
-                position = new Position(Constants.WIDTH * rand.nextDouble(), 0.0);
-                velocity = new Vector2d(0.0, 1.0);
-            }
-            case 1 -> {
-                position = new Position(0.0, Constants.HEIGHT * rand.nextDouble());
-                velocity = new Vector2d(1.0, 0.0);
-            }
-            case 2 -> {
-                position = new Position(Constants.WIDTH * rand.nextDouble(), Constants.HEIGHT);
-                velocity = new Vector2d(0.0, -1.0);
-            }
-            case 3 -> {
-                position = new Position(Constants.WIDTH, Constants.HEIGHT * rand.nextDouble());
-                velocity = new Vector2d(-1.0, 0.0);
-            }
-        }
+        int locationChoice = rand.nextInt(4);
+        Vector2d velocity = chooseVelocity(locationChoice);
+        velocity.resize(MIN_VELOCITY + (MAX_VELOCITY-MIN_VELOCITY) * rand.nextDouble());
 
-        velocity.resize(30 + 50 * rand.nextDouble());
-        enemyShip = new EnemyShip(position, velocity, 38, 22  );
-        enemyShip.setLaserBeamCreator(new EnemyLaserBeamCreator(player, enemyShip, entities));
-        return enemyShip;
+        return new EnemyShip(choosePosition(locationChoice), velocity, WIDTH, HEIGHT);
+    }
+
+    // random Position close to screen borders
+    private Position choosePosition(int choice){
+        return switch (choice){
+            case 0 -> new Position(Constants.WIDTH * rand.nextDouble(), 0.0);       // BORDER UP
+            case 1 -> new Position(0.0, Constants.HEIGHT * rand.nextDouble());      // BORDER LEFT
+            case 2 -> new Position(Constants.WIDTH * rand.nextDouble(), Constants.HEIGHT); // BORDER RIGHT
+            case 3 -> new Position(Constants.WIDTH, Constants.HEIGHT * rand.nextDouble()); // BORDER DOWN
+            default ->  null;
+        };
+    }
+
+
+    // random Position close to screen borders
+    private Vector2d chooseVelocity(int choice){
+        return switch (choice){
+            case 0 -> new Vector2d(0.0, 1.0);
+            case 1 -> new Vector2d(1.0, 0.0);
+            case 2 -> new Vector2d(0.0, -1.0);
+            case 3 -> new Vector2d(-1.0, 0.0);
+            default ->  null;
+        };
     }
 }
