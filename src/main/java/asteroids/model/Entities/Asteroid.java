@@ -31,7 +31,7 @@ public class Asteroid extends MovingObject{
         }
     }
 
-    public AsteroidSizes getSize() {
+    public AsteroidSizes getAsteroidSize() {
         return size;
     }
 
@@ -43,7 +43,7 @@ public class Asteroid extends MovingObject{
 
     @Override
     public void dies() {
-        if (getSize() == AsteroidSizes.SMALL)
+        if (getAsteroidSize() == AsteroidSizes.SMALL)
             super.dies();
     }
 

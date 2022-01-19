@@ -1,25 +1,41 @@
 package asteroids.view.Game;
 
-import asteroids.view.Color;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
 import asteroids.model.Entities.Asteroid;
 
 public class AsteroidView extends View {
     private final Asteroid asteroid;
 
+    public static final String[] asteroidDraw=new String[]{
+            "     CCCCCCC",
+            "    CPPCCCCCCC",
+            "   CCCcCCCCCCCC",
+            "  CCCccCCCCCCCC",
+            "  CCPPCCCCCccCCC",
+            " CCCCCCCCCCcPCCC",
+            " PCCCPcCCCCPcCCC",
+            "PPCCCPCcCCCCcCCC",
+            "PCCcCCPccCCCCCCCC",
+            "CCCcCCCPccCCCCCCC",
+            "CCCCCCCPcCCCccCP",
+            "PCccPCCPccCCCcPP",
+            "  PPccPCCCPcCcPP",
+            "   CCCPPCCCCPPP",
+            "      PPCCCPP"
+    };
+
     public AsteroidView(Asteroid asteroid){
-        super(0,0);
+        super(asteroid.getAsteroidSize().getSize(),asteroid.getAsteroidSize().getSize());
         this.asteroid = asteroid;
     }
 
 
     @Override
     public void draw(){
-        setBackgroundColor(Color.White);
-        getGraphics().drawRectangle(new TerminalPosition((int)asteroid.getPosition().getX(),
-                        (int)asteroid.getPosition().getY()),
-                new TerminalSize((int)asteroid.getWidth(), (int)asteroid.getHeight()),' ');
+        setCharWidth(asteroid.getAsteroidSize().getSize());
+        setCharHeight(asteroid.getAsteroidSize().getSize());
+        int x = (int)asteroid.getPosition().getX();
+        int y = (int)asteroid.getPosition().getY();
+        drawImage(asteroidDraw, x, y);
     }
 
     public Asteroid getAsteroid() {

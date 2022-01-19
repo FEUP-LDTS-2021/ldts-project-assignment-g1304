@@ -264,9 +264,9 @@ public class GameModelTest extends Assertions {
             Mockito.when(split1.getVelocity()).thenReturn(velocityClone);
 
             // mock decrezeSize
-            Mockito.when(original.getSize()).thenReturn(AsteroidSizes.MEDIUM);
+            Mockito.when(original.getAsteroidSize()).thenReturn(AsteroidSizes.MEDIUM);
             Mockito.doAnswer(invocation -> {
-                Mockito.when(original.getSize()).thenReturn(AsteroidSizes.SMALL);
+                Mockito.when(original.getAsteroidSize()).thenReturn(AsteroidSizes.SMALL);
                 return null;
             }).when(original).decreaseSize();
 
@@ -321,9 +321,9 @@ public class GameModelTest extends Assertions {
             Mockito.when(split1.getVelocity()).thenReturn(velocityClone);
 
             // mock decrezeSize
-            Mockito.when(original.getSize()).thenReturn(AsteroidSizes.MEDIUM);
+            Mockito.when(original.getAsteroidSize()).thenReturn(AsteroidSizes.MEDIUM);
             Mockito.doAnswer(invocation -> {
-                Mockito.when(original.getSize()).thenReturn(AsteroidSizes.SMALL);
+                Mockito.when(original.getAsteroidSize()).thenReturn(AsteroidSizes.SMALL);
                 return null;
             }).when(original).decreaseSize();
 
@@ -354,7 +354,7 @@ public class GameModelTest extends Assertions {
             List<MovingObject> entities = getObjects();
             Mockito.doReturn(entities).when(gameModel).getEntities();
             Asteroid original = (Asteroid) entities.get(0);
-            Mockito.when(original.getSize()).thenReturn(AsteroidSizes.SMALL);
+            Mockito.when(original.getAsteroidSize()).thenReturn(AsteroidSizes.SMALL);
 
             int size = entities.size();
 

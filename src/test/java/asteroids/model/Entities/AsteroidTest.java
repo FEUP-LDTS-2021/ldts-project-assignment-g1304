@@ -5,7 +5,6 @@ import asteroids.model.Position;
 import asteroids.model.Vector2d;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.awt.*;
@@ -36,7 +35,7 @@ public class AsteroidTest extends Assertions {
         assertEquals(velocity.getX(),velocityMock.getX());   //checks if velocity is okay
         assertEquals(velocity.getY(),velocityMock.getY());
 
-        assertEquals(a.getSize(), AsteroidSizes.SMALL);              //checks if size is okay
+        assertEquals(a.getAsteroidSize(), AsteroidSizes.SMALL);              //checks if size is okay
     }
 
     @Test
@@ -74,7 +73,7 @@ public class AsteroidTest extends Assertions {
         asteroid.decreaseSize();
 
         //then
-        assertEquals(asteroid.getSize(), AsteroidSizes.MEDIUM);
+        assertEquals(asteroid.getAsteroidSize(), AsteroidSizes.MEDIUM);
     }
 
     @Test
@@ -86,7 +85,7 @@ public class AsteroidTest extends Assertions {
         asteroid.decreaseSize();
 
         //then
-        assertEquals(asteroid.getSize(), AsteroidSizes.SMALL);
+        assertEquals(asteroid.getAsteroidSize(), AsteroidSizes.SMALL);
     }
 
     @Test
@@ -98,7 +97,7 @@ public class AsteroidTest extends Assertions {
         asteroid.setSize(AsteroidSizes.LARGE);
 
         //then
-        assertEquals(asteroid.getSize(), AsteroidSizes.LARGE);
+        assertEquals(asteroid.getAsteroidSize(), AsteroidSizes.LARGE);
     }
 
     @Test

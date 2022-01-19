@@ -97,13 +97,13 @@ public class GameModel {
     }
 
     private void asteroidSplitter(Asteroid c1) {
-        if (c1.getSize() == AsteroidSizes.SMALL) return;
+        if (c1.getAsteroidSize() == AsteroidSizes.SMALL) return;
         c1.decreaseSize();
         Asteroid asteroid = getAsteroidSpawner().getAsteroidCreator().create();
         asteroid.setPosition(c1.getPosition().clone());
         asteroid.setVelocity(c1.getVelocity().clone());
         asteroid.getVelocity().scale(-1);
-        asteroid.setSize(c1.getSize());
+        asteroid.setSize(c1.getAsteroidSize());
         getEntities().add(asteroid);
     }
 }

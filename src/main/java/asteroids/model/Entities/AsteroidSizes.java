@@ -1,7 +1,7 @@
 package asteroids.model.Entities;
 
 public enum AsteroidSizes {
-    SMALL(15), MEDIUM(30), LARGE(50);
+    SMALL(1), MEDIUM(2), LARGE(3);
     int size;
 
     AsteroidSizes(int size) {

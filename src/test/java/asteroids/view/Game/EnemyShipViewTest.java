@@ -9,12 +9,16 @@ import org.mockito.Mockito;
 
 public class EnemyShipViewTest {
     EnemyShip enemyShipMock;
+    Position positionMock;
     EnemyShipView enemyShipView;
     TextGraphics graphicsMock;
     @BeforeEach
     void init(){
         enemyShipMock = Mockito.mock(EnemyShip.class);
-        Mockito.when(enemyShipMock.getPosition()).thenReturn(new Position(10.0,15.0));
+        positionMock = Mockito.mock(Position.class);
+        Mockito.when(positionMock.getX()).thenReturn(10.0);
+        Mockito.when(positionMock.getY()).thenReturn(15.0);
+        Mockito.when(enemyShipMock.getPosition()).thenReturn(positionMock);
         enemyShipView = Mockito.spy(new EnemyShipView(enemyShipMock));
         graphicsMock = Mockito.mock(TextGraphics.class);
         enemyShipView.setGraphics(graphicsMock);
