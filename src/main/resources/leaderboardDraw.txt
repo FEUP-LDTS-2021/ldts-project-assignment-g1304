@@ -6,10 +6,10 @@
 || 4  - Rui_Silva         14975 ||
 || 5  - MVCforTheWin      09005 ||
 || 6  - Destroyer         02000 ||
-|| 7  - ErenJagger        01696 ||
-|| 8  - JoaopLayer        01390 ||
-|| 9  - AntonioZe         00860 ||
-|| 10 - golias            00530 ||
+|| 7  - ABCDEFGHJ         01720 ||
+|| 8  - ErenJagger        01696 ||
+|| 9  - JoaopLayer        01390 ||
+|| 10 - AntonioZe         00860 ||
 ||                              ||
 ||    PRESS ESC TO GO BACK      ||
 ==================================
