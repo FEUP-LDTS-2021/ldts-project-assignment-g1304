@@ -1,6 +1,8 @@
 package asteroids.model;
 
 import asteroids.Constants;
+import asteroids.control.MusicManager;
+import asteroids.control.Sounds;
 import asteroids.model.Creator.LaserBeamCreator;
 import asteroids.model.Entities.*;
 import asteroids.model.Spawner.AsteroidSpawner;
@@ -61,6 +63,8 @@ public class GameModel {
                 if (c1.collide(c2) && c1.isAlive() && c2.isAlive()) {
                     getScore(c1, c2);
                     getScore(c2, c1);
+
+                    MusicManager.getInstance().start(Sounds.DESTRUCTION);
 
                     c1.dies();
                     c2.dies();

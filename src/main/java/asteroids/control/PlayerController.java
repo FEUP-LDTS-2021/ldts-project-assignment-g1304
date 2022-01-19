@@ -7,8 +7,8 @@ import java.awt.event.KeyListener;
 
 public class PlayerController implements KeyListener {
 
-    public Player player;
-    boolean canShoot = true;
+    private Player player;
+    private boolean canShoot = true;
 
     public PlayerController(Player player){
         this.player = player;
@@ -18,6 +18,18 @@ public class PlayerController implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
 
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public boolean isCanShoot() {
+        return canShoot;
+    }
+
+    public void setCanShoot(boolean canShoot) {
+        this.canShoot = canShoot;
     }
 
     @Override
@@ -30,10 +42,12 @@ public class PlayerController implements KeyListener {
                 player.setRotation(Rotation.Right);
                 break;
             case KeyEvent.VK_UP:
+                MusicManager.getInstance().start(Sounds.ROCKET);
                 player.setAcelerate(true);
                 break;
             case KeyEvent.VK_SPACE:
-                if(canShoot){
+                if(isCanShoot()){
+                    MusicManager.getInstance().start(Sounds.SHOOT);
                     player.setShoot(true);
                     canShoot = false;
                 }
@@ -53,6 +67,7 @@ public class PlayerController implements KeyListener {
                     player.setRotation(Rotation.None);
                 break;
             case KeyEvent.VK_UP:
+                MusicManager.getInstance().stop(Sounds.ROCKET);
                 player.setAcelerate(false);
                 break;
             case KeyEvent.VK_SPACE:
