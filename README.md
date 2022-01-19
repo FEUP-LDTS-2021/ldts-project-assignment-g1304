@@ -36,16 +36,16 @@ The following screenshots ilustrate the general look of our game, as well as the
 ### Menus
 **Initial Menu**
 
-![](docs/image/menu.png)
+![](docs/image/menu_finalResult.png)
 
 **Leaderboard**
 
-![](docs/image/leaderboard.png)
+![](docs/image/leaderboard_finalResult.png)
 
 **Instructions**
 
-![](docs/image/instructions.png)
+![](docs/image/instructions_finalResult.png)
 
 
 ### End Game
-![](docs/image/gameover.png)
+![](docs/image/gameOver_finalResult.png)
