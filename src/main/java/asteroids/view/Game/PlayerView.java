@@ -1,12 +1,9 @@
 package asteroids.view.Game;
 
-import asteroids.Color;
+import asteroids.view.Color;
 import asteroids.model.Position;
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
 import asteroids.model.Entities.Player;
-
-import java.io.IOException;
 
 
 public class PlayerView extends View {
@@ -14,6 +11,7 @@ public class PlayerView extends View {
     private final Player player;
 
     public PlayerView(Player player){
+        super(0,0);
         this.player = player;
     }
 

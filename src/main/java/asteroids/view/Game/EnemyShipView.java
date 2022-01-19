@@ -1,23 +1,37 @@
 package asteroids.view.Game;
 
-import asteroids.Color;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import asteroids.model.Entities.EnemyShip;
 
 public class EnemyShipView extends View {
     private final EnemyShip enemyShip;
+    private static final int CHAR_WIDTH = 2;
+    private static int CHAR_HEIGHT = 2;
+
+    public static final String[] enemyShipDraw=new String[]{
+            "        AAA",
+            "      AAAAbbA",
+            "     AAAAAAbbA",
+            "    AAAAAAAAbAA",
+            "    AAAAAAAAAAA",
+            "    AAAAAAAAAAA",
+            "  ccccccccccccccc",
+            " CCCCCCCCCCCCCCCCC",
+            "pRpRpppRpppRpppRpRp",
+            " PpCcccccccccccCpP",
+            "  PpCcccccccccCpP",
+            "    CcccccccccC",
+    };
 
     public EnemyShipView(EnemyShip enemyShip){
+        super(CHAR_WIDTH, CHAR_HEIGHT);
         this.enemyShip = enemyShip;
     }
     @Override
     public void draw() {
-        setBackgroundColor(Color.Red);
-        getGraphics().drawRectangle(new TerminalPosition((int)enemyShip.getPosition().getX(),
-                        (int)enemyShip.getPosition().getY()),
-                new TerminalSize((int)enemyShip.getWidth(), (int)enemyShip.getHeight()),' ');
+
+        int x = (int)enemyShip.getPosition().getX();
+        int y = (int)enemyShip.getPosition().getY();
+        drawImage(enemyShipDraw, x, y);
     }
 
     public EnemyShip getEnemyShip() {

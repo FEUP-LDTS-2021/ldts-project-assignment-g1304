@@ -1,9 +1,8 @@
 package asteroids.view.screens;
 
-import asteroids.Color;
+import asteroids.view.Color;
 import asteroids.view.Game.View;
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
 import asteroids.model.Menu.MenuItem;
 
 public class MenuItemView extends View {
@@ -15,6 +14,7 @@ public class MenuItemView extends View {
     public static final Color notSelectedColor = Color.White;
 
     public MenuItemView(MenuItem menuItem){
+        super(0,0);
         this.menuItem = menuItem;
         this.selected = false;
         this.position = null;

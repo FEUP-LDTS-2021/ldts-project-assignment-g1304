@@ -1,9 +1,8 @@
 package asteroids.view.Game;
 
-import asteroids.Color;
+import asteroids.view.Color;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import asteroids.model.Entities.LaserBeam;
 
 public class LaserView extends View {
@@ -11,6 +10,7 @@ public class LaserView extends View {
     private final LaserBeam laserBeam;
 
     public LaserView(LaserBeam laserBeam) {
+        super(0,0);
         this.laserBeam = laserBeam;
     }
 
