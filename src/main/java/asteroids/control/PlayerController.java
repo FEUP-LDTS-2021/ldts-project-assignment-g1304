@@ -24,8 +24,14 @@ public class PlayerController implements KeyListener {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT -> player.setRotation(Rotation.Left);
             case KeyEvent.VK_RIGHT -> player.setRotation(Rotation.Right);
-            case KeyEvent.VK_UP -> player.setAcelerate(true);
-            case KeyEvent.VK_SPACE -> player.setShoot(true);
+            case KeyEvent.VK_UP -> {
+                MusicManager.getInstance().start(Sounds.ROCKET);
+                player.setAcelerate(true);
+            }
+            case KeyEvent.VK_SPACE -> {
+                MusicManager.getInstance().start(Sounds.SHOOT);
+                player.setShoot(true);
+            }
         }
     }
 
@@ -41,6 +47,7 @@ public class PlayerController implements KeyListener {
                     player.setRotation(Rotation.None);
                 break;
             case KeyEvent.VK_UP:
+                MusicManager.getInstance().stop(Sounds.ROCKET);
                 player.setAcelerate(false);
                 break;
             case KeyEvent.VK_SPACE:

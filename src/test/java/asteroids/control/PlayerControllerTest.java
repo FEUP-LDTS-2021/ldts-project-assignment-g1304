@@ -4,6 +4,7 @@ import asteroids.model.Entities.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
 import java.awt.*;
@@ -45,80 +46,163 @@ public class PlayerControllerTest extends Assertions {
 
     @Test
     void changeDirectionLeftInput() {
-        // when
-        playerController.keyPressed(left);
-        Mockito.when(player.getRotation()).thenReturn(Rotation.Left);
 
-        // then
-        Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.Left);
+        MusicManager manager= Mockito.mock(MusicManager .class);
+        try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)){
+            configurationMockedStatic.when(MusicManager ::getInstance).thenReturn(manager);
 
-        // when
-        playerController.keyReleased(left);
+            // when
+            playerController.keyPressed(left);
+            Mockito.when(player.getRotation()).thenReturn(Rotation.Left);
 
-        // then
-        Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.None);
+            // then
+            Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.Left);
+
+            // when
+            playerController.keyReleased(left);
+
+            // then
+            Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.None);
+
+        }
     }
 
     @Test
     void changeDirectionRightInput() {
-        // when
-        playerController.keyPressed(right);
-        Mockito.when(player.getRotation()).thenReturn(Rotation.Right);
 
-        // then
-        Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.Right);
+        MusicManager manager= Mockito.mock(MusicManager .class);
+        try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)) {
+            configurationMockedStatic.when(MusicManager::getInstance).thenReturn(manager);
 
-        // when
-        playerController.keyReleased(right);
+            // when
+            playerController.keyPressed(right);
+            Mockito.when(player.getRotation()).thenReturn(Rotation.Right);
 
-        // thhen
-        Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.None);
+            // then
+            Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.Right);
+
+            // when
+            playerController.keyReleased(right);
+
+            // thhen
+            Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.None);
+        }
     }
 
     @Test
     void changeDirectionLeftThenRightInput() {
 
-        // when
-        Mockito.when(player.getRotation()).thenReturn(Rotation.Right);
-        playerController.keyReleased(left);
+        MusicManager manager= Mockito.mock(MusicManager .class);
+        try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)) {
+            configurationMockedStatic.when(MusicManager::getInstance).thenReturn(manager);
 
-        // then
-        Mockito.verify(player, Mockito.times(0)).setRotation(Rotation.None);
+            // when
+            Mockito.when(player.getRotation()).thenReturn(Rotation.Right);
+            playerController.keyReleased(left);
 
-        playerController.keyReleased(right);
-        Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.None);
+            // then
+            Mockito.verify(player, Mockito.times(0)).setRotation(Rotation.None);
+
+            playerController.keyReleased(right);
+            Mockito.verify(player, Mockito.times(1)).setRotation(Rotation.None);
+        }
     }
 
     @Test
     void notChangeDirection(){
-        for(KeyEvent keyEvent : keyEventList) {
-            if(keyEvent.getKeyCode()==KeyEvent.VK_RIGHT
-                    || keyEvent.getKeyCode()==KeyEvent.VK_LEFT
-                    || keyEvent.getKeyCode()==KeyEvent.VK_UP
-                    || keyEvent.getKeyCode()==KeyEvent.VK_SPACE)
-                continue;
-            playerController.keyPressed(keyEvent);
-            Mockito.verify(player, Mockito.never()).setRotation(Mockito.any());
-            Mockito.verify(player, Mockito.never()).setShoot(Mockito.anyBoolean());
-            Mockito.verify(player, Mockito.never()).setAcelerate(Mockito.anyBoolean());
+
+        MusicManager manager= Mockito.mock(MusicManager .class);
+        try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)){
+            configurationMockedStatic.when(MusicManager ::getInstance).thenReturn(manager);
+
+            for(KeyEvent keyEvent : keyEventList) {
+                if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT
+                        || keyEvent.getKeyCode() == KeyEvent.VK_LEFT
+                        || keyEvent.getKeyCode() == KeyEvent.VK_UP
+                        || keyEvent.getKeyCode() == KeyEvent.VK_SPACE)
+                    continue;
+                playerController.keyPressed(keyEvent);
+                Mockito.verify(player, Mockito.never()).setRotation(Mockito.any());
+                Mockito.verify(player, Mockito.never()).setShoot(Mockito.anyBoolean());
+                Mockito.verify(player, Mockito.never()).setAcelerate(Mockito.anyBoolean());
+            }
         }
     }
 
     @Test
     void acelerationInput(){
-        playerController.keyPressed(up);
-        Mockito.verify(player, Mockito.times(1)).setAcelerate(true);
 
-        playerController.keyReleased(up);
-        Mockito.verify(player, Mockito.times(1)).setAcelerate(false);
+        MusicManager manager= Mockito.mock(MusicManager .class);
+        try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)) {
+            configurationMockedStatic.when(MusicManager::getInstance).thenReturn(manager);
+
+            playerController.keyPressed(up);
+            Mockito.verify(player, Mockito.times(1)).setAcelerate(true);
+
+            playerController.keyReleased(up);
+            Mockito.verify(player, Mockito.times(1)).setAcelerate(false);
+        }
     }
 
     @Test
     void shootInput(){
-        playerController.keyPressed(space);
-        Mockito.verify(player, Mockito.times(1)).setShoot(true);
 
-        playerController.keyReleased(space);
-        Mockito.verify(player, Mockito.times(1)).setShoot(false);
+        MusicManager manager= Mockito.mock(MusicManager .class);
+        try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)) {
+            configurationMockedStatic.when(MusicManager::getInstance).thenReturn(manager);
+
+            playerController.keyPressed(space);
+            Mockito.verify(player, Mockito.times(1)).setShoot(true);
+
+            playerController.keyReleased(space);
+            Mockito.verify(player, Mockito.times(1)).setShoot(false);
+        }
+    }
+
+    @Test
+    void playRocket() {
+
+        MusicManager manager= Mockito.mock(MusicManager .class);
+        try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)) {
+            configurationMockedStatic.when(MusicManager::getInstance).thenReturn(manager);
+
+            //when
+            playerController.keyPressed(up);
+
+            //then
+            Mockito.verify(manager, Mockito.times(1)).start(Sounds.ROCKET);
+        }
+    }
+
+    @Test
+    void playShoot() {
+
+        MusicManager manager= Mockito.mock(MusicManager .class);
+        try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)) {
+            configurationMockedStatic.when(MusicManager::getInstance).thenReturn(manager);
+
+            //when
+            playerController.keyPressed(space);
+
+            //then
+            Mockito.verify(manager, Mockito.times(1)).start(Sounds.SHOOT);
+
+        }
+    }
+
+    @Test
+    void stopRocket() {
+
+        MusicManager manager= Mockito.mock(MusicManager .class);
+        try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)) {
+            configurationMockedStatic.when(MusicManager::getInstance).thenReturn(manager);
+
+            //when
+            playerController.keyReleased(up);
+
+            //then
+            Mockito.verify(manager, Mockito.times(1)).stop(Sounds.ROCKET);
+        }
+
     }
 }

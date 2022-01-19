@@ -15,10 +15,8 @@ public class Controller {
     }
 
     public void run() throws IOException {
-
         while (getStateControler() != null)
             getStateControler().run();
-
     }
 
 
@@ -30,12 +28,24 @@ public class Controller {
         applicationState = state;
         switch (state){
             case Game -> stateControler=new GameController(this);
-            case Menu -> stateControler = new MenuController(this);
+            case Menu -> {
+                if (!MusicManager.getInstance().isPlaying(Sounds.SOUNDTRACK)) {
+                    MusicManager.getInstance().stopAll();
+                    MusicManager.getInstance().start(Sounds.SOUNDTRACK);
+                }
+                stateControler = new MenuController(this);
+            }
             case LeaderBoard -> stateControler = new LeaderboardController(this);
             case Instructions -> stateControler = new InstructionsController(this);
-            case GameOver -> stateControler = new GameOverController(this);
-            case Exit-> stateControler=null;
-
+            case GameOver -> {
+                MusicManager.getInstance().stopAll();
+                MusicManager.getInstance().start(Sounds.GAMEOVER);
+                stateControler = new GameOverController(this);
+            }
+            case Exit-> {
+                MusicManager.getInstance().stopAll();
+                stateControler=null;
+            }
         }
     }
 
