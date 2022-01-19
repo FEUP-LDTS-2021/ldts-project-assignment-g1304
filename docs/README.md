@@ -52,9 +52,9 @@ The following image shows how we implemented the pattern.
 
 These packages can be found in:
 
-- [Controller](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/tree/main/src/main/java/control)
-- [Model](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/tree/main/src/main/java/model)
-- [View](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/tree/main/src/main/java/view)
+- [Controller](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/tree/main/src/main/java/asteroids/control)
+- [Model](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/tree/main/src/main/java/asteroids/model)
+- [View](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/tree/main/src/main/java/asteroids/view)
 
 **Consequences**
 
@@ -82,11 +82,16 @@ We implemented a class, InputListener, that works as the publisher, reading the 
 
 ![](image/KeyListenerUml.png)
 
-- [InputListener](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/control/input/InputListenner.java)
-- [InputObserver](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/control/input/InputObserver.java)
-- [PlayerController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/control/PlayerController.java)
-- [GameController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/control/states/GameController.java)
-- [MenuController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/control/states/MenuController.java)
+These classes can be found in:
+
+- [java.awt.Component](https://docs.oracle.com/javase/7/docs/api/java/awt/Component.html)
+- [KeyListener](https://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyListener.html)
+- [PlayerController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/PlayerController.java)
+- [GameController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/states/GameController.java)
+- [MenuController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/states/MenuController.java)
+- [InstructionsController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/InstructionsController.java)
+- [GameOverController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/GameOverController.java)
+- [LeaderboardController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/LeaderboardController.java)
 
 **Consequences**
 
@@ -108,15 +113,17 @@ We decided to implement the **Factory** pattern. This design pattern defines an 
 
 ![](image/FactoryUml.png)
 
-- [MovingObject](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/MovingObject.java)
-- [LaserBeam](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/LaserBeam.java)
-- [Asteroid](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/Asteroid.java)
-- [EnemyShip](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/EnemyShip.java)
-- [Creator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/Creator.java)
-- [LaserBeamCreator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/LaserBeamCreator.java)
-- [EnemyLaserBeamCreator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/EnemyLaserBeamCreator.java)
-- [AsteroidCreator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/AsteroidCreator.java)
-- [EnemyShipCreator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/model/Entities/EnemyShipCreator.java)
+These classes can be found in:
+
+- [MovingObject](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/model/Entities/MovingObject.java)
+- [LaserBeam](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/model/Entities/LaserBeam.java)
+- [Asteroid](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/model/Entities/Asteroid.java)
+- [EnemyShip](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/model/Entities/EnemyShip.java)
+- [Creator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/model/Creator/Creator.java)
+- [LaserBeamCreator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/model/Creator/LaserBeamCreator.java)
+- [EnemyLaserBeamCreator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/model/Creator/EnemyLaserBeamCreator.java)
+- [AsteroidCreator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/model/Creator/AsteroidCreator.java)
+- [EnemyShipCreator](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/model/Creator/EnemyShipCreator.java)
 
 **Consequences**
 
@@ -141,6 +148,16 @@ The most obvious solution to our problem is implementing the **State** pattern. 
 ![](image/StatesFA.png)
 
 ![](image/StatesUml.png)
+
+These packages can be found in:
+- [Controller](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/Controller.java)
+- [StateController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/StateController.java)
+- [PlayerController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/PlayerController.java)
+- [GameController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/states/GameController.java)
+- [MenuController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/states/MenuController.java)
+- [InstructionsController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/InstructionsController.java)
+- [GameOverController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/GameOverController.java)
+- [LeaderboardController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/LeaderboardController.java)
 
 **Consequences**
 
