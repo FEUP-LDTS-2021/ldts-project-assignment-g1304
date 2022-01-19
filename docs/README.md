@@ -80,7 +80,7 @@ To solve this issue, we implemented the **Observer** pattern. This pattern lets 
 
 We implemented a class, InputListener, that works as the publisher, reading the events and notifying the interface, InputObserver, that works as the subscriber.
 
-![](image/ObserverUml.png)
+![](image/KeyListenerUml.png)
 
 - [InputListener](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/control/input/InputListenner.java)
 - [InputObserver](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/control/input/InputObserver.java)
