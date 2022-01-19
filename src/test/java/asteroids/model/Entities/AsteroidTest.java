@@ -41,7 +41,11 @@ public class AsteroidTest extends Assertions {
     @Test
     void update(){
         //given
-        Asteroid a = new Asteroid(new Position(50,50),new Vector2d(10,-5),AsteroidSizes.SMALL);
+        Vector2d velocityMock = Mockito.mock(Vector2d.class);
+        Mockito.when(velocityMock.getX()).thenReturn(10.0);
+        Mockito.when(velocityMock.getY()).thenReturn(-5.0);
+
+        Asteroid a = new Asteroid(new Position(50.0, 50.0), velocityMock, AsteroidSizes.SMALL);
 
         //when
         a.update(1000);
@@ -187,30 +191,32 @@ public class AsteroidTest extends Assertions {
     }
 
     @Test
-    void collider(){
-        // Given
-        Position position = Mockito.mock(Position.class);
-        Mockito.when(position.getX()).thenReturn(10.0);
-        Mockito.when(position.getY()).thenReturn(15.0);
-        Asteroid asteroid = new Asteroid(position, Mockito.mock(Vector2d.class), AsteroidSizes.SMALL);
+    void getCollider() {
+        // given
 
-        Polygon polygon = new Polygon();
-        double x = 10;
-        double y = 15;
+        Position positionMock = Mockito.mock(Position.class);
+        Mockito.when(positionMock.getX()).thenReturn(10.0);
+        Mockito.when(positionMock.getY()).thenReturn(20.0);
 
-        polygon.addPoint((int)x, (int)y);
-        polygon.addPoint((int)(x + 15), (int)y);
-        polygon.addPoint((int)(x + 15), (int)(y + 15));
-        polygon.addPoint((int)x, (int)(y + 15));
+        Vector2d velocityMock = Mockito.mock(Vector2d.class);
+        Mockito.when(velocityMock.getX()).thenReturn(10.0);
+        Mockito.when(velocityMock.getY()).thenReturn(-5.0);
+
+        Asteroid asteroid = new Asteroid(positionMock,velocityMock,AsteroidSizes.SMALL);
+
+        int[] pointsListX = new int []{5, 2, 2, 1, 1, 0, 0, 2, 3, 6, 13, 16, 17, 17, 16, 16, 15, 14, 12};
+        int[] pointsListY = new int []{0, 3, 4, 5, 6, 7, 11, 12, 13, 14, 14, 12, 9, 8, 7, 4, 2, 1, 0};
 
 
         // when
-        Polygon asteroidCollider = asteroid.getCollider();
+        Polygon returned = asteroid.getCollider();
 
         // then
-        assertEquals(polygon.npoints, asteroidCollider.npoints);
-        assertArrayEquals(polygon.xpoints, asteroidCollider.xpoints);
-        assertArrayEquals(polygon.ypoints, asteroidCollider.ypoints);
+
+        for(int i = 0 ; i<returned.npoints; i++){
+            assertEquals(10+pointsListX[i], returned.xpoints[i]);
+            assertEquals(20+pointsListY[i], returned.ypoints[i]);
+        }
 
     }
 }
