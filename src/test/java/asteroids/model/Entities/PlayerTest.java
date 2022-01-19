@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import asteroids.utils.DoubleComparables;
 
 import java.awt.*;
+import java.util.List;
 
 public class PlayerTest extends Assertions {
 
@@ -94,7 +95,7 @@ public class PlayerTest extends Assertions {
     }
 
     @Test
-    void updateaGreaterThanMaxVelocity(){
+    void updateGreaterThanMaxVelocity(){
         //given
         Player player = new Player(new Position(10, 10));
         Vector2d velocity = Mockito.mock(Vector2d.class);
@@ -129,7 +130,7 @@ public class PlayerTest extends Assertions {
 
         //then
 
-        Mockito.verify(velocity, Mockito.times(1)).addX(Player.acelaration);
+        Mockito.verify(velocity, Mockito.times(1)).addX(Player.accelaration);
         Mockito.verify(velocity, Mockito.times(1)).addY(0);
     }
 
@@ -155,8 +156,8 @@ public class PlayerTest extends Assertions {
 
         //then
 
-        Mockito.verify(velocity, Mockito.times(1)).addX(Player.acelaration*Math.cos(angle));
-        Mockito.verify(velocity, Mockito.times(1)).addY(Player.acelaration*Math.sin(angle));
+        Mockito.verify(velocity, Mockito.times(1)).addX(Player.accelaration *Math.cos(angle));
+        Mockito.verify(velocity, Mockito.times(1)).addY(Player.accelaration *Math.sin(angle));
     }
     @Test
     void updateShot() {
@@ -286,33 +287,24 @@ public class PlayerTest extends Assertions {
     }
 
     @Test
-    void collider(){
-        // Given
-        Position position = Mockito.mock(Position.class);
-        Mockito.when(position.getX()).thenReturn(10.0);
-        Mockito.when(position.getY()).thenReturn(15.0);
-        Player player = new Player(position);
-        player.setAngle(15);
+    void getCollider(){
+        // given
+        Position positionMock = Mockito.mock(Position.class);
+        Mockito.when(positionMock.getX()).thenReturn(10.0);
+        Mockito.when(positionMock.getY()).thenReturn(20.0);
+        Player player = new Player(positionMock);
 
-        Polygon polygon = new Polygon();
-        double anglePontaNave = 15;
-        double anglePontaEsq = anglePontaNave + Math.PI*0.8333;   // 5/6
-        double anglePontaDir = anglePontaNave + Math.PI*1.1666;   // 7/6
-        polygon.addPoint((int) (Math.cos(anglePontaNave)*Player.raio + 10),
-                (int) (Math.sin(anglePontaNave)*Player.raio + 15));
-        polygon.addPoint((int) (Math.cos(anglePontaEsq)*Player.raio + 10),
-                (int) (Math.sin(anglePontaEsq)*Player.raio + 15));
-        polygon.addPoint((int) (Math.cos(anglePontaDir)*Player.raio + 10),
-                (int) (Math.sin(anglePontaDir)*Player.raio + 15));
-
+        int[] pointsListX = new int[] {8, 7, 7, 6, 6, 5, 0, 0, 1, 6, 7, 10, 11, 16, 17, 17, 12, 11, 11, 10, 10, 9};
+        int[] pointsListY = new int[] {0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 14, 13, 12, 11, 10, 5, 4, 3, 2, 1, 0};
 
         // when
         Polygon playerCollider = player.getCollider();
 
         // then
-        assertEquals(polygon.npoints, playerCollider.npoints);
-        assertArrayEquals(polygon.xpoints, playerCollider.xpoints);
-        assertArrayEquals(polygon.ypoints, playerCollider.ypoints);
-
+        assertEquals(playerCollider.npoints, 22);
+        for(int i = 0 ; i<playerCollider.npoints; i++){
+            assertEquals(10+pointsListX[i], playerCollider.xpoints[i]);
+            assertEquals(20+pointsListY[i], playerCollider.ypoints[i]);
+        }
     }
 }

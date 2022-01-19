@@ -6,16 +6,20 @@ import asteroids.model.Position;
 import asteroids.model.Vector2d;
 
 import java.awt.*;
+import java.util.List;
 
 
 public class Player extends MovingObject {
 
     public static final double raio = 10;
-    public static final double acelaration = 250.0;
+    public static final double accelaration = 250.0;
     public static final double MAX_VELOCITY = 175.0;
     public static final int MAX_SCORE = 99990;
     public static final double angularVelocity = Math.PI*1.5;
     public final Position beginPosition;
+
+    private List<Integer> pointsListX = List.of(8, 7, 7, 6, 6, 5, 0, 0, 1, 6, 7, 10, 11, 16, 17, 17, 12, 11, 11, 10, 10, 9);
+    private List<Integer> pointsListY = List.of(0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 14, 13, 12, 11, 10, 5, 4, 3, 2, 1, 0);
 
     private double angle;
     private Rotation rotation;
@@ -60,8 +64,8 @@ public class Player extends MovingObject {
         angle += rotation.getValue()*angularVelocity*dt/1000;
 
         if(isAccelerating()) {
-            getVelocity().addX(acelaration * dt / 1000 * Math.cos(angle));
-            getVelocity().addY(acelaration * dt / 1000 * Math.sin(angle));
+            getVelocity().addX(accelaration * dt / 1000 * Math.cos(angle));
+            getVelocity().addY(accelaration * dt / 1000 * Math.sin(angle));
             if(getVelocity().module() > MAX_VELOCITY)
                 getVelocity().resize(MAX_VELOCITY);
         }else {
@@ -78,19 +82,21 @@ public class Player extends MovingObject {
     @Override
     public Polygon getCollider() {
         Polygon polygon = new Polygon();
-        double anglePontaNave = angle;
-        double anglePontaEsq = anglePontaNave + Math.PI*0.8333;   // 5/6
-        double anglePontaDir = anglePontaNave + Math.PI*1.1666;   // 7/6
-        addPoint(polygon, anglePontaNave);
-        addPoint(polygon, anglePontaEsq);
-        addPoint(polygon, anglePontaDir);
+        double x = getPosition().getX();
+        double y = getPosition().getY();
+
+        for (int i = 0; i < pointsListX.size(); i++) {
+            polygon.addPoint((int)x+pointsListX.get(i),
+                    (int)y+pointsListY.get(i));
+        }
+
         return polygon;
     }
 
-    private void addPoint(Polygon polygon, double angle){
+    /*private void addPoint(Polygon polygon, double angle){
         polygon.addPoint((int) (Math.cos(angle)*raio + getPosition().getX()),
                 (int) (Math.sin(angle)*raio + getPosition().getY()));
-    }
+    }*/
 
     public void setLaserBeamCreator(LaserBeamCreator laserBeamCreator) {
         this.laserBeamCreator = laserBeamCreator;
@@ -155,4 +161,5 @@ public class Player extends MovingObject {
     public int getScoreLife() {
         return scoreLife;
     }
+
 }
