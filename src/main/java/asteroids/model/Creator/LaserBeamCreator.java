@@ -24,8 +24,9 @@ public abstract class LaserBeamCreator extends Creator {
 
     public Position ajustPosition(double angle, MovingObject shooter){
         Position laserPosition = shooter.getPosition().clone();
-        double addX = Math.cos(angle)*(shooter.getWidth() + laserWidth+1) + shooter.getWidth()/2;
-        double addY = Math.sin(angle)*(shooter.getHeight() + laserHeight+1) + shooter.getHeight()/2;
+        double distance = Math.sqrt(shooter.getWidth()*shooter.getWidth() + shooter.getHeight()*shooter.getHeight());
+        double addX = Math.cos(angle)*(distance/2 + laserWidth+1);
+        double addY = Math.sin(angle)*(distance/2 + laserHeight+1);
 
         laserPosition.setX(laserPosition.getX() + addX);
         laserPosition.setY(laserPosition.getY() + addY);

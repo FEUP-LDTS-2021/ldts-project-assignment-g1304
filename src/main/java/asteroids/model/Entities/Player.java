@@ -11,7 +11,8 @@ import java.util.List;
 
 public class Player extends MovingObject {
 
-    public static final double raio = 10;
+    public static final double WIDTH = 16*2;
+    public static final double HEIGHT = 16*2;
     public static final double accelaration = 250.0;
     public static final double MAX_VELOCITY = 175.0;
     public static final int MAX_SCORE = 99990;
@@ -31,9 +32,9 @@ public class Player extends MovingObject {
     private int lives;
 
     public Player(Position position){
-        super(position, new Vector2d(0,0), 2*raio, 2*raio);
+        super(position, new Vector2d(0,0), WIDTH, HEIGHT);
         beginPosition = position.clone();
-        this.angle = 0;
+        this.angle = -Math.PI/2;
         this.acelerate = false;
         setRotation(Rotation.None);
         this.shoot = false;
@@ -53,10 +54,6 @@ public class Player extends MovingObject {
 
     public double getAngle() {
         return angle;
-    }
-
-    public double getRaio() {
-        return raio;
     }
 
     @Override

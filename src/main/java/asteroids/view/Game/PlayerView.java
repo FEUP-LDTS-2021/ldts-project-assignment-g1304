@@ -12,6 +12,8 @@ import static java.lang.Math.signum;
 public class PlayerView extends View {
 
     private final Player player;
+    private static final int CHAR_WIDTH = 2;
+    private static final int CHAR_HEIGHT = 2;
 
     public static final String[] playerDraw = new String[]{
             "        C        ",
@@ -37,11 +39,56 @@ public class PlayerView extends View {
     }
 
     @Override
-    public void draw();
+    public void draw(){
+        int x = (int)player.getPosition().getX();
+        int y = (int)player.getPosition().getY();
+        double angle = player.getAngle()+Math.PI/2.0;
 
-    public void drawShadow(double angle, int x, int y);
+        drawShadow(angle, x, y);
 
-    public void drawPlayer(double angle, int playerX, int playerY);
+        drawPlayer(angle, x, y);
+
+
+    }
+
+    public void drawShadow(double angle, int x, int y){
+        setBackgroundColor(Color.White);
+
+
+        double midX = playerDraw[0].length()/2.0;
+        double midY = playerDraw.length/2.0;
+
+        Vector2d point1 = new Vector2d(9-midX, 3-midY).rotatePoint(angle);
+        Vector2d point2 = new Vector2d(1-midX, 11-midY).rotatePoint(angle);
+        Vector2d point3 = new Vector2d(15-midX, 11-midY).rotatePoint(angle);
+
+        getGraphics().fillTriangle(new TerminalPosition((int)(point1.getX()*CHAR_WIDTH+x), (int)(point1.getY()*CHAR_HEIGHT+y)),
+                new TerminalPosition((int)(point2.getX()*CHAR_WIDTH+x), (int)(point2.getY()*CHAR_HEIGHT+y)),
+                new TerminalPosition((int)(point3.getX()*CHAR_WIDTH+x), (int)(point3.getY()*CHAR_HEIGHT+y)), ' ');
+    }
+
+    public void drawPlayer(double angle, int playerX, int playerY){
+        int midX = playerDraw[0].length()/2;
+        int midY = playerDraw.length/2;
+
+        for(int y = 0; y < playerDraw.length; y++){
+            for(int x = 0; x < playerDraw[1].length(); x++){
+                char c = playerDraw[y].charAt(x);
+                if(c!=' '){
+
+                    Vector2d point = new Vector2d(x-midX, y-midY);
+                    Vector2d newPoint = point.rotatePoint(angle);
+
+                    setColor(c);
+                    graphics.fillRectangle(new TerminalPosition((int)(playerX+newPoint.getX()*CHAR_WIDTH),
+                                                            (int)(playerY+newPoint.getY()*CHAR_HEIGHT)),
+                            new TerminalSize(CHAR_WIDTH, CHAR_HEIGHT), ' ');
+                }
+            }
+        }
+
+
+    }
 
 
 

@@ -34,7 +34,17 @@ public class Vector2d extends Position {
         return vec.getX()*getX() + vec.getY()*getY();
     }
 
-    public Vector2d rotatePoint(double angle);
+    public Vector2d rotatePoint(double angle){
+        double pointAngle = Math.acos(dotProduct(new Vector2d(1,0))/module());
+        if(signum(getY()) == -1)
+            pointAngle = Math.PI*2 - pointAngle;
+
+
+        double distance = module();
+        double newX = Math.cos(angle + pointAngle)* distance;
+        double newY = Math.sin(angle + pointAngle)* distance;
+        return new Vector2d(newX, newY);
+    }
 
     public Vector2d clone() {
         return new Vector2d(getX(), getY());
