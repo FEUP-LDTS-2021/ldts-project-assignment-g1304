@@ -3,7 +3,7 @@ package asteroids.model;
 import asteroids.Constants;
 import asteroids.control.MusicManager;
 import asteroids.control.Sounds;
-import asteroids.model.Creator.LaserBeamCreator;
+import asteroids.model.Creator.PlayerLaserBeamCreator;
 import asteroids.model.Entities.*;
 import asteroids.model.Spawner.AsteroidSpawner;
 import asteroids.model.Spawner.EnemyShipSpawner;
@@ -23,7 +23,7 @@ public class GameModel {
     public GameModel() {
         this.entities = new ArrayList<>();
         player = new Player(new Position(Constants.WIDTH / 2.0, Constants.HEIGHT / 2.0));
-        player.setLaserBeamCreator(new LaserBeamCreator(player, getEntities()));
+        player.setLaserBeamCreator(new PlayerLaserBeamCreator(player, getEntities()));
         entities.add(player);
         this.asteroidSpawner = new AsteroidSpawner(getEntities());
         this.enemyShipSpawner = new EnemyShipSpawner(player, getEntities());
@@ -97,7 +97,7 @@ public class GameModel {
     }
 
     private void asteroidSplitter(Asteroid c1) {
-        if (c1.getAsteroidSize() == AsteroidSizes.SMALL) return;
+        if (c1.getAsteroidSize() == Sizes.SMALL) return;
         c1.decreaseSize();
         Asteroid asteroid = getAsteroidSpawner().getAsteroidCreator().create();
         asteroid.setPosition(c1.getPosition().clone());

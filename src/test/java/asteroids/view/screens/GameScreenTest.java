@@ -70,13 +70,13 @@ public class GameScreenTest extends Assertions {
     void drawAsteroids() throws IOException {
         // given
         Asteroid asteroid1 = Mockito.mock(Asteroid.class);
-        Mockito.when(asteroid1.getAsteroidSize()).thenReturn(AsteroidSizes.LARGE);
+        Mockito.when(asteroid1.getAsteroidSize()).thenReturn(Sizes.LARGE);
         AsteroidView view1 = Mockito.mock(AsteroidView.class);
         entities.add(asteroid1);
         Mockito.doReturn(view1).when(screen).getView(asteroid1);
         Mockito.when(screen.getView(asteroid1)).thenReturn(view1);
         Asteroid asteroid2 = Mockito.mock(Asteroid.class);
-        Mockito.when(asteroid2.getAsteroidSize()).thenReturn(AsteroidSizes.LARGE);
+        Mockito.when(asteroid2.getAsteroidSize()).thenReturn(Sizes.LARGE);
         AsteroidView view2 = Mockito.mock(AsteroidView.class);
         entities.add(asteroid2);
         Mockito.doReturn(view2).when(screen).getView(asteroid2);
@@ -125,14 +125,17 @@ public class GameScreenTest extends Assertions {
     void drawEnemyShip() throws IOException {
         // given
         EnemyShip enemyShip1 = Mockito.mock(EnemyShip.class);
+
         EnemyShipView view1 = Mockito.mock(EnemyShipView.class);
         entities.add(enemyShip1);
-        Mockito.when(screen.getView(enemyShip1)).thenReturn(view1);
+        Mockito.when(enemyShip1.getSize()).thenReturn(Sizes.MEDIUM);
+        Mockito.doReturn(view1).when(screen).getView(enemyShip1);
 
         EnemyShip enemyShip2 = Mockito.mock(EnemyShip.class);
+        Mockito.when(enemyShip2.getSize()).thenReturn(Sizes.MEDIUM);
         EnemyShipView view2 = Mockito.mock(EnemyShipView.class);
         entities.add(enemyShip2);
-        Mockito.when(screen.getView(enemyShip2)).thenReturn(view2);
+        Mockito.doReturn(view2).when(screen).getView(enemyShip2);
 
         // when
         screen.draw();
@@ -183,8 +186,7 @@ public class GameScreenTest extends Assertions {
     void getAsteroidView(){
         // given
         Asteroid asteroid = Mockito.mock(Asteroid.class);
-        Mockito.when(asteroid.getAsteroidSize()).thenReturn(AsteroidSizes.LARGE);
-        //Mockito.when(asteroid.getAsteroidSize().getSize()).thenReturn(3);
+        Mockito.when(asteroid.getAsteroidSize()).thenReturn(Sizes.LARGE);
 
         // when
         View view = screen.getView(asteroid);
@@ -212,6 +214,7 @@ public class GameScreenTest extends Assertions {
     void getEnemyShipsView(){
         // given
         EnemyShip enemyShip = Mockito.mock(EnemyShip.class);
+        Mockito.when(enemyShip.getSize()).thenReturn(Sizes.MEDIUM);
 
         // when
         View view = screen.getView(enemyShip);

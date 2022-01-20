@@ -1,21 +1,105 @@
 package asteroids.model.Creator;
 
-import asteroids.model.Entities.EnemyShip;
 import asteroids.model.Entities.LaserBeam;
 import asteroids.model.Entities.MovingObject;
-import asteroids.model.Entities.Player;
 import asteroids.model.Position;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-import static java.lang.Double.NaN;
+public class TargetBeamCreatorTest extends Assertions {
 
-public class EnemyLaserBeamCreatorTest extends Assertions {
+    TargetLaserBeamCreator creator;
+    MovingObject target;
+    MovingObject shooter;
+    List<MovingObject> entities;
+
+    @BeforeEach
+    void init(){
+        target = Mockito.mock(MovingObject.class);
+        shooter = Mockito.mock(MovingObject.class);
+
+        entities = Mockito.mock(List.class);
+        creator = Mockito.spy(new TargetLaserBeamCreator(target, shooter, entities));
+    }
+
+    @Test
+    void createCreator(){
+        // then
+        assertEquals(shooter, creator.getShooter());
+        assertEquals(target, creator.getTarget());
+        assertEquals(entities, creator.getEntities());
+    }
+
+    @Test
+    public void createPosVel() {
+
+        // given
+        Position position = Mockito.mock(Position.class);
+        Mockito.doReturn(position).when(creator).ajustPosition(Mockito.anyDouble(), Mockito.any());
+
+        Position targetPos = Mockito.mock(Position.class);
+        Mockito.when(targetPos.getX()).thenReturn(10.0);
+        Mockito.when(targetPos.getY()).thenReturn(79.0);
+
+        Position shooterPos = Mockito.mock(Position.class);
+        Mockito.when(shooterPos.getX()).thenReturn(60.0);
+        Mockito.when(shooterPos.getY()).thenReturn(50.0);
+
+        Mockito.when(shooter.getPosition()).thenReturn(shooterPos);
+        Mockito.when(target.getPosition()).thenReturn(targetPos);
+
+        double angle = 2.6160088600381832;
+
+        // when
+        LaserBeam result = creator.create();
+
+        //then
+
+        Mockito.verify(creator).ajustPosition(angle, shooter);
+        assertEquals(position, result.getPosition());
+        assertEquals(angle, result.getAngle());
+        assertEquals(3, result.getWidth());
+        assertEquals(3, result.getHeight());
+        assertFalse(result.isPlayerBeam());
+    }
+
+    @Test
+    public void createNegVel() {
+
+        // given
+        Position position = Mockito.mock(Position.class);
+        Mockito.doReturn(position).when(creator).ajustPosition(Mockito.anyDouble(), Mockito.any());
+
+        Position targetPos = Mockito.mock(Position.class);
+        Mockito.when(targetPos.getX()).thenReturn(10.0);
+        Mockito.when(targetPos.getY()).thenReturn(30.0);
+
+        Position shooterPos = Mockito.mock(Position.class);
+        Mockito.when(shooterPos.getX()).thenReturn(60.0);
+        Mockito.when(shooterPos.getY()).thenReturn(92.0);
+
+        Mockito.when(shooter.getPosition()).thenReturn(shooterPos);
+        Mockito.when(target.getPosition()).thenReturn(targetPos);
+
+        double angle = 4.033726489636377;
+
+        // when
+        LaserBeam result = creator.create();
+
+        //then
+
+        Mockito.verify(creator).ajustPosition(angle, shooter);
+        assertEquals(position, result.getPosition());
+        assertEquals(angle, result.getAngle());
+        assertEquals(3, result.getWidth());
+        assertEquals(3, result.getHeight());
+        assertFalse(result.isPlayerBeam());
+    }
+
+    /*
     @Test
     void createEnemyLaserBeamNegativeVelocity(){
         //given
@@ -75,10 +159,10 @@ public class EnemyLaserBeamCreatorTest extends Assertions {
         Mockito.when(enemyShipMock.getWidth()).thenReturn(5.0);
         List<MovingObject> entities = new ArrayList<>(List.of(playerMock, enemyShipMock));
 
-        EnemyLaserBeamCreator enemyLaserBeamCreator = new EnemyLaserBeamCreator(playerMock, enemyShipMock, entities);
+        TargetLaserBeamCreator enemyLaserBeamCreator = new TargetLaserBeamCreator(playerMock, enemyShipMock, entities);
 
         //when
-        LaserBeam laserBeam = (LaserBeam) enemyLaserBeamCreator.create();
+        LaserBeam laserBeam = enemyLaserBeamCreator.create();
         enemyLaserBeamCreator.addLaserBeam(laserBeam);
 
         //then
@@ -90,12 +174,12 @@ public class EnemyLaserBeamCreatorTest extends Assertions {
         assertEquals(0.24497866312686423, laserBeam.getAngle());
         assertEquals(3, laserBeam.getHeight());
         assertEquals(3,laserBeam.getWidth());
-        assertEquals(playerMock, enemyLaserBeamCreator.getPlayer());
-        assertEquals(enemyShipMock, enemyLaserBeamCreator.getEnemyShip());
+        //assertEquals(playerMock, enemyLaserBeamCreator.());
+        //assertEquals(enemyShipMock, enemyLaserBeamCreator.getEnemyShip());
     }
 
     @Test
-    void createEnemyLaserBeamNullVelocity() {
+    void createNullVelocity() {
         //given
         Position positionMock = Mockito.mock(Position.class);
         Mockito.when(positionMock.getX()).thenReturn(20.0);
@@ -114,7 +198,7 @@ public class EnemyLaserBeamCreatorTest extends Assertions {
         Mockito.when(enemyShipMock.getWidth()).thenReturn(5.0);
         List<MovingObject> entities = new ArrayList<>(List.of(playerMock, enemyShipMock));
 
-        EnemyLaserBeamCreator enemyLaserBeamCreator = new EnemyLaserBeamCreator(playerMock, enemyShipMock, entities);
+        TargetLaserBeamCreator enemyLaserBeamCreator = new TargetLaserBeamCreator(playerMock, enemyShipMock, entities);
 
         //when
         LaserBeam laserBeam = (LaserBeam) enemyLaserBeamCreator.create();
@@ -131,5 +215,5 @@ public class EnemyLaserBeamCreatorTest extends Assertions {
         assertEquals(3,laserBeam.getWidth());
         assertEquals(playerMock, enemyLaserBeamCreator.getPlayer());
         assertEquals(enemyShipMock, enemyLaserBeamCreator.getEnemyShip());
-    }
+    }*/
 }

@@ -27,7 +27,7 @@ public class Player extends MovingObject {
     private int lives;
 
     public Player(Position position){
-        super(position, new Vector2d(0,0), raio, raio);
+        super(position, new Vector2d(0,0), 2*raio, 2*raio);
         beginPosition = position.clone();
         this.angle = 0;
         this.acelerate = false;
@@ -88,8 +88,8 @@ public class Player extends MovingObject {
     }
 
     private void addPoint(Polygon polygon, double angle){
-        polygon.addPoint((int) (Math.cos(angle)*raio + getPosition().getX()),
-                (int) (Math.sin(angle)*raio + getPosition().getY()));
+        polygon.addPoint((int) (getPosition().getX() + (Math.cos(angle)+1)*raio),
+                (int) ((Math.sin(angle)+1)*raio + getPosition().getY()));
     }
 
     public void setLaserBeamCreator(LaserBeamCreator laserBeamCreator) {

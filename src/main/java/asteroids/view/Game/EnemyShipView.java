@@ -4,8 +4,6 @@ import asteroids.model.Entities.EnemyShip;
 
 public class EnemyShipView extends View {
     private final EnemyShip enemyShip;
-    private static final int CHAR_WIDTH = 2;
-    private static final int CHAR_HEIGHT = 2;
 
     public static final String[] enemyShipDraw=new String[]{
             "        AAA",
@@ -23,7 +21,7 @@ public class EnemyShipView extends View {
     };
 
     public EnemyShipView(EnemyShip enemyShip){
-        super(CHAR_WIDTH, CHAR_HEIGHT);
+        super(enemyShip.getSize().getSize(), enemyShip.getSize().getSize());
         this.enemyShip = enemyShip;
     }
 

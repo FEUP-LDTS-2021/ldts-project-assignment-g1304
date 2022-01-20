@@ -1,6 +1,6 @@
 package asteroids.model.Entities;
 
-import asteroids.model.Creator.EnemyLaserBeamCreator;
+import asteroids.model.Creator.LaserBeamCreator;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
 import org.junit.jupiter.api.Assertions;
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.awt.*;
-import java.util.List;
 
 public class EnemyShipTest extends Assertions {
 
@@ -52,7 +51,7 @@ public class EnemyShipTest extends Assertions {
     void shooting(){
         //given
         LaserBeam laserBeam = new LaserBeam(new Position(100.0, 100.0), 0.69, 1.0, 1.0);
-        EnemyLaserBeamCreator laserBeamCreatorMock = Mockito.mock(EnemyLaserBeamCreator.class);
+        LaserBeamCreator laserBeamCreatorMock = Mockito.mock(LaserBeamCreator.class);
         Mockito.when(laserBeamCreatorMock.create()).thenReturn(laserBeam);
 
         //when
@@ -66,7 +65,7 @@ public class EnemyShipTest extends Assertions {
     @Test
     void update(){
         //given
-        EnemyLaserBeamCreator laserBeamCreatorMock = Mockito.mock(EnemyLaserBeamCreator.class);
+        LaserBeamCreator laserBeamCreatorMock = Mockito.mock(LaserBeamCreator.class);
         EnemyShip enemyShip1 = Mockito.spy(enemyShip);
 
         //when
@@ -92,7 +91,7 @@ public class EnemyShipTest extends Assertions {
         // given
         int[] pointsListX = new int []{16, 22, 30, 38, 30, 8, 0, 8, 12};
         int[] pointsListY = new int []{0, 0, 12, 18, 24, 24, 18, 12, 2};
-
+        enemyShip.setSize(Sizes.MEDIUM);
 
         // when
         Polygon returned = enemyShip.getCollider();
