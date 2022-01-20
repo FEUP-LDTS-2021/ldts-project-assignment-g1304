@@ -33,7 +33,7 @@ The following screenshots ilustrate the general look of our game, as well as the
 
 ### Game Preview
 
-![](docs/image/game.png)
+![](docs/image/preview.gif)
 
 ### Menus
 **Initial Menu**
