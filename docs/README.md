@@ -9,7 +9,7 @@
 This project was developed by Afonso Baldo, João Teixeira and José Gaspar for LDTS 21⁄22.
 ## FEATURES
 ### IMPLEMENTED FEATURES
-* Menu - When the game is initialized a Menu is displayed (the player chooses between playing, seeing leaderbord or quit)
+* Menu - When the game is initialized a Menu is displayed (the player chooses between playing, seeing leaderboard or quit)
 * Movement - The spaceship is able to move in all directions when the arrow keys are pressed.
 * Shooting - The spaceship can shoot laser beams. 
 * Asteroids - The asteroids appear randomly throughout the map and move in a single random direction. 
