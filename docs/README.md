@@ -25,6 +25,8 @@ This project was developed by Afonso Baldo, João Teixeira and José Gaspar for 
 * Leaderboard - When the user loses, his score is saved to a file.
 * SoundTrack - Play background music when user is playing.
 * Sounds - Play sounds when the player or enemy fires a laser beam, or when there is a collision.
+* Player Flames - When the player accelerates, we can see flames in the rocket.
+* Enemy Ship Types - There are two types of ships: one tries to shoot directly at the player (Target) and the other shoots in predefined directions(Dumb).
 
 ### PLANNED FEATURES
 * All feaures implemented!
