@@ -43,10 +43,8 @@ public class EnemyShipCreatorTest extends Assertions {
         assertEquals(50.0 ,enemyShip.getPosition().getX());
         assertEquals(0.0,enemyShip.getPosition().getY());
         assertEquals(0.0,enemyShip.getVelocity().getX());
-        assertEquals(35.0,enemyShip.getVelocity().getY());
+        assertEquals(34.0,enemyShip.getVelocity().getY());
         assertEquals(2,enemyShipCreator.getEntities().size());
-        //assertEquals(playerMock, enemyShip.getLaserBeamCreator().getPlayer());
-        //assertEquals(enemyShip, enemyShip.getLaserBeamCreator().getEnemyShip());
         assertEquals(entities, enemyShip.getLaserBeamCreator().getEntities());
     }
 
@@ -74,11 +72,9 @@ public class EnemyShipCreatorTest extends Assertions {
         assertEquals(playerMock,enemyShipCreator.getPlayer());
         assertEquals(0.0 ,enemyShip.getPosition().getX());
         assertEquals(50.0,enemyShip.getPosition().getY());
-        assertEquals(35.0,enemyShip.getVelocity().getX());
+        assertEquals(34.0,enemyShip.getVelocity().getX());
         assertEquals(0,enemyShip.getVelocity().getY());
         assertEquals(2,enemyShipCreator.getEntities().size());
-        //assertEquals(playerMock, enemyShip.getLaserBeamCreator().getPlayer());
-        //assertEquals(enemyShip, enemyShip.getLaserBeamCreator().getEnemyShip());
         assertEquals(entities, enemyShip.getLaserBeamCreator().getEntities());
     }
 
@@ -107,10 +103,8 @@ public class EnemyShipCreatorTest extends Assertions {
         assertEquals(50.0 ,enemyShip.getPosition().getX());
         assertEquals(Constants.WIDTH,enemyShip.getPosition().getY());
         assertEquals(0.0,enemyShip.getVelocity().getX());
-        assertEquals(-35.0,enemyShip.getVelocity().getY());
+        assertEquals(-34.0,enemyShip.getVelocity().getY());
         assertEquals(2,enemyShipCreator.getEntities().size());
-        //assertEquals(playerMock, enemyShip.getLaserBeamCreator().getPlayer());
-        //assertEquals(enemyShip, enemyShip.getLaserBeamCreator().getEnemyShip());
         assertEquals(entities, enemyShip.getLaserBeamCreator().getEntities());
     }
 
@@ -138,11 +132,9 @@ public class EnemyShipCreatorTest extends Assertions {
         assertEquals(playerMock,enemyShipCreator.getPlayer());
         assertEquals(Constants.WIDTH,enemyShip.getPosition().getX());
         assertEquals(50.0,enemyShip.getPosition().getY());
-        assertEquals(-35.0,enemyShip.getVelocity().getX());
+        assertEquals(-34.0,enemyShip.getVelocity().getX());
         assertEquals(0,enemyShip.getVelocity().getY());
         assertEquals(2,enemyShipCreator.getEntities().size());
-        //assertEquals(playerMock, enemyShip.getLaserBeamCreator().getPlayer());
-        //assertEquals(enemyShip, enemyShip.getLaserBeamCreator().getEnemyShip());
         assertEquals(entities, enemyShip.getLaserBeamCreator().getEntities());
     }
 }
