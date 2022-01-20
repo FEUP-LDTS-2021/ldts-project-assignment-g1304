@@ -6,8 +6,6 @@ import asteroids.view.Color;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 
-import static java.lang.Math.signum;
-
 
 public class PlayerView extends View {
 
@@ -33,6 +31,24 @@ public class PlayerView extends View {
             "       CCC       "
     };
 
+    public static final String[] playerFlamesDraw = new String[]{
+            "        C        ",
+            "       CWC       ",
+            "       CWC       ",
+            "      CCWCC      ",
+            "      CWCWC      ",
+            "     WCWbWCW     ",
+            "    WWCWbWCWW    ",
+            "   WWWCWbWCWWW   ",
+            "  WWWWCWbWCWWWW  ",
+            " WWWRWCWbWCWRWWW ",
+            "WWWWWWCWbWCWWWWWW",
+            "WWCWCWCWbWCWCWCWW",
+            " CCCC CWbWC CCCC ",
+            " OYO  CWbWC  OYO ",
+            " OYO   CCC   OYO "
+    };
+
     public PlayerView(Player player){
         super(CHAR_WIDTH,CHAR_HEIGHT);
         this.player = player;
@@ -46,7 +62,8 @@ public class PlayerView extends View {
 
         drawShadow(angle, x, y);
 
-        drawPlayer(angle, x, y);
+        String[] draw = player.isAccelerating()?playerFlamesDraw:playerDraw;
+        drawPlayer(draw, angle, x, y);
 
 
     }
@@ -67,15 +84,14 @@ public class PlayerView extends View {
                 new TerminalPosition((int)(point3.getX()*CHAR_WIDTH+x), (int)(point3.getY()*CHAR_HEIGHT+y)), ' ');
     }
 
-    public void drawPlayer(double angle, int playerX, int playerY){
-        int midX = playerDraw[0].length()/2;
-        int midY = playerDraw.length/2;
+    public void drawPlayer(String[] draw, double angle, int playerX, int playerY){
+        int midX = draw[0].length()/2;
+        int midY = draw.length/2;
 
-        for(int y = 0; y < playerDraw.length; y++){
-            for(int x = 0; x < playerDraw[1].length(); x++){
-                char c = playerDraw[y].charAt(x);
+        for(int y = 0; y < draw.length; y++){
+            for(int x = 0; x < draw[1].length(); x++){
+                char c = draw[y].charAt(x);
                 if(c!=' '){
-
                     Vector2d point = new Vector2d(x-midX, y-midY);
                     Vector2d newPoint = point.rotatePoint(angle);
 

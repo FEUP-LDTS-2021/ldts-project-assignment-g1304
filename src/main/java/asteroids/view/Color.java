@@ -11,7 +11,9 @@ public enum Color{
     LightGray(TextColor.Factory.fromString("#B5B5B5"),'c'),
     MediumGray(TextColor.Factory.fromString("#787978"),'C'),
     DarkGray(TextColor.Factory.fromString("#5A5A5A"),'p'),
-    LightBlack(TextColor.Factory.fromString("#1E1E1E"),'P');
+    LightBlack(TextColor.Factory.fromString("#1E1E1E"),'P'),
+    Yellow(TextColor.Factory.fromString("#ffc107"),'Y'),
+    Orange(TextColor.Factory.fromString("#FF5722"),'O');
 
     private final TextColor color;
     private final char c;
