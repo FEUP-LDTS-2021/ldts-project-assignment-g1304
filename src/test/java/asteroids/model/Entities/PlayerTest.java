@@ -305,8 +305,11 @@ public class PlayerTest extends Assertions {
         // then
         assertEquals(playerCollider.npoints, 22);
         for(int i = 0 ; i<playerCollider.npoints; i++){
-            assertEquals(10+pointsListX[i], playerCollider.xpoints[i]);
-            assertEquals(20+pointsListY[i], playerCollider.ypoints[i]);
+            Vector2d point = new Vector2d(pointsListX[i], pointsListY[i]);
+            Vector2d rotatedPoint = point.rotatePoint(-Math.PI/2);
+
+            assertEquals((int)(10+rotatedPoint.getX()), playerCollider.xpoints[i]);
+            assertEquals((int)(20+rotatedPoint.getY()), playerCollider.ypoints[i]);
         }
     }
 }
