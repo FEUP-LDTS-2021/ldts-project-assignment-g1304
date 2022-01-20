@@ -32,17 +32,32 @@ public class PlayerViewTest {
     }
 
     @Test
-    void draw(){
+    void drawWithoutFlames(){
         //given
         Mockito.doNothing().when(playerView).drawShadow(Mockito.anyDouble(), Mockito.anyInt(), Mockito.anyInt());
-        Mockito.doNothing().when(playerView).drawPlayer(Mockito.anyDouble(), Mockito.anyInt(), Mockito.anyInt());
-
+        Mockito.doNothing().when(playerView).drawPlayer(Mockito.any(), Mockito.anyDouble(), Mockito.anyInt(), Mockito.anyInt());
+        Mockito.when(playerMock.isAccelerating()).thenReturn(false);
         //when
         playerView.draw();
 
         //then
         Mockito.verify(playerView, Mockito.times(1)).drawShadow(25.0+Math.PI/2.0, 10, 15);
-        Mockito.verify(playerView, Mockito.times(1)).drawPlayer(25.0+Math.PI/2.0, 10, 15);
+        Mockito.verify(playerView, Mockito.times(1)).drawPlayer(PlayerView.playerDraw,25.0+Math.PI/2.0, 10, 15);
+
+    }
+
+    @Test
+    void drawWithFlames(){
+        //given
+        Mockito.doNothing().when(playerView).drawShadow(Mockito.anyDouble(), Mockito.anyInt(), Mockito.anyInt());
+        Mockito.doNothing().when(playerView).drawPlayer(Mockito.any(), Mockito.anyDouble(), Mockito.anyInt(), Mockito.anyInt());
+        Mockito.when(playerMock.isAccelerating()).thenReturn(true);
+        //when
+        playerView.draw();
+
+        //then
+        Mockito.verify(playerView, Mockito.times(1)).drawShadow(25.0+Math.PI/2.0, 10, 15);
+        Mockito.verify(playerView, Mockito.times(1)).drawPlayer(PlayerView.playerFlamesDraw,25.0+Math.PI/2.0, 10, 15);
 
     }
 
@@ -79,7 +94,7 @@ public class PlayerViewTest {
         int midY = playerDraw.length/2;
         System.out.println(midX + " " + midY);
         // when
-        playerView.drawPlayer(angle, playerX, playerY);
+        playerView.drawPlayer(PlayerView.playerDraw, angle, playerX, playerY);
 
         // then
 
