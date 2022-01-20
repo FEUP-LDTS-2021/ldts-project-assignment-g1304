@@ -157,7 +157,7 @@ The most obvious solution to our problem is implementing the **State** pattern. 
 
 ![](image/StatesUml.png)
 
-These packages can be found in:
+These classes can be found in:
 - [Controller](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/Controller.java)
 - [StateController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/StateController.java)
 - [GameController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/GameController.java)
@@ -172,6 +172,34 @@ Applying the **State** pattern allows to:
 
 - Organize the code of the various states into individual classes
 - Introduce new states in a much easier way, without having to change existing state classes or the context.
+
+### USING THE SAME INSTANCE
+
+**Problem in Context**
+
+When adding sounds to our project, we noticed that several classes needed to hava access to the MusicManager class. The problem beyhind that is the space complexity, wich would be slightly higher due to that extra atributte.
+
+**The Pattern**
+
+To solve this issue, we implemented the **Singleton** pattern wich allow us to instanciate a single object of a certain class.
+
+**Implementation***
+
+![](image/singletonUml.png)
+
+These classes can be found in:
+
+- [MusicManager](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/MusicManager.java)
+- [Controller](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/Controller.java)
+- [PlayerController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/PlayerController.java)
+- [EnemyShip](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/model/Entities/EnemyShip.java)
+- [GameModel](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/model/GameModel.java)
+
+**Consequences**
+
+- With this implementation, each time we need to access the MusicManager class we can simply get an instance of the object, using just one (MusicManager object) during the entire project.
+
+
 
 ## TEST COVERAGE
 
