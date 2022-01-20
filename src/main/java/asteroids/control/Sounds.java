@@ -1,5 +1,5 @@
 package asteroids.control;
 
 public enum Sounds {
-    SOUNDTRACK, SHOOT, ROCKET, DESTRUCTION, GAMEOVER;
+    SOUNDTRACK, SHOOT, ROCKET, DESTRUCTION, GAMEOVER, ENEMYSHOOT;
 }

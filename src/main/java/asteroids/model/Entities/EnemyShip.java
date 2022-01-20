@@ -1,5 +1,7 @@
 package asteroids.model.Entities;
 
+import asteroids.control.MusicManager;
+import asteroids.control.Sounds;
 import asteroids.model.Creator.LaserBeamCreator;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
@@ -46,8 +48,10 @@ public class EnemyShip extends MovingObject {
     }
 
     public void shooting(long dt) {
-        if (isShootingTime(dt))
-            laserBeamCreator.addLaserBeam((LaserBeam) laserBeamCreator.create());
+        if (isShootingTime(dt)) {
+            MusicManager.getInstance().start(Sounds.ENEMYSHOOT);
+            laserBeamCreator.addLaserBeam(laserBeamCreator.create());
+        }
     }
 
     public boolean isShootingTime(long dt) {

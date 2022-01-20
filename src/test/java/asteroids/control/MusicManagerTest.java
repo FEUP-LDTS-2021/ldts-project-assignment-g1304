@@ -13,6 +13,7 @@ public class MusicManagerTest extends Assertions {
     Music rocketMock = Mockito.mock(Music.class);
     Music destructionMock = Mockito.mock(Music.class);
     Music gameOverMock = Mockito.mock(Music.class);
+    Music enemyShootMock = Mockito.mock(Music.class);
 
     @BeforeEach
     void initMusicManager() {
@@ -22,6 +23,7 @@ public class MusicManagerTest extends Assertions {
         MusicManager.setRocket(rocketMock);
         MusicManager.setDestruction(destructionMock);
         MusicManager.setGameOver(gameOverMock);
+        MusicManager.setEnemyShoot(enemyShootMock);
         musicManagerSpy = Mockito.spy(musicManager);
     }
 
@@ -53,6 +55,12 @@ public class MusicManagerTest extends Assertions {
     void startGameOver() {
         musicManagerSpy.start(Sounds.GAMEOVER);
         Mockito.verify(gameOverMock, Mockito.times(1)).start();
+    }
+
+    @Test
+    void startEnemyShoot() {
+        musicManagerSpy.start(Sounds.ENEMYSHOOT);
+        Mockito.verify(enemyShootMock, Mockito.times(1)).start();
     }
 
     @Test
@@ -144,6 +152,20 @@ public class MusicManagerTest extends Assertions {
     }
 
     @Test
+    void isPlayingEnemyShootTrue() {
+        Mockito.when(enemyShootMock.isPlaying()).thenReturn(true);
+        boolean playing = musicManagerSpy.isPlaying(Sounds.ENEMYSHOOT);
+        assertTrue(playing);
+    }
+
+    @Test
+    void isPlayingEnemyShootFalse() {
+        Mockito.when(enemyShootMock.isPlaying()).thenReturn(false);
+        boolean playing = musicManagerSpy.isPlaying(Sounds.ENEMYSHOOT);
+        assertFalse(playing);
+    }
+
+    @Test
     void stopAll() {
         musicManagerSpy.stopAll();
         Mockito.verify(soundTrackMock, Mockito.times(1)).stop();
@@ -151,6 +173,7 @@ public class MusicManagerTest extends Assertions {
         Mockito.verify(rocketMock, Mockito.times(1)).stop();
         Mockito.verify(destructionMock, Mockito.times(1)).stop();
         Mockito.verify(gameOverMock, Mockito.times(1)).stop();
+        Mockito.verify(enemyShootMock, Mockito.times(1)).stop();
     }
 
 }

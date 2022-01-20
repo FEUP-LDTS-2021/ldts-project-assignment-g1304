@@ -1,11 +1,13 @@
 package asteroids.model.Entities;
 
+import asteroids.control.MusicManager;
 import asteroids.model.Creator.LaserBeamCreator;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
 import java.awt.*;
@@ -37,43 +39,60 @@ public class EnemyShipTest extends Assertions {
     @Test
     void isShootingTime() {
 
-        //when
-        boolean result1 = enemyShip.isShootingTime(999);
-        boolean result2 = enemyShip.isShootingTime(2);
+        MusicManager manager= Mockito.mock(MusicManager.class);
+        try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)) {
+            configurationMockedStatic.when(MusicManager::getInstance).thenReturn(manager);
 
-        //then
-        assertTrue(result2);
-        assertFalse(result1);
-        assertEquals(1,enemyShip.getLastTime());
+            //when
+            boolean result1 = enemyShip.isShootingTime(999);
+            boolean result2 = enemyShip.isShootingTime(2);
+
+            //then
+            assertTrue(result2);
+            assertFalse(result1);
+            assertEquals(1, enemyShip.getLastTime());
+        }
     }
 
     @Test
     void shooting(){
-        //given
-        LaserBeam laserBeam = new LaserBeam(new Position(100.0, 100.0), 0.69, 1.0, 1.0);
-        LaserBeamCreator laserBeamCreatorMock = Mockito.mock(LaserBeamCreator.class);
-        Mockito.when(laserBeamCreatorMock.create()).thenReturn(laserBeam);
 
-        //when
-        enemyShip.setLaserBeamCreator(laserBeamCreatorMock);
-        enemyShip.shooting(1001);
+        MusicManager manager= Mockito.mock(MusicManager.class);
+        try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)) {
+            configurationMockedStatic.when(MusicManager::getInstance).thenReturn(manager);
 
-        //then
-        Mockito.verify(laserBeamCreatorMock, Mockito.times(1)).addLaserBeam(laserBeam);
-        Mockito.verify(laserBeamCreatorMock, Mockito.times(1)).create();
+            //given
+            LaserBeam laserBeam = new LaserBeam(new Position(100.0, 100.0), 0.69, 1.0, 1.0);
+            LaserBeamCreator laserBeamCreatorMock = Mockito.mock(LaserBeamCreator.class);
+            Mockito.when(laserBeamCreatorMock.create()).thenReturn(laserBeam);
+
+            //when
+            enemyShip.setLaserBeamCreator(laserBeamCreatorMock);
+            enemyShip.shooting(1001);
+
+            //then
+            Mockito.verify(laserBeamCreatorMock, Mockito.times(1)).addLaserBeam(laserBeam);
+            Mockito.verify(laserBeamCreatorMock, Mockito.times(1)).create();
+        }
     }
     @Test
     void update(){
         //given
-        LaserBeamCreator laserBeamCreatorMock = Mockito.mock(LaserBeamCreator.class);
-        EnemyShip enemyShip1 = Mockito.spy(enemyShip);
 
-        //when
-        enemyShip1.setLaserBeamCreator(laserBeamCreatorMock);
-        enemyShip1.update(1001);
+        MusicManager manager= Mockito.mock(MusicManager.class);
+        try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)) {
+            configurationMockedStatic.when(MusicManager::getInstance).thenReturn(manager);
 
-        //then
-        Mockito.verify(enemyShip1,Mockito.times(1)).shooting(1001);
+            LaserBeamCreator laserBeamCreatorMock = Mockito.mock(LaserBeamCreator.class);
+            EnemyShip enemyShip1 = Mockito.spy(enemyShip);
+
+            //when
+            enemyShip1.setLaserBeamCreator(laserBeamCreatorMock);
+            enemyShip1.update(1001);
+
+            //then
+            Mockito.verify(enemyShip1, Mockito.times(1)).shooting(1001);
+        }
     }
 
     @Test
@@ -83,7 +102,7 @@ public class EnemyShipTest extends Assertions {
         int points = enemyShip.getPoints();
 
         // then
-        assertEquals(50, enemyShip.getPoints());
+        assertEquals(50, points);
     }
 
     @Test
@@ -103,6 +122,11 @@ public class EnemyShipTest extends Assertions {
             assertEquals(100+pointsListX[i], returned.xpoints[i]);
             assertEquals(120+pointsListY[i], returned.ypoints[i]);
         }
+    }
 
+    @Test
+    void getSize() {
+        enemyShip.setSize(Sizes.MEDIUM);
+        assertNotNull(enemyShip.getSize());
     }
 }

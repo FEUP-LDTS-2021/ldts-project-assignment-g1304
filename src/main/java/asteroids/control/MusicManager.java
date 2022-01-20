@@ -4,17 +4,19 @@ public class MusicManager {
 
     private static Music soundTrack;
     private static Music shoot;
+    private static Music enemyShoot;
     private static Music rocket;
     private static Music destruction;
     private static Music gameOver;
     private static MusicManager musicManager;
 
     private MusicManager() {
-        this.soundTrack = new Music("/src/main/resources/Sounds/soundTrack.wav");
-        this.shoot = new Music("/src/main/resources/Sounds/shoot.wav");
-        this.rocket = new Music("/src/main/resources/Sounds/rocket.wav");
-        this.destruction = new Music("/src/main/resources/Sounds/destruction.wav");
-        this.gameOver = new Music("/src/main/resources/Sounds/gameOver.wav");
+        soundTrack = new Music("/src/main/resources/Sounds/soundTrack.wav");
+        shoot = new Music("/src/main/resources/Sounds/shoot.wav");
+        enemyShoot = new Music("/src/main/resources/Sounds/enemyShoot.wav");
+        rocket = new Music("/src/main/resources/Sounds/rocket.wav");
+        destruction = new Music("/src/main/resources/Sounds/destruction.wav");
+        gameOver = new Music("/src/main/resources/Sounds/gameOver.wav");
     }
 
     public static MusicManager getInstance() {
@@ -44,6 +46,10 @@ public class MusicManager {
         MusicManager.gameOver = gameOver;
     }
 
+    public static void setEnemyShoot(Music enemyShoot) {
+        MusicManager.enemyShoot = enemyShoot;
+    }
+
     public void start(Sounds sound) {
         switch(sound) {
             case SOUNDTRACK -> soundTrack.startLoop();
@@ -51,6 +57,7 @@ public class MusicManager {
             case ROCKET -> rocket.startLoop();
             case DESTRUCTION -> destruction.start();
             case GAMEOVER -> gameOver.start();
+            case ENEMYSHOOT -> enemyShoot.start();
         }
     }
 
@@ -69,12 +76,14 @@ public class MusicManager {
             case ROCKET -> rocket.isPlaying();
             case DESTRUCTION -> destruction.isPlaying();
             case GAMEOVER -> gameOver.isPlaying();
+            case ENEMYSHOOT -> enemyShoot.isPlaying();
         };
     }
 
     public void stopAll() {
         soundTrack.stop();
         shoot.stop();
+        enemyShoot.stop();
         rocket.stop();
         destruction.stop();
         gameOver.stop();
