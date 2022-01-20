@@ -54,7 +54,7 @@ public class MusicManagerTest extends Assertions {
     @Test
     void startGameOver() {
         musicManagerSpy.start(Sounds.GAMEOVER);
-        Mockito.verify(gameOverMock, Mockito.times(1)).start();
+        Mockito.verify(gameOverMock, Mockito.times(1)).startLoop();
     }
 
     @Test

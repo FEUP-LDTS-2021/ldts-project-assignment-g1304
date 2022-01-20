@@ -56,7 +56,7 @@ public class MusicManager {
             case SHOOT -> shoot.start();
             case ROCKET -> rocket.startLoop();
             case DESTRUCTION -> destruction.start();
-            case GAMEOVER -> gameOver.start();
+            case GAMEOVER -> gameOver.startLoop();
             case ENEMYSHOOT -> enemyShoot.start();
         }
     }
