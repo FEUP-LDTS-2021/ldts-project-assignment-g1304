@@ -177,11 +177,11 @@ Applying the **State** pattern allows to:
 
 **Problem in Context**
 
-When adding sounds to our project, we noticed that several classes needed to hava access to the MusicManager class. The problem beyhind that is the space complexity, wich would be slightly higher due to that extra atributte.
+When adding sounds to our project, we noticed that several classes required access to a class that would manage the music. We wanted to ensure that the manager had only one instance.
 
 **The Pattern**
 
-To solve this issue, we implemented the **Singleton** pattern wich allow us to instanciate a single object of a certain class.
+To solve this issue, we implemented the **Singleton** pattern which allow us to instantiate a single object of a certain class, providing a global access point to this instance.
 
 **Implementation***
 
@@ -197,8 +197,11 @@ These classes can be found in:
 
 **Consequences**
 
-- With this implementation, each time we need to access the MusicManager class we can simply get an instance of the object, using just one (MusicManager object) during the entire project.
+Applying the **Singleton** pattern:
 
+- Each time we need to access the MusicManager class we can simply get an instance of the object, so there is no need to pass it as an attribute to all the classes that use it.
+- We can be sure that a class has only a single instance.
+- It is harder to unit test the code of the Singleton because many test frameworks rely on inheritance when producing mock objects (we had to use a new type of mock, the MockedStatic instead of the regular Mockito).
 
 
 ## TEST COVERAGE
