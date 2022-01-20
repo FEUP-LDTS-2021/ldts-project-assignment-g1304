@@ -144,9 +144,11 @@ Developing the menu, we came to the conclusion that there was a finite number of
 
 The most obvious solution to our problem is implementing the **State** pattern. With this pattern, we can separate all the states in individual classes and implement their specific methods in these classes.
 
-**Implementation**
+**State diagram**
 
 ![](image/StatesFA.png)
+
+**Implementation**
 
 ![](image/StatesUml.png)
 
