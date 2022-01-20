@@ -13,7 +13,7 @@ For a more detailed version of this description click [here](./docs/README.md).
  - [x] Movement - The spaceship is able to move in all directions when the arrow keys are pressed.
  - [x] Shooting - The spaceship can shoot laser beams. 
  - [x] Asteroids - The asteroids appear randomly throughout the map and move in a single random direction. 
- - [x] Enemy Ships - The enemy flying saucers appear randomly on the map and try to shoot at your spaceship.
+ - [x] Enemy Ships - The enemy flying saucers appear randomly on the map.
  - [x] Player Collisions - If the player collides with an asteroid, enemy ship or with a laser beam, it dies.
  - [x] Asteroids Collisions - If the asteroid collides with a ship, kills it.
  - [x] Asteroid Splitting - The asteroids get split in half when shot by the laser beams. The smaller ones get instantly destroyed.
@@ -24,7 +24,9 @@ For a more detailed version of this description click [here](./docs/README.md).
  - [x] Instructions - A page that shows the basic controls for the game.
  - [x] Leaderboard - When the user loses, his score is saved to a file.
  - [x] SoundTrack - Play background music when user is playing
- - [ ] Sounds - Play sounds when the player or enemy fires a laser beam, or when there is a collision.
+ - [x] Sounds - Play sounds when the player or enemy fires a laser beam, or when there is a collision.
+ - [x] Player Flames - When the player accelerates, we can see flames in the rocket.
+ - [x] Enemy Ship Types - There are two types of ships: one tries to shoot directly at the player (Target) and the other shoots in predefined directions(Dumb).
 
 ## Screenshots 
 The following screenshots ilustrate the general look of our game, as well as the functionalities: 
