@@ -1,13 +1,17 @@
 package asteroids.view.Game;
 
 import asteroids.model.Entities.Player;
+import asteroids.model.Vector2d;
+import asteroids.view.Color;
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
+
+import static java.lang.Math.signum;
 
 
 public class PlayerView extends View {
 
     private final Player player;
-    private static final int CHAR_WIDTH = 2;
-    private static final int CHAR_HEIGHT = 2;
 
     public static final String[] playerDraw = new String[]{
             "        C        ",
@@ -33,11 +37,13 @@ public class PlayerView extends View {
     }
 
     @Override
-    public void draw(){
-        int x = (int)player.getPosition().getX();
-        int y = (int)player.getPosition().getY();
-        drawImage(playerDraw, x, y);
-    }
+    public void draw();
+
+    public void drawShadow(double angle, int x, int y);
+
+    public void drawPlayer(double angle, int playerX, int playerY);
+
+
 
     public Player getPlayer() {
         return player;
