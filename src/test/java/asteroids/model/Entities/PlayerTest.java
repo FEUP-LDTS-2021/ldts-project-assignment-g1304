@@ -29,14 +29,13 @@ public class PlayerTest extends Assertions {
         // then
         assertEquals(position.getX(), positionMock.getX());
         assertEquals(position.getY(), positionMock.getY());
-        assertEquals(p.getRaio(), Player.raio);
     }
 
     @Test
     void angle(){
         Player player = new Player(new Position(10, 10));
 
-        assertEquals(0, player.getAngle());
+        assertEquals(-Math.PI/2, player.getAngle());
 
         player.setAngle(10);
         assertEquals(10, player.getAngle());
@@ -46,6 +45,7 @@ public class PlayerTest extends Assertions {
     @Test
     void changeDirectionWithTime(){
         Player player = new Player(new Position(10, 10));
+        player.setAngle(0);
         player.setRotation(Rotation.Right);
         player.update(500);
         assertTrue( DoubleComparables.equalDouble(Player.angularVelocity/2, player.getAngle()));
@@ -122,6 +122,8 @@ public class PlayerTest extends Assertions {
         Mockito.doNothing().when(velocity).addX(Mockito.anyDouble());
 
         Mockito.doNothing().when(velocity).addY(Mockito.anyDouble());
+
+        player.setAngle(0);
 
 
         //when

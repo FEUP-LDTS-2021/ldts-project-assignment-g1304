@@ -267,10 +267,10 @@ public class HudTest extends Assertions {
     void drawLives(){
         // given
 
-        int x = (int)(Constants.HEIGHT - Player.raio*2 - 5);
-        Position position1 = new Position(x - Player.raio*0, 5);
-        Position position2 = new Position(x - Player.raio*2, 5);
-        Position position3 = new Position(x - Player.raio*4, 5);
+        int x = (int)(Constants.HEIGHT - Player.WIDTH - 5);
+        Position position1 = new Position(x - Player.WIDTH*0, Player.HEIGHT/2+5);
+        Position position2 = new Position(x - Player.WIDTH*1, Player.HEIGHT/2+5);
+        Position position3 = new Position(x - Player.WIDTH*2, Player.HEIGHT/2+5);
 
         // when
         hud.drawLives(3);
