@@ -45,11 +45,21 @@ public class Music {
         sound.setMicrosecondPosition(0);
         sound.start();
         sound.loop(Clip.LOOP_CONTINUOUSLY);
+        sleep();
     }
 
     public void start() {
         sound.setMicrosecondPosition(0);
         sound.start();
+        sleep();
+    }
+
+    private void sleep(){
+        try {
+            Thread.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void stop() {sound.stop();}
