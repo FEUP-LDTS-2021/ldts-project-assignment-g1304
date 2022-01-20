@@ -23,10 +23,11 @@ This project was developed by Afonso Baldo, João Teixeira and José Gaspar for 
 * Game Over - When the player runs out of lives, the game ends.
 * Instructions - A page that shows the basic controls for the game.
 * Leaderboard - When the user loses, his score is saved to a file.
-* SoundTrack - Play background music when user is playing
+* SoundTrack - Play background music when user is playing.
+* Sounds - Play sounds when the player or enemy fires a laser beam, or when there is a collision.
 
 ### PLANNED FEATURES
-* Sounds - Play sounds when the player or enemy fires a laser beam, or when there is a collision.
+* All feaures implemented!
 
 ## IMPLEMENTATION - UML
 
@@ -152,7 +153,6 @@ The most obvious solution to our problem is implementing the **State** pattern. 
 These packages can be found in:
 - [Controller](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/Controller.java)
 - [StateController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/StateController.java)
-- [PlayerController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/control/PlayerController.java)
 - [GameController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/GameController.java)
 - [MenuController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/MenuController.java)
 - [InstructionsController](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/blob/main/src/main/java/asteroids/states/InstructionsController.java)
