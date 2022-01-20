@@ -22,7 +22,7 @@ public class AsteroidTest extends Assertions {
         Mockito.when(velocityMock.getX()).thenReturn(10.0);
         Mockito.when(velocityMock.getY()).thenReturn(-5.0);
 
-        Asteroid a = new Asteroid(positionMock,velocityMock,AsteroidSizes.SMALL);
+        Asteroid a = new Asteroid(positionMock,velocityMock, Sizes.SMALL);
 
         // when
         Position position = a.getPosition();
@@ -35,7 +35,7 @@ public class AsteroidTest extends Assertions {
         assertEquals(velocity.getX(),velocityMock.getX());   //checks if velocity is okay
         assertEquals(velocity.getY(),velocityMock.getY());
 
-        assertEquals(a.getAsteroidSize(), AsteroidSizes.SMALL);              //checks if size is okay
+        assertEquals(a.getAsteroidSize(), Sizes.SMALL);              //checks if size is okay
     }
 
     @Test
@@ -45,7 +45,7 @@ public class AsteroidTest extends Assertions {
         Mockito.when(velocityMock.getX()).thenReturn(10.0);
         Mockito.when(velocityMock.getY()).thenReturn(-5.0);
 
-        Asteroid a = new Asteroid(new Position(50.0, 50.0), velocityMock, AsteroidSizes.SMALL);
+        Asteroid a = new Asteroid(new Position(50.0, 50.0), velocityMock, Sizes.SMALL);
 
         //when
         a.update(1000);
@@ -59,7 +59,7 @@ public class AsteroidTest extends Assertions {
     @Test
     void getPoints(){
         //given
-        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.LARGE);
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class), Sizes.LARGE);
 
         // when
         int points = asteroid.getPoints();
@@ -71,57 +71,57 @@ public class AsteroidTest extends Assertions {
     @Test
     void decreaseSizeToMedium() {
         //given
-        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.LARGE);
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class), Sizes.LARGE);
 
         //when
         asteroid.decreaseSize();
 
         //then
-        assertEquals(asteroid.getAsteroidSize(), AsteroidSizes.MEDIUM);
+        assertEquals(asteroid.getAsteroidSize(), Sizes.MEDIUM);
     }
 
     @Test
     void decreaseSizeToSmall() {
         //given
-        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.MEDIUM);
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class), Sizes.MEDIUM);
 
         //when
         asteroid.decreaseSize();
 
         //then
-        assertEquals(asteroid.getAsteroidSize(), AsteroidSizes.SMALL);
+        assertEquals(asteroid.getAsteroidSize(), Sizes.SMALL);
     }
 
     @Test
     void setSize() {
         //given
-        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.MEDIUM);
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class), Sizes.MEDIUM);
 
         //when
-        asteroid.setSize(AsteroidSizes.LARGE);
+        asteroid.setSize(Sizes.LARGE);
 
         //then
-        assertEquals(asteroid.getAsteroidSize(), AsteroidSizes.LARGE);
+        assertEquals(asteroid.getAsteroidSize(), Sizes.LARGE);
     }
 
     @Test
     void setHeightWidth() {
         //given
-        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.MEDIUM);
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class), Sizes.MEDIUM);
         Asteroid asteroid1 = Mockito.spy(asteroid);
 
         //when
-        asteroid1.setSize(AsteroidSizes.LARGE);
+        asteroid1.setSize(Sizes.LARGE);
 
         //then
-        Mockito.verify(asteroid1, Mockito.times(1)).setHeight(AsteroidSizes.LARGE.size*15);
-        Mockito.verify(asteroid1, Mockito.times(1)).setWidth(AsteroidSizes.LARGE.size*17);
+        Mockito.verify(asteroid1, Mockito.times(1)).setHeight(Sizes.LARGE.size*15);
+        Mockito.verify(asteroid1, Mockito.times(1)).setWidth(Sizes.LARGE.size*17);
     }
 
     @Test
     void smallDies() {
         //given
-        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.SMALL);
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class), Sizes.SMALL);
 
         //when
         asteroid.dies();
@@ -133,7 +133,7 @@ public class AsteroidTest extends Assertions {
     @Test
     void mediumLives() {
         //given
-        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.MEDIUM);
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class), Sizes.MEDIUM);
 
         //when
         asteroid.dies();
@@ -145,7 +145,7 @@ public class AsteroidTest extends Assertions {
     @Test
     void largeLives() {
         //given
-        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.LARGE);
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class), Sizes.LARGE);
 
         //when
         asteroid.dies();
@@ -157,7 +157,7 @@ public class AsteroidTest extends Assertions {
     @Test
     void getSmallPoints() {
         //given
-        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.SMALL);
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class), Sizes.SMALL);
 
         //when
         int points = asteroid.getPoints();
@@ -169,7 +169,7 @@ public class AsteroidTest extends Assertions {
     @Test
     void getMediumPoints() {
         //given
-        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.MEDIUM);
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class), Sizes.MEDIUM);
 
         //when
         int points = asteroid.getPoints();
@@ -181,7 +181,7 @@ public class AsteroidTest extends Assertions {
     @Test
     void getLargePoints() {
         //given
-        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class),AsteroidSizes.LARGE);
+        Asteroid asteroid = new Asteroid(Mockito.mock(Position.class), Mockito.mock(Vector2d.class), Sizes.LARGE);
 
         //when
         int points = asteroid.getPoints();
@@ -202,7 +202,7 @@ public class AsteroidTest extends Assertions {
         Mockito.when(velocityMock.getX()).thenReturn(10.0);
         Mockito.when(velocityMock.getY()).thenReturn(-5.0);
 
-        Asteroid asteroid = new Asteroid(positionMock,velocityMock,AsteroidSizes.SMALL);
+        Asteroid asteroid = new Asteroid(positionMock,velocityMock, Sizes.SMALL);
 
         int[] pointsListX = new int []{5, 2, 2, 1, 1, 0, 0, 2, 3, 6, 13, 16, 17, 17, 16, 16, 15, 14, 12};
         int[] pointsListY = new int []{0, 3, 4, 5, 6, 7, 11, 12, 13, 14, 14, 12, 9, 8, 7, 4, 2, 1, 0};
@@ -233,7 +233,7 @@ public class AsteroidTest extends Assertions {
         Mockito.when(velocityMock.getX()).thenReturn(10.0);
         Mockito.when(velocityMock.getY()).thenReturn(-5.0);
 
-        Asteroid asteroid = new Asteroid(positionMock, velocityMock, AsteroidSizes.MEDIUM);
+        Asteroid asteroid = new Asteroid(positionMock, velocityMock, Sizes.MEDIUM);
 
         int[] pointsListX = new int[]{5, 2, 2, 1, 1, 0, 0, 2, 3, 6, 13, 16, 17, 17, 16, 16, 15, 14, 12};
         int[] pointsListY = new int[]{0, 3, 4, 5, 6, 7, 11, 12, 13, 14, 14, 12, 9, 8, 7, 4, 2, 1, 0};
@@ -263,7 +263,7 @@ public class AsteroidTest extends Assertions {
         Mockito.when(velocityMock.getX()).thenReturn(10.0);
         Mockito.when(velocityMock.getY()).thenReturn(-5.0);
 
-        Asteroid asteroid = new Asteroid(positionMock, velocityMock, AsteroidSizes.LARGE);
+        Asteroid asteroid = new Asteroid(positionMock, velocityMock, Sizes.LARGE);
 
         int[] pointsListX = new int[]{5, 2, 2, 1, 1, 0, 0, 2, 3, 6, 13, 16, 17, 17, 16, 16, 15, 14, 12};
         int[] pointsListY = new int[]{0, 3, 4, 5, 6, 7, 11, 12, 13, 14, 14, 12, 9, 8, 7, 4, 2, 1, 0};

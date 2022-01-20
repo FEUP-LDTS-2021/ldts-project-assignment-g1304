@@ -1,14 +1,12 @@
 package asteroids.view.Game;
 
 import asteroids.model.Entities.Asteroid;
-
-import asteroids.model.Entities.AsteroidSizes;
+import asteroids.model.Entities.Sizes;
 import asteroids.model.Position;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 public class AsteroidViewTest {
@@ -19,7 +17,7 @@ public class AsteroidViewTest {
     @BeforeEach
     void init(){
         asteroidMock = Mockito.mock(Asteroid.class);
-        Mockito.when(asteroidMock.getAsteroidSize()).thenReturn(AsteroidSizes.LARGE);
+        Mockito.when(asteroidMock.getAsteroidSize()).thenReturn(Sizes.LARGE);
         positionMock = Mockito.mock(Position.class);
         Mockito.when(positionMock.getX()).thenReturn(10.0);
         Mockito.when(positionMock.getY()).thenReturn(15.0);

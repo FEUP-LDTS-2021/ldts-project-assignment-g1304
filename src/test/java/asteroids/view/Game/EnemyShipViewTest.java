@@ -1,6 +1,7 @@
 package asteroids.view.Game;
 
 import asteroids.model.Entities.EnemyShip;
+import asteroids.model.Entities.Sizes;
 import asteroids.model.Position;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,6 +20,7 @@ public class EnemyShipViewTest {
         Mockito.when(positionMock.getX()).thenReturn(10.0);
         Mockito.when(positionMock.getY()).thenReturn(15.0);
         Mockito.when(enemyShipMock.getPosition()).thenReturn(positionMock);
+        Mockito.when(enemyShipMock.getSize()).thenReturn(Sizes.MEDIUM);
         enemyShipView = Mockito.spy(new EnemyShipView(enemyShipMock));
         graphicsMock = Mockito.mock(TextGraphics.class);
         enemyShipView.setGraphics(graphicsMock);

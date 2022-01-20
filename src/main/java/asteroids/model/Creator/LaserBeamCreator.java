@@ -1,20 +1,16 @@
 package asteroids.model.Creator;
 
-import asteroids.model.Entities.LaserBeam;
 import asteroids.model.Entities.MovingObject;
-import asteroids.model.Entities.Player;
 import asteroids.model.Position;
 
 import java.util.List;
 
+public abstract class LaserBeamCreator extends Creator {
+    private final List<MovingObject> entities;
+    protected final static int laserWidth = 3;
+    protected final static int laserHeight = 3;
 
-public class LaserBeamCreator extends Creator {
-
-    private final Player player;
-    private final List <MovingObject> entities;
-
-    public LaserBeamCreator(Player player, List<MovingObject> entities) {
-        this.player = player;
+    public LaserBeamCreator(List<MovingObject> entities){
         this.entities = entities;
     }
 
@@ -22,28 +18,19 @@ public class LaserBeamCreator extends Creator {
         return entities;
     }
 
-    public Player getPlayer() {
-        return player;
+    public void addLaserBeam(MovingObject object){
+        entities.add(object);
     }
 
-    public LaserBeam create() {
+    public Position ajustPosition(double angle, MovingObject shooter){
+        Position laserPosition = shooter.getPosition().clone();
+        double addX = Math.cos(angle)*(shooter.getWidth() + laserWidth+1) + shooter.getWidth()/2;
+        double addY = Math.sin(angle)*(shooter.getHeight() + laserHeight+1) + shooter.getHeight()/2;
 
-        double x = player.getPosition().getX();
-        double y = player.getPosition().getY();
-        double laserWidth = 3;
-        double laserHeight = 3;
-
-        Position laserPos = new Position((int) (
-                Math.cos(player.getAngle()) * (player.getRaio()+10) + x - laserWidth / 2),
-                (int) (Math.sin(player.getAngle()) * (player.getRaio()+10) + y - laserHeight / 2));
-
-        LaserBeam laserBeam = new LaserBeam(laserPos, player.getAngle(), laserWidth, laserHeight);
-        laserBeam.setPlayerBeam(true);
-        return laserBeam;
-
+        laserPosition.setX(laserPosition.getX() + addX);
+        laserPosition.setY(laserPosition.getY() + addY);
+        return  laserPosition;
     }
 
-    public void addLaserBeam(LaserBeam laserBeam) {
-        entities.add(laserBeam);
-    }
+
 }

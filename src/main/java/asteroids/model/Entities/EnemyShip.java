@@ -1,6 +1,6 @@
 package asteroids.model.Entities;
 
-import asteroids.model.Creator.EnemyLaserBeamCreator;
+import asteroids.model.Creator.LaserBeamCreator;
 import asteroids.model.Position;
 import asteroids.model.Vector2d;
 
@@ -10,9 +10,10 @@ import java.util.List;
 
 public class EnemyShip extends MovingObject {
 
-    private static final List<Integer> pointsListX = List.of(16, 22, 30, 38, 30, 8, 0, 8, 12);
-    private static final List<Integer> pointsListY = List.of(0, 0, 12, 18, 24, 24, 18, 12,  2);
-    private EnemyLaserBeamCreator laserBeamCreator;
+    private static final List<Integer> pointsListX = List.of(8, 11, 15, 19, 15, 4, 0, 4, 6);
+    private static final List<Integer> pointsListY = List.of(0, 0, 6, 9, 12, 12, 9, 6,  1);
+    private LaserBeamCreator laserBeamCreator;
+    private Sizes size;
     private static final int points = 50;
     long lastTime;
 
@@ -22,21 +23,31 @@ public class EnemyShip extends MovingObject {
         this.lastTime = 0;
     }
 
+    public Sizes getSize() {
+        return size;
+    }
+
+    public void setSize(Sizes size) {
+        this.size = size;
+        setWidth(getWidth()*size.getSize());
+        setHeight(getHeight()*size.getSize());
+    }
+
     public int getPoints() {
         return points;
     }
 
-    public EnemyLaserBeamCreator getLaserBeamCreator() {
+    public LaserBeamCreator getLaserBeamCreator() {
         return laserBeamCreator;
     }
 
-    public void setLaserBeamCreator(EnemyLaserBeamCreator laserBeamCreator) {
+    public void setLaserBeamCreator(LaserBeamCreator laserBeamCreator) {
         this.laserBeamCreator = laserBeamCreator;
     }
 
     public void shooting(long dt) {
         if (isShootingTime(dt))
-            laserBeamCreator.addLaserBeam(laserBeamCreator.create());
+            laserBeamCreator.addLaserBeam((LaserBeam) laserBeamCreator.create());
     }
 
     public boolean isShootingTime(long dt) {
@@ -64,7 +75,7 @@ public class EnemyShip extends MovingObject {
         double y = getPosition().getY();
 
         for(int i = 0; i < pointsListX.size(); i++)
-            polygon.addPoint((int)x+pointsListX.get(i), (int)y+pointsListY.get(i));
+            polygon.addPoint((int)x+pointsListX.get(i)*size.getSize(), (int)y+pointsListY.get(i)*size.getSize());
 
         return polygon;
     }
