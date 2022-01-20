@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import asteroids.utils.DoubleComparables;
 
+import static java.lang.Math.signum;
+
 public class Vector2dTest extends Assertions {
 
     @Test
@@ -229,5 +231,35 @@ public class Vector2dTest extends Assertions {
         //then
         assertEquals(v.getX(),cloned.getX());
         assertEquals(v.getY(),cloned.getY());
+    }
+
+    @Test
+    void rotatePointYPositive(){
+
+        // given
+        double angle = 20;
+        Vector2d point = new Vector2d(15,3);
+
+        // when
+        Vector2d result = point.rotatePoint(angle);
+
+        // then
+        assertEquals(3.3823951750180017, result.getX());
+        assertEquals(14.91842494635459, result.getY());
+    }
+
+    @Test
+    void rotatePointYNegative(){
+
+        // given
+        double angle = 20;
+        Vector2d point = new Vector2d(15,-42);
+
+        // when
+        Vector2d result = point.rotatePoint(angle);
+
+        // then
+        assertEquals(44.464931457761246, result.getX());
+        assertEquals(-3.4452678352479684, result.getY());
     }
 }

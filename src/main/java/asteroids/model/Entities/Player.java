@@ -6,16 +6,21 @@ import asteroids.model.Position;
 import asteroids.model.Vector2d;
 
 import java.awt.*;
+import java.util.List;
 
 
 public class Player extends MovingObject {
 
-    public static final double raio = 10;
-    public static final double acelaration = 250.0;
-    public static final double MAX_VELOCITY = 175.0;
+    public static final double WIDTH = 16*2;
+    public static final double HEIGHT = 16*2;
+    public static final double accelaration = 200.0;
+    public static final double MAX_VELOCITY = 150.0;
     public static final int MAX_SCORE = 99990;
     public static final double angularVelocity = Math.PI*1.5;
     public final Position beginPosition;
+
+    private final List<Integer> pointsListX = List.of(8, 5, 0 , 0 , 1 , 7 , 10, 16, 17, 17, 12);
+    private final List<Integer> pointsListY = List.of(0, 5, 10, 11, 12, 14, 14, 12, 11, 10, 5);
 
     private double angle;
     private Rotation rotation;
@@ -27,9 +32,9 @@ public class Player extends MovingObject {
     private int lives;
 
     public Player(Position position){
-        super(position, new Vector2d(0,0), 2*raio, 2*raio);
+        super(position, new Vector2d(0,0), WIDTH, HEIGHT);
         beginPosition = position.clone();
-        this.angle = 0;
+        this.angle = -Math.PI/2;
         this.acelerate = false;
         setRotation(Rotation.None);
         this.shoot = false;
@@ -51,17 +56,13 @@ public class Player extends MovingObject {
         return angle;
     }
 
-    public double getRaio() {
-        return raio;
-    }
-
     @Override
     public void update(long dt){
         angle += rotation.getValue()*angularVelocity*dt/1000;
 
         if(isAccelerating()) {
-            getVelocity().addX(acelaration * dt / 1000 * Math.cos(angle));
-            getVelocity().addY(acelaration * dt / 1000 * Math.sin(angle));
+            getVelocity().addX(accelaration * dt / 1000 * Math.cos(angle));
+            getVelocity().addY(accelaration * dt / 1000 * Math.sin(angle));
             if(getVelocity().module() > MAX_VELOCITY)
                 getVelocity().resize(MAX_VELOCITY);
         }else {
@@ -78,18 +79,18 @@ public class Player extends MovingObject {
     @Override
     public Polygon getCollider() {
         Polygon polygon = new Polygon();
-        double anglePontaNave = angle;
-        double anglePontaEsq = anglePontaNave + Math.PI*0.8333;   // 5/6
-        double anglePontaDir = anglePontaNave + Math.PI*1.1666;   // 7/6
-        addPoint(polygon, anglePontaNave);
-        addPoint(polygon, anglePontaEsq);
-        addPoint(polygon, anglePontaDir);
-        return polygon;
-    }
+        double x = getPosition().getX();
+        double y = getPosition().getY();
 
-    private void addPoint(Polygon polygon, double angle){
-        polygon.addPoint((int) (getPosition().getX() + (Math.cos(angle)+1)*raio),
-                (int) ((Math.sin(angle)+1)*raio + getPosition().getY()));
+        for (int i = 0; i < pointsListX.size(); i++) {
+            Vector2d point = new Vector2d(pointsListX.get(i)*2-Player.WIDTH/2, pointsListY.get(i)*2-Player.HEIGHT/2);
+            Vector2d rotatedPoint = point.rotatePoint(angle);
+
+            polygon.addPoint((int)(x+rotatedPoint.getX()),
+                    (int)(y+rotatedPoint.getY()));
+        }
+
+        return polygon;
     }
 
     public void setLaserBeamCreator(LaserBeamCreator laserBeamCreator) {
@@ -155,4 +156,5 @@ public class Player extends MovingObject {
     public int getScoreLife() {
         return scoreLife;
     }
+
 }

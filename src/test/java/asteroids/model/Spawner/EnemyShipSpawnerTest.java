@@ -51,7 +51,7 @@ public class EnemyShipSpawnerTest extends Assertions {
 
         //when
         EnemyShipSpawner enemyShipSpawner = new EnemyShipSpawner(playerMock, entitiesMock);
-        boolean time = enemyShipSpawner.isSpawnTime(5000);
+        boolean time = enemyShipSpawner.isSpawnTime(9000);
 
         //then
         assertTrue(time);

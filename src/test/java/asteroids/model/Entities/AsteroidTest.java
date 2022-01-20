@@ -191,7 +191,7 @@ public class AsteroidTest extends Assertions {
     }
 
     @Test
-    void getCollider() {
+    void getColliderSmall() {
         // given
 
         Position positionMock = Mockito.mock(Position.class);
@@ -213,10 +213,71 @@ public class AsteroidTest extends Assertions {
 
         // then
 
+        assertEquals(returned.npoints, 19);
         for(int i = 0 ; i<returned.npoints; i++){
-            assertEquals(10+pointsListX[i], returned.xpoints[i]);
-            assertEquals(20+pointsListY[i], returned.ypoints[i]);
+            assertEquals(10+pointsListX[i]*asteroid.getAsteroidSize().getSize(), returned.xpoints[i]);
+            assertEquals(20+pointsListY[i]*asteroid.getAsteroidSize().getSize(), returned.ypoints[i]);
         }
 
+    }
+
+    @Test
+    void getColliderMedium() {
+        // given
+
+        Position positionMock = Mockito.mock(Position.class);
+        Mockito.when(positionMock.getX()).thenReturn(10.0);
+        Mockito.when(positionMock.getY()).thenReturn(20.0);
+
+        Vector2d velocityMock = Mockito.mock(Vector2d.class);
+        Mockito.when(velocityMock.getX()).thenReturn(10.0);
+        Mockito.when(velocityMock.getY()).thenReturn(-5.0);
+
+        Asteroid asteroid = new Asteroid(positionMock, velocityMock, Sizes.MEDIUM);
+
+        int[] pointsListX = new int[]{5, 2, 2, 1, 1, 0, 0, 2, 3, 6, 13, 16, 17, 17, 16, 16, 15, 14, 12};
+        int[] pointsListY = new int[]{0, 3, 4, 5, 6, 7, 11, 12, 13, 14, 14, 12, 9, 8, 7, 4, 2, 1, 0};
+
+
+        // when
+        Polygon returned = asteroid.getCollider();
+
+        // then
+
+        assertEquals(returned.npoints, 19);
+        for (int i = 0; i < returned.npoints; i++) {
+            assertEquals(10 + pointsListX[i]*asteroid.getAsteroidSize().getSize(), returned.xpoints[i]);
+            assertEquals(20 + pointsListY[i]*asteroid.getAsteroidSize().getSize(), returned.ypoints[i]);
+        }
+    }
+
+    @Test
+    void getColliderLarge() {
+        // given
+
+        Position positionMock = Mockito.mock(Position.class);
+        Mockito.when(positionMock.getX()).thenReturn(10.0);
+        Mockito.when(positionMock.getY()).thenReturn(20.0);
+
+        Vector2d velocityMock = Mockito.mock(Vector2d.class);
+        Mockito.when(velocityMock.getX()).thenReturn(10.0);
+        Mockito.when(velocityMock.getY()).thenReturn(-5.0);
+
+        Asteroid asteroid = new Asteroid(positionMock, velocityMock, Sizes.LARGE);
+
+        int[] pointsListX = new int[]{5, 2, 2, 1, 1, 0, 0, 2, 3, 6, 13, 16, 17, 17, 16, 16, 15, 14, 12};
+        int[] pointsListY = new int[]{0, 3, 4, 5, 6, 7, 11, 12, 13, 14, 14, 12, 9, 8, 7, 4, 2, 1, 0};
+
+
+        // when
+        Polygon returned = asteroid.getCollider();
+
+        // then
+
+        assertEquals(returned.npoints, 19);
+        for (int i = 0; i < returned.npoints; i++) {
+            assertEquals(10 + pointsListX[i]*asteroid.getAsteroidSize().getSize(), returned.xpoints[i]);
+            assertEquals(20 + pointsListY[i]*asteroid.getAsteroidSize().getSize(), returned.ypoints[i]);
+        }
     }
 }

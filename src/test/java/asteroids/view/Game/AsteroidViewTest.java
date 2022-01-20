@@ -36,6 +36,8 @@ public class AsteroidViewTest {
         asteroidView.draw();
 
         //then
+        Mockito.verify(asteroidView, Mockito.times(1)).setCharWidth(asteroidMock.getAsteroidSize().getSize());
+        Mockito.verify(asteroidView, Mockito.times(1)).setCharHeight(asteroidMock.getAsteroidSize().getSize());
         Mockito.verify(asteroidView, Mockito.times(1)).drawImage(AsteroidView.asteroidDraw, 10, 15);
     }
 }

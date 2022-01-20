@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class LaserBeam extends MovingObject {
 
-    public final static double VELOCITY = 300.0;
+    public final static double VELOCITY = 250.0;
     private long timePassed;
     private final double angle;
     private boolean firstRun = true;

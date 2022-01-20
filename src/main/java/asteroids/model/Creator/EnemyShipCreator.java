@@ -15,7 +15,7 @@ public class EnemyShipCreator extends Creator {
     private static final int WIDTH = 38;
     private static final int HEIGHT = 22;
     private static final int MIN_VELOCITY = 30;
-    private static final int MAX_VELOCITY = 80;
+    private static final int MAX_VELOCITY = 70;
     private final Random rand;
     private final Player player;
     private final List<MovingObject> entities;

@@ -98,6 +98,7 @@ public class EnemyShipTest extends Assertions {
 
         // then
 
+        assertEquals(returned.npoints, 9);
         for(int i = 0 ; i<returned.npoints; i++){
             assertEquals(100+pointsListX[i], returned.xpoints[i]);
             assertEquals(120+pointsListY[i], returned.ypoints[i]);

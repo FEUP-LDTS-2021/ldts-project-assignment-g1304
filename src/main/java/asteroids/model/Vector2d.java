@@ -1,5 +1,7 @@
 package asteroids.model;
 
+import static java.lang.Math.signum;
+
 public class Vector2d extends Position {
     public Vector2d(double x, double y) {
         super(x, y);
@@ -30,6 +32,18 @@ public class Vector2d extends Position {
 
     public double dotProduct(Vector2d vec){
         return vec.getX()*getX() + vec.getY()*getY();
+    }
+
+    public Vector2d rotatePoint(double angle){
+        double pointAngle = Math.acos(dotProduct(new Vector2d(1,0))/module());
+        if(signum(getY()) == -1)
+            pointAngle = Math.PI*2 - pointAngle;
+
+
+        double distance = module();
+        double newX = Math.cos(angle + pointAngle)* distance;
+        double newY = Math.sin(angle + pointAngle)* distance;
+        return new Vector2d(newX, newY);
     }
 
     public Vector2d clone() {

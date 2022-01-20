@@ -26,8 +26,8 @@ public class EnemyShipSpawner {
 
     public boolean isSpawnTime(long dt){
         timePassed += dt;
-        if(timePassed >= 5000){
-            timePassed -= 5000;
+        if(timePassed >= 9000){
+            timePassed -= 9000;
             return true;
         }
         return false;

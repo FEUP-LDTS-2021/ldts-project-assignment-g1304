@@ -68,8 +68,9 @@ public class LaserBeamCreatorTest extends Assertions {
         int laserWidth = 3;
         int laserHeight = 3;
 
-        double x = 6.0 + Math.cos(angle) * (shooter.getWidth() + laserWidth + 1) + shooter.getWidth() / 2;
-        double y = 7.0 + Math.sin(angle) * (shooter.getHeight() + laserHeight + 1) + shooter.getHeight() / 2;
+        double distance = Math.sqrt(shooter.getWidth()*shooter.getWidth() + shooter.getHeight()*shooter.getHeight());
+        double x = 6.0 + Math.cos(angle) * (distance/2 + laserWidth + 1);
+        double y = 7.0 + Math.sin(angle) * (distance/2 + laserHeight + 1);
 
         // when
         Position result = creator.ajustPosition(angle, shooter);
