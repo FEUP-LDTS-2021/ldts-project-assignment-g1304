@@ -214,6 +214,95 @@ Result of the analysis: 8/10
 
 These guidelines were not accomplished because we used the **MVC** pattern. This pattern pressuposes the interconnection of three layers of code (Model, View and Controller), meaning it is impossible to keep the codebase loosely coupled.
 
+## LIST OF REFACTORINGS
+
+# Refactoring: EnemyShipSpawner
+
+- Extracted method chooseVelocity and choosePosition from method create
+- Replaced magic numbers with symbolic constants (WIDTH, HEIGHT, MIN_VELOCITY, MAX_VELOCITY)
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/b7a9b46626132024cdef5aafd0033826934c1010).
+
+# Refactoring: Replace ROOT path with constant
+
+- Replaced variable with constant
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/f8d25815578cf95a361bd530349ca02302ffe146).
+
+# Refactoring: Create enum for colors
+
+- Replaced colours in the code with constants
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/c1614d133b2be05431f44b7e81b3fcac45593763).
+
+# Refactoring: InstructionScreen and LeaderBoardScreen
+
+- Extract Subclass InformationScreen from InstructionScreen and LeaderBoardScreen
+- Remove unused function(getTerminalPosition)
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/0cd131ee4159a9a0903b44aeac57783c16f67435).
+
+# Refactoring: InstructionScreen, LeaderBoardScreen and GameOverScreen
+
+- Extract method setColor, drawRedLine and printLine
+- Moved method setColor to ScreenView
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/036e2d4be3b6a9668c2e89de606e3ec16870eefe)
+
+# Refactoring: View and ScreenView
+
+- Extracted and moved methods setBackgroundColor and setForegroundColor
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/fa473035a4a03f476e31473518778f978e29d9a2)
+
+# Refactoring: Rename Constants class
+
+- Rename Class Constraints to Constants
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/b98989f9ca09c804299443c4f7ef919969f30cd2)
+
+# Refactoring: Using KeyListener instead of ReadKey
+
+- Substitute Algorithm to read inputs from the user
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/5ec31f15bc9ee05e03e9b9607b17333c814b339c)
+
+# Refactoring: ScreenView
+
+- Changing variable type from Screen to TerminalScreen
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/6ec1364f67655634c36744148c170152a963a1db)
+
+# Refactoring: Vector2d
+
+- Move Vector2d out of a package
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/50d8b88de19f1af3d6d64685244db31af3e12935)
+
+# Refactoring: GameScreen
+
+- Extract method getView from GameScreen
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/fe6192067da4184ed20c4d8c59f1ed0afe478d21)
+
+# Refactoring: Entities
+
+- Merged all entities of the game to one list
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/ab8f2e9100374e840857b085a325f4e68ff5ed38)
+
+# Refactoring: View and ScreenView
+
+- Removed inheritance between View and ScreenView
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/f1381ce8085cf4d11a1ebe99c4ee98c26aa0a039)
+
+# Refactoring: Package Entities
+
+- Moving class Player to a new package Entities
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/337df16f898369b30131807ac5aa12e958cc2ec6)
+
 ## TEST COVERAGE
 
 ![](image/coverage.png)
