@@ -203,6 +203,16 @@ Applying the **Singleton** pattern:
 - We can be sure that a class has only a single instance.
 - It is harder to unit test the code of the Singleton because many test frameworks rely on inheritance when producing mock objects (we had to use a new type of mock, the MockedStatic instead of the regular Mockito).
 
+## BETTER CODE HUB
+
+Result of the analysis: 8/10
+
+**Failed guidelines:**
+
+- Separate Concerns in Modules;
+- Couple Architecture Components Loosely;
+
+These guidelines were not accomplished because we used the **MVC** pattern. This pattern pressuposes the interconnection of three layers of code (Model, View and Controller), meaning it is impossible to keep the codebase loosely coupled.
 
 ## TEST COVERAGE
 
