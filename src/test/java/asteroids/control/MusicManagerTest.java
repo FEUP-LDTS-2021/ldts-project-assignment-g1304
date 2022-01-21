@@ -18,12 +18,12 @@ public class MusicManagerTest extends Assertions {
     @BeforeEach
     void initMusicManager() {
         MusicManager musicManager = MusicManager.getInstance();
-        MusicManager.setSoundTrack(soundTrackMock);
-        MusicManager.setShoot(shootMock);
-        MusicManager.setRocket(rocketMock);
-        MusicManager.setDestruction(destructionMock);
-        MusicManager.setGameOver(gameOverMock);
-        MusicManager.setEnemyShoot(enemyShootMock);
+        musicManager.setSoundTrack(soundTrackMock);
+        musicManager.setShoot(shootMock);
+        musicManager.setRocket(rocketMock);
+        musicManager.setDestruction(destructionMock);
+        musicManager.setGameOver(gameOverMock);
+        musicManager.setEnemyShoot(enemyShootMock);
         musicManagerSpy = Mockito.spy(musicManager);
     }
 

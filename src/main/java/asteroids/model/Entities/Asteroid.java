@@ -43,8 +43,8 @@ public class Asteroid extends MovingObject{
 
     public void setSize(Sizes size) {
         this.size = size;
-        setHeight(size.size*HEIGHT);
-        setWidth(size.size*WIDTH);
+        setHeight(size.getSize()*HEIGHT);
+        setWidth(size.getSize()*WIDTH);
     }
 
     @Override

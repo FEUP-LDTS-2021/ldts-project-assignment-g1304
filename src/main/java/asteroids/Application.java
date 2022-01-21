@@ -13,7 +13,7 @@ public class Application {
             Controller controller = new Controller();
             controller.run() ;
         }catch (IOException ex){
-            ex.printStackTrace();
+            System.out.println("Error: " + ex.getMessage());
         }
     }
 }

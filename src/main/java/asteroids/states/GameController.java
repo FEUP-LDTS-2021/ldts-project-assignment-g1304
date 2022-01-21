@@ -28,6 +28,7 @@ public class GameController implements StateController, KeyListener {
         playerController = new PlayerController(gameModel.getPlayer());
     }
 
+    @Override
     public void run() throws IOException {
         getScreenView().initScreen();
         getScreenView().addKeyListenner(this);

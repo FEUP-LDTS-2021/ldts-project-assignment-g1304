@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -87,7 +88,7 @@ public class GameOverController implements StateController, KeyListener {
 
         try {
             File myObj = new File(Constants.ROOT+path);
-            Scanner myReader = new Scanner(myObj);
+            Scanner myReader = new Scanner(myObj, Charset.defaultCharset().name());
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 line++;
@@ -101,7 +102,7 @@ public class GameOverController implements StateController, KeyListener {
             }
             myReader.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Error:" + e.getMessage());
         }
         if(newRank > 0 && newRank <= 10) { // se ficar nos 10 melhores
             score.add(newRank-1, newScore);
@@ -118,7 +119,7 @@ public class GameOverController implements StateController, KeyListener {
 
     public void writeLeaderboard(String path) {
         try {
-            FileWriter myWriter = new FileWriter(Constants.ROOT+path);
+            FileWriter myWriter = new FileWriter(Constants.ROOT+path, Charset.defaultCharset());
             myWriter.write("======L E A D E R B O A R D=======\n");
             myWriter.write("||                              ||\n");
 
@@ -135,7 +136,7 @@ public class GameOverController implements StateController, KeyListener {
             myWriter.write("==================================\n");
             myWriter.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error: " + e.getMessage());
         }
     }
 

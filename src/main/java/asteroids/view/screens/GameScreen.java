@@ -72,6 +72,7 @@ public class GameScreen extends ScreenView {
         gameHud.setGraphics(graphics);
     }
 
+    @Override
     public TerminalSize getSize(){
         return new TerminalSize(Constants.WIDTH, Constants.HEIGHT);
     }

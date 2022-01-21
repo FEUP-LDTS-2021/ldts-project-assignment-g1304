@@ -42,6 +42,7 @@ public class MenuController implements StateController, KeyListener {
         return screenView;
     }
 
+    @Override
     public void nextState(){
         switch (getMenu().getSelected()){
             case Play -> context.changeState(ApplicationState.Game);

@@ -6,7 +6,7 @@ public enum MenuItem {
     Instructions("Instructions"),
     Exit("Exit");
 
-    String name;
+    private final String name;
     MenuItem(String name){
         this.name = name;
     }

@@ -20,6 +20,7 @@ public class MenuItemView extends View {
         this.position = null;
     }
 
+    @Override
     public void draw(){
         if (isSelected())
             drawSelected();

@@ -2,12 +2,12 @@ package asteroids.control;
 
 public class MusicManager {
 
-    private static Music soundTrack;
-    private static Music shoot;
-    private static Music enemyShoot;
-    private static Music rocket;
-    private static Music destruction;
-    private static Music gameOver;
+    private Music soundTrack;
+    private Music shoot;
+    private Music enemyShoot;
+    private Music rocket;
+    private Music destruction;
+    private Music gameOver;
     private static MusicManager musicManager;
 
     private MusicManager() {
@@ -26,28 +26,28 @@ public class MusicManager {
         return musicManager;
     }
 
-    public static void setSoundTrack(Music soundTrack) {
-        MusicManager.soundTrack = soundTrack;
+    public void setSoundTrack(Music soundTrack) {
+        this.soundTrack = soundTrack;
     }
 
-    public static void setShoot(Music shoot) {
-        MusicManager.shoot = shoot;
+    public void setShoot(Music shoot) {
+        this.shoot = shoot;
     }
 
-    public static void setRocket(Music rocket) {
-        MusicManager.rocket = rocket;
+    public void setRocket(Music rocket) {
+        this.rocket = rocket;
     }
 
-    public static void setDestruction(Music destruction) {
-        MusicManager.destruction = destruction;
+    public void setDestruction(Music destruction) {
+        this.destruction = destruction;
     }
 
-    public static void setGameOver(Music gameOver) {
-        MusicManager.gameOver = gameOver;
+    public void setGameOver(Music gameOver) {
+        this.gameOver = gameOver;
     }
 
-    public static void setEnemyShoot(Music enemyShoot) {
-        MusicManager.enemyShoot = enemyShoot;
+    public void setEnemyShoot(Music enemyShoot) {
+        this.enemyShoot = enemyShoot;
     }
 
     public void start(Sounds sound) {
@@ -66,9 +66,13 @@ public class MusicManager {
             case SOUNDTRACK -> soundTrack.stop();
             case ROCKET -> rocket.stop();
             case GAMEOVER -> gameOver.stop();
+            case DESTRUCTION -> destruction.stop();
+            case SHOOT -> shoot.stop();
+            case ENEMYSHOOT -> enemyShoot.stop();
         }
     }
 
+    @SuppressWarnings("UnnecessaryParentheses")
     public boolean isPlaying(Sounds sound) {
         return switch (sound) {
             case SOUNDTRACK -> soundTrack.isPlaying();

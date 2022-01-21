@@ -17,8 +17,8 @@ public class LaserView extends View {
     @Override
     public void draw(){
         setBackgroundColor(Color.White);
-        TerminalPosition terminalPosition = new TerminalPosition((int)(
-                laserBeam.getPosition().getX()), (int)(laserBeam.getPosition().getY()));
+        TerminalPosition terminalPosition = new TerminalPosition(
+                (int)laserBeam.getPosition().getX(), (int)laserBeam.getPosition().getY());
                 TerminalSize size = new TerminalSize((int)laserBeam.getWidth(), (int)laserBeam.getHeight());
                 getGraphics().fillRectangle(terminalPosition, size, ' ');
     }

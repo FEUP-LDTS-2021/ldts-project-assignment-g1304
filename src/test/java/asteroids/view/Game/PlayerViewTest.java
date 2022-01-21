@@ -18,6 +18,42 @@ public class PlayerViewTest {
     PlayerView playerView;
     TextGraphics graphicsMock;
 
+    String[] playerDraw = new String[]{
+            "        C        ",
+            "       CWC       ",
+            "       CWC       ",
+            "      CCWCC      ",
+            "      CWCWC      ",
+            "     WCWbWCW     ",
+            "    WWCWbWCWW    ",
+            "   WWWCWbWCWWW   ",
+            "  WWWWCWbWCWWWW  ",
+            " WWWRWCWbWCWRWWW ",
+            "WWWWWWCWbWCWWWWWW",
+            "WWCWCWCWbWCWCWCWW",
+            " CCCC CWbWC CCCC ",
+            "      CWbWC      ",
+            "       CCC       "
+    };
+
+    String[] playerFlamesDraw = new String[]{
+            "        C        ",
+            "       CWC       ",
+            "       CWC       ",
+            "      CCWCC      ",
+            "      CWCWC      ",
+            "     WCWbWCW     ",
+            "    WWCWbWCWW    ",
+            "   WWWCWbWCWWW   ",
+            "  WWWWCWbWCWWWW  ",
+            " WWWRWCWbWCWRWWW ",
+            "WWWWWWCWbWCWWWWWW",
+            "WWCWCWCWbWCWCWCWW",
+            " CCCC CWbWC CCCC ",
+            " OYO  CWbWC  OYO ",
+            " OYO   CCC   OYO "
+    };
+
     @BeforeEach
     void init() {
         playerMock = Mockito.mock(Player.class);
@@ -42,7 +78,7 @@ public class PlayerViewTest {
 
         //then
         Mockito.verify(playerView, Mockito.times(1)).drawShadow(25.0+Math.PI/2.0, 10, 15);
-        Mockito.verify(playerView, Mockito.times(1)).drawPlayer(PlayerView.playerDraw,25.0+Math.PI/2.0, 10, 15);
+        Mockito.verify(playerView, Mockito.times(1)).drawPlayer(playerDraw,25.0+Math.PI/2.0, 10, 15);
 
     }
 
@@ -57,7 +93,7 @@ public class PlayerViewTest {
 
         //then
         Mockito.verify(playerView, Mockito.times(1)).drawShadow(25.0+Math.PI/2.0, 10, 15);
-        Mockito.verify(playerView, Mockito.times(1)).drawPlayer(PlayerView.playerFlamesDraw,25.0+Math.PI/2.0, 10, 15);
+        Mockito.verify(playerView, Mockito.times(1)).drawPlayer(playerFlamesDraw,25.0+Math.PI/2.0, 10, 15);
 
     }
 
@@ -86,7 +122,6 @@ public class PlayerViewTest {
     @Test
     public void drawPlayer(){
         // given
-        String[] playerDraw = PlayerView.playerDraw;
         double angle = 10;
         int playerX = 16;
         int playerY = 31;
@@ -94,7 +129,7 @@ public class PlayerViewTest {
         int midY = playerDraw.length/2;
         System.out.println(midX + " " + midY);
         // when
-        playerView.drawPlayer(PlayerView.playerDraw, angle, playerX, playerY);
+        playerView.drawPlayer(playerDraw, angle, playerX, playerY);
 
         // then
 

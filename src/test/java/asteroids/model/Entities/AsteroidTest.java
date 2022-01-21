@@ -114,8 +114,8 @@ public class AsteroidTest extends Assertions {
         asteroid1.setSize(Sizes.LARGE);
 
         //then
-        Mockito.verify(asteroid1, Mockito.times(1)).setHeight(Sizes.LARGE.size*15);
-        Mockito.verify(asteroid1, Mockito.times(1)).setWidth(Sizes.LARGE.size*17);
+        Mockito.verify(asteroid1, Mockito.times(1)).setHeight(Sizes.LARGE.getSize()*15);
+        Mockito.verify(asteroid1, Mockito.times(1)).setWidth(Sizes.LARGE.getSize()*17);
     }
 
     @Test

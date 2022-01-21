@@ -13,6 +13,22 @@ public class EnemyShipViewTest {
     Position positionMock;
     EnemyShipView enemyShipView;
     TextGraphics graphicsMock;
+
+    String[] enemyShipDraw=new String[]{
+            "        AAA",
+            "      AAAAbbA",
+            "     AAAAAAbbA",
+            "    AAAAAAAAbAA",
+            "    AAAAAAAAAAA",
+            "    AAAAAAAAAAA",
+            "  ccccccccccccccc",
+            " CCCCCCCCCCCCCCCCC",
+            "pRpRpppRpppRpppRpRp",
+            " PpCcccccccccccCpP",
+            "  PpCcccccccccCpP",
+            "    CcccccccccC",
+    };
+
     @BeforeEach
     void init(){
         enemyShipMock = Mockito.mock(EnemyShip.class);
@@ -35,6 +51,6 @@ public class EnemyShipViewTest {
         enemyShipView.draw();
 
         //then
-        Mockito.verify(enemyShipView, Mockito.times(1)).drawImage(EnemyShipView.enemyShipDraw, 10, 15);
+        Mockito.verify(enemyShipView, Mockito.times(1)).drawImage(enemyShipDraw, 10, 15);
     }
 }

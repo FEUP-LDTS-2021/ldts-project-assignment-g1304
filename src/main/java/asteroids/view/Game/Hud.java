@@ -10,6 +10,7 @@ import com.googlecode.lanterna.TerminalSize;
 
 import java.io.*;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class Hud extends View{
 
     private void loadFonts(String path) throws URISyntaxException, IOException {
 
-        InputStreamReader file = new InputStreamReader(getClass().getClassLoader().getResourceAsStream(path));
+        InputStreamReader file = new InputStreamReader(getClass().getClassLoader().getResourceAsStream(path), Charset.defaultCharset());
         BufferedReader bufferedReader = new BufferedReader(file);
 
         String n = bufferedReader.readLine();

@@ -46,6 +46,7 @@ public class Vector2d extends Position {
         return new Vector2d(newX, newY);
     }
 
+    @Override
     public Vector2d clone() {
         return new Vector2d(getX(), getY());
     }

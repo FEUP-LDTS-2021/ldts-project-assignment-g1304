@@ -36,7 +36,7 @@ public class Music {
             gainControl.setValue(-25.0f);
             return musicClip;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Musica " + sound );
         }
         return null;
     }
@@ -58,7 +58,7 @@ public class Music {
         try {
             Thread.sleep(5);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println("Error: " + e.getMessage());
         }
     }
 

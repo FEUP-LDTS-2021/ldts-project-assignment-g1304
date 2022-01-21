@@ -1,6 +1,5 @@
 package asteroids.view.screens;
 
-import asteroids.view.screens.ScreenView;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -42,11 +41,10 @@ public class ScreenViewTest extends Assertions {
             // then
             assertEquals(screenView.getFont(), font);
             assertNotNull(screenView.getGraphics());
-            //assertTrue(true);
             // final
             screenView.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            assert  false;
         }
 
     }

@@ -14,6 +14,25 @@ public class AsteroidViewTest {
     Position positionMock;
     AsteroidView asteroidView;
     TextGraphics graphicsMock;
+
+    String[] asteroidDraw=new String[]{
+            "     CCCCCCC",
+            "    CPPCCCCCCC",
+            "   CCCcCCCCCCCC",
+            "  CCCccCCCCCCCC",
+            "  CCPPCCCCCccCCC",
+            " CCCCCCCCCCcPCCC",
+            " PCCCPcCCCCPcCCC",
+            "PPCCCPCcCCCCcCCC",
+            "PCCcCCPccCCCCCCCC",
+            "CCCcCCCPccCCCCCCC",
+            "CCCCCCCPcCCCccCP",
+            "PCccPCCPccCCCcPP",
+            "  PPccPCCCPcCcPP",
+            "   CCCPPCCCCPPP",
+            "      PPCCCPP"
+    };
+
     @BeforeEach
     void init(){
         asteroidMock = Mockito.mock(Asteroid.class);
@@ -38,6 +57,6 @@ public class AsteroidViewTest {
         //then
         Mockito.verify(asteroidView, Mockito.times(1)).setCharWidth(asteroidMock.getAsteroidSize().getSize());
         Mockito.verify(asteroidView, Mockito.times(1)).setCharHeight(asteroidMock.getAsteroidSize().getSize());
-        Mockito.verify(asteroidView, Mockito.times(1)).drawImage(AsteroidView.asteroidDraw, 10, 15);
+        Mockito.verify(asteroidView, Mockito.times(1)).drawImage(asteroidDraw, 10, 15);
     }
 }

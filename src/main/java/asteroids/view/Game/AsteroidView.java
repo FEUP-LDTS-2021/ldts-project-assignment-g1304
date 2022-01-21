@@ -5,7 +5,7 @@ import asteroids.model.Entities.Asteroid;
 public class AsteroidView extends View {
     private final Asteroid asteroid;
 
-    public static final String[] asteroidDraw=new String[]{
+    private static final String[] asteroidDraw=new String[]{
             "     CCCCCCC",
             "    CPPCCCCCCC",
             "   CCCcCCCCCCCC",

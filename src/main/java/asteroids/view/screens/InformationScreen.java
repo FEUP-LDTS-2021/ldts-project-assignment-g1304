@@ -8,6 +8,7 @@ import com.googlecode.lanterna.TerminalSize;
 import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,7 +32,7 @@ public class InformationScreen extends ScreenView{
     public void draw() throws IOException {
         clear();
 
-        Scanner myReader = new Scanner(informationFile);
+        Scanner myReader = new Scanner(informationFile, Charset.defaultCharset().name());
         int y = PADDING_Y;
         while (myReader.hasNextLine()) {
             String line = myReader.nextLine();

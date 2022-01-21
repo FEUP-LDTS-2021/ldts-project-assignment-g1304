@@ -9,6 +9,8 @@ public class Position {
         this.x = x;
         this.y = y;
     }
+
+    @Override
     public Position clone(){
         return new Position(x,y);
     }
@@ -28,10 +30,11 @@ public class Position {
         this.y = y;
     }
 
+    @SuppressWarnings("EqualsHashCode")
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Position))return false;
 
         Position position = (Position) o;
 

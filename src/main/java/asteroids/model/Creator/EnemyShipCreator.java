@@ -49,6 +49,7 @@ public class EnemyShipCreator extends Creator {
     }
 
     // random Position close to screen borders
+    @SuppressWarnings("UnnecessaryParentheses")
     private Position choosePosition(int choice) {
         return switch (choice) {
             case 0 -> new Position(Constants.WIDTH * rand.nextDouble(), 0.0);       // BORDER UP
@@ -61,6 +62,7 @@ public class EnemyShipCreator extends Creator {
 
 
     // random Position close to screen borders
+    @SuppressWarnings("UnnecessaryParentheses")
     private Vector2d chooseVelocity(int choice) {
         return switch (choice) {
             case 0 -> new Vector2d(0.0, 1.0);

@@ -19,6 +19,7 @@ public class PlayerLaserBeamCreator extends LaserBeamCreator {
         return player;
     }
 
+    @Override
     public LaserBeam create() {
         Position laserPos = ajustPosition(player.getAngle(), player);
         LaserBeam laserBeam = new LaserBeam(laserPos, player.getAngle(), laserWidth, laserHeight);

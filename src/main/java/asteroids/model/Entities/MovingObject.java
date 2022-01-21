@@ -85,5 +85,6 @@ public abstract class MovingObject implements CollidableObject {
             getPosition().setY(Constants.HEIGHT);
     }
 
+    @Override
     public abstract Polygon getCollider();
 }

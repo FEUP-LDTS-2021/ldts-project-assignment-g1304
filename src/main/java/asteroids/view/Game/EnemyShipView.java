@@ -5,7 +5,7 @@ import asteroids.model.Entities.EnemyShip;
 public class EnemyShipView extends View {
     private final EnemyShip enemyShip;
 
-    public static final String[] enemyShipDraw=new String[]{
+    private static final String[] enemyShipDraw=new String[]{
             "        AAA",
             "      AAAAbbA",
             "     AAAAAAbbA",

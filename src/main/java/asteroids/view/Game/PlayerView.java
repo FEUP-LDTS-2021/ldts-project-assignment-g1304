@@ -13,7 +13,7 @@ public class PlayerView extends View {
     private static final int CHAR_WIDTH = 2;
     private static final int CHAR_HEIGHT = 2;
 
-    public static final String[] playerDraw = new String[]{
+    private static final String[] playerDraw = new String[]{
             "        C        ",
             "       CWC       ",
             "       CWC       ",
@@ -31,7 +31,7 @@ public class PlayerView extends View {
             "       CCC       "
     };
 
-    public static final String[] playerFlamesDraw = new String[]{
+    private static final String[] playerFlamesDraw = new String[]{
             "        C        ",
             "       CWC       ",
             "       CWC       ",
