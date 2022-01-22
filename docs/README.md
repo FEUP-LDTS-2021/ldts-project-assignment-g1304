@@ -318,4 +318,6 @@ Justification: The error-prone analysis does not recognize TextColor as an immut
 
 ## MUTATION TESTING
 
+We excluded the Application class from the pitest because it is not testable.
+
 ![](image/pitest.png)
