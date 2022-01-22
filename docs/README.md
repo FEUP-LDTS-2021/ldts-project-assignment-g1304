@@ -334,3 +334,9 @@ We excluded the Application class from the pitest because it is not testable.
 ![](image/pitest.png)
 
 To consult the report, click [here](pitest/index.html).
+
+## SELF-EVALUATION
+
+- Afonso Baldo: 33.3%
+- João Teixeira: 33.3%
+- José Gaspar: 33.3%
