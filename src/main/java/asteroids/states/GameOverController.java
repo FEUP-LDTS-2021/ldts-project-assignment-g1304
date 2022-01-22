@@ -68,14 +68,14 @@ public class GameOverController implements StateController, KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             nextState();
         }
-        if ((e.getKeyCode() > 64 && e.getKeyCode() < 91) || (e.getKeyCode() > 96 && e.getKeyCode() < 123) || e.getKeyCode() == 8
-                || (e.getKeyCode() > 47 && e.getKeyCode() < 58))
-        {
+        boolean isNumber = e.getKeyCode() >= KeyEvent.VK_0 && e.getKeyCode() <= KeyEvent.VK_9;
+        boolean isLetterMin = e.getKeyCode() > 96 && e.getKeyCode() < 123;
+        boolean isCapitalLetter = e.getKeyCode() >= KeyEvent.VK_A && e.getKeyCode() <= KeyEvent.VK_Z;
+
+        if (isLetterMin || isCapitalLetter || isNumber)
             if(KeyEvent.getKeyText(e.getKeyCode()).length() == 1)
-            {
                 writeName(e.getKeyChar());
-            }
-        }
+
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
             updateLeaderboard(Constants.LEADERBOARD_FILE);
             nextState();
@@ -104,17 +104,17 @@ public class GameOverController implements StateController, KeyListener {
         } catch (FileNotFoundException e) {
             System.out.println("Error:" + e.getMessage());
         }
+        addToLeaderBoard(newRank);
+        writeLeaderboard(path);
+    }
+
+    private void addToLeaderBoard(int newRank){
         if(newRank > 0 && newRank <= 10) { // se ficar nos 10 melhores
             score.add(newRank-1, newScore);
-            String spaces = "";
-            for(int j = 0;  j < 18 - nickName.length(); j++)
-                spaces += " ";
-            name.add(newRank-1,nickName + spaces);
+            name.add(newRank-1,nickName + " ".repeat(Math.max(0, 18 - nickName.length())));
             score.remove(10);
             name.remove(10);
         }
-
-        writeLeaderboard(path);
     }
 
     public void writeLeaderboard(String path) {
