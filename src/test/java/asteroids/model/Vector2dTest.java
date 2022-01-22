@@ -181,13 +181,13 @@ public class Vector2dTest extends Assertions {
     void resizeSmaller(){
         Vector2d vec1 = Mockito.mock(Vector2d.class);
         Mockito.doCallRealMethod().when(vec1).resize(Mockito.anyDouble());
-        Mockito.when(vec1.module()).thenReturn(10.0);
+        Mockito.when(vec1.module()).thenReturn(0.01);
 
         Mockito.doNothing().when(vec1).scale(Mockito.anyDouble());
         vec1.resize(5);
 
         Mockito.verify(vec1, Mockito.atLeastOnce()).module();
-        Mockito.verify(vec1, Mockito.times(1)).scale(0.5);
+        Mockito.verify(vec1, Mockito.times(1)).scale(500);
 
     }
 

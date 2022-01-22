@@ -66,9 +66,6 @@ public class MusicManager {
             case SOUNDTRACK -> soundTrack.stop();
             case ROCKET -> rocket.stop();
             case GAMEOVER -> gameOver.stop();
-            case DESTRUCTION -> destruction.stop();
-            case SHOOT -> shoot.stop();
-            case ENEMYSHOOT -> enemyShoot.stop();
         }
     }
 
