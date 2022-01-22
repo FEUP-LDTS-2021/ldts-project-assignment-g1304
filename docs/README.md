@@ -332,3 +332,5 @@ We didn't identify any code smells in our code.
 We excluded the Application class from the pitest because it is not testable.
 
 ![](image/pitest.png)
+
+To consult the report, click [here](pitest/index.html).
