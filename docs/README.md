@@ -303,6 +303,15 @@ To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-a
 
 To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/337df16f898369b30131807ac5aa12e958cc2ec6)
 
+## ERROR-PRONE WARNINGS
+
+src\main\java\asteroids\view\Color.java:18
+
+warning: [ImmutableEnumChecker] enums should be immutable: 'Color' has field 'color' of type 'com.googlecode.lanterna.TextColor', the declaration of type 'com.googlecode.lanterna.TextColor' is not annotated with @com.google.errorprone.annotations.Immutable
+    private final TextColor color;
+    
+Justification: The error-prone analysis does not recognize TextColor as an immutable type because it belongs to the Lanterna Library. However, TextColor is, in fact, an immutable type.
+
 ## TEST COVERAGE
 
 ![](image/coverage.png)
