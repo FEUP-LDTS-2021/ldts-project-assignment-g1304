@@ -216,6 +216,13 @@ These guidelines were not accomplished because we used the **MVC** pattern. This
 
 ## LIST OF REFACTORINGS
 
+### Refactoring: GameOverController
+
+- Extracted method addToLeaderBoard from updateLeaderBoard
+- Extracted variables isNumber, isLetterMin and isCapitalLetter from keyPressed
+
+To see the commit, click [here](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1304/commit/5c03964de5015b49d9222d5353f72ba47c35dcc0).
+
 ### Refactoring: EnemyShipSpawner
 
 - Extracted method chooseVelocity and choosePosition from method create
