@@ -319,6 +319,13 @@ warning: [ImmutableEnumChecker] enums should be immutable: 'Color' has field 'co
     
 Justification: The error-prone analysis does not recognize TextColor as an immutable type because it belongs to the Lanterna Library. However, TextColor is, in fact, an immutable type.
 
+
+src\main\java\asteroids\control\MusicManager.java:65
+
+warning: [MissingCasesInEnumSwitch] Non-exhaustive switch; either add a default or handle the remaining cases: SHOOT, DESTRUCTION, ENEMYSHOOT
+
+Justification: There is no need to define the stop function for SHOOT, DESTRUCTION AND ENEMYSHOOT because they are not used.
+
 ## CODE SMELLS
 
 We didn't identify any code smells in our code.
