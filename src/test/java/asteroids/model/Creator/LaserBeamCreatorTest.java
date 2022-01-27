@@ -80,34 +80,3 @@ public class LaserBeamCreatorTest extends Assertions {
         Mockito.verify(pClone).setY(y);
     }
 }
-    /*
-
-
-    @Test
-    void createLaserBeam() {
-        //given
-        Position positionMock = Mockito.mock(Position.class);
-        Mockito.when(positionMock.getX()).thenReturn(10.0);
-        Mockito.when(positionMock.getY()).thenReturn(20.0);
-
-        Player playerMock = Mockito.mock(Player.class);
-        Mockito.when(playerMock.getPosition()).thenReturn(positionMock);
-        Mockito.when(playerMock.getAngle()).thenReturn(40.0);
-        Mockito.when(playerMock.getRaio()).thenReturn(5.0);
-
-        List<MovingObject> entities = List.of(playerMock);
-
-        LaserBeamCreator laserBeamCreator = new LaserBeamCreator(playerMock, entities);
-
-        double x = Math.cos(playerMock.getAngle())* (playerMock.getRaio()+10) + playerMock.getPosition().getX();
-        double y = Math.sin(playerMock.getAngle())* (playerMock.getRaio()+10) + playerMock.getPosition().getY();
-
-        //when
-        LaserBeam laserBeam = laserBeamCreator.create();
-
-        //then
-        assertEquals((int)(x-laserBeam.getWidth()/2), laserBeam.getPosition().getX());
-        assertEquals((int)(y-laserBeam.getHeight()/2), laserBeam.getPosition().getY());
-        assertTrue(laserBeam.isPlayerBeam());
-
-    }*/
